@@ -1,6 +1,3 @@
 [submodule "GeolithLib/geolith"]
 	path = GeolithLib/geolith
 	url = https://gitlab.com/jgemu/geolith
-[submodule "FBNeoCPSLib/fbneo"]
-	path = FBNeoCPSLib/fbneo
-	url = https://github.com/finalburnneo/FBNeo
