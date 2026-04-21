@@ -1,0 +1,1259 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		008D048AD1E99B821366D29C /* burn_sound_c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E879247D3ED0742A8A37C366 /* burn_sound_c.cpp */; };
+		020505624C2C3CFDFDD50775 /* geo_z80.c in Sources */ = {isa = PBXBuildFile; fileRef = 204E58FEBDEBB896EF2BD2F3 /* geo_z80.c */; };
+		026BA758C40C188758F5A9BA /* ymfm_adpcm.c in Sources */ = {isa = PBXBuildFile; fileRef = D492ACA5986574BFBAA4243D /* ymfm_adpcm.c */; };
+		05DB03972E6C428AE25747A6 /* ymfm_ssg.c in Sources */ = {isa = PBXBuildFile; fileRef = B52150829F9787978629D95A /* ymfm_ssg.c */; };
+		073BF5A6A391CD13B9C4639F /* cps_obj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 247A548E68EA6D850D7B1F18 /* cps_obj.cpp */; };
+		074AE2B2D092416621CE77DB /* fbneo_cps_bridge.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5854B6FC1ED22991B47E547E /* fbneo_cps_bridge.h */; };
+		082593DF1640833034673CA3 /* GameMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A4FAAA1A480129B85EC668 /* GameMetadata.swift */; };
+		08FF79A6C78808F772DF6521 /* geo_neo.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E8BFE8768FF29D11B59CB8E /* geo_neo.c */; };
+		1054FAE3F2FF61EA0BDA627E /* burn_gun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A2306DF270EC91BA27912A72 /* burn_gun.cpp */; };
+		10F6AF69AFB6FCD50EBBE5DA /* d_cps2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF3518318B38A998B604C6CB /* d_cps2.cpp */; };
+		118EF57F716BE46F6FE12816 /* SaveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4960B37AEE5494863F072169 /* SaveState.swift */; };
+		12C4A8322BA4BB5FA22F6842 /* cps_run.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AE05DE0D36DA2EEB2355D89 /* cps_run.cpp */; };
+		14B3FFCDAF5738648B83D122 /* geo_lspc.c in Sources */ = {isa = PBXBuildFile; fileRef = 7BBBB4C8CA00451D76815376 /* geo_lspc.c */; };
+		14CB03B96FD24FD4C2077E3E /* geolith_bridge.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6738116BDE01E44D9D6E044 /* geolith_bridge.h */; };
+		1D7B8D3963966C38369B6463 /* cps_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2475163282DC5AA07E0E1B09 /* cps_draw.cpp */; };
+		1D8585D4E3585CBB19FD1836 /* hiscore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A0F9B60B531A6A917593231 /* hiscore.cpp */; };
+		1E93ECC220EFB64C5F3F2299 /* samples.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07452615AD01389BE754C1C4 /* samples.cpp */; };
+		269B2AC7CDCC6FE8C4A6231D /* resample.c in Sources */ = {isa = PBXBuildFile; fileRef = 109B2003F6A1B01353FFE68F /* resample.c */; };
+		26EA9C0A82A414FEFA712898 /* cps_mem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CFB6014721E89DF166D2E785 /* cps_mem.cpp */; };
+		2703BCD92B69E23A35697A06 /* burn_pal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C16A8CAF2E6D8CF8F550B8A /* burn_pal.cpp */; };
+		291DCE9F91A8AF8E900A87FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827FB5BAB20BD6D65CA03304 /* AppDelegate.swift */; };
+		29A3B74EE288B959022314B2 /* ps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F57BF7477B17C71522A4382 /* ps.cpp */; };
+		2B9853908667E1BD4DC795EF /* cps_pal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C8CC25CB9D72C430797FC0A /* cps_pal.cpp */; };
+		2BB2E5C55D0DD5747EA22049 /* cps2_crpt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD376BB8E46557A06C07FFBB /* cps2_crpt.cpp */; };
+		2C6FA22EAD9A63650E3BB51B /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97370E4C99A7EA55F5060C50 /* System.swift */; };
+		2E7D830BC29EF1F208AAEC03 /* EmulatorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256A8DDB4B36B65779CBAA2 /* EmulatorError.swift */; };
+		30867271CEF2B0F61C534EDB /* z80_intf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0A689BCC3BB8DC2F4CE8070 /* z80_intf.cpp */; };
+		31F76B79CEFC0508041C986C /* qs_c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6C052EE9BECCE67B1229F4C3 /* qs_c.cpp */; };
+		3582AC6C1785D3A435917DFB /* dac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6F180B60D8BCD9DF1FB51 /* dac.cpp */; };
+		38187CC708BD01A1342B4021 /* fbneo_cps_bridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 228684DA886A07ABE3D86CA0 /* fbneo_cps_bridge.cpp */; };
+		390447556B9255C431906FB1 /* EmulatorCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C95B08DC8BA92B48ED19E41 /* EmulatorCore.swift */; };
+		3B6D5DA3AD2E7AEC655D1C48 /* burn_led.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AD257C5C2419568CF7BF26D /* burn_led.cpp */; };
+		3D8728B4057F09BFB30113AA /* cps_config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81A94D1E430B276AD6F3502E /* cps_config.cpp */; };
+		3EE6DCB3269186A3D540EA1B /* geo_cd.c in Sources */ = {isa = PBXBuildFile; fileRef = CEF0E98830F4C8794647A206 /* geo_cd.c */; };
+		44440017CBC106CCD3594D24 /* burn_ym2151.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86C4F48E4E1C61BFE82AA6DA /* burn_ym2151.cpp */; };
+		46CC8C8BD5B2A211F5ED3F48 /* m68kcpu.c in Sources */ = {isa = PBXBuildFile; fileRef = 4B1741B1572C07C418679737 /* m68kcpu.c */; };
+		49ED9CE9E2F914D43DF02DEE /* debug_track.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1DDAF8602E197AB7062E1F6 /* debug_track.cpp */; };
+		4AE1B53D8A462180986B1C8D /* GameDB.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C3AB95A50C8FC2A64F24AC4 /* GameDB.json */; };
+		4C2CD289165835879A3EDAD2 /* d_cps1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC3A2DD6A4A413A058BB3A72 /* d_cps1.cpp */; };
+		51C469162B96D5E33494368D /* ps_z.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D80C7B184C9F085773C2F84 /* ps_z.cpp */; };
+		591C58FEE1CF83163F6923C9 /* z80.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E55386B37E9E26C5F86C2CD0 /* z80.cpp */; };
+		625FA08630C9E7EAAFB4B068 /* burn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BD91CE627897B395DF6BF6A /* burn.cpp */; };
+		6536153305D9E501E73DECE6 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1B5216466B79C26A4DC93E30 /* Shaders.metal */; };
+		66176A8981AFD76B31297D96 /* qs_z.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B64BEDAC99A1A2FF11002C02 /* qs_z.cpp */; };
+		663248855E6634AFAEF7CA6E /* ps_m.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECFDB89832026488C7D4C30F /* ps_m.cpp */; };
+		6656910ABF4BF076FBC65E59 /* burn_sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A2ED6A9D33C56D9103A12986 /* burn_sound.cpp */; };
+		6855DA85FEFA3C83ECC340A4 /* ymfm_opn.c in Sources */ = {isa = PBXBuildFile; fileRef = 202358FED798A086A625712A /* ymfm_opn.c */; };
+		6B8056610D81F928C9747312 /* cps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1E77DD0C07E3DB5B52B08A6 /* cps.cpp */; };
+		750ED0C2DE728E74CCDEE91C /* geolith_bridge.c in Sources */ = {isa = PBXBuildFile; fileRef = F4AA41BD4649F24B62251F4C /* geolith_bridge.c */; };
+		75C80AA568E6B6B81AB83CF3 /* fbneo_macos_compat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9ACA327B5A1BD5D90849271 /* fbneo_macos_compat.cpp */; };
+		76C02A4DCDC2EC7D5F051242 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A89675FAC4F0015592539 /* Game.swift */; };
+		7A0F8EE112CD1B28E8EB3B0C /* cpsr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 862D3B86D760F6325F1161AA /* cpsr.cpp */; };
+		7A4F5864EBE3C585BE695002 /* cps_rw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AAE4F7399133F5F0B1E9472 /* cps_rw.cpp */; };
+		7FA3B421C7F96124C14421FD /* EmulatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB6C21F7FFCDB0563D776D /* EmulatorView.swift */; };
+		8509C8D0CDE64F67CD9F9F86 /* cheat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46BCA4A930E87E45C24B16C2 /* cheat.cpp */; };
+		85982F34F368C1B1F9E2E267 /* ctv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4260047A364879522EBE92AE /* ctv.cpp */; };
+		8756FC6D36802FF7EDCE4670 /* burn_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F651C81BE9B918CFC27611C7 /* burn_memory.cpp */; };
+		876A76CD2570DC96CFD4345A /* burn_bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 598BE77F213FF6E5A8E34BFF /* burn_bitmap.cpp */; };
+		88EAD8F3D81B59AAE09B4F20 /* d_parent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B94DA6EAE23F47AC4F7E05F6 /* d_parent.cpp */; };
+		8B2522CB3830FCC9DD4ACE09 /* timekpr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7C9C3EBDE427B3D4E0DF86B /* timekpr.cpp */; };
+		8C02A8C4A4EDA10E85D5F3C6 /* kabuki.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1DFCE811EB82C457DC4EA2FD /* kabuki.cpp */; };
+		8D2A5E35A65020372C3C21A7 /* MetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AD16CE3093D3E8F2BEC8A7 /* MetalRenderer.swift */; };
+		92E987564C552BFA8795F23F /* z80.c in Sources */ = {isa = PBXBuildFile; fileRef = 09F5B42D6E1DA62A48078D31 /* z80.c */; };
+		93CAED1C89C1C28AC02A30FD /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B2B6927F9CE250664CAA1E /* InputManager.swift */; };
+		972C8B693E4EDC759D0F0055 /* m68kcpu.c in Sources */ = {isa = PBXBuildFile; fileRef = A8487B7D8C074A1983F6FC4B /* m68kcpu.c */; };
+		978039E1D8F4AC454230A1BC /* geo_m68k.c in Sources */ = {isa = PBXBuildFile; fileRef = 58588CC5C6A349F0E34C85A3 /* geo_m68k.c */; };
+		97F493C5A88D412741CA78F9 /* burn_sha1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8552C48A5C8F891D2264E533 /* burn_sha1.cpp */; };
+		9AC7B10C00CBA5DA25B8680F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 417F6E28A81CC5A29B8D3823 /* Assets.xcassets */; };
+		9F837441EFF739E09960DCD7 /* geo_cue.c in Sources */ = {isa = PBXBuildFile; fileRef = E25DF35AC006768CBC045B9A /* geo_cue.c */; };
+		9FB29BD1BDB9CF6994BF06D6 /* msm6295.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A083C0A30A1A0D965CE1DB01 /* msm6295.cpp */; };
+		A66EBC54E43F5974F52EF4B3 /* libFBNeoCPSLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0AC01FD184D8614C4B5F60 /* libFBNeoCPSLib.a */; };
+		A7ACF089E905E21ACC08BCA6 /* geo_serial.c in Sources */ = {isa = PBXBuildFile; fileRef = B9141712E3D6877AFF0CB8DB /* geo_serial.c */; };
+		A9A872C6803FE9BDD9A20440 /* burn_shift.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 843808C5915E908A2AEF70E7 /* burn_shift.cpp */; };
+		A9E06971A9539BBFF183D57A /* tilemap_generic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D7454E004852F1FAC4143 /* tilemap_generic.cpp */; };
+		ADFD8EA98C6ADBF49B61D9FF /* libGeolithLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D10E23B14A3E6D6337276927 /* libGeolithLib.a */; };
+		AECF37EA3E11496759D1CDDA /* tiles_generic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE3DC40C0C5ED876B925AA90 /* tiles_generic.cpp */; };
+		AF5AA75D5444AA7DC21CB5AB /* z80daisy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 31EF81A53CEEC38442433EAE /* z80daisy.cpp */; };
+		AF75497258DFFA614ED4143E /* cpst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FF3EC2540A5E99B2F6BCFFD /* cpst.cpp */; };
+		B3AFB508B63C6B6772F7CEC8 /* joyprocess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AF0F41C4F16B26D6EEDD54BE /* joyprocess.cpp */; };
+		B56BA48F49644B488C483E72 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D8507113B4EEF3990742C8 /* RingBuffer.swift */; };
+		B58DDAB42A72B7B70C6F215D /* geo_mixer.c in Sources */ = {isa = PBXBuildFile; fileRef = 50AA7ECB1DC6952EFECB5DF8 /* geo_mixer.c */; };
+		B9B14E18E2E9E2F858A700B2 /* geo_rtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D848198948E2C9B64FE34711 /* geo_rtc.c */; };
+		BACD84968CE5C6C748924A5D /* qs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C11E093AAAACE496E92818 /* qs.cpp */; };
+		BB9ABE3D39237CA707D4DBC8 /* fcrash_snd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20F8064AC14885C54B122CBA /* fcrash_snd.cpp */; };
+		BCC303852237BB57F4BABBE4 /* miniz.c in Sources */ = {isa = PBXBuildFile; fileRef = 825C9AB1A82EBBF14D4BB19A /* miniz.c */; };
+		BD27D351AA99A17FC8530986 /* vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 045BA7AFDA18A2D044155E31 /* vector.cpp */; };
+		C3CEF708DC51D88123169210 /* geo.c in Sources */ = {isa = PBXBuildFile; fileRef = D7BBBDB6D130E9876A8ACA64 /* geo.c */; };
+		C8D601825316782CE412EC58 /* geo_disc.c in Sources */ = {isa = PBXBuildFile; fileRef = 07270948DE5DFCFD5A564B2B /* geo_disc.c */; };
+		CA6DAFAAC72BF6549F4A345E /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10C09B78E2A983224BFFA00A /* timer.cpp */; };
+		CAD689949F4AEBDE38CAB06E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04C5F7697CA39784D9F294 /* ContentView.swift */; };
+		CBDAECE1A29AE1B7A9B46843 /* cpsrd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7D395EEC769BDC669F40EA0 /* cpsrd.cpp */; };
+		CE2C656B7E9AA2533923472B /* geo_memcard.c in Sources */ = {isa = PBXBuildFile; fileRef = D7B26422A1EFF5828BAC4396 /* geo_memcard.c */; };
+		D0DAB6A58E16F17B5B2D0544 /* load.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 653453B3602AB98CEB04AD6B /* load.cpp */; };
+		D354C373C46FCBDAD701A9F0 /* cps_scr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EF61E4C2C2C1F9BB3E2B8F0 /* cps_scr.cpp */; };
+		D5659B9E17A17F4B4441462C /* ym2151.c in Sources */ = {isa = PBXBuildFile; fileRef = 09BA3C75C4526B37E7ACA7DB /* ym2151.c */; };
+		D753EBFBE28C25205F22ED63 /* GeolithCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72ED0E6146F1DF37A530AB9 /* GeolithCore.swift */; };
+		DA5CF08886E18B9F518808A2 /* geo_ymfm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7B22C3596755DCA6BF9D959B /* geo_ymfm.c */; };
+		E1E3BFED759B6CB273DF1B80 /* z80pio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5407FBF8BF56333C3BA9CC0F /* z80pio.cpp */; };
+		E420BE8C0F897EA50731ECD3 /* geo_lc8951.c in Sources */ = {isa = PBXBuildFile; fileRef = F7D6A0099727099E5AC696BD /* geo_lc8951.c */; };
+		E6103B8153DF61A16BDF91EC /* SpriteEngineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707715181EAD11F17488779 /* SpriteEngineApp.swift */; };
+		E903AB86E76B5F5F2B43DD8A /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781F3487F5E2ED1ACB6C27D1 /* AudioEngine.swift */; };
+		EC6E32B886EC40BA1B237205 /* sf2mdt_snd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92978DBF07BAA849DDDF46F1 /* sf2mdt_snd.cpp */; };
+		F145D4D85E1A38669E3E0278 /* z80ctc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB9A3D8C99CF0D3E8180DE4D /* z80ctc.cpp */; };
+		F4E2E1C4975382F91951BC97 /* m68kops.c in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDA862B1256B88CCC901F8 /* m68kops.c */; };
+		F776838206538B8A3AD7ACDD /* m68kops.c in Sources */ = {isa = PBXBuildFile; fileRef = 717967C3F21C09EE5B609143 /* m68kops.c */; };
+		FE6343B387A29A059AF024EB /* EmulatorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219FAC862546400A38C9B53 /* EmulatorSession.swift */; };
+		FFAC650EE64B04D08653E5DC /* m68000_intf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0E424D8F923F158263BB53A6 /* m68000_intf.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		29E448AA8B43E656613906F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1532AE3C35149AABB6AE7718 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1FD07CDF87F714CAAA34E6CF;
+			remoteInfo = GeolithLib;
+		};
+		7F573CC698AD9FDA3EA2CA24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1532AE3C35149AABB6AE7718 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 23558A9B47FEE87B5A16FAB7;
+			remoteInfo = FBNeoCPSLib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8D2D2CD314B34C1A74692F73 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				14CB03B96FD24FD4C2077E3E /* geolith_bridge.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2CDD9CCD6C274693BE894BC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				074AE2B2D092416621CE77DB /* fbneo_cps_bridge.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		045BA7AFDA18A2D044155E31 /* vector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = vector.cpp; sourceTree = "<group>"; };
+		07270948DE5DFCFD5A564B2B /* geo_disc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_disc.c; sourceTree = "<group>"; };
+		07452615AD01389BE754C1C4 /* samples.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = samples.cpp; sourceTree = "<group>"; };
+		09BA3C75C4526B37E7ACA7DB /* ym2151.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ym2151.c; sourceTree = "<group>"; };
+		09F5B42D6E1DA62A48078D31 /* z80.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = z80.c; sourceTree = "<group>"; };
+		0A0F9B60B531A6A917593231 /* hiscore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = hiscore.cpp; sourceTree = "<group>"; };
+		0AAE4F7399133F5F0B1E9472 /* cps_rw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps_rw.cpp; sourceTree = "<group>"; };
+		0C16A8CAF2E6D8CF8F550B8A /* burn_pal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_pal.cpp; sourceTree = "<group>"; };
+		0E424D8F923F158263BB53A6 /* m68000_intf.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = m68000_intf.cpp; sourceTree = "<group>"; };
+		0FB6F180B60D8BCD9DF1FB51 /* dac.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dac.cpp; sourceTree = "<group>"; };
+		109B2003F6A1B01353FFE68F /* resample.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = resample.c; sourceTree = "<group>"; };
+		10C09B78E2A983224BFFA00A /* timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = timer.cpp; sourceTree = "<group>"; };
+		1B5216466B79C26A4DC93E30 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		1DFCE811EB82C457DC4EA2FD /* kabuki.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kabuki.cpp; sourceTree = "<group>"; };
+		202358FED798A086A625712A /* ymfm_opn.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ymfm_opn.c; sourceTree = "<group>"; };
+		204E58FEBDEBB896EF2BD2F3 /* geo_z80.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_z80.c; sourceTree = "<group>"; };
+		20F8064AC14885C54B122CBA /* fcrash_snd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fcrash_snd.cpp; sourceTree = "<group>"; };
+		228684DA886A07ABE3D86CA0 /* fbneo_cps_bridge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fbneo_cps_bridge.cpp; sourceTree = "<group>"; };
+		2475163282DC5AA07E0E1B09 /* cps_draw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps_draw.cpp; sourceTree = "<group>"; };
+		247A548E68EA6D850D7B1F18 /* cps_obj.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps_obj.cpp; sourceTree = "<group>"; };
+		294A89675FAC4F0015592539 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		2A5D7454E004852F1FAC4143 /* tilemap_generic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tilemap_generic.cpp; sourceTree = "<group>"; };
+		2BBDA862B1256B88CCC901F8 /* m68kops.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = m68kops.c; sourceTree = "<group>"; };
+		2BD91CE627897B395DF6BF6A /* burn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn.cpp; sourceTree = "<group>"; };
+		2E8BFE8768FF29D11B59CB8E /* geo_neo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_neo.c; sourceTree = "<group>"; };
+		31EF81A53CEEC38442433EAE /* z80daisy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = z80daisy.cpp; sourceTree = "<group>"; };
+		3707715181EAD11F17488779 /* SpriteEngineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteEngineApp.swift; sourceTree = "<group>"; };
+		3C3AB95A50C8FC2A64F24AC4 /* GameDB.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameDB.json; sourceTree = "<group>"; };
+		3C8CC25CB9D72C430797FC0A /* cps_pal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps_pal.cpp; sourceTree = "<group>"; };
+		417F6E28A81CC5A29B8D3823 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4260047A364879522EBE92AE /* ctv.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ctv.cpp; sourceTree = "<group>"; };
+		46BCA4A930E87E45C24B16C2 /* cheat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cheat.cpp; sourceTree = "<group>"; };
+		4960B37AEE5494863F072169 /* SaveState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveState.swift; sourceTree = "<group>"; };
+		4B1741B1572C07C418679737 /* m68kcpu.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = m68kcpu.c; sourceTree = "<group>"; };
+		4F57BF7477B17C71522A4382 /* ps.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ps.cpp; sourceTree = "<group>"; };
+		50AA7ECB1DC6952EFECB5DF8 /* geo_mixer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_mixer.c; sourceTree = "<group>"; };
+		5219FAC862546400A38C9B53 /* EmulatorSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmulatorSession.swift; sourceTree = "<group>"; };
+		5407FBF8BF56333C3BA9CC0F /* z80pio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = z80pio.cpp; sourceTree = "<group>"; };
+		5854B6FC1ED22991B47E547E /* fbneo_cps_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fbneo_cps_bridge.h; sourceTree = "<group>"; };
+		58588CC5C6A349F0E34C85A3 /* geo_m68k.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_m68k.c; sourceTree = "<group>"; };
+		598BE77F213FF6E5A8E34BFF /* burn_bitmap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_bitmap.cpp; sourceTree = "<group>"; };
+		5AE05DE0D36DA2EEB2355D89 /* cps_run.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps_run.cpp; sourceTree = "<group>"; };
+		5EF61E4C2C2C1F9BB3E2B8F0 /* cps_scr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps_scr.cpp; sourceTree = "<group>"; };
+		653453B3602AB98CEB04AD6B /* load.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = load.cpp; sourceTree = "<group>"; };
+		6AD257C5C2419568CF7BF26D /* burn_led.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_led.cpp; sourceTree = "<group>"; };
+		6C052EE9BECCE67B1229F4C3 /* qs_c.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = qs_c.cpp; sourceTree = "<group>"; };
+		6D80C7B184C9F085773C2F84 /* ps_z.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ps_z.cpp; sourceTree = "<group>"; };
+		6FF3EC2540A5E99B2F6BCFFD /* cpst.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cpst.cpp; sourceTree = "<group>"; };
+		717967C3F21C09EE5B609143 /* m68kops.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = m68kops.c; sourceTree = "<group>"; };
+		72D8507113B4EEF3990742C8 /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
+		781F3487F5E2ED1ACB6C27D1 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
+		7B22C3596755DCA6BF9D959B /* geo_ymfm.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_ymfm.c; sourceTree = "<group>"; };
+		7BBBB4C8CA00451D76815376 /* geo_lspc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_lspc.c; sourceTree = "<group>"; };
+		7D04C5F7697CA39784D9F294 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		81A94D1E430B276AD6F3502E /* cps_config.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps_config.cpp; sourceTree = "<group>"; };
+		825C9AB1A82EBBF14D4BB19A /* miniz.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = miniz.c; sourceTree = "<group>"; };
+		827FB5BAB20BD6D65CA03304 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		82A4FAAA1A480129B85EC668 /* GameMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetadata.swift; sourceTree = "<group>"; };
+		843808C5915E908A2AEF70E7 /* burn_shift.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_shift.cpp; sourceTree = "<group>"; };
+		8552C48A5C8F891D2264E533 /* burn_sha1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_sha1.cpp; sourceTree = "<group>"; };
+		862D3B86D760F6325F1161AA /* cpsr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cpsr.cpp; sourceTree = "<group>"; };
+		86C4F48E4E1C61BFE82AA6DA /* burn_ym2151.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_ym2151.cpp; sourceTree = "<group>"; };
+		87C11E093AAAACE496E92818 /* qs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = qs.cpp; sourceTree = "<group>"; };
+		8B8B31C53C8BB12BCB1F57B2 /* SpriteEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpriteEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92978DBF07BAA849DDDF46F1 /* sf2mdt_snd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sf2mdt_snd.cpp; sourceTree = "<group>"; };
+		97370E4C99A7EA55F5060C50 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
+		9C95B08DC8BA92B48ED19E41 /* EmulatorCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmulatorCore.swift; sourceTree = "<group>"; };
+		A083C0A30A1A0D965CE1DB01 /* msm6295.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = msm6295.cpp; sourceTree = "<group>"; };
+		A2306DF270EC91BA27912A72 /* burn_gun.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_gun.cpp; sourceTree = "<group>"; };
+		A2ED6A9D33C56D9103A12986 /* burn_sound.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_sound.cpp; sourceTree = "<group>"; };
+		A8487B7D8C074A1983F6FC4B /* m68kcpu.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = m68kcpu.c; sourceTree = "<group>"; };
+		AEBB6C21F7FFCDB0563D776D /* EmulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmulatorView.swift; sourceTree = "<group>"; };
+		AF0F41C4F16B26D6EEDD54BE /* joyprocess.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = joyprocess.cpp; sourceTree = "<group>"; };
+		B256A8DDB4B36B65779CBAA2 /* EmulatorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmulatorError.swift; sourceTree = "<group>"; };
+		B52150829F9787978629D95A /* ymfm_ssg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ymfm_ssg.c; sourceTree = "<group>"; };
+		B64BEDAC99A1A2FF11002C02 /* qs_z.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = qs_z.cpp; sourceTree = "<group>"; };
+		B7C9C3EBDE427B3D4E0DF86B /* timekpr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = timekpr.cpp; sourceTree = "<group>"; };
+		B7D395EEC769BDC669F40EA0 /* cpsrd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cpsrd.cpp; sourceTree = "<group>"; };
+		B9141712E3D6877AFF0CB8DB /* geo_serial.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_serial.c; sourceTree = "<group>"; };
+		B94DA6EAE23F47AC4F7E05F6 /* d_parent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_parent.cpp; sourceTree = "<group>"; };
+		C0A689BCC3BB8DC2F4CE8070 /* z80_intf.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = z80_intf.cpp; sourceTree = "<group>"; };
+		C6738116BDE01E44D9D6E044 /* geolith_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = geolith_bridge.h; sourceTree = "<group>"; };
+		C9AD16CE3093D3E8F2BEC8A7 /* MetalRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalRenderer.swift; sourceTree = "<group>"; };
+		CB9A3D8C99CF0D3E8180DE4D /* z80ctc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = z80ctc.cpp; sourceTree = "<group>"; };
+		CD376BB8E46557A06C07FFBB /* cps2_crpt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps2_crpt.cpp; sourceTree = "<group>"; };
+		CE0AC01FD184D8614C4B5F60 /* libFBNeoCPSLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFBNeoCPSLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEF0E98830F4C8794647A206 /* geo_cd.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_cd.c; sourceTree = "<group>"; };
+		CFB6014721E89DF166D2E785 /* cps_mem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps_mem.cpp; sourceTree = "<group>"; };
+		D10E23B14A3E6D6337276927 /* libGeolithLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGeolithLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D492ACA5986574BFBAA4243D /* ymfm_adpcm.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ymfm_adpcm.c; sourceTree = "<group>"; };
+		D7B26422A1EFF5828BAC4396 /* geo_memcard.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_memcard.c; sourceTree = "<group>"; };
+		D7BBBDB6D130E9876A8ACA64 /* geo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo.c; sourceTree = "<group>"; };
+		D807C9EED143BBA085F2CD87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D848198948E2C9B64FE34711 /* geo_rtc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_rtc.c; sourceTree = "<group>"; };
+		E1DDAF8602E197AB7062E1F6 /* debug_track.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = debug_track.cpp; sourceTree = "<group>"; };
+		E1E77DD0C07E3DB5B52B08A6 /* cps.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps.cpp; sourceTree = "<group>"; };
+		E25DF35AC006768CBC045B9A /* geo_cue.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_cue.c; sourceTree = "<group>"; };
+		E55386B37E9E26C5F86C2CD0 /* z80.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = z80.cpp; sourceTree = "<group>"; };
+		E6B2B6927F9CE250664CAA1E /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
+		E72ED0E6146F1DF37A530AB9 /* GeolithCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolithCore.swift; sourceTree = "<group>"; };
+		E879247D3ED0742A8A37C366 /* burn_sound_c.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_sound_c.cpp; sourceTree = "<group>"; };
+		E9ACA327B5A1BD5D90849271 /* fbneo_macos_compat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fbneo_macos_compat.cpp; sourceTree = "<group>"; };
+		ECFDB89832026488C7D4C30F /* ps_m.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ps_m.cpp; sourceTree = "<group>"; };
+		EE3DC40C0C5ED876B925AA90 /* tiles_generic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tiles_generic.cpp; sourceTree = "<group>"; };
+		EF3518318B38A998B604C6CB /* d_cps2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_cps2.cpp; sourceTree = "<group>"; };
+		F4AA41BD4649F24B62251F4C /* geolith_bridge.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geolith_bridge.c; sourceTree = "<group>"; };
+		F651C81BE9B918CFC27611C7 /* burn_memory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_memory.cpp; sourceTree = "<group>"; };
+		F7D6A0099727099E5AC696BD /* geo_lc8951.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_lc8951.c; sourceTree = "<group>"; };
+		FC3A2DD6A4A413A058BB3A72 /* d_cps1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_cps1.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA9FB3FD17227F7A8CE7E37B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADFD8EA98C6ADBF49B61D9FF /* libGeolithLib.a in Frameworks */,
+				A66EBC54E43F5974F52EF4B3 /* libFBNeoCPSLib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		063C5C4ACF161329E18A278E /* ymfm */ = {
+			isa = PBXGroup;
+			children = (
+				D492ACA5986574BFBAA4243D /* ymfm_adpcm.c */,
+				202358FED798A086A625712A /* ymfm_opn.c */,
+				B52150829F9787978629D95A /* ymfm_ssg.c */,
+			);
+			path = ymfm;
+			sourceTree = "<group>";
+		};
+		0F5FC9479208AC671DA82062 /* z80 */ = {
+			isa = PBXGroup;
+			children = (
+				09F5B42D6E1DA62A48078D31 /* z80.c */,
+			);
+			path = z80;
+			sourceTree = "<group>";
+		};
+		138500C8862D7BACE5EE5350 /* dep */ = {
+			isa = PBXGroup;
+			children = (
+				CB74AA48CA08F0B8500A5E8E /* generated */,
+			);
+			path = dep;
+			sourceTree = "<group>";
+		};
+		1D9ABAB2D40D3828F5DFADD3 /* cpu */ = {
+			isa = PBXGroup;
+			children = (
+				0E424D8F923F158263BB53A6 /* m68000_intf.cpp */,
+				C0A689BCC3BB8DC2F4CE8070 /* z80_intf.cpp */,
+				43AF0E81C86D328C8FC5AF17 /* m68k */,
+				D4AF69363335E5D984336492 /* z80 */,
+			);
+			path = cpu;
+			sourceTree = "<group>";
+		};
+		211E6366DDF392A24FE591B6 /* deps */ = {
+			isa = PBXGroup;
+			children = (
+				8A93B859AF66297862459E6B /* miniz */,
+				FA10B9BBC32936B6A4E45F5C /* speex */,
+			);
+			path = deps;
+			sourceTree = "<group>";
+		};
+		252FA73E41D4D1A9A15D6FA6 /* Emulation */ = {
+			isa = PBXGroup;
+			children = (
+				9C95B08DC8BA92B48ED19E41 /* EmulatorCore.swift */,
+				B256A8DDB4B36B65779CBAA2 /* EmulatorError.swift */,
+				5219FAC862546400A38C9B53 /* EmulatorSession.swift */,
+				E72ED0E6146F1DF37A530AB9 /* GeolithCore.swift */,
+			);
+			path = Emulation;
+			sourceTree = "<group>";
+		};
+		27FBB128403C170952B91128 /* geolith */ = {
+			isa = PBXGroup;
+			children = (
+				211E6366DDF392A24FE591B6 /* deps */,
+				9F12E9B33F9489AB40B0719A /* src */,
+			);
+			path = geolith;
+			sourceTree = "<group>";
+		};
+		301F6D84C1CD0643D173D03B /* GeolithLib */ = {
+			isa = PBXGroup;
+			children = (
+				49F0EA353CA6D2F85D08D7A2 /* bridge */,
+				27FBB128403C170952B91128 /* geolith */,
+			);
+			path = GeolithLib;
+			sourceTree = "<group>";
+		};
+		3BBCEF4B1C5F9B4DEC7E3D54 /* capcom */ = {
+			isa = PBXGroup;
+			children = (
+				81A94D1E430B276AD6F3502E /* cps_config.cpp */,
+				2475163282DC5AA07E0E1B09 /* cps_draw.cpp */,
+				CFB6014721E89DF166D2E785 /* cps_mem.cpp */,
+				247A548E68EA6D850D7B1F18 /* cps_obj.cpp */,
+				3C8CC25CB9D72C430797FC0A /* cps_pal.cpp */,
+				5AE05DE0D36DA2EEB2355D89 /* cps_run.cpp */,
+				0AAE4F7399133F5F0B1E9472 /* cps_rw.cpp */,
+				5EF61E4C2C2C1F9BB3E2B8F0 /* cps_scr.cpp */,
+				E1E77DD0C07E3DB5B52B08A6 /* cps.cpp */,
+				CD376BB8E46557A06C07FFBB /* cps2_crpt.cpp */,
+				862D3B86D760F6325F1161AA /* cpsr.cpp */,
+				B7D395EEC769BDC669F40EA0 /* cpsrd.cpp */,
+				6FF3EC2540A5E99B2F6BCFFD /* cpst.cpp */,
+				4260047A364879522EBE92AE /* ctv.cpp */,
+				FC3A2DD6A4A413A058BB3A72 /* d_cps1.cpp */,
+				EF3518318B38A998B604C6CB /* d_cps2.cpp */,
+				20F8064AC14885C54B122CBA /* fcrash_snd.cpp */,
+				1DFCE811EB82C457DC4EA2FD /* kabuki.cpp */,
+				ECFDB89832026488C7D4C30F /* ps_m.cpp */,
+				6D80C7B184C9F085773C2F84 /* ps_z.cpp */,
+				4F57BF7477B17C71522A4382 /* ps.cpp */,
+				6C052EE9BECCE67B1229F4C3 /* qs_c.cpp */,
+				B64BEDAC99A1A2FF11002C02 /* qs_z.cpp */,
+				87C11E093AAAACE496E92818 /* qs.cpp */,
+				92978DBF07BAA849DDDF46F1 /* sf2mdt_snd.cpp */,
+			);
+			path = capcom;
+			sourceTree = "<group>";
+		};
+		3EAFFECC0D780C360011F89B /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				781F3487F5E2ED1ACB6C27D1 /* AudioEngine.swift */,
+				72D8507113B4EEF3990742C8 /* RingBuffer.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		43AF0E81C86D328C8FC5AF17 /* m68k */ = {
+			isa = PBXGroup;
+			children = (
+				A8487B7D8C074A1983F6FC4B /* m68kcpu.c */,
+			);
+			path = m68k;
+			sourceTree = "<group>";
+		};
+		49F0EA353CA6D2F85D08D7A2 /* bridge */ = {
+			isa = PBXGroup;
+			children = (
+				F4AA41BD4649F24B62251F4C /* geolith_bridge.c */,
+				C6738116BDE01E44D9D6E044 /* geolith_bridge.h */,
+			);
+			path = bridge;
+			sourceTree = "<group>";
+		};
+		4D0FD7DB702D93A1DD4AECD9 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F9E15301EBD467EF32DB4226 /* burn */,
+				1D9ABAB2D40D3828F5DFADD3 /* cpu */,
+				138500C8862D7BACE5EE5350 /* dep */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		516F00559B87A9D1AE9A481F /* Conversion */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Conversion;
+			sourceTree = "<group>";
+		};
+		51984618B2CC63CF77F094F1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				417F6E28A81CC5A29B8D3823 /* Assets.xcassets */,
+				3C3AB95A50C8FC2A64F24AC4 /* GameDB.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		53E8EC3E00AC6BD9495F881D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7D04C5F7697CA39784D9F294 /* ContentView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		56D879AB16C12F73934E20F3 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				82A4FAAA1A480129B85EC668 /* GameMetadata.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		6B0D5F357E2139A982D86B03 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE0AC01FD184D8614C4B5F60 /* libFBNeoCPSLib.a */,
+				D10E23B14A3E6D6337276927 /* libGeolithLib.a */,
+				8B8B31C53C8BB12BCB1F57B2 /* SpriteEngine.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8628CB5BDB07BCDD32E9F31A = {
+			isa = PBXGroup;
+			children = (
+				9B0F83A20496C6BAA4DE0F93 /* FBNeoCPSLib */,
+				301F6D84C1CD0643D173D03B /* GeolithLib */,
+				F6484C4122073CF5EB29E74F /* SpriteEngine */,
+				6B0D5F357E2139A982D86B03 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8A89C1722EBFA3F64D8251B8 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				E6B2B6927F9CE250664CAA1E /* InputManager.swift */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
+		8A93B859AF66297862459E6B /* miniz */ = {
+			isa = PBXGroup;
+			children = (
+				825C9AB1A82EBBF14D4BB19A /* miniz.c */,
+			);
+			path = miniz;
+			sourceTree = "<group>";
+		};
+		8BA51DCE7051A687063D1BF2 /* fbneo */ = {
+			isa = PBXGroup;
+			children = (
+				4D0FD7DB702D93A1DD4AECD9 /* src */,
+			);
+			path = fbneo;
+			sourceTree = "<group>";
+		};
+		9B0F83A20496C6BAA4DE0F93 /* FBNeoCPSLib */ = {
+			isa = PBXGroup;
+			children = (
+				B399C80EC34D205B52CAC620 /* bridge */,
+				8BA51DCE7051A687063D1BF2 /* fbneo */,
+			);
+			path = FBNeoCPSLib;
+			sourceTree = "<group>";
+		};
+		9F12E9B33F9489AB40B0719A /* src */ = {
+			isa = PBXGroup;
+			children = (
+				CEF0E98830F4C8794647A206 /* geo_cd.c */,
+				E25DF35AC006768CBC045B9A /* geo_cue.c */,
+				07270948DE5DFCFD5A564B2B /* geo_disc.c */,
+				F7D6A0099727099E5AC696BD /* geo_lc8951.c */,
+				7BBBB4C8CA00451D76815376 /* geo_lspc.c */,
+				58588CC5C6A349F0E34C85A3 /* geo_m68k.c */,
+				D7B26422A1EFF5828BAC4396 /* geo_memcard.c */,
+				50AA7ECB1DC6952EFECB5DF8 /* geo_mixer.c */,
+				2E8BFE8768FF29D11B59CB8E /* geo_neo.c */,
+				D848198948E2C9B64FE34711 /* geo_rtc.c */,
+				B9141712E3D6877AFF0CB8DB /* geo_serial.c */,
+				7B22C3596755DCA6BF9D959B /* geo_ymfm.c */,
+				204E58FEBDEBB896EF2BD2F3 /* geo_z80.c */,
+				D7BBBDB6D130E9876A8ACA64 /* geo.c */,
+				F3C46D7936BDE17805FE6349 /* m68k */,
+				063C5C4ACF161329E18A278E /* ymfm */,
+				0F5FC9479208AC671DA82062 /* z80 */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		A796D23D0C03E596CE900D35 /* drv */ = {
+			isa = PBXGroup;
+			children = (
+				B94DA6EAE23F47AC4F7E05F6 /* d_parent.cpp */,
+				3BBCEF4B1C5F9B4DEC7E3D54 /* capcom */,
+			);
+			path = drv;
+			sourceTree = "<group>";
+		};
+		AF9A9310E22F0E9879C06BF3 /* devices */ = {
+			isa = PBXGroup;
+			children = (
+				AF0F41C4F16B26D6EEDD54BE /* joyprocess.cpp */,
+				B7C9C3EBDE427B3D4E0DF86B /* timekpr.cpp */,
+			);
+			path = devices;
+			sourceTree = "<group>";
+		};
+		B399C80EC34D205B52CAC620 /* bridge */ = {
+			isa = PBXGroup;
+			children = (
+				228684DA886A07ABE3D86CA0 /* fbneo_cps_bridge.cpp */,
+				5854B6FC1ED22991B47E547E /* fbneo_cps_bridge.h */,
+				E9ACA327B5A1BD5D90849271 /* fbneo_macos_compat.cpp */,
+			);
+			path = bridge;
+			sourceTree = "<group>";
+		};
+		B60CE60A7476EAB229ABB089 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				827FB5BAB20BD6D65CA03304 /* AppDelegate.swift */,
+				3707715181EAD11F17488779 /* SpriteEngineApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C3130F03B57FDB258FB9164D /* snd */ = {
+			isa = PBXGroup;
+			children = (
+				86C4F48E4E1C61BFE82AA6DA /* burn_ym2151.cpp */,
+				0FB6F180B60D8BCD9DF1FB51 /* dac.cpp */,
+				A083C0A30A1A0D965CE1DB01 /* msm6295.cpp */,
+				07452615AD01389BE754C1C4 /* samples.cpp */,
+				09BA3C75C4526B37E7ACA7DB /* ym2151.c */,
+			);
+			path = snd;
+			sourceTree = "<group>";
+		};
+		CB74AA48CA08F0B8500A5E8E /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				717967C3F21C09EE5B609143 /* m68kops.c */,
+			);
+			path = generated;
+			sourceTree = "<group>";
+		};
+		D4AF69363335E5D984336492 /* z80 */ = {
+			isa = PBXGroup;
+			children = (
+				E55386B37E9E26C5F86C2CD0 /* z80.cpp */,
+				CB9A3D8C99CF0D3E8180DE4D /* z80ctc.cpp */,
+				31EF81A53CEEC38442433EAE /* z80daisy.cpp */,
+				5407FBF8BF56333C3BA9CC0F /* z80pio.cpp */,
+			);
+			path = z80;
+			sourceTree = "<group>";
+		};
+		DF2623861E75BEA3B7F509AE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				294A89675FAC4F0015592539 /* Game.swift */,
+				4960B37AEE5494863F072169 /* SaveState.swift */,
+				97370E4C99A7EA55F5060C50 /* System.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E16423C61B9F402D376448BA /* Rendering */ = {
+			isa = PBXGroup;
+			children = (
+				AEBB6C21F7FFCDB0563D776D /* EmulatorView.swift */,
+				C9AD16CE3093D3E8F2BEC8A7 /* MetalRenderer.swift */,
+				1B5216466B79C26A4DC93E30 /* Shaders.metal */,
+			);
+			path = Rendering;
+			sourceTree = "<group>";
+		};
+		F3C46D7936BDE17805FE6349 /* m68k */ = {
+			isa = PBXGroup;
+			children = (
+				4B1741B1572C07C418679737 /* m68kcpu.c */,
+				2BBDA862B1256B88CCC901F8 /* m68kops.c */,
+			);
+			path = m68k;
+			sourceTree = "<group>";
+		};
+		F6484C4122073CF5EB29E74F /* SpriteEngine */ = {
+			isa = PBXGroup;
+			children = (
+				D807C9EED143BBA085F2CD87 /* Info.plist */,
+				B60CE60A7476EAB229ABB089 /* App */,
+				3EAFFECC0D780C360011F89B /* Audio */,
+				516F00559B87A9D1AE9A481F /* Conversion */,
+				252FA73E41D4D1A9A15D6FA6 /* Emulation */,
+				8A89C1722EBFA3F64D8251B8 /* Input */,
+				56D879AB16C12F73934E20F3 /* Library */,
+				DF2623861E75BEA3B7F509AE /* Models */,
+				E16423C61B9F402D376448BA /* Rendering */,
+				51984618B2CC63CF77F094F1 /* Resources */,
+				53E8EC3E00AC6BD9495F881D /* UI */,
+			);
+			path = SpriteEngine;
+			sourceTree = "<group>";
+		};
+		F9E15301EBD467EF32DB4226 /* burn */ = {
+			isa = PBXGroup;
+			children = (
+				598BE77F213FF6E5A8E34BFF /* burn_bitmap.cpp */,
+				A2306DF270EC91BA27912A72 /* burn_gun.cpp */,
+				6AD257C5C2419568CF7BF26D /* burn_led.cpp */,
+				F651C81BE9B918CFC27611C7 /* burn_memory.cpp */,
+				0C16A8CAF2E6D8CF8F550B8A /* burn_pal.cpp */,
+				8552C48A5C8F891D2264E533 /* burn_sha1.cpp */,
+				843808C5915E908A2AEF70E7 /* burn_shift.cpp */,
+				E879247D3ED0742A8A37C366 /* burn_sound_c.cpp */,
+				A2ED6A9D33C56D9103A12986 /* burn_sound.cpp */,
+				2BD91CE627897B395DF6BF6A /* burn.cpp */,
+				46BCA4A930E87E45C24B16C2 /* cheat.cpp */,
+				E1DDAF8602E197AB7062E1F6 /* debug_track.cpp */,
+				0A0F9B60B531A6A917593231 /* hiscore.cpp */,
+				653453B3602AB98CEB04AD6B /* load.cpp */,
+				2A5D7454E004852F1FAC4143 /* tilemap_generic.cpp */,
+				EE3DC40C0C5ED876B925AA90 /* tiles_generic.cpp */,
+				10C09B78E2A983224BFFA00A /* timer.cpp */,
+				045BA7AFDA18A2D044155E31 /* vector.cpp */,
+				AF9A9310E22F0E9879C06BF3 /* devices */,
+				A796D23D0C03E596CE900D35 /* drv */,
+				C3130F03B57FDB258FB9164D /* snd */,
+			);
+			path = burn;
+			sourceTree = "<group>";
+		};
+		FA10B9BBC32936B6A4E45F5C /* speex */ = {
+			isa = PBXGroup;
+			children = (
+				109B2003F6A1B01353FFE68F /* resample.c */,
+			);
+			path = speex;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1FD07CDF87F714CAAA34E6CF /* GeolithLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DE5DEBDD9BC3781674FF043 /* Build configuration list for PBXNativeTarget "GeolithLib" */;
+			buildPhases = (
+				8D2D2CD314B34C1A74692F73 /* CopyFiles */,
+				C85FBC8835028106C105CBAE /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GeolithLib;
+			packageProductDependencies = (
+			);
+			productName = GeolithLib;
+			productReference = D10E23B14A3E6D6337276927 /* libGeolithLib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		23558A9B47FEE87B5A16FAB7 /* FBNeoCPSLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88812A6F19D31810F7CFB303 /* Build configuration list for PBXNativeTarget "FBNeoCPSLib" */;
+			buildPhases = (
+				ACFAFFDA85AEE7BD83E3FA87 /* Generate FBNeo code-gen files */,
+				E2CDD9CCD6C274693BE894BC /* CopyFiles */,
+				A1D7CAD5F689D7627246D7DF /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FBNeoCPSLib;
+			packageProductDependencies = (
+			);
+			productName = FBNeoCPSLib;
+			productReference = CE0AC01FD184D8614C4B5F60 /* libFBNeoCPSLib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		AFB40C7D3C932ACA31F3DB50 /* SpriteEngine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C5E72CA6A0F8EA8120BB59FA /* Build configuration list for PBXNativeTarget "SpriteEngine" */;
+			buildPhases = (
+				B59054D4760AB5DA6465FDCD /* Sources */,
+				29C320BBD61FCEE102833DA4 /* Resources */,
+				AA9FB3FD17227F7A8CE7E37B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FEBBE34E8E90A19008EE6F1B /* PBXTargetDependency */,
+				6D556DA4226BFA0EAA5B77CC /* PBXTargetDependency */,
+			);
+			name = SpriteEngine;
+			packageProductDependencies = (
+			);
+			productName = SpriteEngine;
+			productReference = 8B8B31C53C8BB12BCB1F57B2 /* SpriteEngine.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1532AE3C35149AABB6AE7718 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 28230F5E3529E3EB404C169E /* Build configuration list for PBXProject "SpriteEngine" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 8628CB5BDB07BCDD32E9F31A;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 6B0D5F357E2139A982D86B03 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				23558A9B47FEE87B5A16FAB7 /* FBNeoCPSLib */,
+				1FD07CDF87F714CAAA34E6CF /* GeolithLib */,
+				AFB40C7D3C932ACA31F3DB50 /* SpriteEngine */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		29C320BBD61FCEE102833DA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AC7B10C00CBA5DA25B8680F /* Assets.xcassets in Resources */,
+				4AE1B53D8A462180986B1C8D /* GameDB.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ACFAFFDA85AEE7BD83E3FA87 /* Generate FBNeo code-gen files */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate FBNeo code-gen files";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated/m68kops.c",
+				"$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom/ctv.h",
+				"$(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated/driverlist.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nSRCROOT_FBNEO=\"${SRCROOT}/FBNeoCPSLib/fbneo/src\"\nGENDIR=\"${SRCROOT_FBNEO}/dep/generated\"\nCAPCOM=\"${SRCROOT_FBNEO}/burn/drv/capcom\"\nmkdir -p \"${GENDIR}\"\n\n# m68kops.c — regenerate if source is newer\nif [ \"${SRCROOT_FBNEO}/cpu/m68k/m68k_in.c\" -nt \"${GENDIR}/m68kops.c\" ]; then\n  clang \"${SRCROOT_FBNEO}/cpu/m68k/m68kmake.c\" -o \"${GENDIR}/m68kmake\"\n  \"${GENDIR}/m68kmake\" \"${GENDIR}\" \"${SRCROOT_FBNEO}/cpu/m68k/m68k_in.c\"\nfi\n\n# ctv.h — regenerate if make source is newer\nif [ \"${CAPCOM}/ctv_make.cpp\" -nt \"${CAPCOM}/ctv.h\" ]; then\n  clang++ \"${CAPCOM}/ctv_make.cpp\" -o \"${GENDIR}/ctv_make\"\n  \"${GENDIR}/ctv_make\" > \"${CAPCOM}/ctv.h\"\nfi\n\n# driverlist.h — generate CPS-1/2 driver list if missing\nif [ ! -f \"${GENDIR}/driverlist.h\" ]; then\n  python3 \"${SRCROOT}/Scripts/generate_driverlist.py\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1D7CAD5F689D7627246D7DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				625FA08630C9E7EAAFB4B068 /* burn.cpp in Sources */,
+				876A76CD2570DC96CFD4345A /* burn_bitmap.cpp in Sources */,
+				1054FAE3F2FF61EA0BDA627E /* burn_gun.cpp in Sources */,
+				3B6D5DA3AD2E7AEC655D1C48 /* burn_led.cpp in Sources */,
+				8756FC6D36802FF7EDCE4670 /* burn_memory.cpp in Sources */,
+				2703BCD92B69E23A35697A06 /* burn_pal.cpp in Sources */,
+				97F493C5A88D412741CA78F9 /* burn_sha1.cpp in Sources */,
+				A9A872C6803FE9BDD9A20440 /* burn_shift.cpp in Sources */,
+				6656910ABF4BF076FBC65E59 /* burn_sound.cpp in Sources */,
+				008D048AD1E99B821366D29C /* burn_sound_c.cpp in Sources */,
+				44440017CBC106CCD3594D24 /* burn_ym2151.cpp in Sources */,
+				8509C8D0CDE64F67CD9F9F86 /* cheat.cpp in Sources */,
+				6B8056610D81F928C9747312 /* cps.cpp in Sources */,
+				2BB2E5C55D0DD5747EA22049 /* cps2_crpt.cpp in Sources */,
+				3D8728B4057F09BFB30113AA /* cps_config.cpp in Sources */,
+				1D7B8D3963966C38369B6463 /* cps_draw.cpp in Sources */,
+				26EA9C0A82A414FEFA712898 /* cps_mem.cpp in Sources */,
+				073BF5A6A391CD13B9C4639F /* cps_obj.cpp in Sources */,
+				2B9853908667E1BD4DC795EF /* cps_pal.cpp in Sources */,
+				12C4A8322BA4BB5FA22F6842 /* cps_run.cpp in Sources */,
+				7A4F5864EBE3C585BE695002 /* cps_rw.cpp in Sources */,
+				D354C373C46FCBDAD701A9F0 /* cps_scr.cpp in Sources */,
+				7A0F8EE112CD1B28E8EB3B0C /* cpsr.cpp in Sources */,
+				CBDAECE1A29AE1B7A9B46843 /* cpsrd.cpp in Sources */,
+				AF75497258DFFA614ED4143E /* cpst.cpp in Sources */,
+				85982F34F368C1B1F9E2E267 /* ctv.cpp in Sources */,
+				4C2CD289165835879A3EDAD2 /* d_cps1.cpp in Sources */,
+				10F6AF69AFB6FCD50EBBE5DA /* d_cps2.cpp in Sources */,
+				88EAD8F3D81B59AAE09B4F20 /* d_parent.cpp in Sources */,
+				3582AC6C1785D3A435917DFB /* dac.cpp in Sources */,
+				49ED9CE9E2F914D43DF02DEE /* debug_track.cpp in Sources */,
+				38187CC708BD01A1342B4021 /* fbneo_cps_bridge.cpp in Sources */,
+				75C80AA568E6B6B81AB83CF3 /* fbneo_macos_compat.cpp in Sources */,
+				BB9ABE3D39237CA707D4DBC8 /* fcrash_snd.cpp in Sources */,
+				1D8585D4E3585CBB19FD1836 /* hiscore.cpp in Sources */,
+				B3AFB508B63C6B6772F7CEC8 /* joyprocess.cpp in Sources */,
+				8C02A8C4A4EDA10E85D5F3C6 /* kabuki.cpp in Sources */,
+				D0DAB6A58E16F17B5B2D0544 /* load.cpp in Sources */,
+				FFAC650EE64B04D08653E5DC /* m68000_intf.cpp in Sources */,
+				972C8B693E4EDC759D0F0055 /* m68kcpu.c in Sources */,
+				F776838206538B8A3AD7ACDD /* m68kops.c in Sources */,
+				9FB29BD1BDB9CF6994BF06D6 /* msm6295.cpp in Sources */,
+				29A3B74EE288B959022314B2 /* ps.cpp in Sources */,
+				663248855E6634AFAEF7CA6E /* ps_m.cpp in Sources */,
+				51C469162B96D5E33494368D /* ps_z.cpp in Sources */,
+				BACD84968CE5C6C748924A5D /* qs.cpp in Sources */,
+				31F76B79CEFC0508041C986C /* qs_c.cpp in Sources */,
+				66176A8981AFD76B31297D96 /* qs_z.cpp in Sources */,
+				1E93ECC220EFB64C5F3F2299 /* samples.cpp in Sources */,
+				EC6E32B886EC40BA1B237205 /* sf2mdt_snd.cpp in Sources */,
+				A9E06971A9539BBFF183D57A /* tilemap_generic.cpp in Sources */,
+				AECF37EA3E11496759D1CDDA /* tiles_generic.cpp in Sources */,
+				8B2522CB3830FCC9DD4ACE09 /* timekpr.cpp in Sources */,
+				CA6DAFAAC72BF6549F4A345E /* timer.cpp in Sources */,
+				BD27D351AA99A17FC8530986 /* vector.cpp in Sources */,
+				D5659B9E17A17F4B4441462C /* ym2151.c in Sources */,
+				591C58FEE1CF83163F6923C9 /* z80.cpp in Sources */,
+				30867271CEF2B0F61C534EDB /* z80_intf.cpp in Sources */,
+				F145D4D85E1A38669E3E0278 /* z80ctc.cpp in Sources */,
+				AF5AA75D5444AA7DC21CB5AB /* z80daisy.cpp in Sources */,
+				E1E3BFED759B6CB273DF1B80 /* z80pio.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B59054D4760AB5DA6465FDCD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				291DCE9F91A8AF8E900A87FE /* AppDelegate.swift in Sources */,
+				E903AB86E76B5F5F2B43DD8A /* AudioEngine.swift in Sources */,
+				CAD689949F4AEBDE38CAB06E /* ContentView.swift in Sources */,
+				390447556B9255C431906FB1 /* EmulatorCore.swift in Sources */,
+				2E7D830BC29EF1F208AAEC03 /* EmulatorError.swift in Sources */,
+				FE6343B387A29A059AF024EB /* EmulatorSession.swift in Sources */,
+				7FA3B421C7F96124C14421FD /* EmulatorView.swift in Sources */,
+				76C02A4DCDC2EC7D5F051242 /* Game.swift in Sources */,
+				082593DF1640833034673CA3 /* GameMetadata.swift in Sources */,
+				D753EBFBE28C25205F22ED63 /* GeolithCore.swift in Sources */,
+				93CAED1C89C1C28AC02A30FD /* InputManager.swift in Sources */,
+				8D2A5E35A65020372C3C21A7 /* MetalRenderer.swift in Sources */,
+				B56BA48F49644B488C483E72 /* RingBuffer.swift in Sources */,
+				118EF57F716BE46F6FE12816 /* SaveState.swift in Sources */,
+				6536153305D9E501E73DECE6 /* Shaders.metal in Sources */,
+				E6103B8153DF61A16BDF91EC /* SpriteEngineApp.swift in Sources */,
+				2C6FA22EAD9A63650E3BB51B /* System.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C85FBC8835028106C105CBAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3CEF708DC51D88123169210 /* geo.c in Sources */,
+				3EE6DCB3269186A3D540EA1B /* geo_cd.c in Sources */,
+				9F837441EFF739E09960DCD7 /* geo_cue.c in Sources */,
+				C8D601825316782CE412EC58 /* geo_disc.c in Sources */,
+				E420BE8C0F897EA50731ECD3 /* geo_lc8951.c in Sources */,
+				14B3FFCDAF5738648B83D122 /* geo_lspc.c in Sources */,
+				978039E1D8F4AC454230A1BC /* geo_m68k.c in Sources */,
+				CE2C656B7E9AA2533923472B /* geo_memcard.c in Sources */,
+				B58DDAB42A72B7B70C6F215D /* geo_mixer.c in Sources */,
+				08FF79A6C78808F772DF6521 /* geo_neo.c in Sources */,
+				B9B14E18E2E9E2F858A700B2 /* geo_rtc.c in Sources */,
+				A7ACF089E905E21ACC08BCA6 /* geo_serial.c in Sources */,
+				DA5CF08886E18B9F518808A2 /* geo_ymfm.c in Sources */,
+				020505624C2C3CFDFDD50775 /* geo_z80.c in Sources */,
+				750ED0C2DE728E74CCDEE91C /* geolith_bridge.c in Sources */,
+				46CC8C8BD5B2A211F5ED3F48 /* m68kcpu.c in Sources */,
+				F4E2E1C4975382F91951BC97 /* m68kops.c in Sources */,
+				BCC303852237BB57F4BABBE4 /* miniz.c in Sources */,
+				269B2AC7CDCC6FE8C4A6231D /* resample.c in Sources */,
+				026BA758C40C188758F5A9BA /* ymfm_adpcm.c in Sources */,
+				6855DA85FEFA3C83ECC340A4 /* ymfm_opn.c in Sources */,
+				05DB03972E6C428AE25747A6 /* ymfm_ssg.c in Sources */,
+				92E987564C552BFA8795F23F /* z80.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6D556DA4226BFA0EAA5B77CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 23558A9B47FEE87B5A16FAB7 /* FBNeoCPSLib */;
+			targetProxy = 7F573CC698AD9FDA3EA2CA24 /* PBXContainerItemProxy */;
+		};
+		FEBBE34E8E90A19008EE6F1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1FD07CDF87F714CAAA34E6CF /* GeolithLib */;
+			targetProxy = 29E448AA8B43E656613906F5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0526D8790CB00244B9E1CA21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spriteengine.FBNeoCPSLib;
+				PRODUCT_NAME = FBNeoCPSLib;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = "-w";
+			};
+			name = Debug;
+		};
+		058C0FC939E47E6444E2C2E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SpriteEngine/SpriteEngine.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/bridge";
+				INFOPLIST_FILE = SpriteEngine/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.spriteengine.SpriteEngine;
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Shared/SpriteEngine-Bridging-Header.h";
+				SWIFT_VERSION = 5.10;
+			};
+			name = Debug;
+		};
+		342655F4EEE41A70BC836BD0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		50FD5EC1604DF1BA12E40E66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spriteengine.FBNeoCPSLib;
+				PRODUCT_NAME = FBNeoCPSLib;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = "-w";
+			};
+			name = Release;
+		};
+		5633A560D01F5AF383509A92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SpriteEngine/SpriteEngine.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/bridge";
+				INFOPLIST_FILE = SpriteEngine/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.spriteengine.SpriteEngine;
+				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Shared/SpriteEngine-Bridging-Header.h";
+				SWIFT_VERSION = 5.10;
+			};
+			name = Release;
+		};
+		A91217F0A6BC92D3F05ED75E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		CBC254E29C2189CAA8EC56B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/geolith/src $(SRCROOT)/GeolithLib/geolith/deps $(SRCROOT)/GeolithLib/geolith/deps/miniz $(SRCROOT)/GeolithLib/geolith/deps/dr $(SRCROOT)/GeolithLib/bridge";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spriteengine.GeolithLib;
+				PRODUCT_NAME = GeolithLib;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = "-w";
+			};
+			name = Debug;
+		};
+		D257F3A699D34E23195954C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/geolith/src $(SRCROOT)/GeolithLib/geolith/deps $(SRCROOT)/GeolithLib/geolith/deps/miniz $(SRCROOT)/GeolithLib/geolith/deps/dr $(SRCROOT)/GeolithLib/bridge";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.spriteengine.GeolithLib;
+				PRODUCT_NAME = GeolithLib;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = "-w";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		28230F5E3529E3EB404C169E /* Build configuration list for PBXProject "SpriteEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				342655F4EEE41A70BC836BD0 /* Debug */,
+				A91217F0A6BC92D3F05ED75E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		88812A6F19D31810F7CFB303 /* Build configuration list for PBXNativeTarget "FBNeoCPSLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0526D8790CB00244B9E1CA21 /* Debug */,
+				50FD5EC1604DF1BA12E40E66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8DE5DEBDD9BC3781674FF043 /* Build configuration list for PBXNativeTarget "GeolithLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBC254E29C2189CAA8EC56B9 /* Debug */,
+				D257F3A699D34E23195954C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C5E72CA6A0F8EA8120BB59FA /* Build configuration list for PBXNativeTarget "SpriteEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				058C0FC939E47E6444E2C2E1 /* Debug */,
+				5633A560D01F5AF383509A92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1532AE3C35149AABB6AE7718 /* Project object */;
+}

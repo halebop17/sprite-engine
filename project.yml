@@ -1,0 +1,241 @@
+name: SpriteEngine
+options:
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+  bundleIdPrefix: com.spriteengine
+  xcodeVersion: "15"
+  generateEmptyDirectories: true
+
+configs:
+  Debug: debug
+  Release: release
+
+settings:
+  base:
+    ARCHS: arm64
+    ONLY_ACTIVE_ARCH: NO
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+
+targets:
+
+  # ── Main app ──────────────────────────────────────────────────────────────
+  SpriteEngine:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: SpriteEngine
+        excludes:
+          - "**/*.entitlements"
+    resources:
+      - path: SpriteEngine/Resources/Assets.xcassets
+      - path: SpriteEngine/Resources/GameDB.json
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.spriteengine.SpriteEngine
+        SWIFT_VERSION: "5.10"
+        SWIFT_OBJC_BRIDGING_HEADER: Shared/SpriteEngine-Bridging-Header.h
+        ENABLE_HARDENED_RUNTIME: YES
+        CODE_SIGN_ENTITLEMENTS: SpriteEngine/SpriteEngine.entitlements
+        ARCHS: arm64
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+        HEADER_SEARCH_PATHS: "$(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/bridge"
+        OTHER_LDFLAGS: "$(inherited)"
+    dependencies:
+      - target: GeolithLib
+      - target: FBNeoCPSLib
+    info:
+      path: SpriteEngine/Info.plist
+      properties:
+        CFBundleName: Sprite Engine
+        CFBundleDisplayName: Sprite Engine
+        CFBundleIdentifier: com.spriteengine.SpriteEngine
+        CFBundleVersion: "1"
+        CFBundleShortVersionString: "1.0"
+        NSPrincipalClass: NSApplication
+        NSHumanReadableCopyright: ""
+        LSMinimumSystemVersion: "14.0"
+
+  # ── Geolith — C11 static library (Neo Geo core) ───────────────────────────
+  GeolithLib:
+    type: library.static
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      # Bridge stub (populated in Phase 4)
+      - path: GeolithLib/bridge/geolith_bridge.h
+      - path: GeolithLib/bridge/geolith_bridge.c
+      # Geolith core C sources
+      - path: GeolithLib/geolith/src/geo.c
+      - path: GeolithLib/geolith/src/geo_cd.c
+      - path: GeolithLib/geolith/src/geo_cue.c
+      - path: GeolithLib/geolith/src/geo_disc.c
+      - path: GeolithLib/geolith/src/geo_lc8951.c
+      - path: GeolithLib/geolith/src/geo_lspc.c
+      - path: GeolithLib/geolith/src/geo_m68k.c
+      - path: GeolithLib/geolith/src/geo_memcard.c
+      - path: GeolithLib/geolith/src/geo_mixer.c
+      - path: GeolithLib/geolith/src/geo_neo.c
+      - path: GeolithLib/geolith/src/geo_rtc.c
+      - path: GeolithLib/geolith/src/geo_serial.c
+      - path: GeolithLib/geolith/src/geo_ymfm.c
+      - path: GeolithLib/geolith/src/geo_z80.c
+      # Musashi M68000 — only compile m68kcpu.c and m68kops.c;
+      # m68kfpu.c and m68kdasm.c are #included by m68kcpu.c internally
+      - path: GeolithLib/geolith/src/m68k/m68kcpu.c
+      - path: GeolithLib/geolith/src/m68k/m68kops.c
+      # ymfm audio
+      - path: GeolithLib/geolith/src/ymfm/ymfm_adpcm.c
+      - path: GeolithLib/geolith/src/ymfm/ymfm_opn.c
+      - path: GeolithLib/geolith/src/ymfm/ymfm_ssg.c
+      # Z80
+      - path: GeolithLib/geolith/src/z80/z80.c
+      # Bundled deps
+      - path: GeolithLib/geolith/deps/miniz/miniz.c
+      - path: GeolithLib/geolith/deps/speex/resample.c
+    settings:
+      base:
+        PRODUCT_NAME: GeolithLib
+        GCC_C_LANGUAGE_STANDARD: c11
+        ARCHS: arm64
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+        HEADER_SEARCH_PATHS: >-
+          $(SRCROOT)/GeolithLib/geolith/src
+          $(SRCROOT)/GeolithLib/geolith/deps
+          $(SRCROOT)/GeolithLib/geolith/deps/miniz
+          $(SRCROOT)/GeolithLib/geolith/deps/dr
+          $(SRCROOT)/GeolithLib/bridge
+        GCC_PREPROCESSOR_DEFINITIONS: "$(inherited)"
+        # Suppress warnings from third-party source
+        WARNING_CFLAGS: "-w"
+
+  # ── FBNeo CPS — C++17 static library (CPS-1/2 core) ─────────────────────
+  FBNeoCPSLib:
+    type: library.static
+    platform: macOS
+    deploymentTarget: "14.0"
+    preBuildScripts:
+      - name: "Generate FBNeo code-gen files"
+        script: |
+          set -e
+          SRCROOT_FBNEO="${SRCROOT}/FBNeoCPSLib/fbneo/src"
+          GENDIR="${SRCROOT_FBNEO}/dep/generated"
+          CAPCOM="${SRCROOT_FBNEO}/burn/drv/capcom"
+          mkdir -p "${GENDIR}"
+
+          # m68kops.c — regenerate if source is newer
+          if [ "${SRCROOT_FBNEO}/cpu/m68k/m68k_in.c" -nt "${GENDIR}/m68kops.c" ]; then
+            clang "${SRCROOT_FBNEO}/cpu/m68k/m68kmake.c" -o "${GENDIR}/m68kmake"
+            "${GENDIR}/m68kmake" "${GENDIR}" "${SRCROOT_FBNEO}/cpu/m68k/m68k_in.c"
+          fi
+
+          # ctv.h — regenerate if make source is newer
+          if [ "${CAPCOM}/ctv_make.cpp" -nt "${CAPCOM}/ctv.h" ]; then
+            clang++ "${CAPCOM}/ctv_make.cpp" -o "${GENDIR}/ctv_make"
+            "${GENDIR}/ctv_make" > "${CAPCOM}/ctv.h"
+          fi
+
+          # driverlist.h — generate CPS-1/2 driver list if missing
+          if [ ! -f "${GENDIR}/driverlist.h" ]; then
+            python3 "${SRCROOT}/Scripts/generate_driverlist.py"
+          fi
+        outputFiles:
+          - $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated/m68kops.c
+          - $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom/ctv.h
+          - $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated/driverlist.h
+    sources:
+      # Bridge (populated in Phase 9)
+      - path: FBNeoCPSLib/bridge/fbneo_cps_bridge.h
+      - path: FBNeoCPSLib/bridge/fbneo_cps_bridge.cpp
+      # ── Core burn framework ──
+      - path: FBNeoCPSLib/fbneo/src/burn/burn.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/burn_bitmap.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/burn_gun.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/burn_led.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/burn_memory.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/burn_pal.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/burn_sha1.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/burn_shift.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/burn_sound.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/burn_sound_c.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/cheat.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/debug_track.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/hiscore.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/load.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/tilemap_generic.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/tiles_generic.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/timer.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/vector.cpp
+      # Parent ROM stub
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/d_parent.cpp
+      # ── CPS-1 / CPS-2 drivers ──
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/cps.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/cps2_crpt.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/cps_config.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/cps_draw.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/cps_mem.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/cps_obj.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/cps_pal.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/cps_run.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/cps_rw.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/cps_scr.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/cpsr.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/cpsrd.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/cpst.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/ctv.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/d_cps1.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/d_cps2.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/fcrash_snd.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/kabuki.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/ps.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/ps_m.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/ps_z.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/qs.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/qs_c.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/qs_z.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/sf2mdt_snd.cpp
+      # ── Sound chips (CPS-relevant) ──
+      - path: FBNeoCPSLib/fbneo/src/burn/snd/dac.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/snd/burn_ym2151.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/snd/ym2151.c
+      - path: FBNeoCPSLib/fbneo/src/burn/snd/msm6295.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/snd/samples.cpp
+      # ── M68000 (Musashi) — m68kfpu.c is #included by m68kcpu.c ──
+      - path: FBNeoCPSLib/fbneo/src/cpu/m68000_intf.cpp
+      - path: FBNeoCPSLib/fbneo/src/cpu/m68k/m68kcpu.c
+      - path: FBNeoCPSLib/fbneo/src/dep/generated/m68kops.c
+      # ── Z80 ──
+      - path: FBNeoCPSLib/fbneo/src/cpu/z80_intf.cpp
+      - path: FBNeoCPSLib/fbneo/src/cpu/z80/z80.cpp
+      - path: FBNeoCPSLib/fbneo/src/cpu/z80/z80ctc.cpp
+      - path: FBNeoCPSLib/fbneo/src/cpu/z80/z80daisy.cpp
+      - path: FBNeoCPSLib/fbneo/src/cpu/z80/z80pio.cpp
+      # ── Devices (needed by burnint.h and CPS drivers) ──
+      - path: FBNeoCPSLib/fbneo/src/burn/devices/joyprocess.cpp
+      - path: FBNeoCPSLib/fbneo/src/burn/devices/timekpr.cpp
+      # ── macOS compatibility (our bridge substitute, avoids pulling in burner.h) ──
+      - path: FBNeoCPSLib/bridge/fbneo_macos_compat.cpp
+    settings:
+      base:
+        PRODUCT_NAME: FBNeoCPSLib
+        CLANG_CXX_LANGUAGE_STANDARD: "c++17"
+        CLANG_CXX_LIBRARY: libc++
+        GCC_C_LANGUAGE_STANDARD: c11
+        ARCHS: arm64
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+        HEADER_SEARCH_PATHS: >-
+          $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn
+          $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv
+          $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom
+          $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd
+          $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices
+          $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu
+          $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k
+          $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80
+          $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos
+          $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated
+          $(SRCROOT)/FBNeoCPSLib/bridge
+        GCC_PREPROCESSOR_DEFINITIONS: "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1"
+        # Suppress warnings from third-party source (FBNeo has many)
+        WARNING_CFLAGS: "-w"
