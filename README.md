@@ -1,44 +1,68 @@
 # Sprite Engine
 
-Sprite Engine is a macOS-native Neo Geo emulator designed for Apple Silicon. This project was created out of frustration with the lack of a proper Neo Geo emulator on Mac, so it combines native macOS UI and modern rendering. FOr good measure I also icnluded CPS 1 and CPS 2 cores. Credit goes to Geolith (Neo Geo) AND FB NEO (CPS 1, CPS 2).
+Sprite Engine is a macOS-native arcade emulator built for Apple Silicon. It was created out of frustration with the lack of a proper Neo Geo emulator on the Mac platform. For good measure, it also includes CPS 1 and CPS 2 support. Credit to Geolith and FB Neo for the cores.
 
-## Overview
+The app is built entirely in Swift and SwiftUI and behaves like a proper macOS application — not a ported emulator wrapped in an unfamiliar interface. It uses Metal for rendering, runs emulation on a dedicated background thread, and keeps all configuration persistent and accessible from a standard settings panel.
 
-Sprite Engine is intended to behave like a native Mac application, not a ported emulator with a clunky interface. It is built in Swift and SwiftUI, and it ships with a custom Metal renderer, a library browser, save-state support, and configurable input and BIOS settings.
+---
 
-## How to use
+## Game Library
 
-1. Open the app in Xcode and build the `SpriteEngine` target for macOS 14+.
-2. Configure the BIOS directory in Settings if required by the emulation cores.
-3. Use the ROM import screen or point the library scanner at a folder containing Neo Geo `.neo` files, `.zip` archives, or supported arcade media.
-4. Select a game from the library to launch it in the emulator window.
-5. Use the on-screen HUD or keyboard shortcuts for pause, save state, load state, and exit back to the library.
-6. Adjust video, audio, and input settings from the app settings panel to tune the experience.
+When you launch Sprite Engine for the first time, you are presented with a game library. This is the main screen of the app. It shows all the games you have imported, organised in a grid with box art, title, system, and genre.
 
-## What the app does
+To add games, click the Import button in the toolbar. From there you can point the app at a folder containing ROM files. Sprite Engine supports Neo Geo `.neo` files natively, as well as MAME-compatible `.zip` archives. If you have MAME-format Neo Geo zips, the app can convert them to `.neo` format automatically before adding them to the library.
 
-Sprite Engine provides a full Mac-native emulator experience:
+You can filter the library by system, genre, or use the search field in the toolbar to find a specific title quickly.
 
-- Presents a SwiftUI-based app shell with navigation and window management.
-- Scans ROM folders and builds a browsable game library.
-- Converts compatible archives to Neo Geo format when necessary.
-- Loads games using a native Geolith-based Neo Geo core.
-- Renders video through Metal with sharp scaling and correct aspect ratio.
-- Handles audio playback through a native audio engine.
-- Supports keyboard and gamepad input for player controls.
-- Saves and restores game states with thumbnail support.
+---
 
-## Features in practice
+## Playing a Game
 
-- **Launch games from a library**: browse imported titles, select a game, and start it without leaving the app.
-- **Customizable settings**: set BIOS locations, video scaling, audio options, and input bindings.
-- **Native macOS look**: use menus, window controls, and responsive UI that feel like a real Mac app.
-- **Save states**: save progress at any time and reload it later.
-- **Modern rendering**: the emulator uses Metal for display, preserving pixel sharpness and handling Neo Geo and CPS aspect ratios correctly.
+To start a game, click on any title in the library to open the detail screen. From there you can read basic information about the game and click Play Now to launch it.
 
-## Build notes
+Once a game is running, the emulator takes over the full window. The interface fades away and the game fills the screen at the correct aspect ratio — 4:3 for Neo Geo titles, approximately 16:9 for CPS titles. The renderer uses Metal with nearest-neighbour scaling to keep the pixel art sharp.
 
-- Target: macOS 14.0+
-- Architecture: arm64 only
-- Languages: Swift, C, C++
-- Dependencies: native Geolith and FBNeo source trees are included as local directories
+Move the mouse to bring up the HUD overlay. The HUD gives you access to pause, save state, load state, and a back button to return to the library. It fades out automatically after a few seconds of inactivity.
+
+### Keyboard shortcuts
+
+| Action | Shortcut |
+|---|---|
+| Pause / Resume | `Cmd+P` |
+| Save state | `Cmd+S` |
+| Load state | `Cmd+L` |
+| Return to library | `Escape` |
+
+---
+
+## Input
+
+Sprite Engine reads keyboard and gamepad input. By default, player one uses WASD for movement and UIJK for buttons. A connected MFi or Xbox controller is detected automatically and mapped to standard arcade controls.
+
+You can rebind all keys and buttons from the Input section of Settings. Both player one and player two bindings are configurable independently.
+
+---
+
+## Save States
+
+At any point during a game you can save your progress as a save state. Save states are stored locally under `~/Library/Application Support/SpriteEngine/SaveStates/` and include a small thumbnail of the screen at the time of saving.
+
+To save, use `Cmd+S` or the save button in the HUD. To restore a save state, use `Cmd+L` or the load button in the HUD. Multiple save slots are supported per game.
+
+---
+
+## Settings
+
+The settings panel is accessible from the sidebar or the app menu. It is divided into the following sections.
+
+**BIOS.** Some games require system BIOS files to run. Point this setting at the folder containing your BIOS files, such as `neogeo.zip` or `qsound.zip`. The app will warn you if required BIOS files are missing when you try to launch a game.
+
+**ROM Import Directory.** Sets the default folder the import scanner opens when you add new games.
+
+**Video.** Choose between integer scaling, fit-to-window, or stretch scaling. You can also toggle a CRT scanline shader that overlays a subtle scanline effect on the picture, similar to a real arcade monitor.
+
+**Audio.** Adjust the master volume and choose the audio sample rate. The default settings work well for most systems.
+
+**Input.** Rebind keyboard keys and gamepad buttons for player one and player two independently.
+
+**Appearance.** Switch between three visual themes: Dark Cinematic (the default), macOS Native, and CRT Amber.
