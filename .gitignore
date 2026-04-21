@@ -10,3 +10,5 @@ DEVELOPMENT_PLAN.md
 
 # Ignore common macOS system files
 .DS_Store
+GeolithLib/geolith
+FBNeoCPSLib/fbneo
