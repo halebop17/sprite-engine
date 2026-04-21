@@ -3,3 +3,10 @@ arcade_emulator_handoff.md
 DEVELOPMENT_PLAN.md
 /claude design files/
 .claude
+
+# Ignore Xcode user state and workspace data
+*.xcuserstate
+*.xcuserdata/
+
+# Ignore common macOS system files
+.DS_Store
