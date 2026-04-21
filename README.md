@@ -42,5 +42,3 @@ Sprite Engine provides a full Mac-native emulator experience:
 - Architecture: arm64 only
 - Languages: Swift, C, C++
 - Dependencies: native Geolith and FBNeo source trees are included as local directories
-
-If you want, I can also add a short “Development” section showing how to open the project in Xcode and run the app. 
