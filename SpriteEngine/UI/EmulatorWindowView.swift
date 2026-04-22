@@ -79,7 +79,7 @@ final class EmulatorViewModel: ObservableObject {
 
     func applyVideoSettings(appState: AppState) {
         emulatorView.renderer?.scaleMode   = appState.videoScaleMode
-        emulatorView.renderer?.isSmoothing = appState.videoCRTFilter
+        emulatorView.renderer?.filterMode  = appState.videoCRTFilter ? .crt : .sharp
     }
 
     func applyVolume(_ v: Float) { session?.volume = v }

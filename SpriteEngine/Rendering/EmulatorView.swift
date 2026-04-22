@@ -9,11 +9,6 @@ final class EmulatorView: MTKView {
     // Set by ContentView after session is created.
     weak var inputManager: InputManager?
 
-    var isSmoothing: Bool {
-        get { renderer?.isSmoothing ?? false }
-        set { renderer?.isSmoothing = newValue }
-    }
-
     override init(frame: CGRect, device: MTLDevice?) {
         let dev = device ?? MTLCreateSystemDefaultDevice()
         super.init(frame: frame, device: dev)

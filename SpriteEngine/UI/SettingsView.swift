@@ -93,7 +93,7 @@ struct SettingsView: View {
             Divider().background(t.divider).padding(.leading, 14)
 
             ToggleRow(label: "CRT Filter",
-                      detail: "Bilinear smoothing for a softer look",
+                      detail: "Scanlines, phosphor glow, and vignette",
                       isOn: Binding(
                           get: { appState.videoCRTFilter },
                           set: { appState.setVideoCRTFilter($0) }
