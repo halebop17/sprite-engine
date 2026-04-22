@@ -56,6 +56,11 @@ final class AudioEngine {
         }
     }
 
+    var volume: Float {
+        get { engine.mainMixerNode.outputVolume }
+        set { engine.mainMixerNode.outputVolume = max(0, min(1, newValue)) }
+    }
+
     func stop() {
         engine.stop()
     }

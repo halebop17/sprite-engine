@@ -1,9 +1,24 @@
 import MetalKit
 
+enum VideoScaleMode: String, CaseIterable {
+    case aspectFit = "aspectFit"
+    case stretch   = "stretch"
+    case integer   = "integer"
+
+    var label: String {
+        switch self {
+        case .aspectFit: return "Aspect Fit"
+        case .stretch:   return "Stretch"
+        case .integer:   return "Integer"
+        }
+    }
+}
+
 final class MetalRenderer: NSObject, MTKViewDelegate {
 
     // Toggle between sharp (nearest) and smooth (bilinear) sampling.
     var isSmoothing: Bool = false
+    var scaleMode: VideoScaleMode = .aspectFit
 
     private let device: MTLDevice
     private let commandQueue: MTLCommandQueue
@@ -100,25 +115,31 @@ final class MetalRenderer: NSObject, MTKViewDelegate {
     private func letterboxViewport(drawableSize: CGSize) -> MTLViewport {
         let dw = drawableSize.width
         let dh = drawableSize.height
-        let viewAspect = dw / dh
 
         let vw: Double
         let vh: Double
         let vx: Double
         let vy: Double
 
-        if naturalAspect > viewAspect {
-            // Content wider than window → pillarbox top/bottom
-            vw = dw
-            vh = dw / naturalAspect
-            vx = 0
-            vy = (dh - vh) / 2
-        } else {
-            // Content taller than window → letterbox left/right
-            vh = dh
-            vw = dh * naturalAspect
+        switch scaleMode {
+        case .stretch:
+            vw = dw; vh = dh; vx = 0; vy = 0
+
+        case .integer:
+            let scale = max(1.0, min(floor(dw / Double(textureWidth)),
+                                     floor(dh / Double(textureHeight))))
+            vw = Double(textureWidth) * scale
+            vh = Double(textureHeight) * scale
             vx = (dw - vw) / 2
-            vy = 0
+            vy = (dh - vh) / 2
+
+        case .aspectFit:
+            let viewAspect = dw / dh
+            if naturalAspect > viewAspect {
+                vw = dw; vh = dw / naturalAspect; vx = 0; vy = (dh - vh) / 2
+            } else {
+                vh = dh; vw = dh * naturalAspect; vx = (dw - vw) / 2; vy = 0
+            }
         }
 
         return MTLViewport(originX: vx, originY: vy, width: vw, height: vh, znear: 0, zfar: 1)
