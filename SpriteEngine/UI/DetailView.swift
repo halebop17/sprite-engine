@@ -13,7 +13,7 @@ struct DetailView: View {
     @State private var noteText: String
     @State private var editingNote = false
 
-    enum DetailTab { case info, notes }
+    enum DetailTab { case info, notes, saveStates }
 
     init(game: Game) {
         self.game = game
@@ -168,8 +168,9 @@ struct DetailView: View {
 
     private var tabStrip: some View {
         HStack(spacing: 4) {
-            TabButton(label: "Info",  tab: .info,  active: tab)  { tab = $0 }
-            TabButton(label: "Notes", tab: .notes, active: tab)  { tab = $0 }
+            TabButton(label: "Info",        tab: .info,       active: tab) { tab = $0 }
+            TabButton(label: "Notes",       tab: .notes,      active: tab) { tab = $0 }
+            TabButton(label: "Save States", tab: .saveStates, active: tab) { tab = $0 }
         }
         .padding(5)
         .background(t.systemTabsBg)
@@ -183,8 +184,9 @@ struct DetailView: View {
     @ViewBuilder
     private var tabContent: some View {
         switch tab {
-        case .info:  infoTab
-        case .notes: notesTab
+        case .info:       infoTab
+        case .notes:      notesTab
+        case .saveStates: saveStatesTab
         }
     }
 
@@ -242,6 +244,37 @@ struct DetailView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .overlay(RoundedRectangle(cornerRadius: 10)
                     .strokeBorder(t.cardBorder, lineWidth: 1))
+        }
+    }
+
+    // MARK: - Save States tab
+
+    private var saveStatesTab: some View {
+        let states = game.saveStates.sorted { $0.createdAt > $1.createdAt }
+        return Group {
+            if states.isEmpty {
+                VStack(spacing: 12) {
+                    Image(systemName: "tray")
+                        .font(.system(size: 36))
+                        .foregroundColor(t.textFaint)
+                    Text("No save states yet")
+                        .font(.system(size: 13))
+                        .foregroundColor(t.textMuted)
+                    Text("Press ⌘S while playing to create one.")
+                        .font(.system(size: 11))
+                        .foregroundColor(t.textFaint)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.top, 40)
+            } else {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 140), spacing: 10)], spacing: 10) {
+                    ForEach(states) { state in
+                        SaveStateCard(state: state) {
+                            library.removeSaveState(state, from: game)
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -372,6 +405,75 @@ struct BackButton: View {
             .foregroundColor(hovered ? t.accent : t.textMuted)
         }
         .buttonStyle(.plain)
+        .onHover { hovered = $0 }
+        .animation(.easeInOut(duration: 0.14), value: hovered)
+    }
+}
+
+// MARK: - Save state card
+
+private struct SaveStateCard: View {
+    let state: SaveState
+    let onDelete: () -> Void
+    @Environment(\.appTheme) private var t
+    @State private var hovered = false
+
+    private static let dateFormatter: RelativeDateTimeFormatter = {
+        let f = RelativeDateTimeFormatter()
+        f.unitsStyle = .abbreviated
+        return f
+    }()
+
+    var body: some View {
+        VStack(spacing: 0) {
+            // Thumbnail
+            ZStack {
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(.black)
+                    .aspectRatio(320.0 / 224.0, contentMode: .fit)
+                if let img = SaveStateManager.thumbnail(for: state) {
+                    Image(nsImage: img)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .clipped()
+                } else {
+                    Image(systemName: "photo")
+                        .font(.system(size: 20))
+                        .foregroundColor(t.textFaint)
+                }
+                // Delete button on hover
+                if hovered {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Button(action: onDelete) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.white)
+                                    .shadow(radius: 2)
+                            }
+                            .buttonStyle(.plain)
+                            .padding(5)
+                        }
+                        Spacer()
+                    }
+                }
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+
+            // Timestamp
+            Text(Self.dateFormatter.localizedString(for: state.createdAt, relativeTo: Date()))
+                .font(.system(size: 10))
+                .foregroundColor(t.textMuted)
+                .lineLimit(1)
+                .padding(.top, 5)
+                .padding(.bottom, 3)
+        }
+        .padding(8)
+        .background(t.card)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .overlay(RoundedRectangle(cornerRadius: 10)
+            .strokeBorder(hovered ? t.accent.opacity(0.5) : t.cardBorder, lineWidth: 1))
         .onHover { hovered = $0 }
         .animation(.easeInOut(duration: 0.14), value: hovered)
     }

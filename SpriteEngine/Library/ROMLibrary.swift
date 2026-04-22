@@ -41,6 +41,15 @@ final class ROMLibrary: ObservableObject {
         save()
     }
 
+    func addSaveState(_ state: SaveState, to game: Game) {
+        update(game.id) { $0.saveStates.append(state) }
+    }
+
+    func removeSaveState(_ state: SaveState, from game: Game) {
+        SaveStateManager.delete(state)
+        update(game.id) { $0.saveStates.removeAll { $0.id == state.id } }
+    }
+
     // MARK: - Private
 
     private func merge(_ incoming: [Game]) {
