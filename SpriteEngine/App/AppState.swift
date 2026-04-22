@@ -21,17 +21,37 @@ final class AppState: ObservableObject {
     @Published var romDirectoryURL:  URL?
     @Published var themeKey: AppThemeKey = .dark
 
+    // Video
+    @Published var videoScaleMode: VideoScaleMode = .aspectFit
+    @Published var videoScanlines: Bool = false
+    @Published var videoCRTFilter: Bool = false
+
+    // Audio
+    @Published var audioVolume: Float = 1.0
+
+    // Emulation
+    @Published var showFPSOverlay: Bool = false
+
     init() {
-        if let raw = UserDefaults.standard.string(forKey: "themeKey"),
+        let ud = UserDefaults.standard
+        if let raw = ud.string(forKey: "themeKey"),
            let key = AppThemeKey(rawValue: raw) { themeKey = key }
-        if let path = UserDefaults.standard.string(forKey: "biosDirectoryPath") {
+        if let path = ud.string(forKey: "biosDirectoryPath") {
             let url = URL(fileURLWithPath: path, isDirectory: true)
             if FileManager.default.fileExists(atPath: path) { biosDirectoryURL = url }
         }
-        if let path = UserDefaults.standard.string(forKey: "romDirectoryPath") {
+        if let path = ud.string(forKey: "romDirectoryPath") {
             let url = URL(fileURLWithPath: path, isDirectory: true)
             if FileManager.default.fileExists(atPath: path) { romDirectoryURL = url }
         }
+        if let raw = ud.string(forKey: "videoScaleMode"),
+           let mode = VideoScaleMode(rawValue: raw) { videoScaleMode = mode }
+        videoScanlines  = ud.bool(forKey: "videoScanlines")
+        videoCRTFilter  = ud.bool(forKey: "videoCRTFilter")
+        if ud.object(forKey: "audioVolume") != nil {
+            audioVolume = ud.float(forKey: "audioVolume")
+        }
+        showFPSOverlay  = ud.bool(forKey: "showFPSOverlay")
     }
 
     // MARK: Navigation
@@ -54,6 +74,33 @@ final class AppState: ObservableObject {
     func setROMDirectory(_ url: URL) {
         romDirectoryURL = url
         UserDefaults.standard.set(url.path, forKey: "romDirectoryPath")
+    }
+
+    // MARK: Settings persistence
+
+    func setVideoScaleMode(_ mode: VideoScaleMode) {
+        videoScaleMode = mode
+        UserDefaults.standard.set(mode.rawValue, forKey: "videoScaleMode")
+    }
+
+    func setVideoScanlines(_ on: Bool) {
+        videoScanlines = on
+        UserDefaults.standard.set(on, forKey: "videoScanlines")
+    }
+
+    func setVideoCRTFilter(_ on: Bool) {
+        videoCRTFilter = on
+        UserDefaults.standard.set(on, forKey: "videoCRTFilter")
+    }
+
+    func setAudioVolume(_ v: Float) {
+        audioVolume = v
+        UserDefaults.standard.set(v, forKey: "audioVolume")
+    }
+
+    func setShowFPSOverlay(_ on: Bool) {
+        showFPSOverlay = on
+        UserDefaults.standard.set(on, forKey: "showFPSOverlay")
     }
 
     // MARK: BIOS validation

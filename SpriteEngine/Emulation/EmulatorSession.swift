@@ -9,16 +9,18 @@ final class EmulatorSession: ObservableObject {
     private var emulationThread: Thread?
     private var running = false
 
-    // Double-buffer: emulation writes to backBuffer, main thread reads frontBuffer.
-    // Both are sized to frameWidth * frameHeight on start().
+    // Bool written by main thread, read by emulation thread.
+    // ARM64 1-byte reads/writes are naturally atomic.
+    private var paused = false
+
     private var frontBuffer: [UInt32] = []
     private var backBuffer:  [UInt32] = []
     private var bufferLock = os_unfair_lock_s()
 
-    @Published var isRunning: Bool = false
+    @Published var isRunning: Bool  = false
+    @Published var isPaused:  Bool  = false
+    @Published var measuredFPS: Double = 0
 
-    // Fired on the main thread after every frame swap.
-    // Caller should read the front buffer inside this callback via withFrontBuffer(_:).
     var onFrameReady: (() -> Void)?
 
     init(core: any EmulatorCore) {
@@ -44,14 +46,35 @@ final class EmulatorSession: ObservableObject {
 
     func stop() {
         running = false
+        paused  = false
         core.shutdown()
         audio.stop()
-        DispatchQueue.main.async { self.isRunning = false }
+        DispatchQueue.main.async { self.isRunning = false; self.isPaused = false }
+    }
+
+    // MARK: - Pause / resume
+
+    func pause() {
+        paused = true
+        DispatchQueue.main.async { self.isPaused = true }
+    }
+
+    func resume() {
+        paused = false
+        DispatchQueue.main.async { self.isPaused = false }
+    }
+
+    func togglePause() { if paused { resume() } else { pause() } }
+
+    // MARK: - Audio volume (forwarded to engine)
+
+    var volume: Float {
+        get { audio.volume }
+        set { audio.volume = newValue }
     }
 
     // MARK: - Thread-safe buffer access
 
-    // Read the front buffer on the main thread inside onFrameReady.
     func withFrontBuffer(_ body: (UnsafePointer<UInt32>, Int, Int) -> Void) {
         let w = core.frameWidth
         let h = core.frameHeight
@@ -62,15 +85,10 @@ final class EmulatorSession: ObservableObject {
         os_unfair_lock_unlock(&bufferLock)
     }
 
-    // MARK: - Input (safe to call from any thread — uint32 writes are atomic on ARM64)
+    // MARK: - Input
 
-    func setInput(player: Int, buttons: UInt32) {
-        core.setInput(player: player, buttons: buttons)
-    }
-
-    func setSysInput(_ buttons: UInt32) {
-        core.setSysInput(buttons)
-    }
+    func setInput(player: Int, buttons: UInt32) { core.setInput(player: player, buttons: buttons) }
+    func setSysInput(_ buttons: UInt32)          { core.setSysInput(buttons) }
 
     // MARK: - Save state pass-through
 
@@ -82,12 +100,18 @@ final class EmulatorSession: ObservableObject {
     private func runLoop() {
         let targetFrameTime = 1.0 / core.nativeFPS
         var lastTime = CACurrentMediaTime()
+        var fpsFrameCount = 0
+        var fpsWindowStart = CACurrentMediaTime()
 
         while running {
+            if paused {
+                Thread.sleep(forTimeInterval: 0.008)
+                continue
+            }
+
             core.runFrame()
 
-            // Copy emulator framebuffer into the back buffer, then swap.
-            let fb = core.framebuffer()
+            let fb    = core.framebuffer()
             let count = core.frameWidth * core.frameHeight
             os_unfair_lock_lock(&bufferLock)
             backBuffer.withUnsafeMutableBufferPointer { dst in
@@ -97,21 +121,25 @@ final class EmulatorSession: ObservableObject {
             os_unfair_lock_unlock(&bufferLock)
 
             let (audioPtr, audioCount) = core.audioSamples()
-            if audioCount > 0 {
-                audio.push(samples: audioPtr, count: audioCount)
-            }
+            if audioCount > 0 { audio.push(samples: audioPtr, count: audioCount) }
 
-            // FPS throttle.
-            let now = CACurrentMediaTime()
+            let now     = CACurrentMediaTime()
             let elapsed = now - lastTime
             if elapsed < targetFrameTime {
                 Thread.sleep(forTimeInterval: targetFrameTime - elapsed)
             }
             lastTime = CACurrentMediaTime()
 
-            DispatchQueue.main.async { [weak self] in
-                self?.onFrameReady?()
+            fpsFrameCount += 1
+            let fpsDelta = now - fpsWindowStart
+            if fpsDelta >= 0.5 {
+                let fps = Double(fpsFrameCount) / fpsDelta
+                fpsFrameCount  = 0
+                fpsWindowStart = now
+                DispatchQueue.main.async { [weak self] in self?.measuredFPS = fps }
             }
+
+            DispatchQueue.main.async { [weak self] in self?.onFrameReady?() }
         }
     }
 }
