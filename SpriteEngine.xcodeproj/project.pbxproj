@@ -47,6 +47,7 @@
 		4AE1B53D8A462180986B1C8D /* GameDB.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C3AB95A50C8FC2A64F24AC4 /* GameDB.json */; };
 		4C2CD289165835879A3EDAD2 /* d_cps1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC3A2DD6A4A413A058BB3A72 /* d_cps1.cpp */; };
 		51C469162B96D5E33494368D /* ps_z.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D80C7B184C9F085773C2F84 /* ps_z.cpp */; };
+		55E4EF4F96B69BDE8E263FC9 /* msm5205.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A1D4E9EAAB7D11BC197E819 /* msm5205.cpp */; };
 		591C58FEE1CF83163F6923C9 /* z80.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E55386B37E9E26C5F86C2CD0 /* z80.cpp */; };
 		625FA08630C9E7EAAFB4B068 /* burn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2BD91CE627897B395DF6BF6A /* burn.cpp */; };
 		6536153305D9E501E73DECE6 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1B5216466B79C26A4DC93E30 /* Shaders.metal */; };
@@ -90,7 +91,6 @@
 		B58DDAB42A72B7B70C6F215D /* geo_mixer.c in Sources */ = {isa = PBXBuildFile; fileRef = 50AA7ECB1DC6952EFECB5DF8 /* geo_mixer.c */; };
 		B9B14E18E2E9E2F858A700B2 /* geo_rtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D848198948E2C9B64FE34711 /* geo_rtc.c */; };
 		BACD84968CE5C6C748924A5D /* qs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C11E093AAAACE496E92818 /* qs.cpp */; };
-		BB9ABE3D39237CA707D4DBC8 /* fcrash_snd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20F8064AC14885C54B122CBA /* fcrash_snd.cpp */; };
 		BCC303852237BB57F4BABBE4 /* miniz.c in Sources */ = {isa = PBXBuildFile; fileRef = 825C9AB1A82EBBF14D4BB19A /* miniz.c */; };
 		BD27D351AA99A17FC8530986 /* vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 045BA7AFDA18A2D044155E31 /* vector.cpp */; };
 		C3CEF708DC51D88123169210 /* geo.c in Sources */ = {isa = PBXBuildFile; fileRef = D7BBBDB6D130E9876A8ACA64 /* geo.c */; };
@@ -104,14 +104,18 @@
 		D5659B9E17A17F4B4441462C /* ym2151.c in Sources */ = {isa = PBXBuildFile; fileRef = 09BA3C75C4526B37E7ACA7DB /* ym2151.c */; };
 		D753EBFBE28C25205F22ED63 /* GeolithCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72ED0E6146F1DF37A530AB9 /* GeolithCore.swift */; };
 		DA5CF08886E18B9F518808A2 /* geo_ymfm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7B22C3596755DCA6BF9D959B /* geo_ymfm.c */; };
+		DEBD4F79A0911440DFA36E5E /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 840425D720EBB5ADF9F740C0 /* ioapi.c */; };
 		E1E3BFED759B6CB273DF1B80 /* z80pio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5407FBF8BF56333C3BA9CC0F /* z80pio.cpp */; };
+		E3DE8DA2620C3A3FA06D9508 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D33221B36296F96CD35EA6 /* unzip.c */; };
 		E420BE8C0F897EA50731ECD3 /* geo_lc8951.c in Sources */ = {isa = PBXBuildFile; fileRef = F7D6A0099727099E5AC696BD /* geo_lc8951.c */; };
 		E6103B8153DF61A16BDF91EC /* SpriteEngineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707715181EAD11F17488779 /* SpriteEngineApp.swift */; };
 		E903AB86E76B5F5F2B43DD8A /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781F3487F5E2ED1ACB6C27D1 /* AudioEngine.swift */; };
 		EC6E32B886EC40BA1B237205 /* sf2mdt_snd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92978DBF07BAA849DDDF46F1 /* sf2mdt_snd.cpp */; };
 		F145D4D85E1A38669E3E0278 /* z80ctc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB9A3D8C99CF0D3E8180DE4D /* z80ctc.cpp */; };
+		F270DB81F2DF8BAE9B71C01A /* FBNeoCPSCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BC996AC489110CCE2B8B0 /* FBNeoCPSCore.swift */; };
 		F4E2E1C4975382F91951BC97 /* m68kops.c in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDA862B1256B88CCC901F8 /* m68kops.c */; };
 		F776838206538B8A3AD7ACDD /* m68kops.c in Sources */ = {isa = PBXBuildFile; fileRef = 717967C3F21C09EE5B609143 /* m68kops.c */; };
+		F7F5949B73CC15D4101EA695 /* eeprom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5824B35411FE6A1CB513000 /* eeprom.cpp */; };
 		FE6343B387A29A059AF024EB /* EmulatorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219FAC862546400A38C9B53 /* EmulatorSession.swift */; };
 		FFAC650EE64B04D08653E5DC /* m68000_intf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0E424D8F923F158263BB53A6 /* m68000_intf.cpp */; };
 /* End PBXBuildFile section */
@@ -158,6 +162,7 @@
 
 /* Begin PBXFileReference section */
 		045BA7AFDA18A2D044155E31 /* vector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = vector.cpp; sourceTree = "<group>"; };
+		04D33221B36296F96CD35EA6 /* unzip.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
 		07270948DE5DFCFD5A564B2B /* geo_disc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_disc.c; sourceTree = "<group>"; };
 		07452615AD01389BE754C1C4 /* samples.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = samples.cpp; sourceTree = "<group>"; };
 		09BA3C75C4526B37E7ACA7DB /* ym2151.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ym2151.c; sourceTree = "<group>"; };
@@ -169,11 +174,12 @@
 		0FB6F180B60D8BCD9DF1FB51 /* dac.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dac.cpp; sourceTree = "<group>"; };
 		109B2003F6A1B01353FFE68F /* resample.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = resample.c; sourceTree = "<group>"; };
 		10C09B78E2A983224BFFA00A /* timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = timer.cpp; sourceTree = "<group>"; };
+		1A1D4E9EAAB7D11BC197E819 /* msm5205.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = msm5205.cpp; sourceTree = "<group>"; };
 		1B5216466B79C26A4DC93E30 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		1DFCE811EB82C457DC4EA2FD /* kabuki.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kabuki.cpp; sourceTree = "<group>"; };
 		202358FED798A086A625712A /* ymfm_opn.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ymfm_opn.c; sourceTree = "<group>"; };
 		204E58FEBDEBB896EF2BD2F3 /* geo_z80.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_z80.c; sourceTree = "<group>"; };
-		20F8064AC14885C54B122CBA /* fcrash_snd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fcrash_snd.cpp; sourceTree = "<group>"; };
+		215BC996AC489110CCE2B8B0 /* FBNeoCPSCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBNeoCPSCore.swift; sourceTree = "<group>"; };
 		228684DA886A07ABE3D86CA0 /* fbneo_cps_bridge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fbneo_cps_bridge.cpp; sourceTree = "<group>"; };
 		2475163282DC5AA07E0E1B09 /* cps_draw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps_draw.cpp; sourceTree = "<group>"; };
 		247A548E68EA6D850D7B1F18 /* cps_obj.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps_obj.cpp; sourceTree = "<group>"; };
@@ -215,6 +221,7 @@
 		825C9AB1A82EBBF14D4BB19A /* miniz.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = miniz.c; sourceTree = "<group>"; };
 		827FB5BAB20BD6D65CA03304 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82A4FAAA1A480129B85EC668 /* GameMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetadata.swift; sourceTree = "<group>"; };
+		840425D720EBB5ADF9F740C0 /* ioapi.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		843808C5915E908A2AEF70E7 /* burn_shift.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_shift.cpp; sourceTree = "<group>"; };
 		8552C48A5C8F891D2264E533 /* burn_sha1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_sha1.cpp; sourceTree = "<group>"; };
 		862D3B86D760F6325F1161AA /* cpsr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cpsr.cpp; sourceTree = "<group>"; };
@@ -232,6 +239,7 @@
 		AF0F41C4F16B26D6EEDD54BE /* joyprocess.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = joyprocess.cpp; sourceTree = "<group>"; };
 		B256A8DDB4B36B65779CBAA2 /* EmulatorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmulatorError.swift; sourceTree = "<group>"; };
 		B52150829F9787978629D95A /* ymfm_ssg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ymfm_ssg.c; sourceTree = "<group>"; };
+		B5824B35411FE6A1CB513000 /* eeprom.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = eeprom.cpp; sourceTree = "<group>"; };
 		B64BEDAC99A1A2FF11002C02 /* qs_z.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = qs_z.cpp; sourceTree = "<group>"; };
 		B7C9C3EBDE427B3D4E0DF86B /* timekpr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = timekpr.cpp; sourceTree = "<group>"; };
 		B7D395EEC769BDC669F40EA0 /* cpsrd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cpsrd.cpp; sourceTree = "<group>"; };
@@ -333,6 +341,7 @@
 				9C95B08DC8BA92B48ED19E41 /* EmulatorCore.swift */,
 				B256A8DDB4B36B65779CBAA2 /* EmulatorError.swift */,
 				5219FAC862546400A38C9B53 /* EmulatorSession.swift */,
+				215BC996AC489110CCE2B8B0 /* FBNeoCPSCore.swift */,
 				E72ED0E6146F1DF37A530AB9 /* GeolithCore.swift */,
 			);
 			path = Emulation;
@@ -375,7 +384,6 @@
 				4260047A364879522EBE92AE /* ctv.cpp */,
 				FC3A2DD6A4A413A058BB3A72 /* d_cps1.cpp */,
 				EF3518318B38A998B604C6CB /* d_cps2.cpp */,
-				20F8064AC14885C54B122CBA /* fcrash_snd.cpp */,
 				1DFCE811EB82C457DC4EA2FD /* kabuki.cpp */,
 				ECFDB89832026488C7D4C30F /* ps_m.cpp */,
 				6D80C7B184C9F085773C2F84 /* ps_z.cpp */,
@@ -418,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				F9E15301EBD467EF32DB4226 /* burn */,
+				7C9326C5553213850AAA54A0 /* burner */,
 				1D9ABAB2D40D3828F5DFADD3 /* cpu */,
 				138500C8862D7BACE5EE5350 /* dep */,
 			);
@@ -464,6 +473,15 @@
 				8B8B31C53C8BB12BCB1F57B2 /* SpriteEngine.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7C9326C5553213850AAA54A0 /* burner */ = {
+			isa = PBXGroup;
+			children = (
+				840425D720EBB5ADF9F740C0 /* ioapi.c */,
+				04D33221B36296F96CD35EA6 /* unzip.c */,
+			);
+			path = burner;
 			sourceTree = "<group>";
 		};
 		8628CB5BDB07BCDD32E9F31A = {
@@ -545,6 +563,7 @@
 		AF9A9310E22F0E9879C06BF3 /* devices */ = {
 			isa = PBXGroup;
 			children = (
+				B5824B35411FE6A1CB513000 /* eeprom.cpp */,
 				AF0F41C4F16B26D6EEDD54BE /* joyprocess.cpp */,
 				B7C9C3EBDE427B3D4E0DF86B /* timekpr.cpp */,
 			);
@@ -575,6 +594,7 @@
 			children = (
 				86C4F48E4E1C61BFE82AA6DA /* burn_ym2151.cpp */,
 				0FB6F180B60D8BCD9DF1FB51 /* dac.cpp */,
+				1A1D4E9EAAB7D11BC197E819 /* msm5205.cpp */,
 				A083C0A30A1A0D965CE1DB01 /* msm6295.cpp */,
 				07452615AD01389BE754C1C4 /* samples.cpp */,
 				09BA3C75C4526B37E7ACA7DB /* ym2151.c */,
@@ -849,16 +869,18 @@
 				88EAD8F3D81B59AAE09B4F20 /* d_parent.cpp in Sources */,
 				3582AC6C1785D3A435917DFB /* dac.cpp in Sources */,
 				49ED9CE9E2F914D43DF02DEE /* debug_track.cpp in Sources */,
+				F7F5949B73CC15D4101EA695 /* eeprom.cpp in Sources */,
 				38187CC708BD01A1342B4021 /* fbneo_cps_bridge.cpp in Sources */,
 				75C80AA568E6B6B81AB83CF3 /* fbneo_macos_compat.cpp in Sources */,
-				BB9ABE3D39237CA707D4DBC8 /* fcrash_snd.cpp in Sources */,
 				1D8585D4E3585CBB19FD1836 /* hiscore.cpp in Sources */,
+				DEBD4F79A0911440DFA36E5E /* ioapi.c in Sources */,
 				B3AFB508B63C6B6772F7CEC8 /* joyprocess.cpp in Sources */,
 				8C02A8C4A4EDA10E85D5F3C6 /* kabuki.cpp in Sources */,
 				D0DAB6A58E16F17B5B2D0544 /* load.cpp in Sources */,
 				FFAC650EE64B04D08653E5DC /* m68000_intf.cpp in Sources */,
 				972C8B693E4EDC759D0F0055 /* m68kcpu.c in Sources */,
 				F776838206538B8A3AD7ACDD /* m68kops.c in Sources */,
+				55E4EF4F96B69BDE8E263FC9 /* msm5205.cpp in Sources */,
 				9FB29BD1BDB9CF6994BF06D6 /* msm6295.cpp in Sources */,
 				29A3B74EE288B959022314B2 /* ps.cpp in Sources */,
 				663248855E6634AFAEF7CA6E /* ps_m.cpp in Sources */,
@@ -872,6 +894,7 @@
 				AECF37EA3E11496759D1CDDA /* tiles_generic.cpp in Sources */,
 				8B2522CB3830FCC9DD4ACE09 /* timekpr.cpp in Sources */,
 				CA6DAFAAC72BF6549F4A345E /* timer.cpp in Sources */,
+				E3DE8DA2620C3A3FA06D9508 /* unzip.c in Sources */,
 				BD27D351AA99A17FC8530986 /* vector.cpp in Sources */,
 				D5659B9E17A17F4B4441462C /* ym2151.c in Sources */,
 				591C58FEE1CF83163F6923C9 /* z80.cpp in Sources */,
@@ -893,6 +916,7 @@
 				2E7D830BC29EF1F208AAEC03 /* EmulatorError.swift in Sources */,
 				FE6343B387A29A059AF024EB /* EmulatorSession.swift in Sources */,
 				7FA3B421C7F96124C14421FD /* EmulatorView.swift in Sources */,
+				F270DB81F2DF8BAE9B71C01A /* FBNeoCPSCore.swift in Sources */,
 				76C02A4DCDC2EC7D5F051242 /* Game.swift in Sources */,
 				082593DF1640833034673CA3 /* GameMetadata.swift in Sources */,
 				D753EBFBE28C25205F22ED63 /* GeolithCore.swift in Sources */,
@@ -960,13 +984,15 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1 BUILD_MACOS=1";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				OTHER_CFLAGS = "$(inherited) -include $(SRCROOT)/FBNeoCPSLib/bridge/fbneo_m68k_rename.h";
+				OTHER_CPLUSPLUSFLAGS = "$(inherited) -include $(SRCROOT)/FBNeoCPSLib/bridge/fbneo_m68k_rename.h";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spriteengine.FBNeoCPSLib;
 				PRODUCT_NAME = FBNeoCPSLib;
 				SDKROOT = macosx;
@@ -991,7 +1017,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				OTHER_LDFLAGS = (
-					"$(inherited)",
+					"$(inherited) -lz -lc++",
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.spriteengine.SpriteEngine;
@@ -1073,13 +1099,15 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1 BUILD_MACOS=1";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				OTHER_CFLAGS = "$(inherited) -include $(SRCROOT)/FBNeoCPSLib/bridge/fbneo_m68k_rename.h";
+				OTHER_CPLUSPLUSFLAGS = "$(inherited) -include $(SRCROOT)/FBNeoCPSLib/bridge/fbneo_m68k_rename.h";
 				PRODUCT_BUNDLE_IDENTIFIER = com.spriteengine.FBNeoCPSLib;
 				PRODUCT_NAME = FBNeoCPSLib;
 				SDKROOT = macosx;
@@ -1104,7 +1132,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				OTHER_LDFLAGS = (
-					"$(inherited)",
+					"$(inherited) -lz -lc++",
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.spriteengine.SpriteEngine;

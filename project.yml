@@ -41,7 +41,7 @@ targets:
         ARCHS: arm64
         MACOSX_DEPLOYMENT_TARGET: "14.0"
         HEADER_SEARCH_PATHS: "$(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/bridge"
-        OTHER_LDFLAGS: "$(inherited)"
+        OTHER_LDFLAGS: "$(inherited) -lz -lc++"
     dependencies:
       - target: GeolithLib
       - target: FBNeoCPSLib
@@ -186,7 +186,7 @@ targets:
       - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/ctv.cpp
       - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/d_cps1.cpp
       - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/d_cps2.cpp
-      - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/fcrash_snd.cpp
+      # fcrash_snd.cpp excluded: only needed for one YM2203-based bootleg
       - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/kabuki.cpp
       - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/ps.cpp
       - path: FBNeoCPSLib/fbneo/src/burn/drv/capcom/ps_m.cpp
@@ -199,6 +199,7 @@ targets:
       - path: FBNeoCPSLib/fbneo/src/burn/snd/dac.cpp
       - path: FBNeoCPSLib/fbneo/src/burn/snd/burn_ym2151.cpp
       - path: FBNeoCPSLib/fbneo/src/burn/snd/ym2151.c
+      - path: FBNeoCPSLib/fbneo/src/burn/snd/msm5205.cpp
       - path: FBNeoCPSLib/fbneo/src/burn/snd/msm6295.cpp
       - path: FBNeoCPSLib/fbneo/src/burn/snd/samples.cpp
       # ── M68000 (Musashi) — m68kfpu.c is #included by m68kcpu.c ──
@@ -212,10 +213,14 @@ targets:
       - path: FBNeoCPSLib/fbneo/src/cpu/z80/z80daisy.cpp
       - path: FBNeoCPSLib/fbneo/src/cpu/z80/z80pio.cpp
       # ── Devices (needed by burnint.h and CPS drivers) ──
+      - path: FBNeoCPSLib/fbneo/src/burn/devices/eeprom.cpp
       - path: FBNeoCPSLib/fbneo/src/burn/devices/joyprocess.cpp
       - path: FBNeoCPSLib/fbneo/src/burn/devices/timekpr.cpp
       # ── macOS compatibility (our bridge substitute, avoids pulling in burner.h) ──
       - path: FBNeoCPSLib/bridge/fbneo_macos_compat.cpp
+      # ── minizip (for BurnExtLoadRom zip extraction) ──
+      - path: FBNeoCPSLib/fbneo/src/burner/unzip.c
+      - path: FBNeoCPSLib/fbneo/src/burner/ioapi.c
     settings:
       base:
         PRODUCT_NAME: FBNeoCPSLib
@@ -234,8 +239,14 @@ targets:
           $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k
           $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80
           $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos
+          $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner
+          $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib
           $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated
           $(SRCROOT)/FBNeoCPSLib/bridge
-        GCC_PREPROCESSOR_DEFINITIONS: "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1"
+        GCC_PREPROCESSOR_DEFINITIONS: "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1 BUILD_MACOS=1"
+        # Force-include the M68K rename header for all files so FBNeo's Musashi
+        # symbols don't clash with Geolith's Musashi (different version, same names).
+        OTHER_CFLAGS: "$(inherited) -include $(SRCROOT)/FBNeoCPSLib/bridge/fbneo_m68k_rename.h"
+        OTHER_CPLUSPLUSFLAGS: "$(inherited) -include $(SRCROOT)/FBNeoCPSLib/bridge/fbneo_m68k_rename.h"
         # Suppress warnings from third-party source (FBNeo has many)
         WARNING_CFLAGS: "-w"
