@@ -250,3 +250,19 @@ targets:
         OTHER_CPLUSPLUSFLAGS: "$(inherited) -include $(SRCROOT)/FBNeoCPSLib/bridge/fbneo_m68k_rename.h"
         # Suppress warnings from third-party source (FBNeo has many)
         WARNING_CFLAGS: "-w"
+
+schemes:
+  SpriteEngine:
+    build:
+      targets:
+        SpriteEngine: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
