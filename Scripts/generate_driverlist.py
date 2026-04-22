@@ -9,7 +9,7 @@ os.makedirs(gendir, exist_ok=True)
 
 entries = []
 for drv in ["d_cps1.cpp", "d_cps2.cpp"]:
-    with open(f"{capcom}/{drv}") as f:
+    with open(f"{capcom}/{drv}", encoding='utf-8', errors='replace') as f:
         for line in f:
             if line.startswith("struct BurnDriver"):
                 name = line.split()[2]
