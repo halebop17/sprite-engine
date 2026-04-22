@@ -1,6 +1,6 @@
 import Foundation
 
-struct Game: Identifiable, Codable {
+struct Game: Identifiable, Codable, Equatable {
     let id: UUID
     let title: String
     let system: EmulatorSystem
