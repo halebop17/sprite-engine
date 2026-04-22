@@ -14,24 +14,29 @@ enum VideoScaleMode: String, CaseIterable {
     }
 }
 
+enum FilterMode {
+    case sharp, smooth, crt
+}
+
 final class MetalRenderer: NSObject, MTKViewDelegate {
 
-    // Toggle between sharp (nearest) and smooth (bilinear) sampling.
-    var isSmoothing: Bool = false
-    var scaleMode: VideoScaleMode = .aspectFit
+    var scaleMode:  VideoScaleMode = .aspectFit
+    var filterMode: FilterMode     = .sharp
 
     private let device: MTLDevice
     private let commandQueue: MTLCommandQueue
-    private let sharpPipeline: MTLRenderPipelineState
+    private let sharpPipeline:  MTLRenderPipelineState
     private let smoothPipeline: MTLRenderPipelineState
+    private let crtPipeline:    MTLRenderPipelineState
 
     private var texture: MTLTexture?
     private var textureWidth:  Int = 0
     private var textureHeight: Int = 0
 
-    // Natural display aspect ratio of the content (not the texture dimensions).
-    // Neo Geo: 320/224 ≈ 1.429. Updated via updateTexture.
-    private var naturalAspect: Double = 320.0 / 224.0
+    // Natural display dimensions — set via updateTexture, used for aspect + integer scale.
+    private var naturalAspect:  Double = 320.0 / 224.0
+    private var displayWidth:   Int    = 320
+    private var displayHeight:  Int    = 224
 
     init?(view: MTKView) {
         guard let dev = view.device ?? MTLCreateSystemDefaultDevice() else { return nil }
@@ -39,10 +44,11 @@ final class MetalRenderer: NSObject, MTKViewDelegate {
         device = dev
         commandQueue = queue
 
-        guard let library = dev.makeDefaultLibrary(),
-              let vertFn = library.makeFunction(name: "vertex_passthrough"),
-              let sharpFn = library.makeFunction(name: "fragment_sharp"),
-              let smoothFn = library.makeFunction(name: "fragment_smooth")
+        guard let library  = dev.makeDefaultLibrary(),
+              let vertFn   = library.makeFunction(name: "vertex_passthrough"),
+              let sharpFn  = library.makeFunction(name: "fragment_sharp"),
+              let smoothFn = library.makeFunction(name: "fragment_smooth"),
+              let crtFn    = library.makeFunction(name: "fragment_crt")
         else { return nil }
 
         let desc = MTLRenderPipelineDescriptor()
@@ -57,22 +63,26 @@ final class MetalRenderer: NSObject, MTKViewDelegate {
         guard let smooth = try? dev.makeRenderPipelineState(descriptor: desc) else { return nil }
         smoothPipeline = smooth
 
+        desc.fragmentFunction = crtFn
+        guard let crt = try? dev.makeRenderPipelineState(descriptor: desc) else { return nil }
+        crtPipeline = crt
+
         super.init()
     }
 
-    // Called every frame by EmulatorView with the latest pixel data.
-    // width/height are the texture dimensions; aspectWidth/aspectHeight define
-    // the natural display ratio (e.g. 320×224 for Neo Geo visible area).
+    // Called every frame with the latest pixel data.
+    // displayWidth/displayHeight define the natural visible area for aspect ratio / integer scale.
     func updateTexture(pixels: UnsafePointer<UInt32>,
                        width: Int, height: Int,
                        displayWidth: Int, displayHeight: Int) {
+        self.displayWidth  = displayWidth
+        self.displayHeight = displayHeight
         naturalAspect = Double(displayWidth) / Double(displayHeight)
 
         if texture == nil || textureWidth != width || textureHeight != height {
             let td = MTLTextureDescriptor.texture2DDescriptor(
                 pixelFormat: .bgra8Unorm,
-                width: width,
-                height: height,
+                width: width, height: height,
                 mipmapped: false)
             td.usage = [.shaderRead]
             td.storageMode = .shared
@@ -93,15 +103,22 @@ final class MetalRenderer: NSObject, MTKViewDelegate {
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {}
 
     func draw(in view: MTKView) {
-        guard let tex = texture,
-              let drawable = view.currentDrawable,
+        guard let tex        = texture,
+              let drawable   = view.currentDrawable,
               let descriptor = view.currentRenderPassDescriptor,
-              let buffer = commandQueue.makeCommandBuffer(),
-              let encoder = buffer.makeRenderCommandEncoder(descriptor: descriptor)
+              let buffer     = commandQueue.makeCommandBuffer(),
+              let encoder    = buffer.makeRenderCommandEncoder(descriptor: descriptor)
         else { return }
 
-        encoder.setRenderPipelineState(isSmoothing ? smoothPipeline : sharpPipeline)
-        encoder.setViewport(letterboxViewport(drawableSize: view.drawableSize))
+        let pipeline: MTLRenderPipelineState
+        switch filterMode {
+        case .sharp:  pipeline = sharpPipeline
+        case .smooth: pipeline = smoothPipeline
+        case .crt:    pipeline = crtPipeline
+        }
+
+        encoder.setRenderPipelineState(pipeline)
+        encoder.setViewport(viewport(drawableSize: view.drawableSize))
         encoder.setFragmentTexture(tex, index: 0)
         encoder.drawPrimitives(type: .triangleStrip, vertexStart: 0, vertexCount: 4)
         encoder.endEncoding()
@@ -110,32 +127,29 @@ final class MetalRenderer: NSObject, MTKViewDelegate {
         buffer.commit()
     }
 
-    // MARK: - Layout
+    // MARK: - Viewport layout
 
-    private func letterboxViewport(drawableSize: CGSize) -> MTLViewport {
+    private func viewport(drawableSize: CGSize) -> MTLViewport {
         let dw = drawableSize.width
         let dh = drawableSize.height
 
-        let vw: Double
-        let vh: Double
-        let vx: Double
-        let vy: Double
+        let vw, vh, vx, vy: Double
 
         switch scaleMode {
         case .stretch:
-            vw = dw; vh = dh; vx = 0; vy = 0
+            (vw, vh, vx, vy) = (dw, dh, 0, 0)
 
         case .integer:
-            let scale = max(1.0, min(floor(dw / Double(textureWidth)),
-                                     floor(dh / Double(textureHeight))))
-            vw = Double(textureWidth) * scale
-            vh = Double(textureHeight) * scale
+            // Largest N such that N*displayW ≤ dw and N*displayH ≤ dh.
+            let scale = max(1.0, min(floor(dw / Double(displayWidth)),
+                                     floor(dh / Double(displayHeight))))
+            vw = Double(displayWidth)  * scale
+            vh = Double(displayHeight) * scale
             vx = (dw - vw) / 2
             vy = (dh - vh) / 2
 
         case .aspectFit:
-            let viewAspect = dw / dh
-            if naturalAspect > viewAspect {
+            if naturalAspect > dw / dh {
                 vw = dw; vh = dw / naturalAspect; vx = 0; vy = (dh - vh) / 2
             } else {
                 vh = dh; vw = dh * naturalAspect; vx = (dw - vw) / 2; vy = 0
