@@ -1,6 +1,6 @@
 import Foundation
 
-struct SaveState: Codable, Equatable {
+struct SaveState: Identifiable, Codable, Equatable {
     let id: UUID
     let gameName: String
     let system: EmulatorSystem

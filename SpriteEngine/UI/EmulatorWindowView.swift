@@ -13,8 +13,10 @@ final class EmulatorViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var isPaused:    Bool = false
     @Published var measuredFPS: Double = 0
+    @Published var statusMessage: String?
 
     private var session: EmulatorSession?
+    private var statusTask: DispatchWorkItem?
 
     init() {
         inputManager.startControllerDiscovery()
@@ -54,16 +56,11 @@ final class EmulatorViewModel: ObservableObject {
         session = s
         isRunning = true
 
-        // Mirror session published state into our own so HUD can bind to vm
         Task {
-            for await paused in s.$isPaused.values {
-                self.isPaused = paused
-            }
+            for await paused in s.$isPaused.values { self.isPaused = paused }
         }
         Task {
-            for await fps in s.$measuredFPS.values {
-                self.measuredFPS = fps
-            }
+            for await fps in s.$measuredFPS.values { self.measuredFPS = fps }
         }
 
         s.start()
@@ -86,6 +83,58 @@ final class EmulatorViewModel: ObservableObject {
     }
 
     func applyVolume(_ v: Float) { session?.volume = v }
+
+    // MARK: - Save state
+
+    func saveState(game: Game, library: ROMLibrary) {
+        guard let session else { return }
+
+        // Capture thumbnail pixels on main thread while holding the buffer lock.
+        var pixels: [UInt32] = []
+        var thumbW = 0, thumbH = 0
+        session.withFrontBuffer { ptr, w, h in
+            pixels = Array(UnsafeBufferPointer(start: ptr, count: w * h))
+            thumbW = w; thumbH = h
+        }
+
+        do {
+            let state = try SaveStateManager.save(
+                game: game, session: session,
+                thumbnailPixels: pixels, thumbnailWidth: thumbW, thumbnailHeight: thumbH)
+            library.addSaveState(state, to: game)
+            showStatus("State saved")
+        } catch {
+            errorMessage = "Save failed: \(error.localizedDescription)"
+        }
+    }
+
+    func loadLatestState(game: Game) {
+        guard let session else { return }
+        let states = game.saveStates.sorted { $0.createdAt > $1.createdAt }
+        guard let latest = states.first else {
+            showStatus("No save states")
+            return
+        }
+        let wasPaused = isPaused
+        session.pause()
+        do {
+            try SaveStateManager.load(latest, into: session)
+            showStatus("State loaded")
+        } catch {
+            errorMessage = "Load failed: \(error.localizedDescription)"
+        }
+        if !wasPaused { session.resume() }
+    }
+
+    // MARK: - Status toast
+
+    private func showStatus(_ message: String) {
+        statusTask?.cancel()
+        statusMessage = message
+        let task = DispatchWorkItem { [weak self] in self?.statusMessage = nil }
+        statusTask = task
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.8, execute: task)
+    }
 }
 
 // MARK: - EmulatorWindowView
@@ -95,9 +144,10 @@ struct EmulatorWindowView: View {
     let game: Game
 
     @EnvironmentObject private var appState: AppState
+    @EnvironmentObject private var library: ROMLibrary
     @StateObject private var vm = EmulatorViewModel()
 
-    @State private var hudVisible   = true
+    @State private var hudVisible = true
     @State private var hideTask: DispatchWorkItem?
 
     var body: some View {
@@ -112,6 +162,10 @@ struct EmulatorWindowView: View {
             hudOverlay
                 .opacity(hudVisible ? 1 : 0)
                 .animation(.easeInOut(duration: 0.22), value: hudVisible)
+
+            if let msg = vm.statusMessage {
+                statusToast(msg)
+            }
         }
         .onContinuousHover { phase in
             if case .active = phase { showHUD() }
@@ -124,9 +178,9 @@ struct EmulatorWindowView: View {
         .onChange(of: vm.isRunning) { _, running in
             if running { vm.emulatorView.window?.makeFirstResponder(vm.emulatorView) }
         }
-        .onChange(of: appState.videoScaleMode)  { _, _ in vm.applyVideoSettings(appState: appState) }
-        .onChange(of: appState.videoCRTFilter)  { _, _ in vm.applyVideoSettings(appState: appState) }
-        .onChange(of: appState.audioVolume)     { _, v in vm.applyVolume(v) }
+        .onChange(of: appState.videoScaleMode) { _, _ in vm.applyVideoSettings(appState: appState) }
+        .onChange(of: appState.videoCRTFilter) { _, _ in vm.applyVideoSettings(appState: appState) }
+        .onChange(of: appState.audioVolume)    { _, v  in vm.applyVolume(v) }
         .alert("Error",
                isPresented: Binding(
                    get: { vm.errorMessage != nil },
@@ -154,33 +208,41 @@ struct EmulatorWindowView: View {
         }
     }
 
+    // MARK: - Status toast
+
+    private func statusToast(_ message: String) -> some View {
+        VStack {
+            Spacer()
+            Text(message)
+                .font(.system(size: 13, weight: .semibold))
+                .foregroundColor(.white)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 10)
+                .background(.black.opacity(0.72), in: RoundedRectangle(cornerRadius: 10))
+                .shadow(color: .black.opacity(0.3), radius: 12, y: 4)
+                .padding(.bottom, 90)
+                .transition(.opacity.combined(with: .scale(scale: 0.92)))
+                .animation(.easeInOut(duration: 0.18), value: vm.statusMessage)
+        }
+    }
+
     // MARK: - HUD overlay
 
     private var hudOverlay: some View {
         VStack(spacing: 0) {
-            // Top gradient bar
-            LinearGradient(
-                colors: [.black.opacity(0.7), .clear],
-                startPoint: .top, endPoint: .bottom)
-            .frame(height: 72)
-            .overlay(alignment: .topLeading) {
-                topBar
-                    .padding(.horizontal, 16)
-                    .padding(.top, 14)
-            }
+            LinearGradient(colors: [.black.opacity(0.7), .clear], startPoint: .top, endPoint: .bottom)
+                .frame(height: 72)
+                .overlay(alignment: .topLeading) {
+                    topBar.padding(.horizontal, 16).padding(.top, 14)
+                }
 
             Spacer()
 
-            // Bottom gradient bar
-            LinearGradient(
-                colors: [.clear, .black.opacity(0.65)],
-                startPoint: .top, endPoint: .bottom)
-            .frame(height: 72)
-            .overlay(alignment: .bottom) {
-                bottomBar
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 14)
-            }
+            LinearGradient(colors: [.clear, .black.opacity(0.65)], startPoint: .top, endPoint: .bottom)
+                .frame(height: 80)
+                .overlay(alignment: .bottom) {
+                    bottomBar.padding(.horizontal, 24).padding(.bottom, 14)
+                }
         }
         .ignoresSafeArea()
     }
@@ -192,10 +254,8 @@ struct EmulatorWindowView: View {
                 appState.navigateBack()
             } label: {
                 HStack(spacing: 5) {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 12, weight: .semibold))
-                    Text("Library")
-                        .font(.system(size: 13))
+                    Image(systemName: "chevron.left").font(.system(size: 12, weight: .semibold))
+                    Text("Library").font(.system(size: 13))
                 }
                 .foregroundColor(.white.opacity(0.9))
                 .padding(.horizontal, 12)
@@ -213,30 +273,55 @@ struct EmulatorWindowView: View {
                 .lineLimit(1)
 
             Spacer()
-
-            // Placeholder to balance the back button width
             Color.clear.frame(width: 90, height: 1)
         }
     }
 
     private var bottomBar: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: 20) {
+            // Save state
+            hudButton(icon: "square.and.arrow.down", help: "Save State (⌘S)") {
+                vm.saveState(game: game, library: library)
+            }
+            .keyboardShortcut("s", modifiers: .command)
+
             Spacer()
 
             // Pause / Resume
-            Button { vm.togglePause() } label: {
-                Image(systemName: vm.isPaused ? "play.fill" : "pause.fill")
-                    .font(.system(size: 18))
-                    .foregroundColor(.white)
-                    .frame(width: 44, height: 44)
-                    .background(.white.opacity(0.15), in: Circle())
+            hudButton(
+                icon: vm.isPaused ? "play.fill" : "pause.fill",
+                help: vm.isPaused ? "Resume (⌘P)" : "Pause (⌘P)",
+                size: 20
+            ) {
+                vm.togglePause()
             }
-            .buttonStyle(.plain)
             .keyboardShortcut("p", modifiers: .command)
-            .help(vm.isPaused ? "Resume (⌘P)" : "Pause (⌘P)")
 
             Spacer()
+
+            // Load state
+            hudButton(icon: "square.and.arrow.up", help: "Load Last State (⌘L)") {
+                vm.loadLatestState(game: game)
+            }
+            .keyboardShortcut("l", modifiers: .command)
         }
+    }
+
+    private func hudButton(
+        icon: String,
+        help: String,
+        size: CGFloat = 16,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            Image(systemName: icon)
+                .font(.system(size: size))
+                .foregroundColor(.white)
+                .frame(width: 44, height: 44)
+                .background(.white.opacity(0.15), in: Circle())
+        }
+        .buttonStyle(.plain)
+        .help(help)
     }
 
     // MARK: - HUD auto-hide
