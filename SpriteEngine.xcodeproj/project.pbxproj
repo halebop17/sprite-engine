@@ -122,6 +122,7 @@
 		E420BE8C0F897EA50731ECD3 /* geo_lc8951.c in Sources */ = {isa = PBXBuildFile; fileRef = F7D6A0099727099E5AC696BD /* geo_lc8951.c */; };
 		E52FE82461D859960E957E7C /* CoreRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083811E23016F71896B9A5E5 /* CoreRouter.swift */; };
 		E6103B8153DF61A16BDF91EC /* SpriteEngineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707715181EAD11F17488779 /* SpriteEngineApp.swift */; };
+		E7AE4BDDF5850DC3913873A4 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C4B835133D68A596EFDA7B /* OnboardingView.swift */; };
 		E903AB86E76B5F5F2B43DD8A /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781F3487F5E2ED1ACB6C27D1 /* AudioEngine.swift */; };
 		EC6E32B886EC40BA1B237205 /* sf2mdt_snd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92978DBF07BAA849DDDF46F1 /* sf2mdt_snd.cpp */; };
 		F145D4D85E1A38669E3E0278 /* z80ctc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB9A3D8C99CF0D3E8180DE4D /* z80ctc.cpp */; };
@@ -212,6 +213,7 @@
 		417F6E28A81CC5A29B8D3823 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4260047A364879522EBE92AE /* ctv.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ctv.cpp; sourceTree = "<group>"; };
 		46BCA4A930E87E45C24B16C2 /* cheat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cheat.cpp; sourceTree = "<group>"; };
+		47C4B835133D68A596EFDA7B /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4960B37AEE5494863F072169 /* SaveState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveState.swift; sourceTree = "<group>"; };
 		4B1741B1572C07C418679737 /* m68kcpu.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = m68kcpu.c; sourceTree = "<group>"; };
 		4F57BF7477B17C71522A4382 /* ps.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ps.cpp; sourceTree = "<group>"; };
@@ -487,6 +489,7 @@
 				C9F7075F2B92E4FFA2F957E5 /* GameCardView.swift */,
 				BAFA55D24AD7B6BA5F0CC729 /* ImportView.swift */,
 				98413E3489F5A95A960FB160 /* LibraryView.swift */,
+				47C4B835133D68A596EFDA7B /* OnboardingView.swift */,
 				5284FBA2C7A63D27138CFF8E /* SettingsView.swift */,
 			);
 			path = UI;
@@ -971,6 +974,7 @@
 				02EF7C1F93C3B289DBC3D345 /* LibraryView.swift in Sources */,
 				8D2A5E35A65020372C3C21A7 /* MetalRenderer.swift in Sources */,
 				5EA0F8ACFF137DE371028CA0 /* NeoConverter.swift in Sources */,
+				E7AE4BDDF5850DC3913873A4 /* OnboardingView.swift in Sources */,
 				4908765517968E0EF600EA36 /* ROMLibrary.swift in Sources */,
 				C11119C61E24361B78634898 /* ROMScanner.swift in Sources */,
 				B56BA48F49644B488C483E72 /* RingBuffer.swift in Sources */,

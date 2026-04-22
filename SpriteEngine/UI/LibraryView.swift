@@ -539,24 +539,49 @@ private struct LibraryContent: View {
     }
 
     var body: some View {
-        ScrollView {
-            if filtered.isEmpty {
-                emptyState
-            } else {
-                LazyVGrid(
-                    columns: [GridItem(.adaptive(minimum: 144), spacing: 14)],
-                    spacing: 14
-                ) {
-                    ForEach(filtered) { game in
-                        GameCardView(game: game) {
-                            appState.navigate(to: .detail(game))
+        VStack(spacing: 0) {
+            if !appState.isBIOSPresent {
+                biosBanner
+            }
+            ScrollView {
+                if filtered.isEmpty {
+                    emptyState
+                } else {
+                    LazyVGrid(
+                        columns: [GridItem(.adaptive(minimum: 144), spacing: 14)],
+                        spacing: 14
+                    ) {
+                        ForEach(filtered) { game in
+                            GameCardView(game: game) {
+                                appState.navigate(to: .detail(game))
+                            }
                         }
                     }
+                    .padding(18)
                 }
-                .padding(18)
             }
         }
         .background(t.surface)
+    }
+
+    private var biosBanner: some View {
+        HStack(spacing: 10) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .font(.system(size: 13))
+                .foregroundColor(.orange)
+            Text("BIOS files not found — some games may not launch.")
+                .font(.system(size: 12))
+                .foregroundColor(t.text)
+            Spacer()
+            Button("Fix in Settings") { appState.navigate(to: .settings) }
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundColor(t.accent)
+                .buttonStyle(.plain)
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 8)
+        .background(Color.orange.opacity(0.1))
+        .overlay(alignment: .bottom) { Rectangle().fill(Color.orange.opacity(0.2)).frame(height: 1) }
     }
 
     private var emptyState: some View {

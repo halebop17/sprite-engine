@@ -4,6 +4,7 @@ import SwiftUI
 // MARK: - Screen
 
 enum Screen: Equatable {
+    case onboarding
     case library
     case detail(Game)
     case `import`
@@ -17,6 +18,7 @@ enum Screen: Equatable {
 final class AppState: ObservableObject {
 
     @Published var screen: Screen = .library
+    @Published var hasCompletedOnboarding: Bool = false
     @Published var biosDirectoryURL: URL?
     @Published var romDirectoryURL:  URL?
     @Published var themeKey: AppThemeKey = .dark
@@ -51,13 +53,21 @@ final class AppState: ObservableObject {
         if ud.object(forKey: "audioVolume") != nil {
             audioVolume = ud.float(forKey: "audioVolume")
         }
-        showFPSOverlay  = ud.bool(forKey: "showFPSOverlay")
+        showFPSOverlay        = ud.bool(forKey: "showFPSOverlay")
+        hasCompletedOnboarding = ud.bool(forKey: "hasCompletedOnboarding")
+        if !hasCompletedOnboarding { screen = .onboarding }
     }
 
     // MARK: Navigation
 
     func navigate(to screen: Screen) { self.screen = screen }
     func navigateBack()               { screen = .library }
+
+    func completeOnboarding() {
+        hasCompletedOnboarding = true
+        UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
+        screen = .library
+    }
 
     // MARK: Directory persistence
 

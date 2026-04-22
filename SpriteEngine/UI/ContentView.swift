@@ -12,6 +12,8 @@ struct ContentView: View {
     var body: some View {
         Group {
             switch appState.screen {
+            case .onboarding:
+                OnboardingView()
             case .library:
                 LibraryView()
             case .detail(let game):
