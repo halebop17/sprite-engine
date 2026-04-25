@@ -222,6 +222,18 @@
 			KGXSUP014B /* k054000.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP014A /* k054000.cpp */; };
 			KGXSND001B /* k054539.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSND001A /* k054539.cpp */; };
 			KGXDEV001B /* dtimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXDEV001A /* dtimer.cpp */; };
+		LDEP_FMOPL_BLD000 /* fmopl.c in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_FMOPL_REF000 /* fmopl.c */; };
+		LDEP_YMZ280B_BLD0 /* ymz280b.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_YMZ280B_REF0 /* ymz280b.cpp */; };
+		LDEP_NECINTF_BLD0 /* nec_intf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_NECINTF_REF0 /* nec_intf.cpp */; };
+		LDEP_NEC_CPP_BLD0 /* nec.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_NEC_CPP_REF0 /* nec.cpp */; };
+		LDEP_V25_CPP_BLD0 /* v25.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_V25_CPP_REF0 /* v25.cpp */; };
+		LDEP_Z180INT_BLD0 /* z180_intf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_Z180INT_REF0 /* z180_intf.cpp */; };
+		LDEP_Z180_CPP_BLD /* z180.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_Z180_CPP_REF /* z180.cpp */; };
+		LDEP_M6805INT_BLD /* m6805_intf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_M6805INT_REF /* m6805_intf.cpp */; };
+		LDEP_M6805_CPP_BL /* m6805.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_M6805_CPP_RE /* m6805.cpp */; };
+		LDEP_TAITO_M68_BL /* taito_m68705.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_TAITO_M68705 /* taito_m68705.cpp */; };
+		LDEP_NMK112_BLD00 /* nmk112.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_NMK112_REF00 /* nmk112.cpp */; };
+		LDEP_K051733_BLD0 /* k051733.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_K051733_REF0 /* k051733.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -483,6 +495,18 @@
 			KGXSUP014A /* k054000.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k054000.cpp; sourceTree = "<group>"; };
 			KGXSND001A /* k054539.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k054539.cpp; sourceTree = "<group>"; };
 			KGXDEV001A /* dtimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dtimer.cpp; sourceTree = "<group>"; };
+		LDEP_FMOPL_REF000 /* fmopl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fmopl.c; sourceTree = "<group>"; };
+		LDEP_YMZ280B_REF0 /* ymz280b.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ymz280b.cpp; sourceTree = "<group>"; };
+		LDEP_NECINTF_REF0 /* nec_intf.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nec_intf.cpp; sourceTree = "<group>"; };
+		LDEP_NEC_CPP_REF0 /* nec.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nec.cpp; sourceTree = "<group>"; };
+		LDEP_V25_CPP_REF0 /* v25.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = v25.cpp; sourceTree = "<group>"; };
+		LDEP_Z180INT_REF0 /* z180_intf.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = z180_intf.cpp; sourceTree = "<group>"; };
+		LDEP_Z180_CPP_REF /* z180.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = z180.cpp; sourceTree = "<group>"; };
+		LDEP_M6805INT_REF /* m6805_intf.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = m6805_intf.cpp; sourceTree = "<group>"; };
+		LDEP_M6805_CPP_RE /* m6805.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = m6805.cpp; sourceTree = "<group>"; };
+		LDEP_TAITO_M68705 /* taito_m68705.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = taito_m68705.cpp; sourceTree = "<group>"; };
+		LDEP_NMK112_REF00 /* nmk112.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nmk112.cpp; sourceTree = "<group>"; };
+		LDEP_K051733_REF0 /* k051733.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k051733.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -534,6 +558,12 @@
 				SE16I8039GRP00000000000 /* i8039 */,
 				SE16I8051GRP00000000000 /* i8051 */,
 				TMS32010_GROUP000000000 /* tms32010 */,
+				LDEP_NEC_GRP00000 /* nec */,
+				LDEP_Z180_GRP0000 /* z180 */,
+				LDEP_M6805_GRP000 /* m6805 */,
+				LDEP_NECINTF_REF0 /* nec_intf.cpp */,
+				LDEP_Z180INT_REF0 /* z180_intf.cpp */,
+				LDEP_M6805INT_REF /* m6805_intf.cpp */,
 			);
 			path = cpu;
 			sourceTree = "<group>";
@@ -790,6 +820,7 @@
 				B94DA6EAE23F47AC4F7E05F6 /* d_parent.cpp */,
 				3BBCEF4B1C5F9B4DEC7E3D54 /* capcom */,
 				SE16SEGAGRP000000000000 /* sega */,
+				LDEP_TAITO_GRP000 /* taito */,
 			);
 			path = drv;
 			sourceTree = "<group>";
@@ -871,6 +902,7 @@
 				KGXSUP012A /* k056832.cpp */,
 				KGXSUP013A /* k053251.cpp */,
 				KGXSUP014A /* k054000.cpp */,
+				LDEP_K051733_REF0 /* k051733.cpp */,
 			);
 			path = konami;
 			sourceTree = "<group>";
@@ -908,6 +940,7 @@
 				B7C9C3EBDE427B3D4E0DF86B /* timekpr.cpp */,
 				SE160023A000000000000000 /* 8255ppi.cpp */,
 				SE160024A000000000000000 /* resnet.cpp */,
+				LDEP_NMK112_REF00 /* nmk112.cpp */,
 			);
 			path = devices;
 			sourceTree = "<group>";
@@ -958,6 +991,8 @@
 				SE16FMO2610A000000000000 /* burn_ym2610.cpp */,
 				TPYM3812AA /* burn_ym3812.cpp */,
 				KGXSND001A /* k054539.cpp */,
+				LDEP_FMOPL_REF000 /* fmopl.c */,
+				LDEP_YMZ280B_REF0 /* ymz280b.cpp */,
 			);
 			path = snd;
 			sourceTree = "<group>";
@@ -1063,6 +1098,39 @@
 				109B2003F6A1B01353FFE68F /* resample.c */,
 			);
 			path = speex;
+			sourceTree = "<group>";
+		};
+		LDEP_NEC_GRP00000 /* nec */ = {
+			isa = PBXGroup;
+			children = (
+				LDEP_NEC_CPP_REF0 /* nec.cpp */,
+				LDEP_V25_CPP_REF0 /* v25.cpp */,
+			);
+			path = nec;
+			sourceTree = "<group>";
+		};
+		LDEP_Z180_GRP0000 /* z180 */ = {
+			isa = PBXGroup;
+			children = (
+				LDEP_Z180_CPP_REF /* z180.cpp */,
+			);
+			path = z180;
+			sourceTree = "<group>";
+		};
+		LDEP_M6805_GRP000 /* m6805 */ = {
+			isa = PBXGroup;
+			children = (
+				LDEP_M6805_CPP_RE /* m6805.cpp */,
+			);
+			path = m6805;
+			sourceTree = "<group>";
+		};
+		LDEP_TAITO_GRP000 /* taito */ = {
+			isa = PBXGroup;
+			children = (
+				LDEP_TAITO_M68705 /* taito_m68705.cpp */,
+			);
+			path = taito;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1315,6 +1383,18 @@
 				KGXSUP014B /* k054000.cpp in Sources */,
 				KGXSND001B /* k054539.cpp in Sources */,
 				KGXDEV001B /* dtimer.cpp in Sources */,
+				LDEP_FMOPL_BLD000 /* fmopl.c in Sources */,
+				LDEP_YMZ280B_BLD0 /* ymz280b.cpp in Sources */,
+				LDEP_NECINTF_BLD0 /* nec_intf.cpp in Sources */,
+				LDEP_NEC_CPP_BLD0 /* nec.cpp in Sources */,
+				LDEP_V25_CPP_BLD0 /* v25.cpp in Sources */,
+				LDEP_Z180INT_BLD0 /* z180_intf.cpp in Sources */,
+				LDEP_Z180_CPP_BLD /* z180.cpp in Sources */,
+				LDEP_M6805INT_BLD /* m6805_intf.cpp in Sources */,
+				LDEP_M6805_CPP_BL /* m6805.cpp in Sources */,
+				LDEP_TAITO_M68_BL /* taito_m68705.cpp in Sources */,
+				LDEP_NMK112_BLD00 /* nmk112.cpp in Sources */,
+				LDEP_K051733_BLD0 /* k051733.cpp in Sources */,
 				TMS32010AB /* tms32010.cpp in Sources */,
 				75C80AA568E6B6B81AB83CF3 /* fbneo_macos_compat.cpp in Sources */,
 				1D8585D4E3585CBB19FD1836 /* hiscore.cpp in Sources */,
@@ -1451,7 +1531,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1 BUILD_MACOS=1";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/toaplan $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/taito $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/tms32010 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6805 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z180 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/toaplan $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/taito $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/tms32010 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6805 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z180 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/nec $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1566,7 +1646,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1 BUILD_MACOS=1";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/toaplan $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/taito $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/tms32010 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6805 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z180 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/toaplan $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/taito $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/tms32010 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6805 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z180 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/nec $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
