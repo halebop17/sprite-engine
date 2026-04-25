@@ -196,6 +196,33 @@ static void build_input_slots()
     }
 }
 
+// ── DIP switch defaults ──────────────────────────────────────────────────────
+// Apply factory-default DIP settings shipped by FBNeo drivers (entries with
+// nFlags == 0xFF). Without this, DIP bytes stay at zero, which puts many
+// games into degenerate states (test mode, locked-out coinage, etc.).
+static void apply_dip_defaults()
+{
+    struct BurnDIPInfo bdi;
+    int dipOffset = 0;
+    for (int i = 0; ; ++i) {
+        memset(&bdi, 0, sizeof(bdi));
+        if (BurnDrvGetDIPInfo(&bdi, i)) break;
+        if (bdi.nFlags == 0xF0) { dipOffset = bdi.nInput; break; }
+    }
+    for (int i = 0; ; ++i) {
+        memset(&bdi, 0, sizeof(bdi));
+        if (BurnDrvGetDIPInfo(&bdi, i)) break;
+        if (bdi.nFlags != 0xFF) continue;
+
+        struct BurnInputInfo ii;
+        memset(&ii, 0, sizeof(ii));
+        if (BurnDrvGetInputInfo(&ii, bdi.nInput + dipOffset)) continue;
+        if (!ii.pVal) continue;
+
+        *ii.pVal = (*ii.pVal & ~bdi.nMask) | (bdi.nSetting & bdi.nMask);
+    }
+}
+
 // ── Public API ────────────────────────────────────────────────────────────
 
 int fbneo_cps_init()
@@ -301,7 +328,8 @@ int fbneo_cps_load_game(const char* zipPath)
     // Re-set pitch now that we know the width.
     nBurnPitch = s_frameW * 4;
 
-    // Enumerate and cache all digital input slots.
+    // Apply factory DIP defaults, then enumerate and cache all digital input slots.
+    apply_dip_defaults();
     build_input_slots();
 
     s_loaded = true;
