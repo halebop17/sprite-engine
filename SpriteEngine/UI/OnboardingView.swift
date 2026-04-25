@@ -96,7 +96,7 @@ struct OnboardingView: View {
                     .font(.system(size: 26, weight: .heavy))
                     .foregroundColor(t.text)
                     .multilineTextAlignment(.center)
-                Text("A multi-system arcade emulator for Neo Geo, CPS, Sega,\nToaplan, and Konami. Let's get you set up in three quick steps.")
+                Text("A multi-system arcade emulator for Neo Geo, CPS, Sega, Toaplan,\nKonami, and Irem. Let's get you set up in three quick steps.")
                     .font(.system(size: 14))
                     .foregroundColor(t.textMuted)
                     .multilineTextAlignment(.center)

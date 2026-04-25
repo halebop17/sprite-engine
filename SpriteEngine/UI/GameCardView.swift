@@ -366,6 +366,7 @@ extension EmulatorSystem {
     var isSega: Bool     { self == .segaSys16 || self == .segaSys18 }
     var isToaplan: Bool  { self == .toaplan1  || self == .toaplan2 }
     var isKonami: Bool   { self == .konamiGX }
+    var isIrem: Bool     { self == .irem }
 }
 
 extension Game {
