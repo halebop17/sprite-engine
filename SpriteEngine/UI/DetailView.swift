@@ -502,10 +502,9 @@ extension EmulatorSystem {
         case .neoGeoAES, .neoGeoMVS, .neoGeoCD: return "NeoGeoLogo"
         case .cps1:                               return "CPS1Logo"
         case .cps2:                               return "CPS2Logo"
-        case .segaSys16:                          return "CPS1Logo"   // placeholder until Phase 22 assets
-        case .segaSys18:                          return "CPS1Logo"
-        case .toaplan1, .toaplan2:                return "CPS1Logo"
-        case .konamiGX:                           return "CPS1Logo"
+        case .segaSys16, .segaSys18:              return "SegaLogo"
+        case .toaplan1, .toaplan2:                return "ToaplanLogo"
+        case .konamiGX:                           return "KonamiLogo"
         case .irem:                               return "CPS1Logo"
         case .taito:                              return "CPS1Logo"
         }
