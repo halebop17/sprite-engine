@@ -263,8 +263,8 @@ struct ImportView: View {
                 case .neoGeoAES, .neoGeoMVS, .neoGeoCD, .none:
                     // Neo Geo or unknown zip → enqueue for .neo conversion
                     conversionQueue.enqueue([url])
-                case .cps1, .cps2:
-                    // CPS zip → FBNeo loads it directly, add to library via scan
+                case .cps1, .cps2, .segaSys16, .segaSys18, .toaplan1, .toaplan2, .konamiGX, .irem, .taito:
+                    // FBNeo zip → loads directly, add to library via scan
                     let item = DirectItem(url: url, title: stem.uppercased(), state: .added)
                     directItems.append(item)
                     Task { await library.scan(directory: url.deletingLastPathComponent()) }

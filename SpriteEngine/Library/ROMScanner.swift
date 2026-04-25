@@ -42,8 +42,25 @@ final class ROMScanner {
             system = .neoGeoCD
 
         case "zip":
-            guard let s = GameDatabase.shared[stem] else { return nil }
-            system = s
+            if let s = GameDatabase.shared[stem] {
+                system = s
+            } else {
+                // Ask the generic FBNeo bridge — covers all compiled driver families.
+                let sysCode = Int(stem.withCString { fbneo_driver_identify($0) })
+                switch sysCode {
+                case Int(FBNEO_SYSTEM_CPS1):      system = .cps1
+                case Int(FBNEO_SYSTEM_CPS2):      system = .cps2
+                case Int(FBNEO_SYSTEM_NEO_GEO):   system = .neoGeoMVS
+                case Int(FBNEO_SYSTEM_SEGA_S16):  system = .segaSys16
+                case Int(FBNEO_SYSTEM_SEGA_S18):  system = .segaSys18
+                case Int(FBNEO_SYSTEM_TOAPLAN1):  system = .toaplan1
+                case Int(FBNEO_SYSTEM_TOAPLAN2):  system = .toaplan2
+                case Int(FBNEO_SYSTEM_KONAMI_GX): system = .konamiGX
+                case Int(FBNEO_SYSTEM_IREM):      system = .irem
+                case Int(FBNEO_SYSTEM_TAITO):     system = .taito
+                default: return nil
+                }
+            }
 
         default:
             return nil

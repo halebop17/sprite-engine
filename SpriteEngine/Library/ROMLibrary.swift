@@ -26,6 +26,16 @@ final class ROMLibrary: ObservableObject {
         save()
     }
 
+    func scan(directories: [URL]) async {
+        var all: [Game] = []
+        for dir in directories {
+            let found = await scanner.scan(directory: dir)
+            all.append(contentsOf: found)
+        }
+        merge(all)
+        save()
+    }
+
     // MARK: - Mutation
 
     func setFavorite(_ game: Game, _ value: Bool) {
@@ -39,6 +49,23 @@ final class ROMLibrary: ObservableObject {
     func remove(_ game: Game) {
         games.removeAll { $0.id == game.id }
         save()
+    }
+
+    func removeGames(inDirectory directory: URL) {
+        let prefix = directory.standardizedFileURL.path
+        games.removeAll { $0.romURL.standardizedFileURL.path.hasPrefix(prefix) }
+        save()
+    }
+
+    func pruneToDirectories(_ directories: [URL]) {
+        guard !directories.isEmpty else { return }
+        let prefixes = directories.map { $0.standardizedFileURL.path }
+        let before = games.count
+        games.removeAll { game in
+            let path = game.romURL.standardizedFileURL.path
+            return !prefixes.contains { path.hasPrefix($0) }
+        }
+        if games.count != before { save() }
     }
 
     func addSaveState(_ state: SaveState, to game: Game) {

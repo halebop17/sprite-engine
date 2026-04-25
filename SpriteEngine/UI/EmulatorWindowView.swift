@@ -1,5 +1,6 @@
 import SwiftUI
 import MetalKit
+import AppKit
 
 // MARK: - ViewModel
 
@@ -17,6 +18,8 @@ final class EmulatorViewModel: ObservableObject {
 
     private var session: EmulatorSession?
     private var statusTask: DispatchWorkItem?
+    private var keyDownMonitor: Any?
+    private var keyUpMonitor: Any?
 
     init() {
         inputManager.startControllerDiscovery()
@@ -24,10 +27,12 @@ final class EmulatorViewModel: ObservableObject {
     }
 
     func launch(game: Game, biosDirectory: URL?, appState: AppState) {
-        guard let biosDir = biosDirectory else {
+        // CPS-1/2 cores don't use a BIOS; only Neo Geo requires one.
+        if game.system.coreType == .geolith && biosDirectory == nil {
             errorMessage = "BIOS folder not set — open Settings to configure it."
             return
         }
+        let biosDir = biosDirectory ?? URL(fileURLWithPath: "/")
         stop()
         let router = CoreRouter()
         let core: any EmulatorCore
@@ -63,16 +68,39 @@ final class EmulatorViewModel: ObservableObject {
             for await fps in s.$measuredFPS.values { self.measuredFPS = fps }
         }
 
+        startKeyMonitor()
         s.start()
     }
 
     func stop() {
+        stopKeyMonitor()
         session?.stop()
         session = nil
         inputManager.onInputChanged    = nil
         inputManager.onSysInputChanged = nil
         isRunning = false
         isPaused  = false
+    }
+
+    // MARK: - Key monitoring (bypasses first-responder so HUD button clicks don't kill input)
+
+    private func startKeyMonitor() {
+        guard keyDownMonitor == nil else { return }
+        let im = inputManager
+        keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
+            im.keyDown(keyCode: event.keyCode)
+            // Return the event so ⌘-based shortcuts (save, pause, back) still fire.
+            return event
+        }
+        keyUpMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyUp) { event in
+            im.keyUp(keyCode: event.keyCode)
+            return event
+        }
+    }
+
+    private func stopKeyMonitor() {
+        if let m = keyDownMonitor { NSEvent.removeMonitor(m); keyDownMonitor = nil }
+        if let m = keyUpMonitor   { NSEvent.removeMonitor(m); keyUpMonitor   = nil }
     }
 
     func togglePause() { session?.togglePause() }
@@ -159,9 +187,43 @@ struct EmulatorWindowView: View {
                 fpsOverlay
             }
 
+            // When not running (error or stopped) keep the HUD pinned so the
+            // back button is always reachable.
             hudOverlay
-                .opacity(hudVisible ? 1 : 0)
+                .opacity((hudVisible || !vm.isRunning) ? 1 : 0)
                 .animation(.easeInOut(duration: 0.22), value: hudVisible)
+
+            // Always-visible fallback back button shown whenever the game is
+            // not running (load error, before launch). Uses a solid dark pill
+            // so it contrasts against the gray NSView before Metal initialises.
+            if !vm.isRunning {
+                VStack {
+                    HStack {
+                        Button {
+                            vm.stop()
+                            appState.navigateBack()
+                        } label: {
+                            HStack(spacing: 5) {
+                                Image(systemName: "chevron.left")
+                                    .font(.system(size: 12, weight: .semibold))
+                                Text("Library")
+                                    .font(.system(size: 13))
+                            }
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 7)
+                            .background(Color.black.opacity(0.75),
+                                        in: RoundedRectangle(cornerRadius: 9))
+                        }
+                        .buttonStyle(.plain)
+                        .keyboardShortcut(.escape, modifiers: [])
+                        Spacer()
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 14)
+                    Spacer()
+                }
+            }
 
             if let msg = vm.statusMessage {
                 statusToast(msg)
@@ -233,7 +295,11 @@ struct EmulatorWindowView: View {
             LinearGradient(colors: [.black.opacity(0.7), .clear], startPoint: .top, endPoint: .bottom)
                 .frame(height: 72)
                 .overlay(alignment: .topLeading) {
-                    topBar.padding(.horizontal, 16).padding(.top, 14)
+                    // Only show HUD top-bar while actually running; the persistent
+                    // back button (rendered above this overlay) covers the error state.
+                    if vm.isRunning {
+                        topBar.padding(.horizontal, 16).padding(.top, 44)
+                    }
                 }
 
             Spacer()
@@ -329,6 +395,7 @@ struct EmulatorWindowView: View {
     private func showHUD() {
         hideTask?.cancel()
         if !hudVisible { hudVisible = true }
+        guard vm.isRunning else { return } // stay visible when not playing
         let task = DispatchWorkItem { hudVisible = false }
         hideTask = task
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: task)

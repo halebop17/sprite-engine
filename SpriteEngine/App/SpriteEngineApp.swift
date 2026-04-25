@@ -13,6 +13,9 @@ struct SpriteEngineApp: App {
                 .environmentObject(appState)
                 .environmentObject(library)
                 .environmentObject(conversionQueue)
+                .task {
+                    library.pruneToDirectories(appState.romDirectoryURLs)
+                }
         }
         .defaultSize(width: 1140, height: 710)
         .commands {

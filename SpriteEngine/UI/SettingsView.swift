@@ -4,7 +4,10 @@ import UniformTypeIdentifiers
 struct SettingsView: View {
 
     @EnvironmentObject private var appState: AppState
+    @EnvironmentObject private var library: ROMLibrary
     @Environment(\.appTheme) private var t
+    @State private var isScanning = false
+    @State private var lastScanCount: Int? = nil
 
     var body: some View {
         VStack(spacing: 0) {
@@ -12,7 +15,8 @@ struct SettingsView: View {
             Divider().background(t.divider)
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    pathsSection
+                    biosSection
+                    romFoldersSection
                     videoSection
                     audioSection
                     emulationSection
@@ -41,23 +45,108 @@ struct SettingsView: View {
         .background(t.toolbar)
     }
 
-    // MARK: - Paths
+    // MARK: - BIOS
 
-    private var pathsSection: some View {
-        SettingsSection(title: "ROM PATHS") {
+    private var biosSection: some View {
+        SettingsSection(title: "BIOS") {
             DirectoryRow(
                 label: "BIOS Folder",
                 detail: "neogeo.zip, qsound.zip",
                 url: appState.biosDirectoryURL,
                 pick: pickBIOS
             )
-            Divider().background(t.divider).padding(.leading, 14)
-            DirectoryRow(
-                label: "ROM Folder",
-                detail: "Where to scan for .neo and .zip files",
-                url: appState.romDirectoryURL,
-                pick: pickROM
-            )
+        }
+    }
+
+    // MARK: - ROM Folders
+
+    private var romFoldersSection: some View {
+        SettingsSection(title: "ROM FOLDERS") {
+            ForEach(appState.romDirectoryURLs, id: \.self) { url in
+                HStack(spacing: 10) {
+                    Image(systemName: "folder")
+                        .font(.system(size: 13))
+                        .foregroundColor(t.accent)
+                        .frame(width: 20)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(url.lastPathComponent)
+                            .font(.system(size: 13))
+                            .foregroundColor(t.text)
+                        Text(url.path)
+                            .font(.system(size: 10, design: .monospaced))
+                            .foregroundColor(t.textMuted)
+                            .lineLimit(1)
+                            .truncationMode(.middle)
+                    }
+                    Spacer()
+                    Button {
+                        library.removeGames(inDirectory: url)
+                        appState.removeROMDirectory(url)
+                    } label: {
+                        Image(systemName: "minus.circle.fill")
+                            .font(.system(size: 15))
+                            .foregroundColor(t.textFaint)
+                    }
+                    .buttonStyle(.plain)
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 9)
+                Divider().background(t.divider).padding(.leading, 14)
+            }
+            // Add + Rescan row
+            HStack(spacing: 0) {
+                Button(action: pickROM) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.system(size: 15))
+                            .foregroundColor(t.accent)
+                        Text("Add ROM Folder…")
+                            .font(.system(size: 13))
+                            .foregroundColor(t.accent)
+                        Spacer()
+                    }
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 10)
+                }
+                .buttonStyle(.plain)
+                if !appState.romDirectoryURLs.isEmpty {
+                    Divider().background(t.divider).frame(width: 1, height: 36)
+                    Button {
+                        guard !isScanning else { return }
+                        isScanning = true
+                        lastScanCount = nil
+                        let dirs = appState.romDirectoryURLs
+                        Task {
+                            await library.scan(directories: dirs)
+                            await MainActor.run {
+                                lastScanCount = library.games.count
+                                isScanning = false
+                            }
+                        }
+                    } label: {
+                        HStack(spacing: 6) {
+                            if isScanning {
+                                ProgressView()
+                                    .scaleEffect(0.65)
+                                    .frame(width: 12, height: 12)
+                                Text("Scanning…")
+                                    .font(.system(size: 12, weight: .semibold))
+                                    .foregroundColor(t.accent)
+                            } else {
+                                Image(systemName: "arrow.clockwise")
+                                    .font(.system(size: 11))
+                                Text(lastScanCount.map { "\($0) found" } ?? "Rescan")
+                                    .font(.system(size: 12, weight: .semibold))
+                            }
+                        }
+                        .foregroundColor(isScanning ? t.accent : t.textMuted)
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 10)
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(isScanning)
+                }
+            }
         }
     }
 
@@ -145,6 +234,35 @@ struct SettingsView: View {
                           get: { appState.showFPSOverlay },
                           set: { appState.setShowFPSOverlay($0) }
                       ))
+
+            Divider().background(t.divider).padding(.leading, 14)
+
+            Button {
+                appState.navigate(to: .romVerifier)
+            } label: {
+                HStack(spacing: 10) {
+                    Image(systemName: "checkmark.shield")
+                        .font(.system(size: 13))
+                        .foregroundColor(t.accent)
+                        .frame(width: 20)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Verify ROM Set")
+                            .font(.system(size: 13))
+                            .foregroundColor(t.text)
+                        Text("Check CPS-1/2 ROMs against FBNeo's file and CRC database")
+                            .font(.system(size: 11))
+                            .foregroundColor(t.textMuted)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 11))
+                        .foregroundColor(t.textFaint)
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 10)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
         }
     }
 
@@ -198,7 +316,19 @@ struct SettingsView: View {
         panel.canChooseFiles = false
         panel.begin { response in
             guard response == .OK, let url = panel.url else { return }
-            DispatchQueue.main.async { appState.setROMDirectory(url) }
+            DispatchQueue.main.async {
+                appState.addROMDirectory(url)
+                isScanning = true
+                lastScanCount = nil
+                let dirs = appState.romDirectoryURLs
+                Task {
+                    await library.scan(directories: dirs)
+                    await MainActor.run {
+                        lastScanCount = library.games.count
+                        isScanning = false
+                    }
+                }
+            }
         }
     }
 }

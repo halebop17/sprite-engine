@@ -22,6 +22,8 @@ struct ContentView: View {
                 ImportView()
             case .settings:
                 SettingsView()
+            case .romVerifier:
+                ROMVerifierView()
             case .emulator(let game):
                 EmulatorWindowView(game: game)
             }
