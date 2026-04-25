@@ -1,0 +1,6 @@
+{
+  "images" : [
+    { "filename" : "sega_logo.svg", "idiom" : "universal", "scale" : "1x" }
+  ],
+  "info" : { "author" : "xcode", "version" : 1 }
+}
