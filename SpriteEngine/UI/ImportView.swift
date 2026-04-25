@@ -62,7 +62,7 @@ struct ImportView: View {
             Text("Import ROMs")
                 .font(.system(size: 22, weight: .heavy))
                 .foregroundColor(t.text)
-            Text("Add ROM files to your Sprite Engine library. Supports Neo Geo, CPS-1, and CPS-2.")
+            Text("Add ROM files to your Sprite Engine library. Supports Neo Geo, CPS, Sega, Toaplan, and Konami.")
                 .font(.system(size: 13))
                 .foregroundColor(t.textMuted)
                 .lineSpacing(3)
@@ -95,9 +95,12 @@ struct ImportView: View {
 
     private var systemBadgeData: [(label: String, color: Color, count: Int)] {
         [
-            ("Neo Geo", t.sysNeo,  library.games.filter { $0.system.isNeoGeo }.count),
-            ("CPS-1",   t.sysCPS1, library.games.filter { $0.system == .cps1  }.count),
-            ("CPS-2",   t.sysCPS2, library.games.filter { $0.system == .cps2  }.count),
+            ("Neo Geo",  t.sysNeo,     library.games.filter { $0.system.isNeoGeo }.count),
+            ("CPS-1",    t.sysCPS1,    library.games.filter { $0.system == .cps1 }.count),
+            ("CPS-2",    t.sysCPS2,    library.games.filter { $0.system == .cps2 }.count),
+            ("Sega",     t.sysSega,    library.games.filter { $0.system.isSega }.count),
+            ("Toaplan",  t.sysToaplan, library.games.filter { $0.system.isToaplan }.count),
+            ("Konami",   t.sysKonami,  library.games.filter { $0.system.isKonami }.count),
         ]
     }
 
@@ -112,7 +115,7 @@ struct ImportView: View {
                 Text(isTargeted ? "Drop to add" : "Drop ROM files here")
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(t.text)
-                Text(".zip, .neo · Neo Geo MAME archives, CPS-1, CPS-2")
+                Text(".zip, .neo · Neo Geo MAME archives, CPS, Sega, Toaplan, Konami")
                     .font(.system(size: 12))
                     .foregroundColor(t.textMuted)
             }
