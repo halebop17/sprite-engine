@@ -1,6 +1,4 @@
 # Ignore local planning docs and design assets
-arcade_emulator_handoff.md
-DEVELOPMENT_PLAN.md
 /claude design files/
 .claude
 
