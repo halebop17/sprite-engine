@@ -137,6 +137,42 @@ static void build_input_slots()
     }
 }
 
+// ── DIP switch defaults ──────────────────────────────────────────────────────
+// FBNeo drivers ship default DIP settings via BurnDIPInfo entries with
+// nFlags == 0xFF. Without applying these, DIP bytes stay at 0, which puts
+// many games into degenerate states — e.g. test mode, free-play locked off,
+// or invalid coinage. Standard FBNeo frontends do this through GameInp/InpDIP;
+// we mirror it directly against the BurnInputInfo pVal byte.
+static void apply_dip_defaults()
+{
+    struct BurnDIPInfo bdi;
+    int dipOffset = 0;
+
+    // First pass: locate the DIP_OFFSET marker (nFlags == 0xF0).
+    for (int i = 0; ; ++i) {
+        memset(&bdi, 0, sizeof(bdi));
+        if (BurnDrvGetDIPInfo(&bdi, i)) break;
+        if (bdi.nFlags == 0xF0) {
+            dipOffset = bdi.nInput;
+            break;
+        }
+    }
+
+    // Second pass: apply default settings (nFlags == 0xFF entries).
+    for (int i = 0; ; ++i) {
+        memset(&bdi, 0, sizeof(bdi));
+        if (BurnDrvGetDIPInfo(&bdi, i)) break;
+        if (bdi.nFlags != 0xFF) continue;
+
+        struct BurnInputInfo ii;
+        memset(&ii, 0, sizeof(ii));
+        if (BurnDrvGetInputInfo(&ii, bdi.nInput + dipOffset)) continue;
+        if (!ii.pVal) continue;
+
+        *ii.pVal = (*ii.pVal & ~bdi.nMask) | (bdi.nSetting & bdi.nMask);
+    }
+}
+
 // ── System string → constant ──────────────────────────────────────────────────
 
 static int system_from_string(const char* sys)
@@ -269,6 +305,7 @@ int fbneo_driver_load(const char* zipPath)
     // Detect vertical orientation via driver flags.
     s_vertical = (BurnDrvGetFlags() & BDF_ORIENTATION_VERTICAL) != 0;
 
+    apply_dip_defaults();
     build_input_slots();
     s_loaded = true;
     return 0;
