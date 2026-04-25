@@ -8,6 +8,7 @@ sega    = f"{fbsrc}/burn/drv/sega"
 toaplan = f"{fbsrc}/burn/drv/toaplan"
 konami  = f"{fbsrc}/burn/drv/konami"
 irem    = f"{fbsrc}/burn/drv/irem"
+taito   = f"{fbsrc}/burn/drv/taito"
 gendir  = f"{fbsrc}/dep/generated"
 
 os.makedirs(gendir, exist_ok=True)
@@ -53,6 +54,9 @@ driver_files = [
     # Irem M72 / M92
     (irem,    "d_m72.cpp"),
     (irem,    "d_m92.cpp"),
+    # Taito F2 / F3
+    (taito,   "d_taitof2.cpp"),
+    (taito,   "d_taitof3.cpp"),
 ]
 
 entries = []
@@ -63,7 +67,7 @@ for directory, drv in driver_files:
                 name = line.split()[2]
                 entries.append(name)
 
-lines = ["// Auto-generated driverlist.h — CPS-1/2 + Sega + Toaplan + Konami GX + Irem\n", "#include <wchar.h>\n\n"]
+lines = ["// Auto-generated driverlist.h — CPS-1/2 + Sega + Toaplan + Konami GX + Irem + Taito\n", "#include <wchar.h>\n\n"]
 for n in entries:
     lines.append(f"extern struct BurnDriver {n};\n")
 lines.append("\nstatic struct BurnDriver* pDriver[] = {\n")

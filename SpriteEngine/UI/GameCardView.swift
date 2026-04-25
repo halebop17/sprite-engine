@@ -367,6 +367,7 @@ extension EmulatorSystem {
     var isToaplan: Bool  { self == .toaplan1  || self == .toaplan2 }
     var isKonami: Bool   { self == .konamiGX }
     var isIrem: Bool     { self == .irem }
+    var isTaito: Bool    { self == .taito }
 }
 
 extension Game {

@@ -62,7 +62,7 @@ struct ImportView: View {
             Text("Import ROMs")
                 .font(.system(size: 22, weight: .heavy))
                 .foregroundColor(t.text)
-            Text("Add ROM files to your Sprite Engine library. Supports Neo Geo, CPS, Sega, Toaplan, Konami, and Irem.")
+            Text("Add ROM files to your Sprite Engine library. Supports Neo Geo, CPS, Sega, Toaplan, Konami, Irem, and Taito.")
                 .font(.system(size: 13))
                 .foregroundColor(t.textMuted)
                 .lineSpacing(3)
@@ -102,6 +102,7 @@ struct ImportView: View {
             ("Toaplan",  t.sysToaplan, library.games.filter { $0.system.isToaplan }.count),
             ("Konami",   t.sysKonami,  library.games.filter { $0.system.isKonami }.count),
             ("Irem",     t.sysIrem,    library.games.filter { $0.system.isIrem }.count),
+            ("Taito",    t.sysTaito,   library.games.filter { $0.system.isTaito }.count),
         ]
     }
 
@@ -116,7 +117,7 @@ struct ImportView: View {
                 Text(isTargeted ? "Drop to add" : "Drop ROM files here")
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(t.text)
-                Text(".zip, .neo · Neo Geo MAME archives, CPS, Sega, Toaplan, Konami, Irem")
+                Text(".zip, .neo · Neo Geo MAME archives, CPS, Sega, Toaplan, Konami, Irem, Taito")
                     .font(.system(size: 12))
                     .foregroundColor(t.textMuted)
             }
