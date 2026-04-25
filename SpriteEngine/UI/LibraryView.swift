@@ -391,15 +391,15 @@ private struct PlatformItem: View {
 
     var body: some View {
         Button { action(filter) } label: {
-            HStack(spacing: 8) {
+            HStack(spacing: 9) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(isActive ? Color.white.opacity(0.18) : color.opacity(0.18))
-                        .frame(width: 24, height: 24)
+                    RoundedRectangle(cornerRadius: 7)
+                        .fill(isActive ? Color.white.opacity(0.18) : color.opacity(0.22))
+                        .frame(width: 34, height: 34)
                     Image(logo)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 17, height: 17)
+                        .frame(width: 24, height: 24)
                 }
                 Text(label)
                     .font(.system(size: 12.5, weight: isActive ? .semibold : .regular))
@@ -410,7 +410,7 @@ private struct PlatformItem: View {
                     .foregroundColor(isActive ? .white.opacity(0.65) : t.textFaint)
             }
             .padding(.horizontal, 10)
-            .padding(.vertical, 4)
+            .padding(.vertical, 5)
             .background(isActive ? t.sidebarActive : (hovered ? t.accentSoft : .clear))
             .clipShape(RoundedRectangle(cornerRadius: 7))
             .padding(.horizontal, 8)
