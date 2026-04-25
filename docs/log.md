@@ -4,6 +4,25 @@ Entries are in reverse-chronological order. Each entry records what changed, why
 
 ---
 
+## 2026-04-25 — Phase 23: Toaplan 1 & 2
+**Files:** `SpriteEngine.xcodeproj/project.pbxproj`, `GameDB.json`
+
+Added Toaplan 1 and Toaplan 2 hardware support to the FBNeoLib compile target.
+
+**Source files added to Xcode target:**
+- Toaplan 1 drivers: `d_toaplan1.cpp`, `toaplan1.cpp`, `toaplan.cpp`, `d_twincobr.cpp`, `d_wardner.cpp`, `d_ghox.cpp`, `d_slapfght.cpp`, `d_pipibibs.cpp`
+- Toaplan 2 drivers: `d_truxton2.cpp`, `d_batsugun.cpp`, `d_vfive.cpp`, `d_dogyuun.cpp`, `d_kbash.cpp`, `d_kbash2.cpp`, `d_shippumd.cpp`, `d_mahoudai.cpp`, `d_batrider.cpp`, `d_bbakraid.cpp`, `d_battleg.cpp`, `d_snowbro2.cpp`, `d_tekipaki.cpp`, `d_fixeight.cpp`, `d_enmadaio.cpp`
+- Toaplan 2 hardware support: `toa_gp9001.cpp` (GP9001 VDP), `toa_bcu2.cpp`, `toa_palette.cpp`, `toa_extratext.cpp`
+- New chips: `burn_ym3812.cpp` (OPL2 audio, used by TP1), `tms32010.cpp` (DSP, used by some TP1 games)
+
+**GameDB.json:** 60+ Toaplan game entries added covering TP1 (Truxton, Hellfire, Fire Shark, Twin Cobra, Wardner, Slap Fight, …) and TP2 (Truxton 2, Batsugun, V-Five, Dogyuun, Knuckle Bash, Battle Garegga, Batrider, …).
+
+**Sidebar UI:** `LibraryFilter.toaplan`, `EmulatorSystem.isToaplan`, `sysToaplan` theme colors, and `ToaplanLogo` imageset were already wired in the previous session. The sidebar entry will appear automatically once Toaplan ROMs are scanned.
+
+**Next:** Phase 24 — Konami GX (Martial Champion, Run and Gun, Metamorphic Force, Violent Storm).
+
+---
+
 ## 2026-04-25 — Toaplan logo asset added
 **Files:** `Assets.xcassets/ToaplanLogo.imageset/`
 
