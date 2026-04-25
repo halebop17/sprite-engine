@@ -204,6 +204,24 @@
 		TP2SUP004B /* toa_extratext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2SUP004A /* toa_extratext.cpp */; };
 		TPYM3812AB /* burn_ym3812.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TPYM3812AA /* burn_ym3812.cpp */; };
 		TMS32010AB /* tms32010.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TMS32010AA /* tms32010.cpp */; };
+			KGXDRV001B /* d_mystwarr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXDRV001A /* d_mystwarr.cpp */; };
+			KGXDRV002B /* d_moo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXDRV002A /* d_moo.cpp */; };
+			KGXSUP001B /* konamiic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP001A /* konamiic.cpp */; };
+			KGXSUP002B /* konamigx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP002A /* konamigx.cpp */; };
+			KGXSUP003B /* k051960.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP003A /* k051960.cpp */; };
+			KGXSUP004B /* k052109.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP004A /* k052109.cpp */; };
+			KGXSUP005B /* k051316.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP005A /* k051316.cpp */; };
+			KGXSUP006B /* k053245.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP006A /* k053245.cpp */; };
+			KGXSUP007B /* k053247.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP007A /* k053247.cpp */; };
+			KGXSUP008B /* k053936.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP008A /* k053936.cpp */; };
+			KGXSUP009B /* k053250.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP009A /* k053250.cpp */; };
+			KGXSUP010B /* k055555.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP010A /* k055555.cpp */; };
+			KGXSUP011B /* k054338.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP011A /* k054338.cpp */; };
+			KGXSUP012B /* k056832.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP012A /* k056832.cpp */; };
+			KGXSUP013B /* k053251.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP013A /* k053251.cpp */; };
+			KGXSUP014B /* k054000.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP014A /* k054000.cpp */; };
+			KGXSND001B /* k054539.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSND001A /* k054539.cpp */; };
+			KGXDEV001B /* dtimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXDEV001A /* dtimer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -447,6 +465,24 @@
 		TP2SUP004A /* toa_extratext.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = toa_extratext.cpp; sourceTree = "<group>"; };
 		TPYM3812AA /* burn_ym3812.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_ym3812.cpp; sourceTree = "<group>"; };
 		TMS32010AA /* tms32010.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tms32010.cpp; sourceTree = "<group>"; };
+			KGXDRV001A /* d_mystwarr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_mystwarr.cpp; sourceTree = "<group>"; };
+			KGXDRV002A /* d_moo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_moo.cpp; sourceTree = "<group>"; };
+			KGXSUP001A /* konamiic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = konamiic.cpp; sourceTree = "<group>"; };
+			KGXSUP002A /* konamigx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = konamigx.cpp; sourceTree = "<group>"; };
+			KGXSUP003A /* k051960.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k051960.cpp; sourceTree = "<group>"; };
+			KGXSUP004A /* k052109.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k052109.cpp; sourceTree = "<group>"; };
+			KGXSUP005A /* k051316.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k051316.cpp; sourceTree = "<group>"; };
+			KGXSUP006A /* k053245.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k053245.cpp; sourceTree = "<group>"; };
+			KGXSUP007A /* k053247.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k053247.cpp; sourceTree = "<group>"; };
+			KGXSUP008A /* k053936.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k053936.cpp; sourceTree = "<group>"; };
+			KGXSUP009A /* k053250.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k053250.cpp; sourceTree = "<group>"; };
+			KGXSUP010A /* k055555.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k055555.cpp; sourceTree = "<group>"; };
+			KGXSUP011A /* k054338.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k054338.cpp; sourceTree = "<group>"; };
+			KGXSUP012A /* k056832.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k056832.cpp; sourceTree = "<group>"; };
+			KGXSUP013A /* k053251.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k053251.cpp; sourceTree = "<group>"; };
+			KGXSUP014A /* k054000.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k054000.cpp; sourceTree = "<group>"; };
+			KGXSND001A /* k054539.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k054539.cpp; sourceTree = "<group>"; };
+			KGXDEV001A /* dtimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dtimer.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -748,6 +784,8 @@
 		A796D23D0C03E596CE900D35 /* drv */ = {
 			isa = PBXGroup;
 			children = (
+				TPLAN_GROUP000000000000 /* toaplan */,
+				KGX_KONAMI_GROUP000000 /* konami */,
 				B94DA6EAE23F47AC4F7E05F6 /* d_parent.cpp */,
 				3BBCEF4B1C5F9B4DEC7E3D54 /* capcom */,
 				SE16SEGAGRP000000000000 /* sega */,
@@ -813,6 +851,29 @@
 			path = toaplan;
 			sourceTree = "<group>";
 		};
+		KGX_KONAMI_GROUP000000 /* konami */ = {
+			isa = PBXGroup;
+			children = (
+				KGXDRV001A /* d_mystwarr.cpp */,
+				KGXDRV002A /* d_moo.cpp */,
+				KGXSUP001A /* konamiic.cpp */,
+				KGXSUP002A /* konamigx.cpp */,
+				KGXSUP003A /* k051960.cpp */,
+				KGXSUP004A /* k052109.cpp */,
+				KGXSUP005A /* k051316.cpp */,
+				KGXSUP006A /* k053245.cpp */,
+				KGXSUP007A /* k053247.cpp */,
+				KGXSUP008A /* k053936.cpp */,
+				KGXSUP009A /* k053250.cpp */,
+				KGXSUP010A /* k055555.cpp */,
+				KGXSUP011A /* k054338.cpp */,
+				KGXSUP012A /* k056832.cpp */,
+				KGXSUP013A /* k053251.cpp */,
+				KGXSUP014A /* k054000.cpp */,
+			);
+			path = konami;
+			sourceTree = "<group>";
+		};
 		SE16I8039GRP00000000000 /* i8039 */ = {
 			isa = PBXGroup;
 			children = (
@@ -841,6 +902,7 @@
 			isa = PBXGroup;
 			children = (
 				B5824B35411FE6A1CB513000 /* eeprom.cpp */,
+				KGXDEV001A /* dtimer.cpp */,
 				AF0F41C4F16B26D6EEDD54BE /* joyprocess.cpp */,
 				B7C9C3EBDE427B3D4E0DF86B /* timekpr.cpp */,
 				SE160023A000000000000000 /* 8255ppi.cpp */,
@@ -894,6 +956,7 @@
 				SE16FMO2608A000000000000 /* burn_ym2608.cpp */,
 				SE16FMO2610A000000000000 /* burn_ym2610.cpp */,
 				TPYM3812AA /* burn_ym3812.cpp */,
+				KGXSND001A /* k054539.cpp */,
 			);
 			path = snd;
 			sourceTree = "<group>";
@@ -1126,7 +1189,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\nSRCROOT_FBNEO=\"${SRCROOT}/FBNeoCPSLib/fbneo/src\"\nGENDIR=\"${SRCROOT_FBNEO}/dep/generated\"\nCAPCOM=\"${SRCROOT_FBNEO}/burn/drv/capcom\"\nmkdir -p \"${GENDIR}\"\n\n# m68kops.c — regenerate if source is newer\nif [ \"${SRCROOT_FBNEO}/cpu/m68k/m68k_in.c\" -nt \"${GENDIR}/m68kops.c\" ]; then\n  clang \"${SRCROOT_FBNEO}/cpu/m68k/m68kmake.c\" -o \"${GENDIR}/m68kmake\"\n  \"${GENDIR}/m68kmake\" \"${GENDIR}\" \"${SRCROOT_FBNEO}/cpu/m68k/m68k_in.c\"\nfi\n\n# ctv.h — regenerate if make source is newer\nif [ \"${CAPCOM}/ctv_make.cpp\" -nt \"${CAPCOM}/ctv.h\" ]; then\n  clang++ \"${CAPCOM}/ctv_make.cpp\" -o \"${GENDIR}/ctv_make\"\n  \"${GENDIR}/ctv_make\" > \"${CAPCOM}/ctv.h\"\nfi\n\n# driverlist.h — regenerate if missing or if driver sources changed\nSEGA=\"${SRCROOT_FBNEO}/burn/drv/sega\"\nif [ ! -f \"${GENDIR}/driverlist.h\" ] || [ \"${CAPCOM}/d_cps1.cpp\" -nt \"${GENDIR}/driverlist.h\" ] || [ \"${SEGA}/d_sys16a.cpp\" -nt \"${GENDIR}/driverlist.h\" ]; then\n  python3 \"${SRCROOT}/Scripts/generate_driverlist.py\"\nfi\n";
+			shellScript = "set -e\nSRCROOT_FBNEO=\"${SRCROOT}/FBNeoCPSLib/fbneo/src\"\nGENDIR=\"${SRCROOT_FBNEO}/dep/generated\"\nCAPCOM=\"${SRCROOT_FBNEO}/burn/drv/capcom\"\nmkdir -p \"${GENDIR}\"\n\n# m68kops.c — regenerate if source is newer\nif [ \"${SRCROOT_FBNEO}/cpu/m68k/m68k_in.c\" -nt \"${GENDIR}/m68kops.c\" ]; then\n  clang \"${SRCROOT_FBNEO}/cpu/m68k/m68kmake.c\" -o \"${GENDIR}/m68kmake\"\n  \"${GENDIR}/m68kmake\" \"${GENDIR}\" \"${SRCROOT_FBNEO}/cpu/m68k/m68k_in.c\"\nfi\n\n# ctv.h — regenerate if make source is newer\nif [ \"${CAPCOM}/ctv_make.cpp\" -nt \"${CAPCOM}/ctv.h\" ]; then\n  clang++ \"${CAPCOM}/ctv_make.cpp\" -o \"${GENDIR}/ctv_make\"\n  \"${GENDIR}/ctv_make\" > \"${CAPCOM}/ctv.h\"\nfi\n\n# driverlist.h — regenerate if missing or if driver sources changed\nSEGA=\"${SRCROOT_FBNEO}/burn/drv/sega\"\nKONAMI=\"${SRCROOT_FBNEO}/burn/drv/konami\"\nif [ ! -f \"${GENDIR}/driverlist.h\" ] || [ \"${CAPCOM}/d_cps1.cpp\" -nt \"${GENDIR}/driverlist.h\" ] || [ \"${SEGA}/d_sys16a.cpp\" -nt \"${GENDIR}/driverlist.h\" ] || [ \"${KONAMI}/d_mystwarr.cpp\" -nt \"${GENDIR}/driverlist.h\" ]; then\n  python3 \"${SRCROOT}/Scripts/generate_driverlist.py\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1231,6 +1294,24 @@
 				TP2SUP003B /* toa_palette.cpp in Sources */,
 				TP2SUP004B /* toa_extratext.cpp in Sources */,
 				TPYM3812AB /* burn_ym3812.cpp in Sources */,
+				KGXDRV001B /* d_mystwarr.cpp in Sources */,
+				KGXDRV002B /* d_moo.cpp in Sources */,
+				KGXSUP001B /* konamiic.cpp in Sources */,
+				KGXSUP002B /* konamigx.cpp in Sources */,
+				KGXSUP003B /* k051960.cpp in Sources */,
+				KGXSUP004B /* k052109.cpp in Sources */,
+				KGXSUP005B /* k051316.cpp in Sources */,
+				KGXSUP006B /* k053245.cpp in Sources */,
+				KGXSUP007B /* k053247.cpp in Sources */,
+				KGXSUP008B /* k053936.cpp in Sources */,
+				KGXSUP009B /* k053250.cpp in Sources */,
+				KGXSUP010B /* k055555.cpp in Sources */,
+				KGXSUP011B /* k054338.cpp in Sources */,
+				KGXSUP012B /* k056832.cpp in Sources */,
+				KGXSUP013B /* k053251.cpp in Sources */,
+				KGXSUP014B /* k054000.cpp in Sources */,
+				KGXSND001B /* k054539.cpp in Sources */,
+				KGXDEV001B /* dtimer.cpp in Sources */,
 				TMS32010AB /* tms32010.cpp in Sources */,
 				75C80AA568E6B6B81AB83CF3 /* fbneo_macos_compat.cpp in Sources */,
 				1D8585D4E3585CBB19FD1836 /* hiscore.cpp in Sources */,
@@ -1367,7 +1448,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1 BUILD_MACOS=1";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1482,7 +1563,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1 BUILD_MACOS=1";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
