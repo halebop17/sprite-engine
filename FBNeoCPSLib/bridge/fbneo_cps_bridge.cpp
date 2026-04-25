@@ -60,6 +60,13 @@ static UINT32 __cdecl highcol_bgra(INT32 r, INT32 g, INT32 b, INT32)
     return 0xFF000000u | ((UINT32)(UINT8)r << 16) | ((UINT32)(UINT8)g << 8) | (UINT32)(UINT8)b;
 }
 
+// ── BurnLib shared init ───────────────────────────────────────────────────
+// BurnLibInit() must be called EXACTLY ONCE per process; calling it a second
+// time triggers BurnLibExit() internally, which frees per-driver string copies
+// and corrupts the driver list.  Always delegate to fbneo_driver_lib_init() in
+// fbneo_driver_bridge.cpp — it owns the single process-wide s_libInited guard.
+extern "C" void fbneo_driver_lib_init();
+
 // ── Static bridge state ───────────────────────────────────────────────────
 
 static uint32_t* s_videoBuf   = nullptr;
@@ -67,8 +74,6 @@ static int16_t*  s_audioBuf   = nullptr;
 static int       s_frameW     = 0;
 static int       s_frameH     = 0;
 static bool      s_loaded     = false;
-// Tracks whether BurnLibInit has been called (needed before BurnDrvGetIndex).
-static bool      s_libInited  = false;
 
 // Player input state (bitmask using our button layout).
 static uint32_t s_input[2]    = {0, 0};
@@ -195,12 +200,7 @@ static void build_input_slots()
 
 int fbneo_cps_init()
 {
-    if (!s_libInited) {
-        BurnHighCol = highcol_bgra;
-        nBurnLayer  = 0xFF;
-        BurnLibInit();
-        s_libInited = true;
-    }
+    fbneo_driver_lib_init();
     return 0;
 }
 
@@ -397,14 +397,7 @@ int fbneo_cps_driver_type(const char* name)
 {
     if (!name || !name[0]) return 0;
 
-    // BurnDrvGetIndex requires BurnLibInit() to have been called first
-    // (it sets nBurnDrvCount). Do a lightweight init on first use.
-    if (!s_libInited) {
-        BurnHighCol = highcol_bgra;
-        nBurnLayer  = 0xFF;
-        BurnLibInit();
-        s_libInited = true;
-    }
+    fbneo_driver_lib_init();
 
     INT32 idx = BurnDrvGetIndex(const_cast<char*>(name));
     if (idx < 0 || (UINT32)idx >= nBurnDrvCount) return 0;
@@ -427,12 +420,7 @@ int fbneo_cps_verify_game(const char* zipPath, FBNeoRomFile* outFiles, int maxFi
 {
     if (!zipPath || !zipPath[0]) return -1;
 
-    if (!s_libInited) {
-        BurnHighCol = highcol_bgra;
-        nBurnLayer  = 0xFF;
-        BurnLibInit();
-        s_libInited = true;
-    }
+    fbneo_driver_lib_init();
 
     // Derive game name and ROM directory from the zip path.
     char nameBuf[1024];

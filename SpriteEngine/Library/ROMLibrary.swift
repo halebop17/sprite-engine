@@ -59,10 +59,18 @@ final class ROMLibrary: ObservableObject {
 
     func pruneToDirectories(_ directories: [URL]) {
         guard !directories.isEmpty else { return }
-        let prefixes = directories.map { $0.standardizedFileURL.path }
+        // Normalise each directory to "…/path/" (trailing slash) so that
+        // hasPrefix() never matches a directory that is merely a prefix of
+        // another name (e.g. "/ROMs" should not match "/ROMs2/game.zip").
+        let prefixes = directories.map { url -> String in
+            var p = url.standardizedFileURL.path
+            if !p.hasSuffix("/") { p += "/" }
+            return p
+        }
         let before = games.count
         games.removeAll { game in
-            let path = game.romURL.standardizedFileURL.path
+            var path = game.romURL.standardizedFileURL.path
+            if !path.hasSuffix("/") { path += "/" }
             return !prefixes.contains { path.hasPrefix($0) }
         }
         if games.count != before { save() }
