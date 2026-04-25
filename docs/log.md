@@ -1,5 +1,45 @@
 # Sprite Engine — Changelog
 
+---
+
+## 2026-04-25 — Phase 24: Konami GX (Pre-GX hardware)
+**Files:** `SpriteEngine.xcodeproj/project.pbxproj`, `GameDB.json`, `Scripts/generate_driverlist.py`, `FBNeoCPSLib/bridge/fbneo_driver_bridge.cpp`, `SpriteEngine/UI/LibraryView.swift`, `SpriteEngine/UI/GameCardView.swift`, `Assets.xcassets/KonamiLogo.imageset/`
+
+Added Konami GX (Pre-GX) hardware support to the FBNeo compile target.
+
+**Driver files added:**
+- `d_mystwarr.cpp` — Mystic Warriors, Violent Storm, Metamorphic Force, Martial Champion, Gaiapolis, Monster Maulers, Dadandarn
+- `d_moo.cpp` — Wild West COW-Boys of Moo Mesa, Bucky O'Hare
+
+**Konami custom chip support added:**
+- `konamiic.cpp` — unified Konami IC interface (aggregates all chip calls)
+- `konamigx.cpp` — GX mixer (used by d_mystwarr for priority/blending)
+- `k051960.cpp`, `k052109.cpp`, `k051316.cpp` — sprite/tile engines
+- `k053245.cpp`, `k053247.cpp` — sprite processors
+- `k053936.cpp` — PSAC2 rotating tile layer (Gaiapolis ROZ)
+- `k053250.cpp`, `k053251.cpp` — line RAM / priority mixer
+- `k055555.cpp`, `k054338.cpp` — priority blender / color blending
+- `k056832.cpp` — tile engine (GX era)
+- `k054000.cpp` — collision detection
+
+**Audio/device chips added:**
+- `k054539.cpp` (snd group) — K054539 PCM audio, used by both drivers
+- `dtimer.cpp` (devices group) — discrete timer, required by k054539
+
+**Key fix — system string detection:** Konami GX hardware reports board IDs like `"GX128"`, `"GX151"`, `"GX224"` via `DRV_SYSTEM`, not `"Konami GX"`. Updated `system_from_string()` in `fbneo_driver_bridge.cpp` to match `strncmp(sys, "GX", 2) == 0`.
+
+**Key fix — HEADER_SEARCH_PATHS:** Added `$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami` to both Debug and Release build configs so `konamiic.h` (and other Konami chip headers) resolve correctly.
+
+**Key fix — driverlist.h was missing Toaplan:** `generate_driverlist.py` only listed CPS and Sega drivers. Toaplan drivers compiled but were invisible to `BurnDrvGetIndex()`, causing load failure. All 21 Toaplan driver files and both Konami GX driver files added to the list. Re-generated immediately (1352 total entries).
+
+**Sidebar UI:** `EmulatorSystem.isKonami`, `LibraryFilter.konami`, `sysKonami` theme colors (purple, #6b21a8 dark / #7c3aed light / #a855f7 amber), `KonamiLogo` SVG placeholder, and `PlatformItem` sidebar entry (hidden until Konami ROMs are scanned).
+
+**GameDB.json:** 40 Konami GX entries covering Mystic Warriors, Violent Storm, Metamorphic Force, Martial Champion, Gaiapolis, Monster Maulers, Dadandarn, Wild West COW-Boys of Moo Mesa, and Bucky O'Hare (all regional variants).
+
+**Next:** Phase 25 — TBD (Irem M72/M92 or Taito F2/F3).
+
+
+
 Entries are in reverse-chronological order. Each entry records what changed, why, and any non-obvious technical decisions.
 
 ---

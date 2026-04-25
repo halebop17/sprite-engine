@@ -365,6 +365,7 @@ extension EmulatorSystem {
     var isNeoGeo: Bool   { self == .neoGeoAES || self == .neoGeoMVS || self == .neoGeoCD }
     var isSega: Bool     { self == .segaSys16 || self == .segaSys18 }
     var isToaplan: Bool  { self == .toaplan1  || self == .toaplan2 }
+    var isKonami: Bool   { self == .konamiGX }
 }
 
 extension Game {

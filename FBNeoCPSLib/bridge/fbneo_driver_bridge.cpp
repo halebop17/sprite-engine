@@ -153,8 +153,8 @@ static int system_from_string(const char* sys)
     // Toaplan
     if (strncmp(sys, "Toaplan 1", 9) == 0 || strncmp(sys, "Toaplan Version 1", 17) == 0) return FBNEO_SYSTEM_TOAPLAN1;
     if (strncmp(sys, "Toaplan 2", 9) == 0 || strncmp(sys, "Toaplan Version 2", 17) == 0) return FBNEO_SYSTEM_TOAPLAN2;
-    // Konami GX
-    if (strncmp(sys, "Konami GX", 9) == 0) return FBNEO_SYSTEM_KONAMI_GX;
+    // Konami GX — board IDs are "GX<nnn>" (e.g. "GX128", "GX151", "GX224")
+    if (strncmp(sys, "GX", 2) == 0) return FBNEO_SYSTEM_KONAMI_GX;
     // Irem (M72, M90, M92 etc. — all start with "Irem")
     if (strncmp(sys, "Irem", 4) == 0) return FBNEO_SYSTEM_IREM;
     // Taito (F2, F3, B, X etc. — all start with "Taito")
