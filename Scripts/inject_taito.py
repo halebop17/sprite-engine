@@ -49,6 +49,8 @@ if build_lines:
     print("Added PBXBuildFile entries")
 
 # ── 2. PBXFileReference entries ───────────────────────────────────────────────
+# Check the *full* PBXFileReference signature, not the bare token — step 1
+# already inserted the bare token inside PBXBuildFile lines.
 ref_lines = ""
 for a, b, name, subpath in FILES:
     if f"{a} /* {name} */ = {{isa = PBXFileReference" not in src:
@@ -65,24 +67,28 @@ if ref_lines:
     print("Added PBXFileReference entries")
 
 # ── 3. PBXGroup membership ────────────────────────────────────────────────────
-anchor_ref = "KGXDRV001A /* d_mystwarr.cpp */"
+# Anchor on the group-membership form (with trailing comma) so we don't also
+# match the same token inside PBXBuildFile / PBXFileReference entries.
+anchor_ref = "KGXDRV001A /* d_mystwarr.cpp */,"
 for a, b, name, _ in FILES:
     ref_entry = f"{a} /* {name} */,"
     if ref_entry not in src and anchor_ref in src:
         src = src.replace(
             anchor_ref,
-            f"{a} /* {name} */,\n\t\t\t\t{anchor_ref}"
+            f"{a} /* {name} */,\n\t\t\t\t{anchor_ref}",
+            1  # first occurrence only — group section
         )
 print("Added PBXGroup membership entries")
 
 # ── 4. PBXSourcesBuildPhase ───────────────────────────────────────────────────
-sources_anchor = "KGXDRV001B /* d_mystwarr.cpp in Sources */"
+sources_anchor = "KGXDRV001B /* d_mystwarr.cpp in Sources */,"
 for a, b, name, _ in FILES:
     build_entry = f"{b} /* {name} in Sources */,"
     if build_entry not in src and sources_anchor in src:
         src = src.replace(
             sources_anchor,
-            f"{b} /* {name} in Sources */,\n\t\t\t\t{sources_anchor}"
+            f"{b} /* {name} in Sources */,\n\t\t\t\t{sources_anchor}",
+            1
         )
 print("Added PBXSourcesBuildPhase entries")
 
