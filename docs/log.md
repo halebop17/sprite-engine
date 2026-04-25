@@ -4,6 +4,21 @@ Entries are in reverse-chronological order. Each entry records what changed, why
 
 ---
 
+## 2026-04-25 — Toaplan logo asset added
+**Files:** `Assets.xcassets/ToaplanLogo.imageset/`
+
+User-supplied `ToaplanLogo.webp` (transparent, 1000×1119) converted to PNG via `sips` and added as `ToaplanLogo` imageset, ready for Phase 23 sidebar wiring.
+
+---
+
+## 2026-04-25 — Sega logo replaced + sidebar icon sizing
+**Files:** `Assets.xcassets/SegaLogo.imageset/`, `LibraryView.swift`
+
+- Replaced hand-drawn SVG Sega logo with official Sega PNG wordmark (`logos/sega.png`).
+- Sidebar platform badge size increased: 24×24 → **34×34** container, 17×17 → **24×24** image, corner radius 5 → 7, vertical padding 4 → 5. Makes logos legible at sidebar scale.
+
+---
+
 ## 2026-04-25 — Sega System 16/18 sidebar integration
 **Files:** `LibraryView.swift`, `GameCardView.swift`, `Assets.xcassets/SegaLogo.imageset/`
 
