@@ -204,31 +204,7 @@
 		TP2SUP004B /* toa_extratext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2SUP004A /* toa_extratext.cpp */; };
 		TPYM3812AB /* burn_ym3812.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TPYM3812AA /* burn_ym3812.cpp */; };
 		TMS32010AB /* tms32010.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TMS32010AA /* tms32010.cpp */; };
-			IREMDRV001B /* d_m72.cpp in Sources */,
-				IREMDRV002B /* d_m92.cpp in Sources */,
-				IREMSUP001B /* irem_cpu.cpp in Sources */,
-				IREMSND001B /* iremga20.cpp in Sources */,
-				IREMDEV001B /* pic8259.cpp in Sources */,
-				TAITODRV001B /* d_taitof2.cpp in Sources */,
-				TAITODRV002B /* d_taitof3.cpp in Sources */,
-				TAITOSUP001B /* taito.cpp in Sources */,
-				TAITOSUP002B /* taito_ic.cpp in Sources */,
-				TAITOSUP003B /* taitof3_snd.cpp in Sources */,
-				TAITOSUP004B /* taitof3_video.cpp in Sources */,
-				TAITOSND001B /* es5506.cpp in Sources */,
-				KGXDRV001B /* d_mystwarr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = IREMDRV001A /* d_m72.cpp */,
-				IREMDRV002A /* d_m92.cpp */,
-				IREMSUP001A /* irem_cpu.cpp */,
-				IREMSND001A /* iremga20.cpp */,
-				IREMDEV001A /* pic8259.cpp */,
-				TAITODRV001A /* d_taitof2.cpp */,
-				TAITODRV002A /* d_taitof3.cpp */,
-				TAITOSUP001A /* taito.cpp */,
-				TAITOSUP002A /* taito_ic.cpp */,
-				TAITOSUP003A /* taitof3_snd.cpp */,
-				TAITOSUP004A /* taitof3_video.cpp */,
-				TAITOSND001A /* es5506.cpp */,
-				KGXDRV001A /* d_mystwarr.cpp */; };
+			KGXDRV001B /* d_mystwarr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXDRV001A /* d_mystwarr.cpp */; };
 			KGXDRV002B /* d_moo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXDRV002A /* d_moo.cpp */; };
 			KGXSUP001B /* konamiic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP001A /* konamiic.cpp */; };
 			KGXSUP002B /* konamigx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP002A /* konamigx.cpp */; };
@@ -513,19 +489,7 @@
 		TP2SUP004A /* toa_extratext.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = toa_extratext.cpp; sourceTree = "<group>"; };
 		TPYM3812AA /* burn_ym3812.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_ym3812.cpp; sourceTree = "<group>"; };
 		TMS32010AA /* tms32010.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tms32010.cpp; sourceTree = "<group>"; };
-			IREMDRV001A /* d_m72.cpp */,
-				IREMDRV002A /* d_m92.cpp */,
-				IREMSUP001A /* irem_cpu.cpp */,
-				IREMSND001A /* iremga20.cpp */,
-				IREMDEV001A /* pic8259.cpp */,
-				TAITODRV001A /* d_taitof2.cpp */,
-				TAITODRV002A /* d_taitof3.cpp */,
-				TAITOSUP001A /* taito.cpp */,
-				TAITOSUP002A /* taito_ic.cpp */,
-				TAITOSUP003A /* taitof3_snd.cpp */,
-				TAITOSUP004A /* taitof3_video.cpp */,
-				TAITOSND001A /* es5506.cpp */,
-				KGXDRV001A /* d_mystwarr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_mystwarr.cpp; sourceTree = "<group>"; };
+			KGXDRV001A /* d_mystwarr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_mystwarr.cpp; sourceTree = "<group>"; };
 			KGXDRV002A /* d_moo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_moo.cpp; sourceTree = "<group>"; };
 			KGXSUP001A /* konamiic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = konamiic.cpp; sourceTree = "<group>"; };
 			KGXSUP002A /* konamigx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = konamigx.cpp; sourceTree = "<group>"; };
