@@ -841,6 +841,7 @@
 			children = (
 				TPLAN_GROUP000000000000 /* toaplan */,
 				KGX_KONAMI_GROUP000000 /* konami */,
+				IREM_DRV_GROUP0000000000 /* irem */,
 				B94DA6EAE23F47AC4F7E05F6 /* d_parent.cpp */,
 				3BBCEF4B1C5F9B4DEC7E3D54 /* capcom */,
 				SE16SEGAGRP000000000000 /* sega */,
@@ -910,18 +911,6 @@
 		KGX_KONAMI_GROUP000000 /* konami */ = {
 			isa = PBXGroup;
 			children = (
-				IREMDRV001A /* d_m72.cpp */,
-				IREMDRV002A /* d_m92.cpp */,
-				IREMSUP001A /* irem_cpu.cpp */,
-				IREMSND001A /* iremga20.cpp */,
-				IREMDEV001A /* pic8259.cpp */,
-				TAITODRV001A /* d_taitof2.cpp */,
-				TAITODRV002A /* d_taitof3.cpp */,
-				TAITOSUP001A /* taito.cpp */,
-				TAITOSUP002A /* taito_ic.cpp */,
-				TAITOSUP003A /* taitof3_snd.cpp */,
-				TAITOSUP004A /* taitof3_video.cpp */,
-				TAITOSND001A /* es5506.cpp */,
 				KGXDRV001A /* d_mystwarr.cpp */,
 				KGXDRV002A /* d_moo.cpp */,
 				KGXSUP001A /* konamiic.cpp */,
@@ -977,6 +966,7 @@
 				SE160023A000000000000000 /* 8255ppi.cpp */,
 				SE160024A000000000000000 /* resnet.cpp */,
 				LDEP_NMK112_REF00 /* nmk112.cpp */,
+				IREMDEV001A /* pic8259.cpp */,
 			);
 			path = devices;
 			sourceTree = "<group>";
@@ -1029,6 +1019,8 @@
 				KGXSND001A /* k054539.cpp */,
 				LDEP_FMOPL_REF000 /* fmopl.c */,
 				LDEP_YMZ280B_REF0 /* ymz280b.cpp */,
+				IREMSND001A /* iremga20.cpp */,
+				TAITOSND001A /* es5506.cpp */,
 			);
 			path = snd;
 			sourceTree = "<group>";
@@ -1165,8 +1157,24 @@
 			isa = PBXGroup;
 			children = (
 				LDEP_TAITO_M68705 /* taito_m68705.cpp */,
+				TAITODRV001A /* d_taitof2.cpp */,
+				TAITODRV002A /* d_taitof3.cpp */,
+				TAITOSUP001A /* taito.cpp */,
+				TAITOSUP002A /* taito_ic.cpp */,
+				TAITOSUP003A /* taitof3_snd.cpp */,
+				TAITOSUP004A /* taitof3_video.cpp */,
 			);
 			path = taito;
+			sourceTree = "<group>";
+		};
+		IREM_DRV_GROUP0000000000 /* irem */ = {
+			isa = PBXGroup;
+			children = (
+				IREMDRV001A /* d_m72.cpp */,
+				IREMDRV002A /* d_m92.cpp */,
+				IREMSUP001A /* irem_cpu.cpp */,
+			);
+			path = irem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
