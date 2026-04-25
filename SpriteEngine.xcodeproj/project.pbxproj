@@ -175,6 +175,35 @@
 		SE16HANGONB0000000000000 /* d_hangon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE16HANGONA0000000000000 /* d_hangon.cpp */; };
 		SE16OUTRUNB0000000000000 /* d_outrun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE16OUTRUNA0000000000000 /* d_outrun.cpp */; };
 		SE16XBOARD0B000000000000 /* d_xbrd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE16XBOARD0A000000000000 /* d_xbrd.cpp */; };
+		TP1DRV001B /* d_toaplan1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP1DRV001A /* d_toaplan1.cpp */; };
+		TP1DRV002B /* toaplan1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP1DRV002A /* toaplan1.cpp */; };
+		TP1DRV003B /* toaplan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP1DRV003A /* toaplan.cpp */; };
+		TP1DRV004B /* d_twincobr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP1DRV004A /* d_twincobr.cpp */; };
+		TP1DRV005B /* d_wardner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP1DRV005A /* d_wardner.cpp */; };
+		TP1DRV006B /* d_ghox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP1DRV006A /* d_ghox.cpp */; };
+		TP1DRV007B /* d_slapfght.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP1DRV007A /* d_slapfght.cpp */; };
+		TP1DRV008B /* d_pipibibs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP1DRV008A /* d_pipibibs.cpp */; };
+		TP2DRV001B /* d_truxton2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV001A /* d_truxton2.cpp */; };
+		TP2DRV002B /* d_batsugun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV002A /* d_batsugun.cpp */; };
+		TP2DRV003B /* d_vfive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV003A /* d_vfive.cpp */; };
+		TP2DRV004B /* d_dogyuun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV004A /* d_dogyuun.cpp */; };
+		TP2DRV005B /* d_kbash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV005A /* d_kbash.cpp */; };
+		TP2DRV006B /* d_kbash2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV006A /* d_kbash2.cpp */; };
+		TP2DRV007B /* d_shippumd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV007A /* d_shippumd.cpp */; };
+		TP2DRV008B /* d_mahoudai.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV008A /* d_mahoudai.cpp */; };
+		TP2DRV009B /* d_batrider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV009A /* d_batrider.cpp */; };
+		TP2DRV010B /* d_bbakraid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV010A /* d_bbakraid.cpp */; };
+		TP2DRV011B /* d_battleg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV011A /* d_battleg.cpp */; };
+		TP2DRV012B /* d_snowbro2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV012A /* d_snowbro2.cpp */; };
+		TP2DRV013B /* d_tekipaki.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV013A /* d_tekipaki.cpp */; };
+		TP2DRV014B /* d_fixeight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV014A /* d_fixeight.cpp */; };
+		TP2DRV015B /* d_enmadaio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2DRV015A /* d_enmadaio.cpp */; };
+		TP2SUP001B /* toa_gp9001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2SUP001A /* toa_gp9001.cpp */; };
+		TP2SUP002B /* toa_bcu2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2SUP002A /* toa_bcu2.cpp */; };
+		TP2SUP003B /* toa_palette.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2SUP003A /* toa_palette.cpp */; };
+		TP2SUP004B /* toa_extratext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2SUP004A /* toa_extratext.cpp */; };
+		TPYM3812AB /* burn_ym3812.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TPYM3812AA /* burn_ym3812.cpp */; };
+		TMS32010AB /* tms32010.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TMS32010AA /* tms32010.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -389,6 +418,35 @@
 		SE16HANGONA0000000000000 /* d_hangon.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_hangon.cpp; sourceTree = "<group>"; };
 		SE16OUTRUNA0000000000000 /* d_outrun.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_outrun.cpp; sourceTree = "<group>"; };
 		SE16XBOARD0A000000000000 /* d_xbrd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_xbrd.cpp; sourceTree = "<group>"; };
+		TP1DRV001A /* d_toaplan1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_toaplan1.cpp; sourceTree = "<group>"; };
+		TP1DRV002A /* toaplan1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = toaplan1.cpp; sourceTree = "<group>"; };
+		TP1DRV003A /* toaplan.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = toaplan.cpp; sourceTree = "<group>"; };
+		TP1DRV004A /* d_twincobr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_twincobr.cpp; sourceTree = "<group>"; };
+		TP1DRV005A /* d_wardner.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_wardner.cpp; sourceTree = "<group>"; };
+		TP1DRV006A /* d_ghox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_ghox.cpp; sourceTree = "<group>"; };
+		TP1DRV007A /* d_slapfght.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_slapfght.cpp; sourceTree = "<group>"; };
+		TP1DRV008A /* d_pipibibs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_pipibibs.cpp; sourceTree = "<group>"; };
+		TP2DRV001A /* d_truxton2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_truxton2.cpp; sourceTree = "<group>"; };
+		TP2DRV002A /* d_batsugun.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_batsugun.cpp; sourceTree = "<group>"; };
+		TP2DRV003A /* d_vfive.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_vfive.cpp; sourceTree = "<group>"; };
+		TP2DRV004A /* d_dogyuun.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_dogyuun.cpp; sourceTree = "<group>"; };
+		TP2DRV005A /* d_kbash.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_kbash.cpp; sourceTree = "<group>"; };
+		TP2DRV006A /* d_kbash2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_kbash2.cpp; sourceTree = "<group>"; };
+		TP2DRV007A /* d_shippumd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_shippumd.cpp; sourceTree = "<group>"; };
+		TP2DRV008A /* d_mahoudai.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_mahoudai.cpp; sourceTree = "<group>"; };
+		TP2DRV009A /* d_batrider.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_batrider.cpp; sourceTree = "<group>"; };
+		TP2DRV010A /* d_bbakraid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_bbakraid.cpp; sourceTree = "<group>"; };
+		TP2DRV011A /* d_battleg.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_battleg.cpp; sourceTree = "<group>"; };
+		TP2DRV012A /* d_snowbro2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_snowbro2.cpp; sourceTree = "<group>"; };
+		TP2DRV013A /* d_tekipaki.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_tekipaki.cpp; sourceTree = "<group>"; };
+		TP2DRV014A /* d_fixeight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_fixeight.cpp; sourceTree = "<group>"; };
+		TP2DRV015A /* d_enmadaio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_enmadaio.cpp; sourceTree = "<group>"; };
+		TP2SUP001A /* toa_gp9001.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = toa_gp9001.cpp; sourceTree = "<group>"; };
+		TP2SUP002A /* toa_bcu2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = toa_bcu2.cpp; sourceTree = "<group>"; };
+		TP2SUP003A /* toa_palette.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = toa_palette.cpp; sourceTree = "<group>"; };
+		TP2SUP004A /* toa_extratext.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = toa_extratext.cpp; sourceTree = "<group>"; };
+		TPYM3812AA /* burn_ym3812.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_ym3812.cpp; sourceTree = "<group>"; };
+		TMS32010AA /* tms32010.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tms32010.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -721,12 +779,54 @@
 			path = sega;
 			sourceTree = "<group>";
 		};
+		TPLAN_GROUP000000000000 /* toaplan */ = {
+			isa = PBXGroup;
+			children = (
+				TP1DRV001A /* d_toaplan1.cpp */,
+				TP1DRV002A /* toaplan1.cpp */,
+				TP1DRV003A /* toaplan.cpp */,
+				TP1DRV004A /* d_twincobr.cpp */,
+				TP1DRV005A /* d_wardner.cpp */,
+				TP1DRV006A /* d_ghox.cpp */,
+				TP1DRV007A /* d_slapfght.cpp */,
+				TP1DRV008A /* d_pipibibs.cpp */,
+				TP2DRV001A /* d_truxton2.cpp */,
+				TP2DRV002A /* d_batsugun.cpp */,
+				TP2DRV003A /* d_vfive.cpp */,
+				TP2DRV004A /* d_dogyuun.cpp */,
+				TP2DRV005A /* d_kbash.cpp */,
+				TP2DRV006A /* d_kbash2.cpp */,
+				TP2DRV007A /* d_shippumd.cpp */,
+				TP2DRV008A /* d_mahoudai.cpp */,
+				TP2DRV009A /* d_batrider.cpp */,
+				TP2DRV010A /* d_bbakraid.cpp */,
+				TP2DRV011A /* d_battleg.cpp */,
+				TP2DRV012A /* d_snowbro2.cpp */,
+				TP2DRV013A /* d_tekipaki.cpp */,
+				TP2DRV014A /* d_fixeight.cpp */,
+				TP2DRV015A /* d_enmadaio.cpp */,
+				TP2SUP001A /* toa_gp9001.cpp */,
+				TP2SUP002A /* toa_bcu2.cpp */,
+				TP2SUP003A /* toa_palette.cpp */,
+				TP2SUP004A /* toa_extratext.cpp */,
+			);
+			path = toaplan;
+			sourceTree = "<group>";
+		};
 		SE16I8039GRP00000000000 /* i8039 */ = {
 			isa = PBXGroup;
 			children = (
 				SE160021A000000000000000 /* i8039.cpp */,
 			);
 			path = i8039;
+			sourceTree = "<group>";
+		};
+		TMS32010_GROUP000000000 /* tms32010 */ = {
+			isa = PBXGroup;
+			children = (
+				TMS32010AA /* tms32010.cpp */,
+			);
+			path = tms32010;
 			sourceTree = "<group>";
 		};
 		SE16I8051GRP00000000000 /* i8051 */ = {
@@ -793,6 +893,7 @@
 				SE16DELTA000000000000000 /* ymdeltat.c */,
 				SE16FMO2608A000000000000 /* burn_ym2608.cpp */,
 				SE16FMO2610A000000000000 /* burn_ym2610.cpp */,
+				TPYM3812AA /* burn_ym3812.cpp */,
 			);
 			path = snd;
 			sourceTree = "<group>";
@@ -1102,6 +1203,35 @@
 				SE16DELTB000000000000000 /* ymdeltat.c in Sources */,
 				SE16FMO2608B000000000000 /* burn_ym2608.cpp in Sources */,
 				SE16FMO2610B000000000000 /* burn_ym2610.cpp in Sources */,
+				TP1DRV001B /* d_toaplan1.cpp in Sources */,
+				TP1DRV002B /* toaplan1.cpp in Sources */,
+				TP1DRV003B /* toaplan.cpp in Sources */,
+				TP1DRV004B /* d_twincobr.cpp in Sources */,
+				TP1DRV005B /* d_wardner.cpp in Sources */,
+				TP1DRV006B /* d_ghox.cpp in Sources */,
+				TP1DRV007B /* d_slapfght.cpp in Sources */,
+				TP1DRV008B /* d_pipibibs.cpp in Sources */,
+				TP2DRV001B /* d_truxton2.cpp in Sources */,
+				TP2DRV002B /* d_batsugun.cpp in Sources */,
+				TP2DRV003B /* d_vfive.cpp in Sources */,
+				TP2DRV004B /* d_dogyuun.cpp in Sources */,
+				TP2DRV005B /* d_kbash.cpp in Sources */,
+				TP2DRV006B /* d_kbash2.cpp in Sources */,
+				TP2DRV007B /* d_shippumd.cpp in Sources */,
+				TP2DRV008B /* d_mahoudai.cpp in Sources */,
+				TP2DRV009B /* d_batrider.cpp in Sources */,
+				TP2DRV010B /* d_bbakraid.cpp in Sources */,
+				TP2DRV011B /* d_battleg.cpp in Sources */,
+				TP2DRV012B /* d_snowbro2.cpp in Sources */,
+				TP2DRV013B /* d_tekipaki.cpp in Sources */,
+				TP2DRV014B /* d_fixeight.cpp in Sources */,
+				TP2DRV015B /* d_enmadaio.cpp in Sources */,
+				TP2SUP001B /* toa_gp9001.cpp in Sources */,
+				TP2SUP002B /* toa_bcu2.cpp in Sources */,
+				TP2SUP003B /* toa_palette.cpp in Sources */,
+				TP2SUP004B /* toa_extratext.cpp in Sources */,
+				TPYM3812AB /* burn_ym3812.cpp in Sources */,
+				TMS32010AB /* tms32010.cpp in Sources */,
 				75C80AA568E6B6B81AB83CF3 /* fbneo_macos_compat.cpp in Sources */,
 				1D8585D4E3585CBB19FD1836 /* hiscore.cpp in Sources */,
 				DEBD4F79A0911440DFA36E5E /* ioapi.c in Sources */,
