@@ -70,18 +70,20 @@ final class ROMVerifier {
     // Maximum ROM slots we read per game (generous upper bound).
     private static let maxSlots = 256
 
-    /// Verify all CPS games currently in the library.
+    /// Verify all FBNeo games (CPS, Sega, Toaplan, Konami GX, …) in the library.
     /// Runs on a background thread; progress is reported via `onProgress`.
     func verify(
         games: [Game],
         onProgress: @escaping (Int, Int) -> Void,
         completion: @escaping ([GameVerificationResult]) -> Void
     ) {
-        let cpGames = games.filter { $0.system.coreType == .fbneopCPS }
+        let fbGames = games.filter {
+            $0.system.coreType == .fbneopCPS || $0.system.coreType == .fbneo
+        }
         DispatchQueue.global(qos: .userInitiated).async {
             var results: [GameVerificationResult] = []
-            for (idx, game) in cpGames.enumerated() {
-                DispatchQueue.main.async { onProgress(idx, cpGames.count) }
+            for (idx, game) in fbGames.enumerated() {
+                DispatchQueue.main.async { onProgress(idx, fbGames.count) }
                 let result = self.verifyGame(game)
                 results.append(result)
             }
@@ -94,7 +96,11 @@ final class ROMVerifier {
 
         var rawFiles = [FBNeoRomFile](repeating: FBNeoRomFile(), count: Self.maxSlots)
         let total = rawFiles.withUnsafeMutableBufferPointer { buf -> Int32 in
-            fbneo_cps_verify_game(path, buf.baseAddress, Int32(Self.maxSlots))
+            if game.system.coreType == .fbneopCPS {
+                return fbneo_cps_verify_game(path, buf.baseAddress, Int32(Self.maxSlots))
+            } else {
+                return fbneo_driver_verify_game(path, buf.baseAddress, Int32(Self.maxSlots))
+            }
         }
 
         guard total >= 0 else {

@@ -53,7 +53,7 @@ struct ROMVerifierView: View {
                 .pickerStyle(.segmented)
                 .frame(width: 180)
             }
-            Button(isRunning ? "Running…" : "Verify CPS ROMs") {
+            Button(isRunning ? "Running…" : "Verify All ROMs") {
                 runVerification()
             }
             .disabled(isRunning)
@@ -76,7 +76,7 @@ struct ROMVerifierView: View {
             Image(systemName: "checkmark.shield")
                 .font(.system(size: 48))
                 .foregroundColor(t.textFaint)
-            Text("Check every CPS-1 and CPS-2 ROM in your library against\nFBNeo's built-in database of required files and CRC checksums.")
+            Text("Check every ROM in your library against\nFBNeo's built-in database of required files and CRC checksums.")
                 .font(.system(size: 13))
                 .foregroundColor(t.textMuted)
                 .multilineTextAlignment(.center)
@@ -127,7 +127,7 @@ struct ROMVerifierView: View {
                 Label("\(issueCount) issues", systemImage: "exclamationmark.triangle.fill")
                     .foregroundColor(issueCount > 0 ? .orange : t.textFaint)
                 Spacer()
-                Text("\(results.count) CPS games checked")
+                Text("\(results.count) games checked")
                     .foregroundColor(t.textMuted)
             }
             .font(.system(size: 12, weight: .semibold))
