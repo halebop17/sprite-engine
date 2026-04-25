@@ -51,6 +51,7 @@ struct AppTheme {
     var sysToaplan:      Color
     var sysKonami:       Color
     var sysIrem:         Color
+    var sysTaito:        Color
 }
 
 extension AppTheme {
@@ -85,7 +86,8 @@ extension AppTheme {
         sysSega:         Color(hex: "0066b3"),
         sysToaplan:      Color(hex: "c0392b"),
         sysKonami:       Color(hex: "6b21a8"),
-        sysIrem:         Color(hex: "d47520")
+        sysIrem:         Color(hex: "d47520"),
+        sysTaito:        Color(hex: "1578b4")
     )
 
     static let light = AppTheme(
@@ -119,7 +121,8 @@ extension AppTheme {
         sysSega:         Color(hex: "2563a8"),
         sysToaplan:      Color(hex: "a93226"),
         sysKonami:       Color(hex: "7c3aed"),
-        sysIrem:         Color(hex: "b05a10")
+        sysIrem:         Color(hex: "b05a10"),
+        sysTaito:        Color(hex: "0a65a8")
     )
 
     static let amber = AppTheme(
@@ -153,7 +156,8 @@ extension AppTheme {
         sysSega:         Color(hex: "4488cc"),
         sysToaplan:      Color(hex: "e05a3a"),
         sysKonami:       Color(hex: "a855f7"),
-        sysIrem:         Color(hex: "e08030")
+        sysIrem:         Color(hex: "e08030"),
+        sysTaito:        Color(hex: "3090d8")
     )
 
     static func theme(for key: AppThemeKey) -> AppTheme {
@@ -203,7 +207,7 @@ extension Color {
 
 enum LibraryFilter: Hashable {
     case all, favorites, recent
-    case neoGeo, cps1, cps2, sega, toaplan, konami, irem
+    case neoGeo, cps1, cps2, sega, toaplan, konami, irem, taito
 
     func matches(_ game: Game) -> Bool {
         switch self {
@@ -217,6 +221,7 @@ enum LibraryFilter: Hashable {
         case .toaplan:   return game.system.isToaplan
         case .konami:    return game.system.isKonami
         case .irem:      return game.system.isIrem
+        case .taito:     return game.system.isTaito
         }
     }
 
@@ -232,6 +237,7 @@ enum LibraryFilter: Hashable {
         case .toaplan:   return "Toaplan"
         case .konami:    return "Konami GX"
         case .irem:      return "Irem"
+        case .taito:     return "Taito"
         }
     }
 }
@@ -278,9 +284,10 @@ private struct SidebarView: View {
     private var toaplanCount: Int { library.games.filter { $0.system.isToaplan }.count }
     private var konamiCount:  Int { library.games.filter { $0.system.isKonami }.count }
     private var iremCount:    Int { library.games.filter { $0.system.isIrem }.count }
+    private var taitoCount:   Int { library.games.filter { $0.system.isTaito }.count }
 
     private var activeSystems: Int {
-        [neogeoCount > 0, cps1Count > 0, cps2Count > 0, segaCount > 0, toaplanCount > 0, konamiCount > 0, iremCount > 0].filter { $0 }.count
+        [neogeoCount > 0, cps1Count > 0, cps2Count > 0, segaCount > 0, toaplanCount > 0, konamiCount > 0, iremCount > 0, taitoCount > 0].filter { $0 }.count
     }
 
     var body: some View {
@@ -324,6 +331,9 @@ private struct SidebarView: View {
                     }
                     if iremCount > 0 {
                         PlatformItem(label: "Irem", logo: "CPS1Logo", color: t.sysIrem, count: iremCount, filter: .irem, active: filter) { filter = $0 }
+                    }
+                    if taitoCount > 0 {
+                        PlatformItem(label: "Taito", logo: "CPS1Logo", color: t.sysTaito, count: taitoCount, filter: .taito, active: filter) { filter = $0 }
                     }
 
                     Divider().background(t.divider).padding(.horizontal, 14).padding(.vertical, 8)
@@ -523,6 +533,7 @@ private struct LibraryToolbar: View {
         case .toaplan:   return "Toaplan (\(library.games.filter { $0.system.isToaplan }.count))"
         case .konami:    return "Konami GX (\(library.games.filter { $0.system.isKonami }.count))"
         case .irem:      return "Irem (\(library.games.filter { $0.system.isIrem }.count))"
+        case .taito:     return "Taito (\(library.games.filter { $0.system.isTaito }.count))"
         }
     }
 
