@@ -4,6 +4,26 @@ Entries are in reverse-chronological order. Each entry records what changed, why
 
 ---
 
+## 2026-04-25 — Documentation consolidation
+**Commits:** `96869b4`, `076a31b`, `a265a35`
+
+- Created `docs/` folder at project root.
+- `docs/architecture.md` — full architectural reference: layer diagram, 10 key decisions, method signatures for every Swift module, full C bridge API surface, filesystem layout, supported systems table.
+- `docs/log.md` — this file; retroactively covers all phases from project inception.
+- `DEVELOPMENT_PLAN.md` moved from root into `docs/`; removed from `.gitignore` so it is now tracked.
+- `arcade_emulator_handoff.md` deleted — superseded by `architecture.md` and `log.md`.
+- `README.md` renamed to `docs/manual.md` and moved into `docs/`.
+
+### Verification — regressions confirmed fixed
+After the Phase 21–22 regression fix commit (`e9ed2fd`), the app was rebuilt and tested:
+- **Neo Geo:** 213 ROMs detected and loading correctly.
+- **CPS-1:** 30 ROMs detected and loading correctly.
+- **CPS-2:** 34 ROMs detected and loading correctly.
+
+All three systems that were broken after Phase 21–22 are fully restored.
+
+---
+
 ## 2026-04-25 — Fix CPS load failure and ROM pruning regression
 **Commit:** `e9ed2fd`
 
