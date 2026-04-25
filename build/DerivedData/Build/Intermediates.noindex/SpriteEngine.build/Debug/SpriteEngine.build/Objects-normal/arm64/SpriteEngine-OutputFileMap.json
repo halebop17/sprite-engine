@@ -1,0 +1,299 @@
+{
+  "" : {
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SpriteEngine-primary.dia",
+    "emit-module-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SpriteEngine-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SpriteEngine-primary-emit-module.dia",
+    "pch" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SpriteEngine-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SpriteEngine-primary.swiftdeps"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/App/AppDelegate.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppDelegate.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppDelegate.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppDelegate.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppDelegate.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppDelegate.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppDelegate.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppDelegate.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppDelegate~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/App/AppState.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppState.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppState.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppState.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppState.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppState.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppState.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppState.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AppState~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/App/SpriteEngineApp.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SpriteEngineApp.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SpriteEngineApp.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SpriteEngineApp.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SpriteEngineApp.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SpriteEngineApp.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SpriteEngineApp.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SpriteEngineApp.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SpriteEngineApp~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Audio/AudioEngine.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AudioEngine.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AudioEngine.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AudioEngine.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AudioEngine.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AudioEngine.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AudioEngine.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AudioEngine.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/AudioEngine~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Audio/RingBuffer.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/RingBuffer.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/RingBuffer.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/RingBuffer.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/RingBuffer.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/RingBuffer.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/RingBuffer.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/RingBuffer.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/RingBuffer~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Conversion/ConversionQueue.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ConversionQueue.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ConversionQueue.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ConversionQueue.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ConversionQueue.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ConversionQueue.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ConversionQueue.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ConversionQueue.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ConversionQueue~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Conversion/NeoConverter.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/NeoConverter.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/NeoConverter.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/NeoConverter.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/NeoConverter.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/NeoConverter.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/NeoConverter.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/NeoConverter.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/NeoConverter~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Emulation/CoreRouter.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/CoreRouter.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/CoreRouter.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/CoreRouter.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/CoreRouter.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/CoreRouter.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/CoreRouter.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/CoreRouter.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/CoreRouter~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Emulation/EmulatorCore.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorCore.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorCore.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorCore.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorCore.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorCore.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorCore.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorCore.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorCore~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Emulation/EmulatorError.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorError.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorError.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorError.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorError.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorError.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorError.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorError.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorError~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Emulation/EmulatorSession.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorSession.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorSession.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorSession.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorSession.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorSession.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorSession.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorSession.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorSession~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Emulation/FBNeoCPSCore.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/FBNeoCPSCore.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/FBNeoCPSCore.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/FBNeoCPSCore.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/FBNeoCPSCore.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/FBNeoCPSCore.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/FBNeoCPSCore.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/FBNeoCPSCore.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/FBNeoCPSCore~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Emulation/GeolithCore.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeolithCore.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeolithCore.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeolithCore.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeolithCore.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeolithCore.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeolithCore.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeolithCore.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeolithCore~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Input/InputManager.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/InputManager.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/InputManager.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/InputManager.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/InputManager.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/InputManager.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/InputManager.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/InputManager.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/InputManager~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Library/GameDatabase.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameDatabase.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameDatabase.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameDatabase.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameDatabase.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameDatabase.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameDatabase.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameDatabase.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameDatabase~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Library/GameMetadata.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameMetadata.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameMetadata.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameMetadata.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameMetadata.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameMetadata.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameMetadata.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameMetadata.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameMetadata~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Library/ROMLibrary.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMLibrary.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMLibrary.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMLibrary.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMLibrary.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMLibrary.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMLibrary.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMLibrary.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMLibrary~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Library/ROMScanner.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMScanner.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMScanner.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMScanner.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMScanner.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMScanner.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMScanner.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMScanner.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ROMScanner~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Models/Game.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/Game.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/Game.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/Game.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/Game.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/Game.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/Game.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/Game.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/Game~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Models/SaveState.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SaveState.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SaveState.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SaveState.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SaveState.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SaveState.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SaveState.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SaveState.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/SaveState~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Models/System.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/System.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/System.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/System.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/System.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/System.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/System.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/System.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/System~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Rendering/EmulatorView.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorView.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorView.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorView.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorView.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorView.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorView.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorView.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/EmulatorView~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/Rendering/MetalRenderer.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/MetalRenderer.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/MetalRenderer.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/MetalRenderer.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/MetalRenderer.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/MetalRenderer.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/MetalRenderer.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/MetalRenderer.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/MetalRenderer~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/UI/ContentView.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/UI/DetailView.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/DetailView.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/DetailView.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/DetailView.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/DetailView.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/DetailView.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/DetailView.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/DetailView.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/DetailView~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/UI/GameCardView.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameCardView.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameCardView.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameCardView.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameCardView.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameCardView.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameCardView.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameCardView.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GameCardView~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/UI/ImportView.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ImportView.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ImportView.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ImportView.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ImportView.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ImportView.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ImportView.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ImportView.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/ImportView~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/SpriteEngine/UI/LibraryView.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/LibraryView.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/LibraryView.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/LibraryView.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/LibraryView.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/LibraryView.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/LibraryView.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/LibraryView.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/LibraryView~partial.swiftmodule"
+  },
+  "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Volumes/Media 2TB/git repos 2/sprite-engine/build/DerivedData/Build/Intermediates.noindex/SpriteEngine.build/Debug/SpriteEngine.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

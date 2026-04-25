@@ -174,14 +174,60 @@ struct OnboardingView: View {
             stepHeader(
                 icon: "folder.badge.plus",
                 title: "Add Your ROMs",
-                detail: "Choose the folder where your ROM files live. Sprite Engine will scan it for .neo and .zip archives."
+                detail: "Add one or more folders containing your ROM files. Sprite Engine will scan them for .neo and .zip archives."
             )
 
-            directorCard(
-                url: appState.romDirectoryURL,
-                placeholder: "No folder chosen",
-                pick: pickROMs
-            )
+            // Folder list
+            VStack(spacing: 0) {
+                ForEach(appState.romDirectoryURLs, id: \.self) { url in
+                    HStack(spacing: 10) {
+                        Image(systemName: "folder.fill")
+                            .font(.system(size: 13))
+                            .foregroundColor(t.accent)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(url.lastPathComponent)
+                                .font(.system(size: 13, weight: .semibold))
+                                .foregroundColor(t.text)
+                            Text(url.path)
+                                .font(.system(size: 10, design: .monospaced))
+                                .foregroundColor(t.textMuted)
+                                .lineLimit(1)
+                                .truncationMode(.middle)
+                        }
+                        Spacer()
+                        Button {
+                            appState.removeROMDirectory(url)
+                        } label: {
+                            Image(systemName: "minus.circle.fill")
+                                .font(.system(size: 15))
+                                .foregroundColor(t.textFaint)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 9)
+                    Divider().background(t.divider).padding(.leading, 14)
+                }
+                Button(action: pickROMs) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.system(size: 14))
+                            .foregroundColor(t.accent)
+                        Text("Add Folder…")
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundColor(t.accent)
+                        Spacer()
+                    }
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 10)
+                }
+                .buttonStyle(.plain)
+            }
+            .background(t.card)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .overlay(RoundedRectangle(cornerRadius: 10).strokeBorder(
+                appState.romDirectoryURLs.isEmpty ? t.cardBorder : t.accent.opacity(0.4),
+                lineWidth: 1))
 
             // Scan result / status
             HStack(spacing: 10) {
@@ -197,11 +243,11 @@ struct OnboardingView: View {
                     Text("\(scannedCount) game\(scannedCount == 1 ? "" : "s") found")
                         .font(.system(size: 12))
                         .foregroundColor(t.text)
-                } else if appState.romDirectoryURL != nil {
+                } else if !appState.romDirectoryURLs.isEmpty {
                     Image(systemName: "tray")
                         .font(.system(size: 13))
                         .foregroundColor(t.textFaint)
-                    Text("No supported ROMs found in that folder")
+                    Text("No supported ROMs found in those folders")
                         .font(.system(size: 12))
                         .foregroundColor(t.textMuted)
                 } else {
@@ -450,16 +496,18 @@ struct OnboardingView: View {
         panel.begin { response in
             guard response == .OK, let url = panel.url else { return }
             DispatchQueue.main.async {
-                appState.setROMDirectory(url)
-                scanROMs(at: url)
+                appState.addROMDirectory(url)
+                scanAllROMs()
             }
         }
     }
 
-    private func scanROMs(at url: URL) {
+    private func scanAllROMs() {
+        guard !appState.romDirectoryURLs.isEmpty else { return }
         isScanning = true
+        let dirs = appState.romDirectoryURLs
         Task {
-            await library.scan(directory: url)
+            await library.scan(directories: dirs)
             await MainActor.run {
                 scannedCount = library.games.count
                 isScanning   = false

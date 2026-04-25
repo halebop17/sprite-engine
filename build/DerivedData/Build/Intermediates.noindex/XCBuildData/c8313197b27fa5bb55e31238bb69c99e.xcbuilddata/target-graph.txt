@@ -1,0 +1,6 @@
+Target dependency graph (3 targets)
+Target 'SpriteEngine' in project 'SpriteEngine'
+➜ Explicit dependency on target 'GeolithLib' in project 'SpriteEngine'
+➜ Explicit dependency on target 'FBNeoCPSLib' in project 'SpriteEngine'
+Target 'FBNeoCPSLib' in project 'SpriteEngine' (no dependencies)
+Target 'GeolithLib' in project 'SpriteEngine' (no dependencies)

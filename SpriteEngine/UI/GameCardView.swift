@@ -310,28 +310,55 @@ private struct SystemBadge: View {
 extension EmulatorSystem {
     var shortName: String {
         switch self {
-        case .neoGeoAES: return "NEO·AES"
-        case .neoGeoMVS: return "NEO·MVS"
-        case .neoGeoCD:  return "NEO·CD"
-        case .cps1:      return "CPS-1"
-        case .cps2:      return "CPS-2"
+        case .neoGeoAES:  return "NEO·AES"
+        case .neoGeoMVS:  return "NEO·MVS"
+        case .neoGeoCD:   return "NEO·CD"
+        case .cps1:       return "CPS-1"
+        case .cps2:       return "CPS-2"
+        case .segaSys16:  return "SYS-16"
+        case .segaSys18:  return "SYS-18"
+        case .toaplan1:   return "TP-1"
+        case .toaplan2:   return "TP-2"
+        case .konamiGX:   return "KNM·GX"
+        case .irem:       return "IREM"
+        case .taito:      return "TAITO"
         }
     }
 
     var shortGenre: String {
         switch self {
         case .neoGeoAES, .neoGeoMVS: return "Neo Geo"
-        case .neoGeoCD:              return "Neo Geo CD"
-        case .cps1:                  return "CPS-1"
-        case .cps2:                  return "CPS-2"
+        case .neoGeoCD:               return "Neo Geo CD"
+        case .cps1:                   return "CPS-1"
+        case .cps2:                   return "CPS-2"
+        case .segaSys16:              return "Sega Sys 16"
+        case .segaSys18:              return "Sega Sys 18"
+        case .toaplan1:               return "Toaplan 1"
+        case .toaplan2:               return "Toaplan 2"
+        case .konamiGX:               return "Konami GX"
+        case .irem:                   return "Irem"
+        case .taito:                  return "Taito"
         }
     }
 
     var badgeColor: Color {
         switch self {
-        case .neoGeoAES, .neoGeoMVS, .neoGeoCD: return Color(red: 1,   green: 0.84, blue: 0.04)
-        case .cps1:                              return Color(red: 0,   green: 0.62, blue: 0.88)
-        case .cps2:                              return Color(red: 0,   green: 0.44, blue: 0.77)
+        case .neoGeoAES, .neoGeoMVS, .neoGeoCD:
+            return Color(red: 1,    green: 0.84, blue: 0.04)
+        case .cps1:
+            return Color(red: 0,    green: 0.62, blue: 0.88)
+        case .cps2:
+            return Color(red: 0,    green: 0.44, blue: 0.77)
+        case .segaSys16, .segaSys18:
+            return Color(red: 0.1,  green: 0.72, blue: 0.35)
+        case .toaplan1, .toaplan2:
+            return Color(red: 0.85, green: 0.25, blue: 0.20)
+        case .konamiGX:
+            return Color(red: 0.55, green: 0.18, blue: 0.80)
+        case .irem:
+            return Color(red: 0.90, green: 0.50, blue: 0.10)
+        case .taito:
+            return Color(red: 0.15, green: 0.55, blue: 0.75)
         }
     }
 

@@ -2,6 +2,11 @@ import Foundation
 
 final class GeolithCore: EmulatorCore {
 
+    // Geolith uses global C state (mrom, romdata, resampler, …).
+    // This semaphore ensures shutdown() of one instance completes before
+    // loadROM() of the next touches that state.  Starts at 1 (available).
+    private static let lifecycle = DispatchSemaphore(value: 1)
+
     // MARK: - EmulatorCore
 
     let system: EmulatorSystem
@@ -26,6 +31,7 @@ final class GeolithCore: EmulatorCore {
     private let audioRate: Int = 44100
 
     private var initialized = false
+    private var neoROMData: Data?  // kept alive because Geolith holds raw pointers into it
 
     // MARK: - Init / deinit
 
@@ -46,6 +52,12 @@ final class GeolithCore: EmulatorCore {
     // MARK: - EmulatorCore methods
 
     func loadROM(at url: URL, biosDirectory: URL) throws {
+        // Wait for any previous GeolithCore instance to finish its shutdown()
+        // before we touch the global Geolith C state.
+        GeolithCore.lifecycle.wait()
+        var releaseOnFailure = true
+        defer { if releaseOnFailure { GeolithCore.lifecycle.signal() } }
+
         let geoSystem: Int32
         switch system {
         case .neoGeoAES: geoSystem = Int32(GEO_SYSTEM_AES)
@@ -54,26 +66,33 @@ final class GeolithCore: EmulatorCore {
         }
         geo_bridge_set_system(geoSystem, Int32(GEO_REGION_US))
 
-        let biosName = geoSystem == Int32(GEO_SYSTEM_AES) ? "aes.zip" : "neogeo.zip"
-        let biosURL = biosDirectory.appendingPathComponent(biosName)
-        guard geo_bridge_load_bios(biosURL.path) == 1 else {
-            throw EmulatorError.biosNotFound(biosName)
+        let preferredBios = geoSystem == Int32(GEO_SYSTEM_AES) ? "aes.zip" : "neogeo.zip"
+        let fallbackBios  = geoSystem == Int32(GEO_SYSTEM_AES) ? "neogeo.zip" : "aes.zip"
+        let biosLoaded = [preferredBios, fallbackBios].contains { name in
+            geo_bridge_load_bios(biosDirectory.appendingPathComponent(name).path) == 1
         }
-
-        let romData = try Data(contentsOf: url)
-        let loadResult = romData.withUnsafeBytes { ptr -> Int32 in
-            geo_bridge_load_neo(ptr.baseAddress!, romData.count)
-        }
-        guard loadResult == 1 else {
-            throw EmulatorError.romLoadFailed
+        guard biosLoaded else {
+            throw EmulatorError.biosNotFound("\(preferredBios) / \(fallbackBios)")
         }
 
         geo_bridge_set_video_buffer(videoPtr)
         geo_bridge_set_audio_buffer(audioPtr, audioRate)
-
         geo_bridge_init()
+
+        let romData = try Data(contentsOf: url)
+        neoROMData = romData  // must outlive this session; Geolith holds raw pointers into it
+        let loadResult = romData.withUnsafeBytes { ptr -> Int32 in
+            geo_bridge_load_neo(ptr.baseAddress!, romData.count)
+        }
+        guard loadResult == 1 else {
+            neoROMData = nil
+            geo_bridge_deinit()
+            throw EmulatorError.romLoadFailed
+        }
+
         geo_bridge_reset(1)
         initialized = true
+        releaseOnFailure = false  // success — lifecycle.signal() will be called in shutdown()
     }
 
     func runFrame() {
@@ -118,6 +137,8 @@ final class GeolithCore: EmulatorCore {
     func shutdown() {
         guard initialized else { return }
         geo_bridge_deinit()
+        neoROMData = nil
         initialized = false
+        GeolithCore.lifecycle.signal()  // allow the next loadROM() to proceed
     }
 }

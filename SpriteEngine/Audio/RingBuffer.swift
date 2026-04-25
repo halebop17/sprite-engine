@@ -1,14 +1,12 @@
 import os.lock
 
-// Lock-free single-producer / single-consumer ring buffer using os_unfair_lock.
-// T must be zero-initializable via ExpressibleByIntegerLiteral (Float, Int16, etc.).
 final class RingBuffer<T: ExpressibleByIntegerLiteral> {
 
-    private var storage:    [T]
-    private var readIndex   = 0
-    private var writeIndex  = 0
-    private var filled      = 0
-    private var lock        = os_unfair_lock_s()
+    private var storage:   [T]
+    private var readIndex  = 0
+    private var writeIndex = 0
+    private var filled     = 0
+    private var lock       = os_unfair_lock_s()
     let capacity: Int
 
     init(capacity: Int) {
@@ -26,11 +24,20 @@ final class RingBuffer<T: ExpressibleByIntegerLiteral> {
     func write(_ ptr: UnsafePointer<T>, count: Int) {
         os_unfair_lock_lock(&lock)
         let n = min(count, capacity - filled)
-        for i in 0..<n {
-            storage[writeIndex] = ptr[i]
-            writeIndex = (writeIndex + 1) % capacity
+        if n > 0 {
+            let stride = MemoryLayout<T>.stride
+            storage.withUnsafeMutableBufferPointer { buf in
+                let dst = UnsafeMutableRawPointer(buf.baseAddress!)
+                let src = UnsafeRawPointer(ptr)
+                let first = min(n, capacity - writeIndex)
+                dst.advanced(by: writeIndex * stride).copyMemory(from: src, byteCount: first * stride)
+                if first < n {
+                    dst.copyMemory(from: src.advanced(by: first * stride), byteCount: (n - first) * stride)
+                }
+            }
+            writeIndex = (writeIndex + n) % capacity
+            filled += n
         }
-        filled += n
         os_unfair_lock_unlock(&lock)
     }
 
@@ -38,11 +45,20 @@ final class RingBuffer<T: ExpressibleByIntegerLiteral> {
     func read(_ ptr: UnsafeMutablePointer<T>, count: Int) {
         os_unfair_lock_lock(&lock)
         let n = min(count, filled)
-        for i in 0..<n {
-            ptr[i] = storage[readIndex]
-            readIndex = (readIndex + 1) % capacity
+        if n > 0 {
+            let stride = MemoryLayout<T>.stride
+            storage.withUnsafeMutableBufferPointer { buf in
+                let src = UnsafeRawPointer(buf.baseAddress!)
+                let dst = UnsafeMutableRawPointer(ptr)
+                let first = min(n, capacity - readIndex)
+                dst.copyMemory(from: src.advanced(by: readIndex * stride), byteCount: first * stride)
+                if first < n {
+                    dst.advanced(by: first * stride).copyMemory(from: src, byteCount: (n - first) * stride)
+                }
+            }
+            readIndex = (readIndex + n) % capacity
+            filled -= n
         }
-        filled -= n
         os_unfair_lock_unlock(&lock)
         if n < count {
             ptr.advanced(by: n).initialize(repeating: 0, count: count - n)

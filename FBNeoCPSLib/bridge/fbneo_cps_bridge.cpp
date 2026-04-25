@@ -16,6 +16,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>     // tolower
 #include <libgen.h>    // dirname / basename
 
 // ── Globals required by the burn library ─────────────────────────────────
@@ -66,6 +67,8 @@ static int16_t*  s_audioBuf   = nullptr;
 static int       s_frameW     = 0;
 static int       s_frameH     = 0;
 static bool      s_loaded     = false;
+// Tracks whether BurnLibInit has been called (needed before BurnDrvGetIndex).
+static bool      s_libInited  = false;
 
 // Player input state (bitmask using our button layout).
 static uint32_t s_input[2]    = {0, 0};
@@ -83,6 +86,11 @@ static int       s_slotCount = 0;
 #define MAX_BRIDGE_ZIPS 4
 static unzFile s_zips[MAX_BRIDGE_ZIPS];
 static int     s_zipCount = 0;
+
+// Missing-ROM tracking (populated by rom_loader on cache miss).
+#define MAX_MISSING 64
+static char  s_missingNames[MAX_MISSING][64];
+static int   s_missingCount = 0;
 
 // ── ROM loader callback ───────────────────────────────────────────────────
 
@@ -110,6 +118,13 @@ static INT32 __cdecl rom_loader(UINT8* Dest, INT32* pnWrote, INT32 i)
             if (pnWrote) *pnWrote = got;
             return 0;
         }
+    }
+
+    // Record this missing file for diagnostic reporting.
+    if (s_missingCount < MAX_MISSING) {
+        strncpy(s_missingNames[s_missingCount], romName, 63);
+        s_missingNames[s_missingCount][63] = '\0';
+        ++s_missingCount;
     }
     return 1; // not found in any zip
 }
@@ -180,21 +195,29 @@ static void build_input_slots()
 
 int fbneo_cps_init()
 {
-    BurnHighCol = highcol_bgra;
-    nBurnLayer  = 0xFF;
-    BurnLibInit();
+    if (!s_libInited) {
+        BurnHighCol = highcol_bgra;
+        nBurnLayer  = 0xFF;
+        BurnLibInit();
+        s_libInited = true;
+    }
     return 0;
 }
 
 void fbneo_cps_exit()
 {
     fbneo_cps_unload_game();
-    BurnLibExit();
+    // Do NOT call BurnLibExit() here. BurnGameListExit() frees game-list string
+    // pointers without nulling them; a subsequent BurnLibInit() calls BurnLibExit()
+    // internally and hits those stale pointers → double-free SIGABRT.
+    // Keep the library initialised for the lifetime of the process.
 }
 
 int fbneo_cps_load_game(const char* zipPath)
 {
     if (s_loaded) fbneo_cps_unload_game();
+
+    s_missingCount = 0;
 
     // Close any stale zip handles.
     for (int z = 0; z < MAX_BRIDGE_ZIPS; ++z) {
@@ -216,11 +239,13 @@ int fbneo_cps_load_game(const char* zipPath)
     strncpy(nameBuf, zipPath, sizeof(nameBuf) - 1);
     char* base = basename(nameBuf);
 
-    // Strip .zip extension to get the game name.
+    // Strip .zip extension to get the game name, forcing lowercase so it matches
+    // FBNeo's driver table regardless of how the user named the zip file.
     char gameName[256] = {};
     strncpy(gameName, base, sizeof(gameName) - 1);
     char* dot = strrchr(gameName, '.');
     if (dot) *dot = '\0';
+    for (char* p = gameName; *p; ++p) *p = (char)tolower((unsigned char)*p);
 
     // Find the driver index.
     INT32 drvIdx = BurnDrvGetIndex(gameName);
@@ -251,6 +276,7 @@ int fbneo_cps_load_game(const char* zipPath)
     pBurnSoundOut   = s_audioBuf;
     pBurnDraw       = reinterpret_cast<UINT8*>(s_videoBuf);
     nBurnBpp        = 4;
+    nBurnPitch      = 512 * 4; // conservative default; updated to actual width after init
 
     if (BurnDrvInit()) {
         BurnExtLoadRom = nullptr;
@@ -344,10 +370,161 @@ void fbneo_cps_reset()
 size_t fbneo_cps_state_size()
 {
     if (!s_loaded) return 0;
-    // FBNeo doesn't expose a simple in-memory state size query;
-    // return 0 to indicate save states are not yet supported.
     return 0;
 }
 
 int fbneo_cps_state_save(void*, size_t) { return 1; }
 int fbneo_cps_state_load(const void*, size_t) { return 1; }
+
+int fbneo_cps_missing_roms(char* buf, size_t bufSize)
+{
+    if (!buf || bufSize == 0) return s_missingCount;
+    buf[0] = '\0';
+    size_t pos = 0;
+    for (int i = 0; i < s_missingCount && pos + 1 < bufSize; ++i) {
+        size_t nameLen = strlen(s_missingNames[i]);
+        if (pos + nameLen + 2 >= bufSize) break; // +2 for '\n' + '\0'
+        memcpy(buf + pos, s_missingNames[i], nameLen);
+        pos += nameLen;
+        buf[pos++] = '\n';
+    }
+    if (pos > 0 && buf[pos - 1] == '\n') buf[pos - 1] = '\0'; // trim trailing newline
+    else buf[pos] = '\0';
+    return s_missingCount;
+}
+
+int fbneo_cps_driver_type(const char* name)
+{
+    if (!name || !name[0]) return 0;
+
+    // BurnDrvGetIndex requires BurnLibInit() to have been called first
+    // (it sets nBurnDrvCount). Do a lightweight init on first use.
+    if (!s_libInited) {
+        BurnHighCol = highcol_bgra;
+        nBurnLayer  = 0xFF;
+        BurnLibInit();
+        s_libInited = true;
+    }
+
+    INT32 idx = BurnDrvGetIndex(const_cast<char*>(name));
+    if (idx < 0 || (UINT32)idx >= nBurnDrvCount) return 0;
+
+    UINT32 prev = nBurnDrvActive;
+    nBurnDrvActive = (UINT32)idx;
+
+    int result = 1; // default CPS-1 if system string is unreadable
+    char* sys = BurnDrvGetTextA(DRV_SYSTEM);
+    if (sys) {
+        if (strncmp(sys, "CPS2", 4) == 0) result = 2;
+        else                               result = 1;
+    }
+
+    nBurnDrvActive = prev;
+    return result;
+}
+
+int fbneo_cps_verify_game(const char* zipPath, FBNeoRomFile* outFiles, int maxFiles)
+{
+    if (!zipPath || !zipPath[0]) return -1;
+
+    if (!s_libInited) {
+        BurnHighCol = highcol_bgra;
+        nBurnLayer  = 0xFF;
+        BurnLibInit();
+        s_libInited = true;
+    }
+
+    // Derive game name and ROM directory from the zip path.
+    char nameBuf[1024];
+    strncpy(nameBuf, zipPath, sizeof(nameBuf) - 1);
+    char* base = basename(nameBuf);
+
+    char gameName[256] = {};
+    strncpy(gameName, base, sizeof(gameName) - 1);
+    char* dot = strrchr(gameName, '.');
+    if (dot) *dot = '\0';
+    for (char* p = gameName; *p; ++p) *p = (char)tolower((unsigned char)*p);
+
+    INT32 drvIdx = BurnDrvGetIndex(gameName);
+    if (drvIdx < 0 || (UINT32)drvIdx >= nBurnDrvCount) return -1;
+
+    UINT32 prev = nBurnDrvActive;
+    nBurnDrvActive = (UINT32)drvIdx;
+
+    // Open zips: primary + siblings.
+    char pathBuf[1024];
+    strncpy(pathBuf, zipPath, sizeof(pathBuf) - 1);
+    char* dir = dirname(pathBuf);
+
+    unzFile zips[MAX_BRIDGE_ZIPS] = {};
+    int zipCount = 0;
+
+    zips[0] = unzOpen(zipPath);
+    if (zips[0]) zipCount = 1;
+
+    for (UINT32 z = 1; z < BZIP_MAX && zipCount < MAX_BRIDGE_ZIPS; ++z) {
+        char* sibName = nullptr;
+        if (BurnDrvGetZipName(&sibName, z)) break;
+        if (!sibName || !sibName[0])        break;
+        if (strcmp(sibName, gameName) == 0) continue;
+        char sibPath[1024];
+        snprintf(sibPath, sizeof(sibPath), "%s/%s.zip", dir, sibName);
+        unzFile sib = unzOpen(sibPath);
+        if (sib) zips[zipCount++] = sib;
+    }
+
+    // Walk every ROM slot in the driver and verify presence + CRC.
+    int slotCount = 0;
+    struct BurnRomInfo ri;
+    for (UINT32 i = 0; ; ++i) {
+        memset(&ri, 0, sizeof(ri));
+        if (BurnDrvGetRomInfo(&ri, i)) break;
+
+        if (ri.nType == 0) {
+            // Optional / empty slot — record but don't count as required.
+            if (outFiles && slotCount < maxFiles) {
+                char* rn = nullptr;
+                BurnDrvGetRomName(&rn, i, 0);
+                FBNeoRomFile& f = outFiles[slotCount];
+                strncpy(f.name, (rn && rn[0]) ? rn : "(empty)", 63);
+                f.name[63]     = '\0';
+                f.status       = FBNEO_ROM_OPTIONAL;
+                f.expectedCrc  = 0;
+                f.actualCrc    = 0;
+            }
+            slotCount++;
+            continue;
+        }
+
+        char* romName = nullptr;
+        BurnDrvGetRomName(&romName, i, 0);
+
+        FBNeoRomFile entry = {};
+        strncpy(entry.name, (romName && romName[0]) ? romName : "?", 63);
+        entry.name[63]    = '\0';
+        entry.expectedCrc = ri.nCrc;
+        entry.status      = FBNEO_ROM_MISSING;
+
+        // Search all zips for this file and read its CRC from the central directory.
+        for (int z = 0; z < zipCount && entry.status == FBNEO_ROM_MISSING; ++z) {
+            if (!zips[z]) continue;
+            if (unzLocateFile(zips[z], romName, 0) != UNZ_OK) continue;
+
+            unz_file_info fi;
+            memset(&fi, 0, sizeof(fi));
+            if (unzGetCurrentFileInfo(zips[z], &fi, nullptr, 0, nullptr, 0, nullptr, 0) == UNZ_OK) {
+                entry.actualCrc = fi.crc;
+                entry.status    = (fi.crc == ri.nCrc) ? FBNEO_ROM_OK : FBNEO_ROM_WRONG_CRC;
+            }
+        }
+
+        if (outFiles && slotCount < maxFiles) outFiles[slotCount] = entry;
+        slotCount++;
+    }
+
+    for (int z = 0; z < zipCount; ++z)
+        if (zips[z]) unzClose(zips[z]);
+
+    nBurnDrvActive = prev;
+    return slotCount;
+}

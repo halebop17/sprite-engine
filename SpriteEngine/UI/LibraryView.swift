@@ -278,9 +278,9 @@ private struct SidebarView: View {
                     NavItem(label: "Recently Played", icon: "clock",             filter: .recent,    active: filter)  { filter = $0 }
 
                     SectionHeader("PLATFORMS")
-                    PlatformItem(label: "Neo Geo", color: t.sysNeo,  count: neogeoCount, filter: .neoGeo, active: filter) { filter = $0 }
-                    PlatformItem(label: "CPS-1",   color: t.sysCPS1, count: cps1Count,   filter: .cps1,   active: filter) { filter = $0 }
-                    PlatformItem(label: "CPS-2",   color: t.sysCPS2, count: cps2Count,   filter: .cps2,   active: filter) { filter = $0 }
+                    PlatformItem(label: "Neo Geo", logo: "NeoGeoLogo", color: t.sysNeo,  count: neogeoCount, filter: .neoGeo, active: filter) { filter = $0 }
+                    PlatformItem(label: "CPS-1",   logo: "CPS1Logo",   color: t.sysCPS1, count: cps1Count,   filter: .cps1,   active: filter) { filter = $0 }
+                    PlatformItem(label: "CPS-2",   logo: "CPS2Logo",   color: t.sysCPS2, count: cps2Count,   filter: .cps2,   active: filter) { filter = $0 }
 
                     Divider().background(t.divider).padding(.horizontal, 14).padding(.vertical, 8)
 
@@ -364,6 +364,7 @@ private struct NavItem: View {
 
 private struct PlatformItem: View {
     let label: String
+    let logo: String
     let color: Color
     let count: Int
     let filter: LibraryFilter
@@ -377,7 +378,15 @@ private struct PlatformItem: View {
     var body: some View {
         Button { action(filter) } label: {
             HStack(spacing: 8) {
-                Circle().fill(color).frame(width: 8, height: 8)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(isActive ? Color.white.opacity(0.18) : color.opacity(0.18))
+                        .frame(width: 24, height: 24)
+                    Image(logo)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 17, height: 17)
+                }
                 Text(label)
                     .font(.system(size: 12.5, weight: isActive ? .semibold : .regular))
                     .foregroundColor(isActive ? .white : t.text)
@@ -386,8 +395,8 @@ private struct PlatformItem: View {
                     .font(.system(size: 10, weight: .medium))
                     .foregroundColor(isActive ? .white.opacity(0.65) : t.textFaint)
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 5)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 4)
             .background(isActive ? t.sidebarActive : (hovered ? t.accentSoft : .clear))
             .clipShape(RoundedRectangle(cornerRadius: 7))
             .padding(.horizontal, 8)

@@ -13,15 +13,54 @@
 static uint32_t s_input[2] = {0, 0};
 static uint32_t s_sys_input = 0;
 
-// Geolith queries each bit individually via these callbacks
-static unsigned input_cb0(unsigned bit) { return (s_input[0] >> bit) & 1; }
-static unsigned input_cb1(unsigned bit) { return (s_input[1] >> bit) & 1; }
+// Convert our active-high GEO_BTN_* bitmask to the active-low joystick byte
+// that Geolith's P1CNT/P2CNT registers expect (0xff = all released).
+static unsigned input_poll_js(uint32_t inp) {
+    unsigned b = 0xff;
+    if (inp & (1u << GEO_BTN_UP))    b &= ~(1u << 0);
+    if (inp & (1u << GEO_BTN_DOWN))  b &= ~(1u << 1);
+    if (inp & (1u << GEO_BTN_LEFT))  b &= ~(1u << 2);
+    if (inp & (1u << GEO_BTN_RIGHT)) b &= ~(1u << 3);
+    if (inp & (1u << GEO_BTN_A))     b &= ~(1u << 4);
+    if (inp & (1u << GEO_BTN_B))     b &= ~(1u << 5);
+    if (inp & (1u << GEO_BTN_C))     b &= ~(1u << 6);
+    if (inp & (1u << GEO_BTN_D))     b &= ~(1u << 7);
+    return b;
+}
 
-// System inputs: Coin1, Coin2, Service, Test (indices 0-3)
-static unsigned sys_cb0(void) { return (s_sys_input >> 0) & 1; }
-static unsigned sys_cb1(void) { return (s_sys_input >> 1) & 1; }
-static unsigned sys_cb2(void) { return (s_sys_input >> 2) & 1; }
-static unsigned sys_cb3(void) { return (s_sys_input >> 3) & 1; }
+// Player joystick callbacks — argument is the port index (ignored; one callback per player)
+static unsigned input_cb0(unsigned port) { (void)port; return input_poll_js(s_input[0]); }
+static unsigned input_cb1(unsigned port) { (void)port; return input_poll_js(s_input[1]); }
+
+// REG_STATUS_A: Coin-in and service buttons (active-low, bits 0-2)
+static unsigned sys_cb0(void) {
+    unsigned c = 0x07 | 0x18;  // coins 1-3 released; slots 3&4 always high (2-slot cab)
+    if (s_sys_input & (1u << GEO_SYS_COIN1))   c &= ~(1u << 0);
+    if (s_sys_input & (1u << GEO_SYS_COIN2))   c &= ~(1u << 1);
+    if (s_sys_input & (1u << GEO_SYS_SERVICE)) c &= ~(1u << 2);
+    return c;
+}
+
+// REG_STATUS_B: P1/P2 Select/Start (active-low, bits 0-3); no memory card (bits 4-5 = 1)
+static unsigned sys_cb1(void) {
+    unsigned s = 0x3f;  // bits 0-5 = 1 = all released; memcard not inserted
+    if (s_input[0] & (1u << GEO_BTN_START))  s &= ~(1u << 0);  // P1 Start
+    if (s_input[0] & (1u << GEO_BTN_SELECT)) s &= ~(1u << 1);  // P1 Select
+    if (s_input[1] & (1u << GEO_BTN_START))  s &= ~(1u << 2);  // P2 Start
+    if (s_input[1] & (1u << GEO_BTN_SELECT)) s &= ~(1u << 3);  // P2 Select
+    return s;
+}
+
+// REG_SYSTYPE: Test button (bit 7, active-low) + slot count (bit 6, masked by hardware)
+static unsigned sys_cb2(void) {
+    unsigned t = 0xc0;  // test not pressed; 2-slot cabinet
+    if (s_sys_input & (1u << GEO_SYS_TEST)) t &= ~(1u << 7);
+    return t;
+}
+
+// REG_DIPSW: DIP switches (active-low; 0xff = all off = normal arcade settings)
+static unsigned sys_cb3(void) { return 0xff; }
+
 static unsigned sys_cb4(void) { return 0; }
 
 // ── Audio bookkeeping ─────────────────────────────────────────────────────────
@@ -46,6 +85,9 @@ void geo_bridge_set_system(int system, int region) {
 }
 
 int geo_bridge_load_bios(const char *path) {
+    // geo_bios_load_file calls geo_log internally; set a safe stub before it
+    // is ever invoked so we don't crash on a NULL function pointer.
+    geo_log_set_callback(geo_log_stub);
     return geo_bios_load_file(path);
 }
 
@@ -68,6 +110,10 @@ void geo_bridge_init(void) {
     geo_mixer_set_callback(audio_ready);
 
     geo_init();
+
+    // Populate LSPC palette LUTs (resistor-network mode). Without this call
+    // lut_normal[] and lut_shadow[] remain zero and every pixel renders black.
+    geo_lspc_set_palette(0);
 }
 
 void geo_bridge_deinit(void) {

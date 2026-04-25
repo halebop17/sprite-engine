@@ -39,14 +39,11 @@ final class EmulatorView: MTKView {
 
     override var acceptsFirstResponder: Bool { true }
 
-    override func keyDown(with event: NSEvent) {
-        // Suppress the system beep by not calling super.
-        inputManager?.keyDown(keyCode: event.keyCode)
-    }
-
-    override func keyUp(with event: NSEvent) {
-        inputManager?.keyUp(keyCode: event.keyCode)
-    }
+    // Key events are handled by the local NSEvent monitor in EmulatorViewModel,
+    // which works regardless of first-responder status. We override here only to
+    // suppress the system "beep" that NSResponder.keyDown produces by default.
+    override func keyDown(with event: NSEvent) {}
+    override func keyUp(with event: NSEvent) {}
 
     // MARK: - Frame update
 

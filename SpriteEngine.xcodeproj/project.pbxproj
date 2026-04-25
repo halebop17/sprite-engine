@@ -35,12 +35,17 @@
 		2BB2E5C55D0DD5747EA22049 /* cps2_crpt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD376BB8E46557A06C07FFBB /* cps2_crpt.cpp */; };
 		2C6FA22EAD9A63650E3BB51B /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97370E4C99A7EA55F5060C50 /* System.swift */; };
 		2E7D830BC29EF1F208AAEC03 /* EmulatorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B256A8DDB4B36B65779CBAA2 /* EmulatorError.swift */; };
+		5E4BF9BBA94C4107BAA123FA /* ROMVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123CBD3C7B0846AE98204C78 /* ROMVerifier.swift */; };
+		1949324C4D6D4B439A8B5A26 /* ROMVerifierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4549E2492443F9AAFAB21 /* ROMVerifierView.swift */; };
 		2F0F9CBCB8C54CFB0CF08647 /* SaveStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F39C1A6EEA0C312B449D0F /* SaveStateManager.swift */; };
 		30867271CEF2B0F61C534EDB /* z80_intf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0A689BCC3BB8DC2F4CE8070 /* z80_intf.cpp */; };
 		30935A762B42EF6132C7EEDE /* GameDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFCD6415116325DDB773239 /* GameDatabase.swift */; };
 		31F76B79CEFC0508041C986C /* qs_c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6C052EE9BECCE67B1229F4C3 /* qs_c.cpp */; };
 		3582AC6C1785D3A435917DFB /* dac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0FB6F180B60D8BCD9DF1FB51 /* dac.cpp */; };
 		38187CC708BD01A1342B4021 /* fbneo_cps_bridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 228684DA886A07ABE3D86CA0 /* fbneo_cps_bridge.cpp */; };
+		A1B2C3D4E5F60001293A4B5C /* fbneo_driver_bridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60002293A4B5C /* fbneo_driver_bridge.cpp */; };
+		A1B2C3D4E5F60003293A4B5C /* fbneo_driver_bridge.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60004293A4B5C /* fbneo_driver_bridge.h */; };
+		A1B2C3D4E5F60005293A4B5C /* FBNeoCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60006293A4B5C /* FBNeoCore.swift */; };
 		390447556B9255C431906FB1 /* EmulatorCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C95B08DC8BA92B48ED19E41 /* EmulatorCore.swift */; };
 		3B6D5DA3AD2E7AEC655D1C48 /* burn_led.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AD257C5C2419568CF7BF26D /* burn_led.cpp */; };
 		3D8728B4057F09BFB30113AA /* cps_config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81A94D1E430B276AD6F3502E /* cps_config.cpp */; };
@@ -61,6 +66,7 @@
 		663248855E6634AFAEF7CA6E /* ps_m.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ECFDB89832026488C7D4C30F /* ps_m.cpp */; };
 		6656910ABF4BF076FBC65E59 /* burn_sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A2ED6A9D33C56D9103A12986 /* burn_sound.cpp */; };
 		6855DA85FEFA3C83ECC340A4 /* ymfm_opn.c in Sources */ = {isa = PBXBuildFile; fileRef = 202358FED798A086A625712A /* ymfm_opn.c */; };
+		6AF13A5639AF30F9C6406C04 /* MediaTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2E0A9801A2AC4B10AF6648 /* MediaTabView.swift */; };
 		6B8056610D81F928C9747312 /* cps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1E77DD0C07E3DB5B52B08A6 /* cps.cpp */; };
 		717C2A2BC23427CA32CEE1D0 /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFA55D24AD7B6BA5F0CC729 /* ImportView.swift */; };
 		750ED0C2DE728E74CCDEE91C /* geolith_bridge.c in Sources */ = {isa = PBXBuildFile; fileRef = F4AA41BD4649F24B62251F4C /* geolith_bridge.c */; };
@@ -100,6 +106,7 @@
 		B3F04F4C46CD68C203E713F1 /* EmulatorWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D10FAD4B99599EDA34D632 /* EmulatorWindowView.swift */; };
 		B56BA48F49644B488C483E72 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D8507113B4EEF3990742C8 /* RingBuffer.swift */; };
 		B58DDAB42A72B7B70C6F215D /* geo_mixer.c in Sources */ = {isa = PBXBuildFile; fileRef = 50AA7ECB1DC6952EFECB5DF8 /* geo_mixer.c */; };
+		B85860190EAAF85ABB74F378 /* GameMediaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1F29DFF981581A6E2F3832 /* GameMediaStore.swift */; };
 		B8AF11BF357C5905410F6149 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7195AC15433E361A66632745 /* DetailView.swift */; };
 		B9B14E18E2E9E2F858A700B2 /* geo_rtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D848198948E2C9B64FE34711 /* geo_rtc.c */; };
 		BACD84968CE5C6C748924A5D /* qs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C11E093AAAACE496E92818 /* qs.cpp */; };
@@ -107,6 +114,7 @@
 		BD27D351AA99A17FC8530986 /* vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 045BA7AFDA18A2D044155E31 /* vector.cpp */; };
 		C11119C61E24361B78634898 /* ROMScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AAC3F8EE5F8C9A2DF68230 /* ROMScanner.swift */; };
 		C3CEF708DC51D88123169210 /* geo.c in Sources */ = {isa = PBXBuildFile; fileRef = D7BBBDB6D130E9876A8ACA64 /* geo.c */; };
+		C408F78CC9804BF28B619A98 /* GameMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4343F237BC0C73815C9E1DA /* GameMediaItem.swift */; };
 		C8D601825316782CE412EC58 /* geo_disc.c in Sources */ = {isa = PBXBuildFile; fileRef = 07270948DE5DFCFD5A564B2B /* geo_disc.c */; };
 		CA6DAFAAC72BF6549F4A345E /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 10C09B78E2A983224BFFA00A /* timer.cpp */; };
 		CAD689949F4AEBDE38CAB06E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D04C5F7697CA39784D9F294 /* ContentView.swift */; };
@@ -133,6 +141,40 @@
 		F7F5949B73CC15D4101EA695 /* eeprom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5824B35411FE6A1CB513000 /* eeprom.cpp */; };
 		FE6343B387A29A059AF024EB /* EmulatorSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219FAC862546400A38C9B53 /* EmulatorSession.swift */; };
 		FFAC650EE64B04D08653E5DC /* m68000_intf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0E424D8F923F158263BB53A6 /* m68000_intf.cpp */; };
+		SE160000B000000000000000 /* d_sys16a.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160000A000000000000000 /* d_sys16a.cpp */; };
+		SE160001B000000000000000 /* d_sys16b.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160001A000000000000000 /* d_sys16b.cpp */; };
+		SE160002B000000000000000 /* d_sys18.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160002A000000000000000 /* d_sys18.cpp */; };
+		SE160003B000000000000000 /* fd1089.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160003A000000000000000 /* fd1089.cpp */; };
+		SE160004B000000000000000 /* fd1094.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160004A000000000000000 /* fd1094.cpp */; };
+		SE160005B000000000000000 /* fd1094_intf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160005A000000000000000 /* fd1094_intf.cpp */; };
+		SE160006B000000000000000 /* sega_315_5195.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160006A000000000000000 /* sega_315_5195.cpp */; };
+		SE160007B000000000000000 /* sys16_gfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160007A000000000000000 /* sys16_gfx.cpp */; };
+		SE160008B000000000000000 /* sys16_run.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160008A000000000000000 /* sys16_run.cpp */; };
+		SE160009B000000000000000 /* sys16_fd1094.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160009A000000000000000 /* sys16_fd1094.cpp */; };
+		SE160010B000000000000000 /* mc8123.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160010A000000000000000 /* mc8123.cpp */; };
+		SE160011B000000000000000 /* genesis_vid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160011A000000000000000 /* genesis_vid.cpp */; };
+		SE160012B000000000000000 /* usb_snd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160012A000000000000000 /* usb_snd.cpp */; };
+		SE160013B000000000000000 /* rf5c68.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160013A000000000000000 /* rf5c68.cpp */; };
+		SE160014B000000000000000 /* segapcm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160014A000000000000000 /* segapcm.cpp */; };
+		SE160015B000000000000000 /* upd7759.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160015A000000000000000 /* upd7759.cpp */; };
+		SE160016B000000000000000 /* burn_ym2203.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160016A000000000000000 /* burn_ym2203.cpp */; };
+		SE160017B000000000000000 /* burn_ym2413.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160017A000000000000000 /* burn_ym2413.cpp */; };
+		SE160018B000000000000000 /* burn_ym2612.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160018A000000000000000 /* burn_ym2612.cpp */; };
+		SE160019B000000000000000 /* ym2413.c in Sources */ = {isa = PBXBuildFile; fileRef = SE160019A000000000000000 /* ym2413.c */; };
+		SE160020B000000000000000 /* ym2612.c in Sources */ = {isa = PBXBuildFile; fileRef = SE160020A000000000000000 /* ym2612.c */; };
+		SE160021B000000000000000 /* i8039.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160021A000000000000000 /* i8039.cpp */; };
+		SE160022B000000000000000 /* mcs51.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160022A000000000000000 /* mcs51.cpp */; };
+		SE160023B000000000000000 /* 8255ppi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160023A000000000000000 /* 8255ppi.cpp */; };
+		SE160024B000000000000000 /* resnet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE160024A000000000000000 /* resnet.cpp */; };
+		SE16YBRD0B00000000000000 /* d_ybrd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE16YBRD0A00000000000000 /* d_ybrd.cpp */; };
+		SE16FM000B00000000000000 /* fm.c in Sources */ = {isa = PBXBuildFile; fileRef = SE16FM000A00000000000000 /* fm.c */; };
+		SE16AY891B00000000000000 /* ay8910.c in Sources */ = {isa = PBXBuildFile; fileRef = SE16AY891A00000000000000 /* ay8910.c */; };
+		SE16DELTB000000000000000 /* ymdeltat.c in Sources */ = {isa = PBXBuildFile; fileRef = SE16DELTA000000000000000 /* ymdeltat.c */; };
+		SE16FMO2608B000000000000 /* burn_ym2608.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE16FMO2608A000000000000 /* burn_ym2608.cpp */; };
+		SE16FMO2610B000000000000 /* burn_ym2610.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE16FMO2610A000000000000 /* burn_ym2610.cpp */; };
+		SE16HANGONB0000000000000 /* d_hangon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE16HANGONA0000000000000 /* d_hangon.cpp */; };
+		SE16OUTRUNB0000000000000 /* d_outrun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE16OUTRUNA0000000000000 /* d_outrun.cpp */; };
+		SE16XBOARD0B000000000000 /* d_xbrd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = SE16XBOARD0A000000000000 /* d_xbrd.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +212,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				074AE2B2D092416621CE77DB /* fbneo_cps_bridge.h in CopyFiles */,
+				A1B2C3D4E5F60003293A4B5C /* fbneo_driver_bridge.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +241,9 @@
 		202358FED798A086A625712A /* ymfm_opn.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ymfm_opn.c; sourceTree = "<group>"; };
 		204E58FEBDEBB896EF2BD2F3 /* geo_z80.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_z80.c; sourceTree = "<group>"; };
 		215BC996AC489110CCE2B8B0 /* FBNeoCPSCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBNeoCPSCore.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60002293A4B5C /* fbneo_driver_bridge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fbneo_driver_bridge.cpp; sourceTree = "<group>"; };
+		A1B2C3D4E5F60004293A4B5C /* fbneo_driver_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fbneo_driver_bridge.h; sourceTree = "<group>"; };
+		A1B2C3D4E5F60006293A4B5C /* FBNeoCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBNeoCore.swift; sourceTree = "<group>"; };
 		228684DA886A07ABE3D86CA0 /* fbneo_cps_bridge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fbneo_cps_bridge.cpp; sourceTree = "<group>"; };
 		2475163282DC5AA07E0E1B09 /* cps_draw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps_draw.cpp; sourceTree = "<group>"; };
 		247A548E68EA6D850D7B1F18 /* cps_obj.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps_obj.cpp; sourceTree = "<group>"; };
@@ -206,6 +252,7 @@
 		2BBDA862B1256B88CCC901F8 /* m68kops.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = m68kops.c; sourceTree = "<group>"; };
 		2BD91CE627897B395DF6BF6A /* burn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn.cpp; sourceTree = "<group>"; };
 		2E8BFE8768FF29D11B59CB8E /* geo_neo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_neo.c; sourceTree = "<group>"; };
+		2F1F29DFF981581A6E2F3832 /* GameMediaStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMediaStore.swift; sourceTree = "<group>"; };
 		30E389743F8A7C1EA1B04893 /* NeoConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeoConverter.swift; sourceTree = "<group>"; };
 		31EF81A53CEEC38442433EAE /* z80daisy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = z80daisy.cpp; sourceTree = "<group>"; };
 		3707715181EAD11F17488779 /* SpriteEngineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteEngineApp.swift; sourceTree = "<group>"; };
@@ -263,6 +310,7 @@
 		AEBB6C21F7FFCDB0563D776D /* EmulatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmulatorView.swift; sourceTree = "<group>"; };
 		AF0F41C4F16B26D6EEDD54BE /* joyprocess.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = joyprocess.cpp; sourceTree = "<group>"; };
 		B256A8DDB4B36B65779CBAA2 /* EmulatorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmulatorError.swift; sourceTree = "<group>"; };
+		B4343F237BC0C73815C9E1DA /* GameMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMediaItem.swift; sourceTree = "<group>"; };
 		B52150829F9787978629D95A /* ymfm_ssg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ymfm_ssg.c; sourceTree = "<group>"; };
 		B5824B35411FE6A1CB513000 /* eeprom.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = eeprom.cpp; sourceTree = "<group>"; };
 		B64BEDAC99A1A2FF11002C02 /* qs_z.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = qs_z.cpp; sourceTree = "<group>"; };
@@ -286,6 +334,7 @@
 		D7BBBDB6D130E9876A8ACA64 /* geo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo.c; sourceTree = "<group>"; };
 		D807C9EED143BBA085F2CD87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D848198948E2C9B64FE34711 /* geo_rtc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_rtc.c; sourceTree = "<group>"; };
+		DA2E0A9801A2AC4B10AF6648 /* MediaTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTabView.swift; sourceTree = "<group>"; };
 		DFFCD6415116325DDB773239 /* GameDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDatabase.swift; sourceTree = "<group>"; };
 		E1DDAF8602E197AB7062E1F6 /* debug_track.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = debug_track.cpp; sourceTree = "<group>"; };
 		E1E77DD0C07E3DB5B52B08A6 /* cps.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cps.cpp; sourceTree = "<group>"; };
@@ -303,7 +352,43 @@
 		F651C81BE9B918CFC27611C7 /* burn_memory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_memory.cpp; sourceTree = "<group>"; };
 		F7D6A0099727099E5AC696BD /* geo_lc8951.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_lc8951.c; sourceTree = "<group>"; };
 		FAA03B44C0916C1D550B1141 /* ROMLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROMLibrary.swift; sourceTree = "<group>"; };
+		123CBD3C7B0846AE98204C78 /* ROMVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROMVerifier.swift; sourceTree = "<group>"; };
+		04B4549E2492443F9AAFAB21 /* ROMVerifierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ROMVerifierView.swift; sourceTree = "<group>"; };
 		FC3A2DD6A4A413A058BB3A72 /* d_cps1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_cps1.cpp; sourceTree = "<group>"; };
+		SE160000A000000000000000 /* d_sys16a.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_sys16a.cpp; sourceTree = "<group>"; };
+		SE160001A000000000000000 /* d_sys16b.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_sys16b.cpp; sourceTree = "<group>"; };
+		SE160002A000000000000000 /* d_sys18.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_sys18.cpp; sourceTree = "<group>"; };
+		SE160003A000000000000000 /* fd1089.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fd1089.cpp; sourceTree = "<group>"; };
+		SE160004A000000000000000 /* fd1094.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fd1094.cpp; sourceTree = "<group>"; };
+		SE160005A000000000000000 /* fd1094_intf.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fd1094_intf.cpp; sourceTree = "<group>"; };
+		SE160006A000000000000000 /* sega_315_5195.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sega_315_5195.cpp; sourceTree = "<group>"; };
+		SE160007A000000000000000 /* sys16_gfx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sys16_gfx.cpp; sourceTree = "<group>"; };
+		SE160008A000000000000000 /* sys16_run.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sys16_run.cpp; sourceTree = "<group>"; };
+		SE160009A000000000000000 /* sys16_fd1094.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sys16_fd1094.cpp; sourceTree = "<group>"; };
+		SE160010A000000000000000 /* mc8123.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mc8123.cpp; sourceTree = "<group>"; };
+		SE160011A000000000000000 /* genesis_vid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = genesis_vid.cpp; sourceTree = "<group>"; };
+		SE160012A000000000000000 /* usb_snd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = usb_snd.cpp; sourceTree = "<group>"; };
+		SE160013A000000000000000 /* rf5c68.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rf5c68.cpp; sourceTree = "<group>"; };
+		SE160014A000000000000000 /* segapcm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = segapcm.cpp; sourceTree = "<group>"; };
+		SE160015A000000000000000 /* upd7759.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = upd7759.cpp; sourceTree = "<group>"; };
+		SE160016A000000000000000 /* burn_ym2203.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_ym2203.cpp; sourceTree = "<group>"; };
+		SE160017A000000000000000 /* burn_ym2413.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_ym2413.cpp; sourceTree = "<group>"; };
+		SE160018A000000000000000 /* burn_ym2612.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_ym2612.cpp; sourceTree = "<group>"; };
+		SE160019A000000000000000 /* ym2413.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ym2413.c; sourceTree = "<group>"; };
+		SE160020A000000000000000 /* ym2612.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ym2612.c; sourceTree = "<group>"; };
+		SE160021A000000000000000 /* i8039.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = i8039.cpp; sourceTree = "<group>"; };
+		SE160022A000000000000000 /* mcs51.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mcs51.cpp; sourceTree = "<group>"; };
+		SE160023A000000000000000 /* 8255ppi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = 8255ppi.cpp; sourceTree = "<group>"; };
+		SE160024A000000000000000 /* resnet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = resnet.cpp; sourceTree = "<group>"; };
+		SE16YBRD0A00000000000000 /* d_ybrd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_ybrd.cpp; sourceTree = "<group>"; };
+		SE16FM000A00000000000000 /* fm.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fm.c; sourceTree = "<group>"; };
+		SE16AY891A00000000000000 /* ay8910.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ay8910.c; sourceTree = "<group>"; };
+		SE16DELTA000000000000000 /* ymdeltat.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ymdeltat.c; sourceTree = "<group>"; };
+		SE16FMO2608A000000000000 /* burn_ym2608.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_ym2608.cpp; sourceTree = "<group>"; };
+		SE16FMO2610A000000000000 /* burn_ym2610.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_ym2610.cpp; sourceTree = "<group>"; };
+		SE16HANGONA0000000000000 /* d_hangon.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_hangon.cpp; sourceTree = "<group>"; };
+		SE16OUTRUNA0000000000000 /* d_outrun.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_outrun.cpp; sourceTree = "<group>"; };
+		SE16XBOARD0A000000000000 /* d_xbrd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_xbrd.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +437,8 @@
 				C0A689BCC3BB8DC2F4CE8070 /* z80_intf.cpp */,
 				43AF0E81C86D328C8FC5AF17 /* m68k */,
 				D4AF69363335E5D984336492 /* z80 */,
+				SE16I8039GRP00000000000 /* i8039 */,
+				SE16I8051GRP00000000000 /* i8051 */,
 			);
 			path = cpu;
 			sourceTree = "<group>";
@@ -373,6 +460,7 @@
 				B256A8DDB4B36B65779CBAA2 /* EmulatorError.swift */,
 				5219FAC862546400A38C9B53 /* EmulatorSession.swift */,
 				215BC996AC489110CCE2B8B0 /* FBNeoCPSCore.swift */,
+				A1B2C3D4E5F60006293A4B5C /* FBNeoCore.swift */,
 				E72ED0E6146F1DF37A530AB9 /* GeolithCore.swift */,
 			);
 			path = Emulation;
@@ -491,8 +579,10 @@
 				C9F7075F2B92E4FFA2F957E5 /* GameCardView.swift */,
 				BAFA55D24AD7B6BA5F0CC729 /* ImportView.swift */,
 				98413E3489F5A95A960FB160 /* LibraryView.swift */,
+				DA2E0A9801A2AC4B10AF6648 /* MediaTabView.swift */,
 				47C4B835133D68A596EFDA7B /* OnboardingView.swift */,
 				5284FBA2C7A63D27138CFF8E /* SettingsView.swift */,
+				04B4549E2492443F9AAFAB21 /* ROMVerifierView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -501,8 +591,10 @@
 			isa = PBXGroup;
 			children = (
 				DFFCD6415116325DDB773239 /* GameDatabase.swift */,
+				2F1F29DFF981581A6E2F3832 /* GameMediaStore.swift */,
 				82A4FAAA1A480129B85EC668 /* GameMetadata.swift */,
 				FAA03B44C0916C1D550B1141 /* ROMLibrary.swift */,
+				123CBD3C7B0846AE98204C78 /* ROMVerifier.swift */,
 				18AAC3F8EE5F8C9A2DF68230 /* ROMScanner.swift */,
 				15F39C1A6EEA0C312B449D0F /* SaveStateManager.swift */,
 			);
@@ -600,8 +692,49 @@
 			children = (
 				B94DA6EAE23F47AC4F7E05F6 /* d_parent.cpp */,
 				3BBCEF4B1C5F9B4DEC7E3D54 /* capcom */,
+				SE16SEGAGRP000000000000 /* sega */,
 			);
 			path = drv;
+			sourceTree = "<group>";
+		};
+		SE16SEGAGRP000000000000 /* sega */ = {
+			isa = PBXGroup;
+			children = (
+				SE160000A000000000000000 /* d_sys16a.cpp */,
+				SE160001A000000000000000 /* d_sys16b.cpp */,
+				SE160002A000000000000000 /* d_sys18.cpp */,
+				SE160003A000000000000000 /* fd1089.cpp */,
+				SE160004A000000000000000 /* fd1094.cpp */,
+				SE160005A000000000000000 /* fd1094_intf.cpp */,
+				SE160006A000000000000000 /* sega_315_5195.cpp */,
+				SE160007A000000000000000 /* sys16_gfx.cpp */,
+				SE160008A000000000000000 /* sys16_run.cpp */,
+				SE160009A000000000000000 /* sys16_fd1094.cpp */,
+				SE160010A000000000000000 /* mc8123.cpp */,
+				SE160011A000000000000000 /* genesis_vid.cpp */,
+				SE160012A000000000000000 /* usb_snd.cpp */,
+				SE16YBRD0A00000000000000 /* d_ybrd.cpp */,
+				SE16HANGONA0000000000000 /* d_hangon.cpp */,
+				SE16OUTRUNA0000000000000 /* d_outrun.cpp */,
+				SE16XBOARD0A000000000000 /* d_xbrd.cpp */,
+			);
+			path = sega;
+			sourceTree = "<group>";
+		};
+		SE16I8039GRP00000000000 /* i8039 */ = {
+			isa = PBXGroup;
+			children = (
+				SE160021A000000000000000 /* i8039.cpp */,
+			);
+			path = i8039;
+			sourceTree = "<group>";
+		};
+		SE16I8051GRP00000000000 /* i8051 */ = {
+			isa = PBXGroup;
+			children = (
+				SE160022A000000000000000 /* mcs51.cpp */,
+			);
+			path = i8051;
 			sourceTree = "<group>";
 		};
 		AF9A9310E22F0E9879C06BF3 /* devices */ = {
@@ -610,6 +743,8 @@
 				B5824B35411FE6A1CB513000 /* eeprom.cpp */,
 				AF0F41C4F16B26D6EEDD54BE /* joyprocess.cpp */,
 				B7C9C3EBDE427B3D4E0DF86B /* timekpr.cpp */,
+				SE160023A000000000000000 /* 8255ppi.cpp */,
+				SE160024A000000000000000 /* resnet.cpp */,
 			);
 			path = devices;
 			sourceTree = "<group>";
@@ -619,6 +754,8 @@
 			children = (
 				228684DA886A07ABE3D86CA0 /* fbneo_cps_bridge.cpp */,
 				5854B6FC1ED22991B47E547E /* fbneo_cps_bridge.h */,
+				A1B2C3D4E5F60002293A4B5C /* fbneo_driver_bridge.cpp */,
+				A1B2C3D4E5F60004293A4B5C /* fbneo_driver_bridge.h */,
 				E9ACA327B5A1BD5D90849271 /* fbneo_macos_compat.cpp */,
 			);
 			path = bridge;
@@ -643,6 +780,19 @@
 				A083C0A30A1A0D965CE1DB01 /* msm6295.cpp */,
 				07452615AD01389BE754C1C4 /* samples.cpp */,
 				09BA3C75C4526B37E7ACA7DB /* ym2151.c */,
+				SE160013A000000000000000 /* rf5c68.cpp */,
+				SE160014A000000000000000 /* segapcm.cpp */,
+				SE160015A000000000000000 /* upd7759.cpp */,
+				SE160016A000000000000000 /* burn_ym2203.cpp */,
+				SE160017A000000000000000 /* burn_ym2413.cpp */,
+				SE160018A000000000000000 /* burn_ym2612.cpp */,
+				SE160019A000000000000000 /* ym2413.c */,
+				SE160020A000000000000000 /* ym2612.c */,
+				SE16FM000A00000000000000 /* fm.c */,
+				SE16AY891A00000000000000 /* ay8910.c */,
+				SE16DELTA000000000000000 /* ymdeltat.c */,
+				SE16FMO2608A000000000000 /* burn_ym2608.cpp */,
+				SE16FMO2610A000000000000 /* burn_ym2610.cpp */,
 			);
 			path = snd;
 			sourceTree = "<group>";
@@ -670,6 +820,7 @@
 			isa = PBXGroup;
 			children = (
 				294A89675FAC4F0015592539 /* Game.swift */,
+				B4343F237BC0C73815C9E1DA /* GameMediaItem.swift */,
 				4960B37AEE5494863F072169 /* SaveState.swift */,
 				97370E4C99A7EA55F5060C50 /* System.swift */,
 			);
@@ -874,7 +1025,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\nSRCROOT_FBNEO=\"${SRCROOT}/FBNeoCPSLib/fbneo/src\"\nGENDIR=\"${SRCROOT_FBNEO}/dep/generated\"\nCAPCOM=\"${SRCROOT_FBNEO}/burn/drv/capcom\"\nmkdir -p \"${GENDIR}\"\n\n# m68kops.c — regenerate if source is newer\nif [ \"${SRCROOT_FBNEO}/cpu/m68k/m68k_in.c\" -nt \"${GENDIR}/m68kops.c\" ]; then\n  clang \"${SRCROOT_FBNEO}/cpu/m68k/m68kmake.c\" -o \"${GENDIR}/m68kmake\"\n  \"${GENDIR}/m68kmake\" \"${GENDIR}\" \"${SRCROOT_FBNEO}/cpu/m68k/m68k_in.c\"\nfi\n\n# ctv.h — regenerate if make source is newer\nif [ \"${CAPCOM}/ctv_make.cpp\" -nt \"${CAPCOM}/ctv.h\" ]; then\n  clang++ \"${CAPCOM}/ctv_make.cpp\" -o \"${GENDIR}/ctv_make\"\n  \"${GENDIR}/ctv_make\" > \"${CAPCOM}/ctv.h\"\nfi\n\n# driverlist.h — generate CPS-1/2 driver list if missing\nif [ ! -f \"${GENDIR}/driverlist.h\" ]; then\n  python3 \"${SRCROOT}/Scripts/generate_driverlist.py\"\nfi\n";
+			shellScript = "set -e\nSRCROOT_FBNEO=\"${SRCROOT}/FBNeoCPSLib/fbneo/src\"\nGENDIR=\"${SRCROOT_FBNEO}/dep/generated\"\nCAPCOM=\"${SRCROOT_FBNEO}/burn/drv/capcom\"\nmkdir -p \"${GENDIR}\"\n\n# m68kops.c — regenerate if source is newer\nif [ \"${SRCROOT_FBNEO}/cpu/m68k/m68k_in.c\" -nt \"${GENDIR}/m68kops.c\" ]; then\n  clang \"${SRCROOT_FBNEO}/cpu/m68k/m68kmake.c\" -o \"${GENDIR}/m68kmake\"\n  \"${GENDIR}/m68kmake\" \"${GENDIR}\" \"${SRCROOT_FBNEO}/cpu/m68k/m68k_in.c\"\nfi\n\n# ctv.h — regenerate if make source is newer\nif [ \"${CAPCOM}/ctv_make.cpp\" -nt \"${CAPCOM}/ctv.h\" ]; then\n  clang++ \"${CAPCOM}/ctv_make.cpp\" -o \"${GENDIR}/ctv_make\"\n  \"${GENDIR}/ctv_make\" > \"${CAPCOM}/ctv.h\"\nfi\n\n# driverlist.h — regenerate if missing or if driver sources changed\nSEGA=\"${SRCROOT_FBNEO}/burn/drv/sega\"\nif [ ! -f \"${GENDIR}/driverlist.h\" ] || [ \"${CAPCOM}/d_cps1.cpp\" -nt \"${GENDIR}/driverlist.h\" ] || [ \"${SEGA}/d_sys16a.cpp\" -nt \"${GENDIR}/driverlist.h\" ]; then\n  python3 \"${SRCROOT}/Scripts/generate_driverlist.py\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -916,6 +1067,41 @@
 				49ED9CE9E2F914D43DF02DEE /* debug_track.cpp in Sources */,
 				F7F5949B73CC15D4101EA695 /* eeprom.cpp in Sources */,
 				38187CC708BD01A1342B4021 /* fbneo_cps_bridge.cpp in Sources */,
+				A1B2C3D4E5F60001293A4B5C /* fbneo_driver_bridge.cpp in Sources */,
+				SE160000B000000000000000 /* d_sys16a.cpp in Sources */,
+				SE160001B000000000000000 /* d_sys16b.cpp in Sources */,
+				SE160002B000000000000000 /* d_sys18.cpp in Sources */,
+				SE160003B000000000000000 /* fd1089.cpp in Sources */,
+				SE160004B000000000000000 /* fd1094.cpp in Sources */,
+				SE160005B000000000000000 /* fd1094_intf.cpp in Sources */,
+				SE160006B000000000000000 /* sega_315_5195.cpp in Sources */,
+				SE160007B000000000000000 /* sys16_gfx.cpp in Sources */,
+				SE160008B000000000000000 /* sys16_run.cpp in Sources */,
+				SE160009B000000000000000 /* sys16_fd1094.cpp in Sources */,
+				SE160010B000000000000000 /* mc8123.cpp in Sources */,
+				SE160011B000000000000000 /* genesis_vid.cpp in Sources */,
+				SE160012B000000000000000 /* usb_snd.cpp in Sources */,
+				SE160013B000000000000000 /* rf5c68.cpp in Sources */,
+				SE160014B000000000000000 /* segapcm.cpp in Sources */,
+				SE160015B000000000000000 /* upd7759.cpp in Sources */,
+				SE160016B000000000000000 /* burn_ym2203.cpp in Sources */,
+				SE160017B000000000000000 /* burn_ym2413.cpp in Sources */,
+				SE160018B000000000000000 /* burn_ym2612.cpp in Sources */,
+				SE160019B000000000000000 /* ym2413.c in Sources */,
+				SE160020B000000000000000 /* ym2612.c in Sources */,
+				SE160021B000000000000000 /* i8039.cpp in Sources */,
+				SE160022B000000000000000 /* mcs51.cpp in Sources */,
+				SE160023B000000000000000 /* 8255ppi.cpp in Sources */,
+				SE160024B000000000000000 /* resnet.cpp in Sources */,
+				SE16YBRD0B00000000000000 /* d_ybrd.cpp in Sources */,
+				SE16HANGONB0000000000000 /* d_hangon.cpp in Sources */,
+				SE16OUTRUNB0000000000000 /* d_outrun.cpp in Sources */,
+				SE16XBOARD0B000000000000 /* d_xbrd.cpp in Sources */,
+				SE16FM000B00000000000000 /* fm.c in Sources */,
+				SE16AY891B00000000000000 /* ay8910.c in Sources */,
+				SE16DELTB000000000000000 /* ymdeltat.c in Sources */,
+				SE16FMO2608B000000000000 /* burn_ym2608.cpp in Sources */,
+				SE16FMO2610B000000000000 /* burn_ym2610.cpp in Sources */,
 				75C80AA568E6B6B81AB83CF3 /* fbneo_macos_compat.cpp in Sources */,
 				1D8585D4E3585CBB19FD1836 /* hiscore.cpp in Sources */,
 				DEBD4F79A0911440DFA36E5E /* ioapi.c in Sources */,
@@ -967,18 +1153,24 @@
 				7FA3B421C7F96124C14421FD /* EmulatorView.swift in Sources */,
 				B3F04F4C46CD68C203E713F1 /* EmulatorWindowView.swift in Sources */,
 				F270DB81F2DF8BAE9B71C01A /* FBNeoCPSCore.swift in Sources */,
+				A1B2C3D4E5F60005293A4B5C /* FBNeoCore.swift in Sources */,
 				76C02A4DCDC2EC7D5F051242 /* Game.swift in Sources */,
 				98CFDF09921D4246ED88B43D /* GameCardView.swift in Sources */,
 				30935A762B42EF6132C7EEDE /* GameDatabase.swift in Sources */,
+				C408F78CC9804BF28B619A98 /* GameMediaItem.swift in Sources */,
+				B85860190EAAF85ABB74F378 /* GameMediaStore.swift in Sources */,
 				082593DF1640833034673CA3 /* GameMetadata.swift in Sources */,
 				D753EBFBE28C25205F22ED63 /* GeolithCore.swift in Sources */,
 				717C2A2BC23427CA32CEE1D0 /* ImportView.swift in Sources */,
 				93CAED1C89C1C28AC02A30FD /* InputManager.swift in Sources */,
 				02EF7C1F93C3B289DBC3D345 /* LibraryView.swift in Sources */,
+				6AF13A5639AF30F9C6406C04 /* MediaTabView.swift in Sources */,
 				8D2A5E35A65020372C3C21A7 /* MetalRenderer.swift in Sources */,
 				5EA0F8ACFF137DE371028CA0 /* NeoConverter.swift in Sources */,
 				E7AE4BDDF5850DC3913873A4 /* OnboardingView.swift in Sources */,
 				4908765517968E0EF600EA36 /* ROMLibrary.swift in Sources */,
+				5E4BF9BBA94C4107BAA123FA /* ROMVerifier.swift in Sources */,
+				1949324C4D6D4B439A8B5A26 /* ROMVerifierView.swift in Sources */,
 				C11119C61E24361B78634898 /* ROMScanner.swift in Sources */,
 				B56BA48F49644B488C483E72 /* RingBuffer.swift in Sources */,
 				118EF57F716BE46F6FE12816 /* SaveState.swift in Sources */,
@@ -1045,7 +1237,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1 BUILD_MACOS=1";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1160,7 +1352,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1 BUILD_MACOS=1";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

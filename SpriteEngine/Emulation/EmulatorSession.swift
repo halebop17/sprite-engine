@@ -47,9 +47,8 @@ final class EmulatorSession: ObservableObject {
     func stop() {
         running = false
         paused  = false
-        core.shutdown()
-        audio.stop()
-        DispatchQueue.main.async { self.isRunning = false; self.isPaused = false }
+        // core.shutdown() and audio.stop() run at the end of runLoop() on the
+        // emulation thread, after runFrame() has fully returned — no data race.
     }
 
     // MARK: - Pause / resume
@@ -99,13 +98,15 @@ final class EmulatorSession: ObservableObject {
 
     private func runLoop() {
         let targetFrameTime = 1.0 / core.nativeFPS
-        var lastTime = CACurrentMediaTime()
-        var fpsFrameCount = 0
-        var fpsWindowStart = CACurrentMediaTime()
+        var nextFrameTime   = CACurrentMediaTime() + targetFrameTime
+        var fpsFrameCount   = 0
+        var fpsWindowStart  = CACurrentMediaTime()
 
         while running {
             if paused {
                 Thread.sleep(forTimeInterval: 0.008)
+                // Don't let paused time count as scheduling debt.
+                nextFrameTime = CACurrentMediaTime() + targetFrameTime
                 continue
             }
 
@@ -123,23 +124,39 @@ final class EmulatorSession: ObservableObject {
             let (audioPtr, audioCount) = core.audioSamples()
             if audioCount > 0 { audio.push(samples: audioPtr, count: audioCount) }
 
-            let now     = CACurrentMediaTime()
-            let elapsed = now - lastTime
-            if elapsed < targetFrameTime {
-                Thread.sleep(forTimeInterval: targetFrameTime - elapsed)
+            let now = CACurrentMediaTime()
+            let fpsNow = now
+
+            // Sleep until the next frame boundary, then advance it.
+            // If we're already late, clamp so we don't try to catch up
+            // more than one frame (avoids spiral-of-death audio overflow).
+            let sleepTime = nextFrameTime - now
+            if sleepTime > 0 {
+                Thread.sleep(forTimeInterval: sleepTime)
+            } else if sleepTime < -targetFrameTime {
+                // More than one frame behind — reset rather than flooding audio.
+                nextFrameTime = CACurrentMediaTime()
             }
-            lastTime = CACurrentMediaTime()
+            nextFrameTime += targetFrameTime
 
             fpsFrameCount += 1
-            let fpsDelta = now - fpsWindowStart
+            let fpsDelta = fpsNow - fpsWindowStart
             if fpsDelta >= 0.5 {
                 let fps = Double(fpsFrameCount) / fpsDelta
                 fpsFrameCount  = 0
-                fpsWindowStart = now
+                fpsWindowStart = fpsNow
                 DispatchQueue.main.async { [weak self] in self?.measuredFPS = fps }
             }
 
             DispatchQueue.main.async { [weak self] in self?.onFrameReady?() }
+        }
+
+        // Loop exited — safe to tear down now that runFrame() will never be called again.
+        core.shutdown()
+        audio.stop()
+        DispatchQueue.main.async { [weak self] in
+            self?.isRunning = false
+            self?.isPaused  = false
         }
     }
 }

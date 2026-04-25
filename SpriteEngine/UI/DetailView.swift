@@ -13,7 +13,7 @@ struct DetailView: View {
     @State private var noteText: String
     @State private var editingNote = false
 
-    enum DetailTab { case info, notes, saveStates }
+    enum DetailTab { case info, notes, media, saveStates }
 
     init(game: Game) {
         self.game = game
@@ -170,6 +170,7 @@ struct DetailView: View {
         HStack(spacing: 4) {
             TabButton(label: "Info",        tab: .info,       active: tab) { tab = $0 }
             TabButton(label: "Notes",       tab: .notes,      active: tab) { tab = $0 }
+            TabButton(label: "Media",       tab: .media,      active: tab) { tab = $0 }
             TabButton(label: "Save States", tab: .saveStates, active: tab) { tab = $0 }
         }
         .padding(5)
@@ -186,6 +187,7 @@ struct DetailView: View {
         switch tab {
         case .info:       infoTab
         case .notes:      notesTab
+        case .media:      MediaTabView(game: game)
         case .saveStates: saveStatesTab
         }
     }
@@ -211,10 +213,11 @@ struct DetailView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 8)
                         .fill(game.system.badgeColor.opacity(0.15))
-                        .frame(width: 44, height: 44)
-                    Image(systemName: game.system.systemIcon)
-                        .font(.system(size: 20))
-                        .foregroundColor(game.system.badgeColor)
+                        .frame(width: 54, height: 44)
+                    Image(game.system.logoAssetName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 46, height: 36)
                 }
                 VStack(alignment: .leading, spacing: 2) {
                     Text(game.system.rawValue)
@@ -484,18 +487,44 @@ private struct SaveStateCard: View {
 extension EmulatorSystem {
     var systemIcon: String {
         switch self {
-        case .neoGeoAES, .neoGeoMVS, .neoGeoCD: return "gamecontroller"
-        case .cps1, .cps2:                       return "arcade.stick.console"
+        case .neoGeoAES, .neoGeoMVS, .neoGeoCD:    return "gamecontroller"
+        case .cps1, .cps2:                           return "arcade.stick.console"
+        case .segaSys16, .segaSys18:                 return "arcade.stick.console"
+        case .toaplan1, .toaplan2:                   return "airplane"
+        case .konamiGX:                              return "arcade.stick.console"
+        case .irem:                                  return "airplane"
+        case .taito:                                 return "arcade.stick.console"
+        }
+    }
+
+    var logoAssetName: String {
+        switch self {
+        case .neoGeoAES, .neoGeoMVS, .neoGeoCD: return "NeoGeoLogo"
+        case .cps1:                               return "CPS1Logo"
+        case .cps2:                               return "CPS2Logo"
+        case .segaSys16:                          return "CPS1Logo"   // placeholder until Phase 22 assets
+        case .segaSys18:                          return "CPS1Logo"
+        case .toaplan1, .toaplan2:                return "CPS1Logo"
+        case .konamiGX:                           return "CPS1Logo"
+        case .irem:                               return "CPS1Logo"
+        case .taito:                              return "CPS1Logo"
         }
     }
 
     var hardwareDescription: String {
         switch self {
-        case .neoGeoAES: return "SNK Neo Geo AES Home System"
-        case .neoGeoMVS: return "SNK Neo Geo MVS Arcade Hardware"
-        case .neoGeoCD:  return "SNK Neo Geo CD Console"
-        case .cps1:      return "Capcom Play System 1 · 68000 / Z80"
-        case .cps2:      return "Capcom Play System 2 · 68000 / Q-Sound"
+        case .neoGeoAES:  return "SNK Neo Geo AES Home System"
+        case .neoGeoMVS:  return "SNK Neo Geo MVS Arcade Hardware"
+        case .neoGeoCD:   return "SNK Neo Geo CD Console"
+        case .cps1:       return "Capcom Play System 1 · 68000 / Z80"
+        case .cps2:       return "Capcom Play System 2 · 68000 / Q-Sound"
+        case .segaSys16:  return "Sega System 16 · 68000 / Z80"
+        case .segaSys18:  return "Sega System 18 · 68000 / Z80 / VDP"
+        case .toaplan1:   return "Toaplan 1 · 68000 / Z80"
+        case .toaplan2:   return "Toaplan 2 · 68000 / GP9001"
+        case .konamiGX:   return "Konami GX · 68EC020 / K054539"
+        case .irem:       return "Irem M72/M92 · V30 / Z80"
+        case .taito:      return "Taito F2/F3 · 68000 / Z80"
         }
     }
 
@@ -509,6 +538,20 @@ extension EmulatorSystem {
             return "\(title) runs on Capcom's CPS-1 hardware, the board behind some of Capcom's most iconic late-80s and early-90s arcade titles."
         case .cps2:
             return "\(title) runs on CPS-2, Capcom's encrypted successor board featuring the Q-Sound audio system and the powerhouse fighters of the mid-90s arcade scene."
+        case .segaSys16:
+            return "\(title) runs on Sega's System 16, the 68000-based board that powered Shinobi, Golden Axe, and Altered Beast — Sega's dominant arcade platform of the late 80s."
+        case .segaSys18:
+            return "\(title) runs on Sega System 18, an evolution of System 16 adding a VDP tile layer for richer backgrounds."
+        case .toaplan1:
+            return "\(title) runs on Toaplan 1 hardware, home to some of the most demanding vertical scrolling shooters of the late 80s arcade era."
+        case .toaplan2:
+            return "\(title) runs on Toaplan 2, featuring the GP9001 sprite/tile chip that powered Batsugun and other late-era Toaplan titles."
+        case .konamiGX:
+            return "\(title) runs on the Konami GX board — a 68EC020-powered 32-bit platform featuring the PSAC2 rotate/scale chip and K054539 sound."
+        case .irem:
+            return "\(title) runs on Irem M-series hardware — the board family behind R-Type, Image Fight, and Ninja Baseball Batman, known for precise controls and large sprites."
+        case .taito:
+            return "\(title) runs on Taito arcade hardware — a prolific platform spanning titles from Rainbow Islands and Ninja Warriors to Elevator Action Returns."
         }
     }
 }

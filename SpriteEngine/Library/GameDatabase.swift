@@ -23,6 +23,13 @@ final class GameDatabase {
             case "neoGeoMVS":  built[key] = .neoGeoMVS
             case "neoGeoAES":  built[key] = .neoGeoAES
             case "neoGeoCD":   built[key] = .neoGeoCD
+            case "segaSys16":  built[key] = .segaSys16
+            case "segaSys18":  built[key] = .segaSys18
+            case "toaplan1":   built[key] = .toaplan1
+            case "toaplan2":   built[key] = .toaplan2
+            case "konamiGX":   built[key] = .konamiGX
+            case "irem":       built[key] = .irem
+            case "taito":      built[key] = .taito
             default: break
             }
         }

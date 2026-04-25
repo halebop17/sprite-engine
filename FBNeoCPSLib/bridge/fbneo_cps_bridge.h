@@ -1,6 +1,5 @@
 #pragma once
-#include <stdint.h>
-#include <stddef.h>
+#include "fbneo_driver_bridge.h"  // FBNeoRomFile, FBNEO_ROM_*, FBNEO_SYSTEM_*
 
 #ifdef __cplusplus
 extern "C" {
@@ -60,6 +59,27 @@ void fbneo_cps_reset(void);
 size_t fbneo_cps_state_size(void);
 int    fbneo_cps_state_save(void* buf, size_t bufSize);
 int    fbneo_cps_state_load(const void* buf, size_t bufSize);
+
+// ROM name lookup (for scanning without full load).
+// Returns 1 if the name is a known CPS-1 driver, 2 if CPS-2, 0 if unknown.
+int fbneo_cps_driver_type(const char* name);
+
+// After a failed fbneo_cps_load_game(), call this to retrieve a
+// newline-separated list of ROM file names that were not found in the zip(s).
+// `buf` must be at least `bufSize` bytes; the string is always null-terminated.
+// Returns the number of missing files (0 if load succeeded or nothing missing).
+int fbneo_cps_missing_roms(char* buf, size_t bufSize);
+
+// ── ROM verification ──────────────────────────────────────────────────────────
+// FBNeoRomFile and FBNEO_ROM_* constants are defined in fbneo_driver_bridge.h.
+
+// Verify all ROM files for the game at `zipPath` without loading it.
+// Fills `outFiles` (up to `maxFiles` entries) with per-file results.
+// Returns the total number of required ROM slots, or -1 if the driver is
+// not recognised.  Does not alter any emulator state.
+int fbneo_cps_verify_game(const char*   zipPath,
+                          FBNeoRomFile* outFiles,
+                          int           maxFiles);
 
 #ifdef __cplusplus
 }

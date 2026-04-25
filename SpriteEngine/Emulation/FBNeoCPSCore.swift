@@ -2,6 +2,10 @@ import Foundation
 
 final class FBNeoCPSCore: EmulatorCore {
 
+    // FBNeo uses global C state (BurnDrv, s_zips, audio/video buffers, …).
+    // This semaphore gates loadROM until the previous shutdown() completes.
+    private static let lifecycle = DispatchSemaphore(value: 1)
+
     let system: EmulatorSystem
     private(set) var frameWidth: Int  = 384
     private(set) var frameHeight: Int = 224
@@ -24,8 +28,7 @@ final class FBNeoCPSCore: EmulatorCore {
     }
 
     deinit {
-        fbneo_cps_unload_game()
-        fbneo_cps_exit()
+        // shutdown() already calls unload + exit; just free buffers here.
         videoPtr.deallocate()
         audioPtr.deallocate()
     }
@@ -33,6 +36,10 @@ final class FBNeoCPSCore: EmulatorCore {
     // MARK: - EmulatorCore
 
     func loadROM(at url: URL, biosDirectory: URL) throws {
+        FBNeoCPSCore.lifecycle.wait()
+        var releaseOnFailure = true
+        defer { if releaseOnFailure { FBNeoCPSCore.lifecycle.signal() } }
+
         fbneo_cps_init()
         fbneo_cps_set_video_buffer(videoPtr)
         fbneo_cps_set_audio_buffer(audioPtr)
@@ -41,11 +48,21 @@ final class FBNeoCPSCore: EmulatorCore {
             guard let path else { return -1 }
             return fbneo_cps_load_game(path)
         }
-        guard result == 0 else { throw EmulatorError.romLoadFailed }
+        guard result == 0 else {
+            var missingBuf = [CChar](repeating: 0, count: 2048)
+            let count = missingBuf.withUnsafeMutableBufferPointer { ptr -> Int32 in
+                fbneo_cps_missing_roms(ptr.baseAddress, 2048)
+            }
+            if count > 0, let missing = String(cString: missingBuf, encoding: .utf8), !missing.isEmpty {
+                throw EmulatorError.romFileMissing(missing)
+            }
+            throw EmulatorError.romLoadFailed
+        }
 
         frameWidth  = Int(fbneo_cps_frame_width())
         frameHeight = Int(fbneo_cps_frame_height())
         audioSampleCount = Int(fbneo_cps_audio_sample_count())
+        releaseOnFailure = false
     }
 
     func runFrame() {
@@ -93,5 +110,6 @@ final class FBNeoCPSCore: EmulatorCore {
     func shutdown() {
         fbneo_cps_unload_game()
         fbneo_cps_exit()
+        FBNeoCPSCore.lifecycle.signal()
     }
 }

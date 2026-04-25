@@ -9,6 +9,7 @@ enum Screen: Equatable {
     case detail(Game)
     case `import`
     case settings
+    case romVerifier
     case emulator(Game)
 }
 
@@ -20,7 +21,7 @@ final class AppState: ObservableObject {
     @Published var screen: Screen = .library
     @Published var hasCompletedOnboarding: Bool = false
     @Published var biosDirectoryURL: URL?
-    @Published var romDirectoryURL:  URL?
+    @Published var romDirectoryURLs: [URL] = []
     @Published var themeKey: AppThemeKey = .dark
 
     // Video
@@ -42,9 +43,19 @@ final class AppState: ObservableObject {
             let url = URL(fileURLWithPath: path, isDirectory: true)
             if FileManager.default.fileExists(atPath: path) { biosDirectoryURL = url }
         }
-        if let path = ud.string(forKey: "romDirectoryPath") {
+        if let data = ud.data(forKey: "romDirectoryPaths"),
+           let paths = try? JSONDecoder().decode([String].self, from: data) {
+            romDirectoryURLs = paths.compactMap { path in
+                let url = URL(fileURLWithPath: path, isDirectory: true)
+                return FileManager.default.fileExists(atPath: path) ? url : nil
+            }
+        } else if let path = ud.string(forKey: "romDirectoryPath") {
+            // migrate legacy single-path key
             let url = URL(fileURLWithPath: path, isDirectory: true)
-            if FileManager.default.fileExists(atPath: path) { romDirectoryURL = url }
+            if FileManager.default.fileExists(atPath: path) {
+                romDirectoryURLs = [url]
+                persistROMDirectories()
+            }
         }
         if let raw = ud.string(forKey: "videoScaleMode"),
            let mode = VideoScaleMode(rawValue: raw) { videoScaleMode = mode }
@@ -81,9 +92,22 @@ final class AppState: ObservableObject {
         UserDefaults.standard.set(url.path, forKey: "biosDirectoryPath")
     }
 
-    func setROMDirectory(_ url: URL) {
-        romDirectoryURL = url
-        UserDefaults.standard.set(url.path, forKey: "romDirectoryPath")
+    func addROMDirectory(_ url: URL) {
+        guard !romDirectoryURLs.contains(url) else { return }
+        romDirectoryURLs.append(url)
+        persistROMDirectories()
+    }
+
+    func removeROMDirectory(_ url: URL) {
+        romDirectoryURLs.removeAll { $0 == url }
+        persistROMDirectories()
+    }
+
+    private func persistROMDirectories() {
+        let paths = romDirectoryURLs.map(\.path)
+        if let data = try? JSONEncoder().encode(paths) {
+            UserDefaults.standard.set(data, forKey: "romDirectoryPaths")
+        }
     }
 
     // MARK: Settings persistence
