@@ -4,6 +4,24 @@ Entries are in reverse-chronological order. Each entry records what changed, why
 
 ---
 
+## 2026-04-25 — Sega System 16/18 sidebar integration
+**Files:** `LibraryView.swift`, `GameCardView.swift`, `Assets.xcassets/SegaLogo.imageset/`
+
+Phase 22 added the emulation backend for Sega Sys16/18, but the library UI was never updated — `LibraryFilter` only knew about Neo Geo, CPS-1, and CPS-2, so Sega ROMs were invisible in the sidebar (they appeared in "All Games" only, and the footer was hardcoded to "3 systems").
+
+**Changes:**
+- `EmulatorSystem.isSega` computed property added (matches `.segaSys16` and `.segaSys18`).
+- `LibraryFilter.sega` case added; `matches()` and `label` updated.
+- `AppTheme` gains `sysSega` color (#0066b3 dark, #2563a8 light, #4488cc amber).
+- `SidebarView` shows a `PlatformItem` for Sega only when `segaCount > 0` (hidden until ROMs are present, consistent with how the other platforms work).
+- Toolbar title updated to show "Sega (N)" when that filter is active.
+- Footer count changed from hardcoded "3 systems" to `activeSystems` (count of platforms with at least one ROM).
+- `SegaLogo` SVG asset created: classic Sega oval with white ring and SEGA wordmark on #0066b3 blue.
+
+**Testing Phase 22:** Sega ROMs (e.g. `shinobi.zip`, `goldnaxe.zip`) should now appear under the "Sega" sidebar entry once scanned. The emulation backend was already wired via `FBNeoCore` + `fbneo_driver_bridge`.
+
+---
+
 ## 2026-04-25 — Documentation consolidation
 **Commits:** `96869b4`, `076a31b`, `a265a35`
 

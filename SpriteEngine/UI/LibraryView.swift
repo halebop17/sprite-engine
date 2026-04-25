@@ -47,6 +47,7 @@ struct AppTheme {
     var sysNeo:          Color
     var sysCPS1:         Color
     var sysCPS2:         Color
+    var sysSega:         Color
 }
 
 extension AppTheme {
@@ -77,7 +78,8 @@ extension AppTheme {
         playBtnEnd:      Color(hex: "ff3850"),
         sysNeo:          Color(hex: "ffd60a"),
         sysCPS1:         Color(hex: "009ee0"),
-        sysCPS2:         Color(hex: "0071c5")
+        sysCPS2:         Color(hex: "0071c5"),
+        sysSega:         Color(hex: "0066b3")
     )
 
     static let light = AppTheme(
@@ -107,7 +109,8 @@ extension AppTheme {
         playBtnEnd:      Color(hex: "5e5ce6"),
         sysNeo:          Color(hex: "d4a017"),
         sysCPS1:         Color(hex: "0071e3"),
-        sysCPS2:         Color(hex: "5856d6")
+        sysCPS2:         Color(hex: "5856d6"),
+        sysSega:         Color(hex: "2563a8")
     )
 
     static let amber = AppTheme(
@@ -137,7 +140,8 @@ extension AppTheme {
         playBtnEnd:      Color(hex: "e05c00"),
         sysNeo:          Color(hex: "ffd60a"),
         sysCPS1:         Color(hex: "30a0ff"),
-        sysCPS2:         Color(hex: "5898e8")
+        sysCPS2:         Color(hex: "5898e8"),
+        sysSega:         Color(hex: "4488cc")
     )
 
     static func theme(for key: AppThemeKey) -> AppTheme {
@@ -187,7 +191,7 @@ extension Color {
 
 enum LibraryFilter: Hashable {
     case all, favorites, recent
-    case neoGeo, cps1, cps2
+    case neoGeo, cps1, cps2, sega
 
     func matches(_ game: Game) -> Bool {
         switch self {
@@ -197,6 +201,7 @@ enum LibraryFilter: Hashable {
         case .neoGeo:    return game.system.isNeoGeo
         case .cps1:      return game.system == .cps1
         case .cps2:      return game.system == .cps2
+        case .sega:      return game.system.isSega
         }
     }
 
@@ -208,6 +213,7 @@ enum LibraryFilter: Hashable {
         case .neoGeo:    return "Neo Geo"
         case .cps1:      return "CPS-1"
         case .cps2:      return "CPS-2"
+        case .sega:      return "Sega"
         }
     }
 }
@@ -250,6 +256,11 @@ private struct SidebarView: View {
     private var neogeoCount: Int { library.games.filter { $0.system.isNeoGeo }.count }
     private var cps1Count:   Int { library.games.filter { $0.system == .cps1 }.count }
     private var cps2Count:   Int { library.games.filter { $0.system == .cps2 }.count }
+    private var segaCount:   Int { library.games.filter { $0.system.isSega }.count }
+
+    private var activeSystems: Int {
+        [neogeoCount > 0, cps1Count > 0, cps2Count > 0, segaCount > 0].filter { $0 }.count
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -281,6 +292,9 @@ private struct SidebarView: View {
                     PlatformItem(label: "Neo Geo", logo: "NeoGeoLogo", color: t.sysNeo,  count: neogeoCount, filter: .neoGeo, active: filter) { filter = $0 }
                     PlatformItem(label: "CPS-1",   logo: "CPS1Logo",   color: t.sysCPS1, count: cps1Count,   filter: .cps1,   active: filter) { filter = $0 }
                     PlatformItem(label: "CPS-2",   logo: "CPS2Logo",   color: t.sysCPS2, count: cps2Count,   filter: .cps2,   active: filter) { filter = $0 }
+                    if segaCount > 0 {
+                        PlatformItem(label: "Sega", logo: "SegaLogo", color: t.sysSega, count: segaCount, filter: .sega, active: filter) { filter = $0 }
+                    }
 
                     Divider().background(t.divider).padding(.horizontal, 14).padding(.vertical, 8)
 
@@ -295,7 +309,7 @@ private struct SidebarView: View {
 
             // Footer
             Divider().background(t.divider)
-            Text("\(library.games.count) ROMs · 3 systems")
+            Text("\(library.games.count) ROMs · \(activeSystems) systems")
                 .font(.system(size: 10))
                 .foregroundColor(t.textFaint)
                 .padding(.horizontal, 14)
@@ -475,6 +489,7 @@ private struct LibraryToolbar: View {
         case .neoGeo:    return "Neo Geo (\(library.games.filter { $0.system.isNeoGeo }.count))"
         case .cps1:      return "CPS-1 (\(library.games.filter { $0.system == .cps1 }.count))"
         case .cps2:      return "CPS-2 (\(library.games.filter { $0.system == .cps2 }.count))"
+        case .sega:      return "Sega (\(library.games.filter { $0.system.isSega }.count))"
         }
     }
 
