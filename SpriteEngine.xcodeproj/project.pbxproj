@@ -204,7 +204,17 @@
 		TP2SUP004B /* toa_extratext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TP2SUP004A /* toa_extratext.cpp */; };
 		TPYM3812AB /* burn_ym3812.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TPYM3812AA /* burn_ym3812.cpp */; };
 		TMS32010AB /* tms32010.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TMS32010AA /* tms32010.cpp */; };
-			KGXDRV001B /* d_mystwarr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXDRV001A /* d_mystwarr.cpp */; };
+			IREMDRV001B /* d_m72.cpp in Sources */,
+				IREMDRV002B /* d_m92.cpp in Sources */,
+				IREMSUP001B /* irem_cpu.cpp in Sources */,
+				IREMSND001B /* iremga20.cpp in Sources */,
+				IREMDEV001B /* pic8259.cpp in Sources */,
+				KGXDRV001B /* d_mystwarr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = IREMDRV001A /* d_m72.cpp */,
+				IREMDRV002A /* d_m92.cpp */,
+				IREMSUP001A /* irem_cpu.cpp */,
+				IREMSND001A /* iremga20.cpp */,
+				IREMDEV001A /* pic8259.cpp */,
+				KGXDRV001A /* d_mystwarr.cpp */; };
 			KGXDRV002B /* d_moo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXDRV002A /* d_moo.cpp */; };
 			KGXSUP001B /* konamiic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP001A /* konamiic.cpp */; };
 			KGXSUP002B /* konamigx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = KGXSUP002A /* konamigx.cpp */; };
@@ -234,6 +244,11 @@
 		LDEP_TAITO_M68_BL /* taito_m68705.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_TAITO_M68705 /* taito_m68705.cpp */; };
 		LDEP_NMK112_BLD00 /* nmk112.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_NMK112_REF00 /* nmk112.cpp */; };
 		LDEP_K051733_BLD0 /* k051733.cpp in Sources */ = {isa = PBXBuildFile; fileRef = LDEP_K051733_REF0 /* k051733.cpp */; };
+			IREMDRV001B /* d_m72.cpp in Sources */ = {isa = PBXBuildFile; fileRef = IREMDRV001A /* d_m72.cpp */; };
+			IREMDRV002B /* d_m92.cpp in Sources */ = {isa = PBXBuildFile; fileRef = IREMDRV002A /* d_m92.cpp */; };
+			IREMSUP001B /* irem_cpu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = IREMSUP001A /* irem_cpu.cpp */; };
+			IREMSND001B /* iremga20.cpp in Sources */ = {isa = PBXBuildFile; fileRef = IREMSND001A /* iremga20.cpp */; };
+			IREMDEV001B /* pic8259.cpp in Sources */ = {isa = PBXBuildFile; fileRef = IREMDEV001A /* pic8259.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -477,7 +492,12 @@
 		TP2SUP004A /* toa_extratext.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = toa_extratext.cpp; sourceTree = "<group>"; };
 		TPYM3812AA /* burn_ym3812.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn_ym3812.cpp; sourceTree = "<group>"; };
 		TMS32010AA /* tms32010.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tms32010.cpp; sourceTree = "<group>"; };
-			KGXDRV001A /* d_mystwarr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_mystwarr.cpp; sourceTree = "<group>"; };
+			IREMDRV001A /* d_m72.cpp */,
+				IREMDRV002A /* d_m92.cpp */,
+				IREMSUP001A /* irem_cpu.cpp */,
+				IREMSND001A /* iremga20.cpp */,
+				IREMDEV001A /* pic8259.cpp */,
+				KGXDRV001A /* d_mystwarr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_mystwarr.cpp; sourceTree = "<group>"; };
 			KGXDRV002A /* d_moo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_moo.cpp; sourceTree = "<group>"; };
 			KGXSUP001A /* konamiic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = konamiic.cpp; sourceTree = "<group>"; };
 			KGXSUP002A /* konamigx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = konamigx.cpp; sourceTree = "<group>"; };
@@ -507,6 +527,11 @@
 		LDEP_TAITO_M68705 /* taito_m68705.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = taito_m68705.cpp; sourceTree = "<group>"; };
 		LDEP_NMK112_REF00 /* nmk112.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nmk112.cpp; sourceTree = "<group>"; };
 		LDEP_K051733_REF0 /* k051733.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k051733.cpp; sourceTree = "<group>"; };
+			IREMDRV001A /* d_m72.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_m72.cpp; sourceTree = "<group>"; };
+			IREMDRV002A /* d_m92.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_m92.cpp; sourceTree = "<group>"; };
+			IREMSUP001A /* irem_cpu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = irem_cpu.cpp; sourceTree = "<group>"; };
+			IREMSND001A /* iremga20.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = iremga20.cpp; sourceTree = "<group>"; };
+			IREMDEV001A /* pic8259.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pic8259.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -886,6 +911,11 @@
 		KGX_KONAMI_GROUP000000 /* konami */ = {
 			isa = PBXGroup;
 			children = (
+				IREMDRV001A /* d_m72.cpp */,
+				IREMDRV002A /* d_m92.cpp */,
+				IREMSUP001A /* irem_cpu.cpp */,
+				IREMSND001A /* iremga20.cpp */,
+				IREMDEV001A /* pic8259.cpp */,
 				KGXDRV001A /* d_mystwarr.cpp */,
 				KGXDRV002A /* d_moo.cpp */,
 				KGXSUP001A /* konamiic.cpp */,
@@ -1365,6 +1395,11 @@
 				TP2SUP003B /* toa_palette.cpp in Sources */,
 				TP2SUP004B /* toa_extratext.cpp in Sources */,
 				TPYM3812AB /* burn_ym3812.cpp in Sources */,
+				IREMDRV001B /* d_m72.cpp in Sources */,
+				IREMDRV002B /* d_m92.cpp in Sources */,
+				IREMSUP001B /* irem_cpu.cpp in Sources */,
+				IREMSND001B /* iremga20.cpp in Sources */,
+				IREMDEV001B /* pic8259.cpp in Sources */,
 				KGXDRV001B /* d_mystwarr.cpp in Sources */,
 				KGXDRV002B /* d_moo.cpp in Sources */,
 				KGXSUP001B /* konamiic.cpp in Sources */,
@@ -1531,7 +1566,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1 BUILD_MACOS=1";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/toaplan $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/taito $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/tms32010 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6805 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z180 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/nec $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/toaplan $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/taito $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/tms32010 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6805 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z180 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/nec $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1555,7 +1590,7 @@
 				CODE_SIGN_ENTITLEMENTS = SpriteEngine/SpriteEngine.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/bridge";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem";
 				INFOPLIST_FILE = SpriteEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1646,7 +1681,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1 BUILD_MACOS=1";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/toaplan $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/taito $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/tms32010 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6805 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z180 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/nec $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/toaplan $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/taito $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/tms32010 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6805 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z180 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/nec $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1670,7 +1705,7 @@
 				CODE_SIGN_ENTITLEMENTS = SpriteEngine/SpriteEngine.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/bridge";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem";
 				INFOPLIST_FILE = SpriteEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1753,7 +1788,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/geolith/src $(SRCROOT)/GeolithLib/geolith/deps $(SRCROOT)/GeolithLib/geolith/deps/miniz $(SRCROOT)/GeolithLib/geolith/deps/dr $(SRCROOT)/GeolithLib/bridge";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/geolith/src $(SRCROOT)/GeolithLib/geolith/deps $(SRCROOT)/GeolithLib/geolith/deps/miniz $(SRCROOT)/GeolithLib/geolith/deps/dr $(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1774,7 +1809,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/geolith/src $(SRCROOT)/GeolithLib/geolith/deps $(SRCROOT)/GeolithLib/geolith/deps/miniz $(SRCROOT)/GeolithLib/geolith/deps/dr $(SRCROOT)/GeolithLib/bridge";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/geolith/src $(SRCROOT)/GeolithLib/geolith/deps $(SRCROOT)/GeolithLib/geolith/deps/miniz $(SRCROOT)/GeolithLib/geolith/deps/dr $(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
