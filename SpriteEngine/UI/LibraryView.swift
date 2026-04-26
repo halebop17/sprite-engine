@@ -235,7 +235,7 @@ enum LibraryFilter: Hashable {
         case .cps2:      return "CPS-2"
         case .sega:      return "Sega"
         case .toaplan:   return "Toaplan"
-        case .konami:    return "Konami GX"
+        case .konami:    return "Konami"
         case .irem:      return "Irem"
         case .taito:     return "Taito"
         }
@@ -324,16 +324,16 @@ private struct SidebarView: View {
                         PlatformItem(label: "Sega", logo: "SegaLogo", color: t.sysSega, count: segaCount, filter: .sega, active: filter) { filter = $0 }
                     }
                     if toaplanCount > 0 {
-                        PlatformItem(label: "Toaplan", logo: "ToaplanLogo", color: t.sysToaplan, count: toaplanCount, filter: .toaplan, active: filter) { filter = $0 }
+                        PlatformItem(label: "Toaplan", logo: "ToaplanLogo", color: t.sysToaplan, count: toaplanCount, filter: .toaplan, active: filter, logoBg: .white) { filter = $0 }
                     }
                     if konamiCount > 0 {
-                        PlatformItem(label: "Konami GX", logo: "KonamiLogo", color: t.sysKonami, count: konamiCount, filter: .konami, active: filter) { filter = $0 }
+                        PlatformItem(label: "Konami", logo: "KonamiLogo", color: t.sysKonami, count: konamiCount, filter: .konami, active: filter, logoBg: Color(white: 0.88)) { filter = $0 }
                     }
                     if iremCount > 0 {
-                        PlatformItem(label: "Irem", logo: "CPS1Logo", color: t.sysIrem, count: iremCount, filter: .irem, active: filter) { filter = $0 }
+                        PlatformItem(label: "Irem", logo: "IremLogo", color: t.sysIrem, count: iremCount, filter: .irem, active: filter, logoBg: .black) { filter = $0 }
                     }
                     if taitoCount > 0 {
-                        PlatformItem(label: "Taito", logo: "CPS1Logo", color: t.sysTaito, count: taitoCount, filter: .taito, active: filter) { filter = $0 }
+                        PlatformItem(label: "Taito", logo: "TaitoLogo", color: t.sysTaito, count: taitoCount, filter: .taito, active: filter, logoBg: .white) { filter = $0 }
                     }
 
                     Divider().background(t.divider).padding(.horizontal, 14).padding(.vertical, 8)
@@ -423,7 +423,21 @@ private struct PlatformItem: View {
     let count: Int
     let filter: LibraryFilter
     let active: LibraryFilter
+    let logoBg: Color?
     let action: (LibraryFilter) -> Void
+
+    init(label: String, logo: String, color: Color, count: Int,
+         filter: LibraryFilter, active: LibraryFilter,
+         logoBg: Color? = nil, action: @escaping (LibraryFilter) -> Void) {
+        self.label   = label
+        self.logo    = logo
+        self.color   = color
+        self.count   = count
+        self.filter  = filter
+        self.active  = active
+        self.logoBg  = logoBg
+        self.action  = action
+    }
 
     @Environment(\.appTheme) private var t
     @State private var hovered = false
@@ -434,12 +448,12 @@ private struct PlatformItem: View {
             HStack(spacing: 9) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 7)
-                        .fill(isActive ? Color.white.opacity(0.18) : color.opacity(0.22))
-                        .frame(width: 34, height: 34)
+                        .fill(isActive ? Color.white.opacity(0.18) : (logoBg ?? color.opacity(0.22)))
+                        .frame(width: 38, height: 38)
                     Image(logo)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 24, height: 24)
+                        .frame(width: 27, height: 27)
                 }
                 Text(label)
                     .font(.system(size: 12.5, weight: isActive ? .semibold : .regular))
@@ -531,7 +545,7 @@ private struct LibraryToolbar: View {
         case .cps2:      return "CPS-2 (\(library.games.filter { $0.system == .cps2 }.count))"
         case .sega:      return "Sega (\(library.games.filter { $0.system.isSega }.count))"
         case .toaplan:   return "Toaplan (\(library.games.filter { $0.system.isToaplan }.count))"
-        case .konami:    return "Konami GX (\(library.games.filter { $0.system.isKonami }.count))"
+        case .konami:    return "Konami (\(library.games.filter { $0.system.isKonami }.count))"
         case .irem:      return "Irem (\(library.games.filter { $0.system.isIrem }.count))"
         case .taito:     return "Taito (\(library.games.filter { $0.system.isTaito }.count))"
         }

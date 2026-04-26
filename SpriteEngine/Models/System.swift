@@ -17,6 +17,7 @@ enum EmulatorSystem: String, Codable, CaseIterable {
     case toaplan1   = "Toaplan 1"
     case toaplan2   = "Toaplan 2"
     case konamiGX   = "Konami GX"
+    case konami68k  = "Konami 68K"
     case irem       = "Irem"
     case taito      = "Taito"
 
@@ -26,7 +27,8 @@ enum EmulatorSystem: String, Codable, CaseIterable {
             return .geolith
         case .cps1, .cps2:
             return .fbneopCPS
-        case .segaSys16, .segaSys18, .toaplan1, .toaplan2, .konamiGX, .irem, .taito:
+        case .segaSys16, .segaSys18, .toaplan1, .toaplan2,
+             .konamiGX, .konami68k, .irem, .taito:
             return .fbneo
         }
     }

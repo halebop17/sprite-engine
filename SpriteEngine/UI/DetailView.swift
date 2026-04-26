@@ -40,6 +40,9 @@ struct DetailView: View {
                     .overlay(RoundedRectangle(cornerRadius: 8)
                         .strokeBorder(t.cardBorder, lineWidth: 1))
                 statsCard
+                if let result = library.verificationResults[game.id], !result.status.isOK {
+                    romIssuesCard(result)
+                }
             }
             .padding(26)
         }
@@ -47,6 +50,86 @@ struct DetailView: View {
         .background(t.sidebar)
         .overlay(alignment: .trailing) {
             Rectangle().fill(t.sidebarBorder).frame(width: 1)
+        }
+    }
+
+    @ViewBuilder
+    private func romIssuesCard(_ result: GameVerificationResult) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            // Header
+            HStack(spacing: 6) {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .font(.system(size: 10, weight: .semibold))
+                    .foregroundStyle(Color(red: 1.0, green: 0.62, blue: 0.0))
+                Text(result.status == .unknownGame ? "UNKNOWN GAME" : "ROM ISSUES")
+                    .font(.system(size: 10, weight: .semibold))
+                    .foregroundColor(t.textFaint)
+                    .kerning(0.5)
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
+
+            if result.status != .unknownGame {
+                Divider().background(t.divider)
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(result.files.filter { !$0.status.isOK }) { file in
+                        HStack(alignment: .top, spacing: 8) {
+                            Image(systemName: fileIcon(file.status))
+                                .font(.system(size: 9))
+                                .foregroundColor(fileColor(file.status))
+                                .frame(width: 12)
+                                .padding(.top, 1)
+                            VStack(alignment: .leading, spacing: 1) {
+                                Text(file.name)
+                                    .font(.system(size: 10, design: .monospaced))
+                                    .foregroundColor(t.text)
+                                    .lineLimit(1)
+                                    .truncationMode(.middle)
+                                Text(fileLabel(file.status))
+                                    .font(.system(size: 9))
+                                    .foregroundColor(fileColor(file.status))
+                            }
+                        }
+                        .padding(.horizontal, 14)
+                        .padding(.vertical, 6)
+                        Divider().background(t.divider).padding(.leading, 34)
+                    }
+                }
+            } else {
+                Divider().background(t.divider)
+                Text("This zip was not recognised by the FBNeo driver list. The ROM may be unsupported or incorrectly named.")
+                    .font(.system(size: 10))
+                    .foregroundColor(t.textMuted)
+                    .padding(14)
+            }
+        }
+        .background(t.card)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .overlay(RoundedRectangle(cornerRadius: 10)
+            .strokeBorder(Color(red: 1.0, green: 0.62, blue: 0.0).opacity(0.35), lineWidth: 1))
+    }
+
+    private func fileIcon(_ status: ROMFileStatus) -> String {
+        switch status {
+        case .missing:  return "xmark.circle.fill"
+        case .wrongCRC: return "exclamationmark.triangle.fill"
+        default:        return "checkmark.circle.fill"
+        }
+    }
+
+    private func fileColor(_ status: ROMFileStatus) -> Color {
+        switch status {
+        case .missing:  return .red
+        case .wrongCRC: return Color(red: 1.0, green: 0.62, blue: 0.0)
+        default:        return .green
+        }
+    }
+
+    private func fileLabel(_ status: ROMFileStatus) -> String {
+        switch status {
+        case .missing:               return "Missing"
+        case .wrongCRC(let e, let a):return "CRC \(String(e, radix: 16, uppercase: true)) ≠ \(String(a, radix: 16, uppercase: true))"
+        default:                     return ""
         }
     }
 
@@ -492,6 +575,7 @@ extension EmulatorSystem {
         case .segaSys16, .segaSys18:                 return "arcade.stick.console"
         case .toaplan1, .toaplan2:                   return "airplane"
         case .konamiGX:                              return "arcade.stick.console"
+        case .konami68k:                             return "arcade.stick.console"
         case .irem:                                  return "airplane"
         case .taito:                                 return "arcade.stick.console"
         }
@@ -504,9 +588,9 @@ extension EmulatorSystem {
         case .cps2:                               return "CPS2Logo"
         case .segaSys16, .segaSys18:              return "SegaLogo"
         case .toaplan1, .toaplan2:                return "ToaplanLogo"
-        case .konamiGX:                           return "KonamiLogo"
-        case .irem:                               return "CPS1Logo"
-        case .taito:                              return "CPS1Logo"
+        case .konamiGX, .konami68k:               return "KonamiLogo"
+        case .irem:                               return "IremLogo"
+        case .taito:                              return "TaitoLogo"
         }
     }
 
@@ -522,6 +606,7 @@ extension EmulatorSystem {
         case .toaplan1:   return "Toaplan 1 · 68000 / Z80"
         case .toaplan2:   return "Toaplan 2 · 68000 / GP9001"
         case .konamiGX:   return "Konami GX · 68EC020 / K054539"
+        case .konami68k:  return "Konami 16-bit · 68000 / K053260"
         case .irem:       return "Irem M72/M92 · V30 / Z80"
         case .taito:      return "Taito F2/F3 · 68000 / Z80"
         }
@@ -547,6 +632,8 @@ extension EmulatorSystem {
             return "\(title) runs on Toaplan 2, featuring the GP9001 sprite/tile chip that powered Batsugun and other late-era Toaplan titles."
         case .konamiGX:
             return "\(title) runs on the Konami GX board — a 68EC020-powered 32-bit platform featuring the PSAC2 rotate/scale chip and K054539 sound."
+        case .konami68k:
+            return "\(title) runs on Konami's 16-bit 68000-era boards — the family behind Teenage Mutant Ninja Turtles, The Simpsons, X-Men, and Sunset Riders, driven by the K052109/K051960 tile/sprite chipset and K053260 sound."
         case .irem:
             return "\(title) runs on Irem M-series hardware — the board family behind R-Type, Image Fight, and Ninja Baseball Batman, known for precise controls and large sprites."
         case .taito:

@@ -56,6 +56,7 @@ final class ROMScanner {
                 case Int(FBNEO_SYSTEM_TOAPLAN1):  system = .toaplan1
                 case Int(FBNEO_SYSTEM_TOAPLAN2):  system = .toaplan2
                 case Int(FBNEO_SYSTEM_KONAMI_GX): system = .konamiGX
+                case Int(FBNEO_SYSTEM_KONAMI_68K):system = .konami68k
                 case Int(FBNEO_SYSTEM_IREM):      system = .irem
                 case Int(FBNEO_SYSTEM_TAITO):     system = .taito
                 default: return nil

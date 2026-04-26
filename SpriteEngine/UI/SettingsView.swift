@@ -249,7 +249,7 @@ struct SettingsView: View {
                         Text("Verify ROM Set")
                             .font(.system(size: 13))
                             .foregroundColor(t.text)
-                        Text("Check CPS-1/2 ROMs against FBNeo's file and CRC database")
+                        Text("Check all library ROMs against FBNeo's file and CRC database")
                             .font(.system(size: 11))
                             .foregroundColor(t.textMuted)
                     }

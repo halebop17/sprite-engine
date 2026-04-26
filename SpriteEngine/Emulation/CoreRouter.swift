@@ -34,6 +34,7 @@ final class CoreRouter {
             case Int(FBNEO_SYSTEM_TOAPLAN1):  return FBNeoCore(system: .toaplan1)
             case Int(FBNEO_SYSTEM_TOAPLAN2):  return FBNeoCore(system: .toaplan2)
             case Int(FBNEO_SYSTEM_KONAMI_GX): return FBNeoCore(system: .konamiGX)
+            case Int(FBNEO_SYSTEM_KONAMI_68K):return FBNeoCore(system: .konami68k)
             case Int(FBNEO_SYSTEM_IREM):      return FBNeoCore(system: .irem)
             case Int(FBNEO_SYSTEM_TAITO):     return FBNeoCore(system: .taito)
             default: throw EmulatorError.unknownGame(stem)
@@ -56,6 +57,7 @@ final class CoreRouter {
         case .toaplan1:  return FBNeoCore(system: .toaplan1)
         case .toaplan2:  return FBNeoCore(system: .toaplan2)
         case .konamiGX:  return FBNeoCore(system: .konamiGX)
+        case .konami68k: return FBNeoCore(system: .konami68k)
         case .irem:      return FBNeoCore(system: .irem)
         case .taito:     return FBNeoCore(system: .taito)
         }
