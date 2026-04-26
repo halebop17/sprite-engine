@@ -23,6 +23,8 @@ struct SettingsView: View {
                     appearanceSection
                 }
                 .padding(26)
+                .frame(maxWidth: 760, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
         .background(t.surface)
@@ -172,7 +174,7 @@ struct SettingsView: View {
                         set: { appState.setVideoScaleMode($0) }
                     )
                 )
-                .frame(width: 210)
+                .frame(width: 260)
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 10)
@@ -289,7 +291,7 @@ struct SettingsView: View {
                         set: { appState.setTheme($0) }
                     )
                 )
-                .frame(width: 210)
+                .frame(width: 260)
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 10)
@@ -366,7 +368,7 @@ private struct ToggleRow: View {
     @Environment(\.appTheme) private var t
 
     var body: some View {
-        Toggle(isOn: $isOn) {
+        HStack(spacing: 10) {
             VStack(alignment: .leading, spacing: 2) {
                 Text(label)
                     .font(.system(size: 13))
@@ -375,11 +377,14 @@ private struct ToggleRow: View {
                     .font(.system(size: 11))
                     .foregroundColor(t.textMuted)
             }
+            Spacer()
+            Toggle("", isOn: $isOn)
+                .labelsHidden()
+                .toggleStyle(.switch)
+                .tint(t.accent)
         }
-        .toggleStyle(.switch)
         .padding(.horizontal, 14)
         .padding(.vertical, 10)
-        .tint(t.accent)
     }
 }
 

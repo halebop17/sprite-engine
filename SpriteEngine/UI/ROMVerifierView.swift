@@ -51,7 +51,7 @@ struct ROMVerifierView: View {
                     options: Filter.allCases.map { (label: $0.rawValue, value: $0) },
                     selection: $filter
                 )
-                .frame(width: 180)
+                .frame(width: 220)
             }
             Button(isRunning ? "Running…" : "Verify All ROMs") {
                 runVerification()
@@ -133,6 +133,8 @@ struct ROMVerifierView: View {
             .font(.system(size: 12, weight: .semibold))
             .padding(.horizontal, 20)
             .padding(.vertical, 10)
+            .frame(maxWidth: 760, alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .background(t.toolbar)
 
             Divider().background(t.divider)
@@ -145,6 +147,8 @@ struct ROMVerifierView: View {
                     }
                 }
                 .padding(.vertical, 4)
+                .frame(maxWidth: 760, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
     }
