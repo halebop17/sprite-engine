@@ -17,6 +17,43 @@ final class ROMLibrary: ObservableObject {
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         storageURL = dir.appendingPathComponent("library.json")
         games = load()
+        refreshTitlesFromBridge()
+    }
+
+    /// Ask the FBNeo bridge for the canonical full name of every .zip game and
+    /// update any titles that have changed. Cheap (metadata only — no ROM I/O)
+    /// and keeps existing libraries in sync as the bridge gains new drivers.
+    private func refreshTitlesFromBridge() {
+        var changed = false
+        for i in games.indices {
+            let url = games[i].romURL
+            guard url.pathExtension.lowercased() == "zip" else { continue }
+            let stem = url.deletingPathExtension().lastPathComponent
+            var buf = [CChar](repeating: 0, count: 256)
+            let ok = stem.withCString { c -> Int32 in
+                buf.withUnsafeMutableBufferPointer { bp in
+                    fbneo_driver_full_name(c, bp.baseAddress, bp.count)
+                }
+            }
+            guard ok == 1 else { continue }
+            let real = String(cString: buf)
+            guard !real.isEmpty, real != games[i].title else { continue }
+            games[i] = Game(
+                id:         games[i].id,
+                title:      real,
+                system:     games[i].system,
+                romURL:     games[i].romURL,
+                artworkURL: games[i].artworkURL,
+                lastPlayed: games[i].lastPlayed,
+                isFavorite: games[i].isFavorite,
+                saveStates: games[i].saveStates
+            )
+            changed = true
+        }
+        if changed {
+            games.sort { $0.title.localizedCompare($1.title) == .orderedAscending }
+            save()
+        }
     }
 
     // MARK: - Scanning
@@ -95,7 +132,21 @@ final class ROMLibrary: ObservableObject {
     private func merge(_ incoming: [Game]) {
         var existing = Dictionary(uniqueKeysWithValues: games.map { ($0.romURL, $0) })
         for game in incoming {
-            if existing[game.romURL] == nil {
+            if var prev = existing[game.romURL] {
+                // Refresh metadata from a rescan (title, system, artwork) while
+                // preserving the persistent id and user-state fields.
+                prev = Game(
+                    id:         prev.id,
+                    title:      game.title,
+                    system:     game.system,
+                    romURL:     prev.romURL,
+                    artworkURL: game.artworkURL ?? prev.artworkURL,
+                    lastPlayed: prev.lastPlayed,
+                    isFavorite: prev.isFavorite,
+                    saveStates: prev.saveStates
+                )
+                existing[game.romURL] = prev
+            } else {
                 existing[game.romURL] = game
             }
         }

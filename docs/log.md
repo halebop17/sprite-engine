@@ -2,6 +2,28 @@
 
 ---
 
+## 2026-04-26 — Save states for all FBNeo systems + auto title refresh + delete fix
+**Files:** `fbneo_cps_bridge.cpp`, `fbneo_driver_bridge.cpp`, `fbneo_driver_bridge.h`, `FBNeoCore.swift`, `ROMLibrary.swift`, `DetailView.swift`
+
+Three fixes that together make save states work everywhere, keep library titles current, and stop stale snapshots in the detail view.
+
+**Save states (CPS-1/2 + Sega/Toaplan/Konami/Irem/Taito):**
+- CPS bridge `fbneo_cps_state_{size,save,load}` were stubs returning size 0 — now real implementations using `BurnAreaScan(ACB_FULLSCAN, …)` with three callbacks (measure / read / write)
+- Same pattern added to the generic driver bridge as `fbneo_driver_state_{size,save,load}`, exposed in the header
+- `FBNeoCore.swift` was throwing unconditionally — now wired to the new bridge functions, mirroring the existing `FBNeoCPSCore` shape
+- Result: ⌘S / ⌘L work for every system, not just Neo Geo (Geolith)
+
+**Auto title refresh on library load:**
+- `ROMLibrary` now calls `refreshTitlesFromBridge()` from `init()` after loading from disk — for each `.zip` game it asks `fbneo_driver_full_name()` and updates the stored title if it differs
+- Avoids forcing users to dig into Settings → Rescan after a bridge change
+- Cheap (metadata only — no ROM I/O) and persists the refreshed titles back to `library.json`
+
+**Save state delete UI fix:**
+- `DetailView.saveStatesTab` was reading `game.saveStates` from a value snapshot captured at navigation time — removals updated `library.games` but the local `game` constant stayed stale, so deleted cards lingered until the user navigated away
+- Now reads the live `Game` from `library.games` each render
+
+---
+
 ## 2026-04-26 — Library: real game titles + grid/list view switcher
 **Files:** `fbneo_driver_bridge.h`, `fbneo_driver_bridge.cpp`, `ROMScanner.swift`, `AppState.swift`, `LibraryView.swift`
 

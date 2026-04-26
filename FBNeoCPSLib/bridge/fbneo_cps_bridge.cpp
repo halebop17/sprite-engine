@@ -395,14 +395,72 @@ void fbneo_cps_reset()
     BurnDrvInit(); // re-init is a hard reset; soft reset via driver reset if available
 }
 
-size_t fbneo_cps_state_size()
+// ── Savestate via BurnAreaScan + BurnAcb ─────────────────────────────────────
+// We scan all volatile + NVRAM/memcard areas (ACB_FULLSCAN). Three passes:
+//   1. measure (no read/write) — sum nLen across all areas
+//   2. read    (ACB_READ)      — copy driver memory into our buffer
+//   3. write   (ACB_WRITE)     — copy our buffer back into driver memory
+
+static size_t  s_stateRunningTotal = 0;
+static UINT8*  s_stateCursor       = nullptr;
+static const UINT8* s_stateCursorR = nullptr;
+static size_t  s_stateRemaining    = 0;
+static int     s_stateError        = 0;
+
+static INT32 __cdecl cps_state_len_acb(struct BurnArea* pba)
 {
-    if (!s_loaded) return 0;
+    s_stateRunningTotal += pba->nLen;
     return 0;
 }
 
-int fbneo_cps_state_save(void*, size_t) { return 1; }
-int fbneo_cps_state_load(const void*, size_t) { return 1; }
+static INT32 __cdecl cps_state_read_acb(struct BurnArea* pba)
+{
+    if (s_stateRemaining < pba->nLen) { s_stateError = 1; return 1; }
+    memcpy(s_stateCursor, pba->Data, pba->nLen);
+    s_stateCursor    += pba->nLen;
+    s_stateRemaining -= pba->nLen;
+    return 0;
+}
+
+static INT32 __cdecl cps_state_write_acb(struct BurnArea* pba)
+{
+    if (s_stateRemaining < pba->nLen) { s_stateError = 1; return 1; }
+    memcpy(pba->Data, s_stateCursorR, pba->nLen);
+    s_stateCursorR   += pba->nLen;
+    s_stateRemaining -= pba->nLen;
+    return 0;
+}
+
+size_t fbneo_cps_state_size()
+{
+    if (!s_loaded) return 0;
+    s_stateRunningTotal = 0;
+    BurnAcb = cps_state_len_acb;
+    BurnAreaScan(ACB_FULLSCAN | ACB_READ, NULL);
+    return s_stateRunningTotal;
+}
+
+int fbneo_cps_state_save(void* buf, size_t bufSize)
+{
+    if (!s_loaded || !buf) return 0;
+    s_stateCursor    = static_cast<UINT8*>(buf);
+    s_stateRemaining = bufSize;
+    s_stateError     = 0;
+    BurnAcb = cps_state_read_acb;
+    BurnAreaScan(ACB_FULLSCAN | ACB_READ, NULL);
+    return s_stateError ? 0 : 1;
+}
+
+int fbneo_cps_state_load(const void* buf, size_t bufSize)
+{
+    if (!s_loaded || !buf) return 0;
+    s_stateCursorR   = static_cast<const UINT8*>(buf);
+    s_stateRemaining = bufSize;
+    s_stateError     = 0;
+    BurnAcb = cps_state_write_acb;
+    BurnAreaScan(ACB_FULLSCAN | ACB_WRITE, NULL);
+    return s_stateError ? 0 : 1;
+}
 
 int fbneo_cps_missing_roms(char* buf, size_t bufSize)
 {

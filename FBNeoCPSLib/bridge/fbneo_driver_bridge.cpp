@@ -405,6 +405,72 @@ void fbneo_driver_reset()
     BurnDrvInit();
 }
 
+// ── Savestate via BurnAreaScan + BurnAcb ─────────────────────────────────────
+// Same pattern as the CPS bridge: measure → read → write across all volatile
+// + NVRAM areas using ACB_FULLSCAN. State of one bridge does not interfere
+// with the other since only one game is loaded at a time.
+
+static size_t       s_dStateRunningTotal = 0;
+static UINT8*       s_dStateCursor       = nullptr;
+static const UINT8* s_dStateCursorR      = nullptr;
+static size_t       s_dStateRemaining    = 0;
+static int          s_dStateError        = 0;
+
+static INT32 __cdecl drv_state_len_acb(struct BurnArea* pba)
+{
+    s_dStateRunningTotal += pba->nLen;
+    return 0;
+}
+
+static INT32 __cdecl drv_state_read_acb(struct BurnArea* pba)
+{
+    if (s_dStateRemaining < pba->nLen) { s_dStateError = 1; return 1; }
+    memcpy(s_dStateCursor, pba->Data, pba->nLen);
+    s_dStateCursor    += pba->nLen;
+    s_dStateRemaining -= pba->nLen;
+    return 0;
+}
+
+static INT32 __cdecl drv_state_write_acb(struct BurnArea* pba)
+{
+    if (s_dStateRemaining < pba->nLen) { s_dStateError = 1; return 1; }
+    memcpy(pba->Data, s_dStateCursorR, pba->nLen);
+    s_dStateCursorR   += pba->nLen;
+    s_dStateRemaining -= pba->nLen;
+    return 0;
+}
+
+size_t fbneo_driver_state_size()
+{
+    if (!s_loaded) return 0;
+    s_dStateRunningTotal = 0;
+    BurnAcb = drv_state_len_acb;
+    BurnAreaScan(ACB_FULLSCAN | ACB_READ, NULL);
+    return s_dStateRunningTotal;
+}
+
+int fbneo_driver_state_save(void* buf, size_t bufSize)
+{
+    if (!s_loaded || !buf) return 0;
+    s_dStateCursor    = static_cast<UINT8*>(buf);
+    s_dStateRemaining = bufSize;
+    s_dStateError     = 0;
+    BurnAcb = drv_state_read_acb;
+    BurnAreaScan(ACB_FULLSCAN | ACB_READ, NULL);
+    return s_dStateError ? 0 : 1;
+}
+
+int fbneo_driver_state_load(const void* buf, size_t bufSize)
+{
+    if (!s_loaded || !buf) return 0;
+    s_dStateCursorR   = static_cast<const UINT8*>(buf);
+    s_dStateRemaining = bufSize;
+    s_dStateError     = 0;
+    BurnAcb = drv_state_write_acb;
+    BurnAreaScan(ACB_FULLSCAN | ACB_WRITE, NULL);
+    return s_dStateError ? 0 : 1;
+}
+
 int fbneo_driver_missing_roms(char* buf, size_t bufSize)
 {
     if (!buf || bufSize == 0) return s_missingCount;

@@ -85,11 +85,21 @@ final class FBNeoCore: EmulatorCore {
     }
 
     func saveState() throws -> Data {
-        throw EmulatorError.saveStateFailed  // placeholder — add per-driver state in future phase
+        let size = fbneo_driver_state_size()
+        guard size > 0 else { throw EmulatorError.saveStateFailed }
+        var buf = [UInt8](repeating: 0, count: size)
+        let result = buf.withUnsafeMutableBytes { ptr -> Int32 in
+            fbneo_driver_state_save(ptr.baseAddress!, size)
+        }
+        guard result == 1 else { throw EmulatorError.saveStateFailed }
+        return Data(buf)
     }
 
     func loadState(_ data: Data) throws {
-        throw EmulatorError.loadStateFailed
+        let result = data.withUnsafeBytes { ptr -> Int32 in
+            fbneo_driver_state_load(ptr.baseAddress!, data.count)
+        }
+        guard result == 1 else { throw EmulatorError.loadStateFailed }
     }
 
     func reset() {
