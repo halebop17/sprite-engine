@@ -496,6 +496,44 @@ struct BackButton: View {
     }
 }
 
+// MARK: - Themed segmented picker
+
+/// Drop-in replacement for `.pickerStyle(.segmented)` that respects custom
+/// dark/amber themes by drawing the track and label colours explicitly.
+struct ThemedSegmentedPicker<T: Hashable>: View {
+    let options: [(label: String, value: T)]
+    @Binding var selection: T
+    @Environment(\.appTheme) private var t
+
+    var body: some View {
+        HStack(spacing: 2) {
+            ForEach(options, id: \.value) { opt in
+                let selected = selection == opt.value
+                Button {
+                    selection = opt.value
+                } label: {
+                    Text(opt.label)
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(selected ? .white : t.text)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 5)
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            selected
+                                ? t.accent
+                                : t.card,
+                            in: RoundedRectangle(cornerRadius: 6)
+                        )
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(3)
+        .background(t.surface.opacity(0.6), in: RoundedRectangle(cornerRadius: 9))
+        .overlay(RoundedRectangle(cornerRadius: 9).stroke(t.divider, lineWidth: 1))
+    }
+}
+
 // MARK: - Save state card
 
 private struct SaveStateCard: View {

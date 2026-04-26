@@ -175,6 +175,17 @@ static void apply_dip_defaults()
 
 // ── System string → constant ──────────────────────────────────────────────────
 
+// GX 32-bit boards (d_mystwarr.cpp + d_moo.cpp, Phase 24).
+// Every other "GX<nnn>" PCB code belongs to Konami System 68K hardware.
+static const char* const kGX32Boards[] = {
+    "GX123", "GX128", "GX151", "GX168", "GX170", "GX173", "GX224", "GX234", nullptr
+};
+static bool is_gx32_board(const char* sys) {
+    for (int i = 0; kGX32Boards[i]; ++i)
+        if (strcmp(sys, kGX32Boards[i]) == 0) return true;
+    return false;
+}
+
 static int system_from_string(const char* sys)
 {
     if (!sys) return FBNEO_SYSTEM_UNKNOWN;
@@ -189,8 +200,9 @@ static int system_from_string(const char* sys)
     // Toaplan
     if (strncmp(sys, "Toaplan 1", 9) == 0 || strncmp(sys, "Toaplan Version 1", 17) == 0) return FBNEO_SYSTEM_TOAPLAN1;
     if (strncmp(sys, "Toaplan 2", 9) == 0 || strncmp(sys, "Toaplan Version 2", 17) == 0) return FBNEO_SYSTEM_TOAPLAN2;
-    // Konami GX — board IDs are "GX<nnn>" (e.g. "GX128", "GX151", "GX224")
-    if (strncmp(sys, "GX", 2) == 0) return FBNEO_SYSTEM_KONAMI_GX;
+    // Konami — distinguish GX 32-bit (known PCB whitelist) from System 68K (all other GX codes)
+    if (strncmp(sys, "GX", 2) == 0)
+        return is_gx32_board(sys) ? FBNEO_SYSTEM_KONAMI_GX : FBNEO_SYSTEM_KONAMI_68K;
     // Irem (M72, M90, M92 etc. — all start with "Irem")
     if (strncmp(sys, "Irem", 4) == 0) return FBNEO_SYSTEM_IREM;
     // Taito (F2, F3, B, X etc. — all start with "Taito")
@@ -222,6 +234,13 @@ int fbneo_driver_identify(const char* name)
     nBurnDrvActive = (UINT32)idx;
     char* sys = BurnDrvGetTextA(DRV_SYSTEM);
     int result = system_from_string(sys);
+    // Z80-era Konami games report "Miscellaneous" as their system string.
+    // Fall back to manufacturer to catch them.
+    if (result == FBNEO_SYSTEM_UNKNOWN) {
+        char* mfr = BurnDrvGetTextA(DRV_MANUFACTURER);
+        if (mfr && strncmp(mfr, "Konami", 6) == 0)
+            result = FBNEO_SYSTEM_KONAMI_68K;
+    }
     nBurnDrvActive = prev;
     return result;
 }

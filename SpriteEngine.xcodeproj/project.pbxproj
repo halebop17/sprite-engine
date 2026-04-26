@@ -262,6 +262,93 @@
 			TAITOCHP014B /* tc0640fio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TAITOCHP014A /* tc0640fio.cpp */; };
 			TAITOCHP015B /* mb87078.cpp in Sources */ = {isa = PBXBuildFile; fileRef = TAITOCHP015A /* mb87078.cpp */; };
 			UPD7810CPU001B /* upd7810.cpp in Sources */ = {isa = PBXBuildFile; fileRef = UPD7810CPU001A /* upd7810.cpp */; };
+			K68KDRV001B /* d_tmnt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV001A /* d_tmnt.cpp */; };
+			K68KDRV002B /* d_simpsons.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV002A /* d_simpsons.cpp */; };
+			K68KDRV003B /* d_xmen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV003A /* d_xmen.cpp */; };
+			K68KDRV004B /* d_aliens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV004A /* d_aliens.cpp */; };
+			K68KDRV005B /* d_vendetta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV005A /* d_vendetta.cpp */; };
+			K68KDRV006B /* d_contra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV006A /* d_contra.cpp */; };
+			K68KDRV007B /* d_gijoe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV007A /* d_gijoe.cpp */; };
+			K68KDRV008B /* d_crimfght.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV008A /* d_crimfght.cpp */; };
+			K68KDRV009B /* d_asterix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV009A /* d_asterix.cpp */; };
+			K68KDRV010B /* d_dbz.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV010A /* d_dbz.cpp */; };
+			K68KDRV011B /* d_lethal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV011A /* d_lethal.cpp */; };
+			K68KDRV012B /* d_gbusters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV012A /* d_gbusters.cpp */; };
+			K68KDRV013B /* d_hcastle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV013A /* d_hcastle.cpp */; };
+			K68KDRV014B /* d_battlnts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV014A /* d_battlnts.cpp */; };
+			K68KDRV015B /* d_ajax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV015A /* d_ajax.cpp */; };
+			K68KDRV016B /* d_thunderx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV016A /* d_thunderx.cpp */; };
+			K68KDRV017B /* d_surpratk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV017A /* d_surpratk.cpp */; };
+			K68KDRV018B /* d_jackal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV018A /* d_jackal.cpp */; };
+			K68KDRV019B /* d_mainevt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV019A /* d_mainevt.cpp */; };
+			K68KDRV020B /* d_bladestl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV020A /* d_bladestl.cpp */; };
+			K68KDRV021B /* d_bottom9.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV021A /* d_bottom9.cpp */; };
+			K68KDRV022B /* d_blockhl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV022A /* d_blockhl.cpp */; };
+			K68KDRV023B /* d_rollerg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV023A /* d_rollerg.cpp */; };
+			K68KDRV024B /* d_flkatck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV024A /* d_flkatck.cpp */; };
+			K68KDRV025B /* d_hexion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV025A /* d_hexion.cpp */; };
+			K68KDRV026B /* d_parodius.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV026A /* d_parodius.cpp */; };
+			K68KDRV027B /* d_xexex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV027A /* d_xexex.cpp */; };
+			K68KDRV028B /* d_gradius3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV028A /* d_gradius3.cpp */; };
+			K68KDRV029B /* d_twin16.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV029A /* d_twin16.cpp */; };
+			K68KDRV030B /* d_nemesis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV030A /* d_nemesis.cpp */; };
+			K68KDRV031B /* d_timeplt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV031A /* d_timeplt.cpp */; };
+			K68KDRV032B /* d_trackfld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV032A /* d_trackfld.cpp */; };
+			K68KDRV033B /* d_hyperspt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV033A /* d_hyperspt.cpp */; };
+			K68KDRV034B /* d_megazone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV034A /* d_megazone.cpp */; };
+			K68KDRV035B /* d_gyruss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV035A /* d_gyruss.cpp */; };
+			K68KDRV036B /* d_circusc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV036A /* d_circusc.cpp */; };
+			K68KDRV037B /* d_mikie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV037A /* d_mikie.cpp */; };
+			K68KDRV038B /* d_pingpong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV038A /* d_pingpong.cpp */; };
+			K68KDRV039B /* d_tp84.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV039A /* d_tp84.cpp */; };
+			K68KDRV040B /* d_yiear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV040A /* d_yiear.cpp */; };
+			K68KDRV041B /* d_labyrunr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV041A /* d_labyrunr.cpp */; };
+			K68KDRV042B /* d_rockrage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV042A /* d_rockrage.cpp */; };
+			K68KDRV043B /* d_ironhors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV043A /* d_ironhors.cpp */; };
+			K68KDRV044B /* d_jailbrek.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV044A /* d_jailbrek.cpp */; };
+			K68KDRV045B /* d_finalzr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV045A /* d_finalzr.cpp */; };
+			K68KDRV046B /* d_rocnrope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV046A /* d_rocnrope.cpp */; };
+			K68KDRV047B /* d_shaolins.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV047A /* d_shaolins.cpp */; };
+			K68KDRV048B /* d_junofrst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV048A /* d_junofrst.cpp */; };
+			K68KDRV049B /* d_tutankhm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV049A /* d_tutankhm.cpp */; };
+			K68KDRV050B /* d_pooyan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV050A /* d_pooyan.cpp */; };
+			K68KDRV051B /* d_gberet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV051A /* d_gberet.cpp */; };
+			K68KDRV052B /* d_pandoras.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV052A /* d_pandoras.cpp */; };
+			K68KDRV053B /* d_ddribble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV053A /* d_ddribble.cpp */; };
+			K68KDRV054B /* d_88games.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV054A /* d_88games.cpp */; };
+			K68KDRV055B /* d_fastlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV055A /* d_fastlane.cpp */; };
+			K68KDRV056B /* d_chqflag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV056A /* d_chqflag.cpp */; };
+			K68KDRV057B /* d_spy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV057A /* d_spy.cpp */; };
+			K68KDRV058B /* d_wecleman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV058A /* d_wecleman.cpp */; };
+			K68KDRV059B /* d_combatsc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV059A /* d_combatsc.cpp */; };
+			K68KDRV060B /* d_sbasketb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV060A /* d_sbasketb.cpp */; };
+			K68KDRV061B /* d_scotrsht.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV061A /* d_scotrsht.cpp */; };
+			K68KDRV062B /* d_divebomb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV062A /* d_divebomb.cpp */; };
+			K68KDRV063B /* d_mogura.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV063A /* d_mogura.cpp */; };
+			K68KDRV064B /* d_kontest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV064A /* d_kontest.cpp */; };
+			K68KDRV065B /* d_ultraman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV065A /* d_ultraman.cpp */; };
+			K68KDRV066B /* d_bishi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDRV066A /* d_bishi.cpp */; };
+			K68KSUP001B /* k007121.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KSUP001A /* k007121.cpp */; };
+			K68KSUP002B /* k007342_k007420.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KSUP002A /* k007342_k007420.cpp */; };
+			K68KSUP003B /* k007452.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KSUP003A /* k007452.cpp */; };
+			K68KSUP004B /* timeplt_snd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KSUP004A /* timeplt_snd.cpp */; };
+			K68KDEP001B /* m6809.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP001A /* m6809.cpp */; };
+			K68KDEP002B /* hd6309.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP002A /* hd6309.cpp */; };
+			K68KDEP003B /* mcs48.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP003A /* mcs48.cpp */; };
+			K68KDEP004B /* vlm5030.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP004A /* vlm5030.cpp */; };
+			K68KDEP005B /* flt_rc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP005A /* flt_rc.cpp */; };
+			K68KDEP006B /* k007232.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP006A /* k007232.cpp */; };
+			K68KDEP007B /* m6809_intf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP007A /* m6809_intf.cpp */; };
+			K68KDEP008B /* hd6309_intf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP008A /* hd6309_intf.cpp */; };
+			K68KDEP009B /* konami.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP009A /* konami.cpp */; };
+			K68KDEP010B /* m6800.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP010A /* m6800.cpp */; };
+			K68KDEP011B /* sn76496.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP011A /* sn76496.cpp */; };
+			K68KDEP012B /* k051649.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP012A /* k051649.cpp */; };
+			K68KDEP013B /* k053260.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP013A /* k053260.cpp */; };
+			K68KDEP014B /* k005289.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP014A /* k005289.cpp */; };
+			K68KDEP015B /* m6800_intf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP015A /* m6800_intf.cpp */; };
+			K68KDEP016B /* konami_intf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP016A /* konami_intf.cpp */; };
+			K68KDEP017B /* watchdog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = K68KDEP017A /* watchdog.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -563,6 +650,93 @@
 			TAITOCHP014A /* tc0640fio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tc0640fio.cpp; sourceTree = "<group>"; };
 			TAITOCHP015A /* mb87078.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mb87078.cpp; sourceTree = "<group>"; };
 			UPD7810CPU001A /* upd7810.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = upd7810.cpp; sourceTree = "<group>"; };
+			K68KDRV001A /* d_tmnt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_tmnt.cpp; sourceTree = "<group>"; };
+			K68KDRV002A /* d_simpsons.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_simpsons.cpp; sourceTree = "<group>"; };
+			K68KDRV003A /* d_xmen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_xmen.cpp; sourceTree = "<group>"; };
+			K68KDRV004A /* d_aliens.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_aliens.cpp; sourceTree = "<group>"; };
+			K68KDRV005A /* d_vendetta.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_vendetta.cpp; sourceTree = "<group>"; };
+			K68KDRV006A /* d_contra.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_contra.cpp; sourceTree = "<group>"; };
+			K68KDRV007A /* d_gijoe.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_gijoe.cpp; sourceTree = "<group>"; };
+			K68KDRV008A /* d_crimfght.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_crimfght.cpp; sourceTree = "<group>"; };
+			K68KDRV009A /* d_asterix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_asterix.cpp; sourceTree = "<group>"; };
+			K68KDRV010A /* d_dbz.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_dbz.cpp; sourceTree = "<group>"; };
+			K68KDRV011A /* d_lethal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_lethal.cpp; sourceTree = "<group>"; };
+			K68KDRV012A /* d_gbusters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_gbusters.cpp; sourceTree = "<group>"; };
+			K68KDRV013A /* d_hcastle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_hcastle.cpp; sourceTree = "<group>"; };
+			K68KDRV014A /* d_battlnts.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_battlnts.cpp; sourceTree = "<group>"; };
+			K68KDRV015A /* d_ajax.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_ajax.cpp; sourceTree = "<group>"; };
+			K68KDRV016A /* d_thunderx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_thunderx.cpp; sourceTree = "<group>"; };
+			K68KDRV017A /* d_surpratk.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_surpratk.cpp; sourceTree = "<group>"; };
+			K68KDRV018A /* d_jackal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_jackal.cpp; sourceTree = "<group>"; };
+			K68KDRV019A /* d_mainevt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_mainevt.cpp; sourceTree = "<group>"; };
+			K68KDRV020A /* d_bladestl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_bladestl.cpp; sourceTree = "<group>"; };
+			K68KDRV021A /* d_bottom9.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_bottom9.cpp; sourceTree = "<group>"; };
+			K68KDRV022A /* d_blockhl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_blockhl.cpp; sourceTree = "<group>"; };
+			K68KDRV023A /* d_rollerg.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_rollerg.cpp; sourceTree = "<group>"; };
+			K68KDRV024A /* d_flkatck.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_flkatck.cpp; sourceTree = "<group>"; };
+			K68KDRV025A /* d_hexion.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_hexion.cpp; sourceTree = "<group>"; };
+			K68KDRV026A /* d_parodius.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_parodius.cpp; sourceTree = "<group>"; };
+			K68KDRV027A /* d_xexex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_xexex.cpp; sourceTree = "<group>"; };
+			K68KDRV028A /* d_gradius3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_gradius3.cpp; sourceTree = "<group>"; };
+			K68KDRV029A /* d_twin16.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_twin16.cpp; sourceTree = "<group>"; };
+			K68KDRV030A /* d_nemesis.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_nemesis.cpp; sourceTree = "<group>"; };
+			K68KDRV031A /* d_timeplt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_timeplt.cpp; sourceTree = "<group>"; };
+			K68KDRV032A /* d_trackfld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_trackfld.cpp; sourceTree = "<group>"; };
+			K68KDRV033A /* d_hyperspt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_hyperspt.cpp; sourceTree = "<group>"; };
+			K68KDRV034A /* d_megazone.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_megazone.cpp; sourceTree = "<group>"; };
+			K68KDRV035A /* d_gyruss.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_gyruss.cpp; sourceTree = "<group>"; };
+			K68KDRV036A /* d_circusc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_circusc.cpp; sourceTree = "<group>"; };
+			K68KDRV037A /* d_mikie.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_mikie.cpp; sourceTree = "<group>"; };
+			K68KDRV038A /* d_pingpong.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_pingpong.cpp; sourceTree = "<group>"; };
+			K68KDRV039A /* d_tp84.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_tp84.cpp; sourceTree = "<group>"; };
+			K68KDRV040A /* d_yiear.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_yiear.cpp; sourceTree = "<group>"; };
+			K68KDRV041A /* d_labyrunr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_labyrunr.cpp; sourceTree = "<group>"; };
+			K68KDRV042A /* d_rockrage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_rockrage.cpp; sourceTree = "<group>"; };
+			K68KDRV043A /* d_ironhors.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_ironhors.cpp; sourceTree = "<group>"; };
+			K68KDRV044A /* d_jailbrek.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_jailbrek.cpp; sourceTree = "<group>"; };
+			K68KDRV045A /* d_finalzr.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_finalzr.cpp; sourceTree = "<group>"; };
+			K68KDRV046A /* d_rocnrope.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_rocnrope.cpp; sourceTree = "<group>"; };
+			K68KDRV047A /* d_shaolins.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_shaolins.cpp; sourceTree = "<group>"; };
+			K68KDRV048A /* d_junofrst.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_junofrst.cpp; sourceTree = "<group>"; };
+			K68KDRV049A /* d_tutankhm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_tutankhm.cpp; sourceTree = "<group>"; };
+			K68KDRV050A /* d_pooyan.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_pooyan.cpp; sourceTree = "<group>"; };
+			K68KDRV051A /* d_gberet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_gberet.cpp; sourceTree = "<group>"; };
+			K68KDRV052A /* d_pandoras.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_pandoras.cpp; sourceTree = "<group>"; };
+			K68KDRV053A /* d_ddribble.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_ddribble.cpp; sourceTree = "<group>"; };
+			K68KDRV054A /* d_88games.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_88games.cpp; sourceTree = "<group>"; };
+			K68KDRV055A /* d_fastlane.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_fastlane.cpp; sourceTree = "<group>"; };
+			K68KDRV056A /* d_chqflag.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_chqflag.cpp; sourceTree = "<group>"; };
+			K68KDRV057A /* d_spy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_spy.cpp; sourceTree = "<group>"; };
+			K68KDRV058A /* d_wecleman.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_wecleman.cpp; sourceTree = "<group>"; };
+			K68KDRV059A /* d_combatsc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_combatsc.cpp; sourceTree = "<group>"; };
+			K68KDRV060A /* d_sbasketb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_sbasketb.cpp; sourceTree = "<group>"; };
+			K68KDRV061A /* d_scotrsht.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_scotrsht.cpp; sourceTree = "<group>"; };
+			K68KDRV062A /* d_divebomb.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_divebomb.cpp; sourceTree = "<group>"; };
+			K68KDRV063A /* d_mogura.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_mogura.cpp; sourceTree = "<group>"; };
+			K68KDRV064A /* d_kontest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_kontest.cpp; sourceTree = "<group>"; };
+			K68KDRV065A /* d_ultraman.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_ultraman.cpp; sourceTree = "<group>"; };
+			K68KDRV066A /* d_bishi.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = d_bishi.cpp; sourceTree = "<group>"; };
+			K68KSUP001A /* k007121.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k007121.cpp; sourceTree = "<group>"; };
+			K68KSUP002A /* k007342_k007420.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k007342_k007420.cpp; sourceTree = "<group>"; };
+			K68KSUP003A /* k007452.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = k007452.cpp; sourceTree = "<group>"; };
+			K68KSUP004A /* timeplt_snd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = timeplt_snd.cpp; sourceTree = "<group>"; };
+			K68KDEP001A /* m6809.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = m6809.cpp; path = FBNeoCPSLib/fbneo/src/cpu/m6809/m6809.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP002A /* hd6309.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = hd6309.cpp; path = FBNeoCPSLib/fbneo/src/cpu/hd6309/hd6309.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP003A /* mcs48.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = mcs48.cpp; path = FBNeoCPSLib/fbneo/src/cpu/i8x41/mcs48.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP004A /* vlm5030.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = vlm5030.cpp; path = FBNeoCPSLib/fbneo/src/burn/snd/vlm5030.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP005A /* flt_rc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = flt_rc.cpp; path = FBNeoCPSLib/fbneo/src/burn/snd/flt_rc.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP006A /* k007232.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = k007232.cpp; path = FBNeoCPSLib/fbneo/src/burn/snd/k007232.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP007A /* m6809_intf.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = m6809_intf.cpp; path = FBNeoCPSLib/fbneo/src/cpu/m6809_intf.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP008A /* hd6309_intf.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = hd6309_intf.cpp; path = FBNeoCPSLib/fbneo/src/cpu/hd6309_intf.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP009A /* konami.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = konami.cpp; path = FBNeoCPSLib/fbneo/src/cpu/konami/konami.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP010A /* m6800.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = m6800.cpp; path = FBNeoCPSLib/fbneo/src/cpu/m6800/m6800.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP011A /* sn76496.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = sn76496.cpp; path = FBNeoCPSLib/fbneo/src/burn/snd/sn76496.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP012A /* k051649.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = k051649.cpp; path = FBNeoCPSLib/fbneo/src/burn/snd/k051649.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP013A /* k053260.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = k053260.cpp; path = FBNeoCPSLib/fbneo/src/burn/snd/k053260.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP014A /* k005289.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = k005289.cpp; path = FBNeoCPSLib/fbneo/src/burn/snd/k005289.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP015A /* m6800_intf.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = m6800_intf.cpp; path = FBNeoCPSLib/fbneo/src/cpu/m6800_intf.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP016A /* konami_intf.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = konami_intf.cpp; path = FBNeoCPSLib/fbneo/src/cpu/konami_intf.cpp; sourceTree = SOURCE_ROOT; };
+			K68KDEP017A /* watchdog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = watchdog.cpp; path = FBNeoCPSLib/fbneo/src/burn/devices/watchdog.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -618,6 +792,15 @@
 				LDEP_Z180_GRP0000 /* z180 */,
 				LDEP_M6805_GRP000 /* m6805 */,
 				UPD7810CPU_GRP00 /* upd7810 */,
+				K68K_I8X41_GRP00 /* i8x41 */,
+				K68K_HD6309GRP00 /* hd6309 */,
+				K68KDEP016A /* konami_intf.cpp */,
+				K68KDEP015A /* m6800_intf.cpp */,
+				K68KDEP010A /* m6800.cpp */,
+				K68KDEP009A /* konami.cpp */,
+				K68KDEP008A /* hd6309_intf.cpp */,
+				K68KDEP007A /* m6809_intf.cpp */,
+				K68K_M6809_GRP00 /* m6809 */,
 				LDEP_NECINTF_REF0 /* nec_intf.cpp */,
 				LDEP_Z180INT_REF0 /* z180_intf.cpp */,
 				LDEP_M6805INT_REF /* m6805_intf.cpp */,
@@ -944,6 +1127,76 @@
 		KGX_KONAMI_GROUP000000 /* konami */ = {
 			isa = PBXGroup;
 			children = (
+				K68KDRV001A /* d_tmnt.cpp */,
+				K68KDRV002A /* d_simpsons.cpp */,
+				K68KDRV003A /* d_xmen.cpp */,
+				K68KDRV004A /* d_aliens.cpp */,
+				K68KDRV005A /* d_vendetta.cpp */,
+				K68KDRV006A /* d_contra.cpp */,
+				K68KDRV007A /* d_gijoe.cpp */,
+				K68KDRV008A /* d_crimfght.cpp */,
+				K68KDRV009A /* d_asterix.cpp */,
+				K68KDRV010A /* d_dbz.cpp */,
+				K68KDRV011A /* d_lethal.cpp */,
+				K68KDRV012A /* d_gbusters.cpp */,
+				K68KDRV013A /* d_hcastle.cpp */,
+				K68KDRV014A /* d_battlnts.cpp */,
+				K68KDRV015A /* d_ajax.cpp */,
+				K68KDRV016A /* d_thunderx.cpp */,
+				K68KDRV017A /* d_surpratk.cpp */,
+				K68KDRV018A /* d_jackal.cpp */,
+				K68KDRV019A /* d_mainevt.cpp */,
+				K68KDRV020A /* d_bladestl.cpp */,
+				K68KDRV021A /* d_bottom9.cpp */,
+				K68KDRV022A /* d_blockhl.cpp */,
+				K68KDRV023A /* d_rollerg.cpp */,
+				K68KDRV024A /* d_flkatck.cpp */,
+				K68KDRV025A /* d_hexion.cpp */,
+				K68KDRV026A /* d_parodius.cpp */,
+				K68KDRV027A /* d_xexex.cpp */,
+				K68KDRV028A /* d_gradius3.cpp */,
+				K68KDRV029A /* d_twin16.cpp */,
+				K68KDRV030A /* d_nemesis.cpp */,
+				K68KDRV031A /* d_timeplt.cpp */,
+				K68KDRV032A /* d_trackfld.cpp */,
+				K68KDRV033A /* d_hyperspt.cpp */,
+				K68KDRV034A /* d_megazone.cpp */,
+				K68KDRV035A /* d_gyruss.cpp */,
+				K68KDRV036A /* d_circusc.cpp */,
+				K68KDRV037A /* d_mikie.cpp */,
+				K68KDRV038A /* d_pingpong.cpp */,
+				K68KDRV039A /* d_tp84.cpp */,
+				K68KDRV040A /* d_yiear.cpp */,
+				K68KDRV041A /* d_labyrunr.cpp */,
+				K68KDRV042A /* d_rockrage.cpp */,
+				K68KDRV043A /* d_ironhors.cpp */,
+				K68KDRV044A /* d_jailbrek.cpp */,
+				K68KDRV045A /* d_finalzr.cpp */,
+				K68KDRV046A /* d_rocnrope.cpp */,
+				K68KDRV047A /* d_shaolins.cpp */,
+				K68KDRV048A /* d_junofrst.cpp */,
+				K68KDRV049A /* d_tutankhm.cpp */,
+				K68KDRV050A /* d_pooyan.cpp */,
+				K68KDRV051A /* d_gberet.cpp */,
+				K68KDRV052A /* d_pandoras.cpp */,
+				K68KDRV053A /* d_ddribble.cpp */,
+				K68KDRV054A /* d_88games.cpp */,
+				K68KDRV055A /* d_fastlane.cpp */,
+				K68KDRV056A /* d_chqflag.cpp */,
+				K68KDRV057A /* d_spy.cpp */,
+				K68KDRV058A /* d_wecleman.cpp */,
+				K68KDRV059A /* d_combatsc.cpp */,
+				K68KDRV060A /* d_sbasketb.cpp */,
+				K68KDRV061A /* d_scotrsht.cpp */,
+				K68KDRV062A /* d_divebomb.cpp */,
+				K68KDRV063A /* d_mogura.cpp */,
+				K68KDRV064A /* d_kontest.cpp */,
+				K68KDRV065A /* d_ultraman.cpp */,
+				K68KDRV066A /* d_bishi.cpp */,
+				K68KSUP001A /* k007121.cpp */,
+				K68KSUP002A /* k007342_k007420.cpp */,
+				K68KSUP003A /* k007452.cpp */,
+				K68KSUP004A /* timeplt_snd.cpp */,
 				KGXDRV001A /* d_mystwarr.cpp */,
 				KGXDRV002A /* d_moo.cpp */,
 				KGXSUP001A /* konamiic.cpp */,
@@ -994,6 +1247,7 @@
 			children = (
 				B5824B35411FE6A1CB513000 /* eeprom.cpp */,
 				KGXDEV001A /* dtimer.cpp */,
+				K68KDEP017A /* watchdog.cpp */,
 				AF0F41C4F16B26D6EEDD54BE /* joyprocess.cpp */,
 				B7C9C3EBDE427B3D4E0DF86B /* timekpr.cpp */,
 				SE160023A000000000000000 /* 8255ppi.cpp */,
@@ -1051,6 +1305,13 @@
 				SE16FMO2610A000000000000 /* burn_ym2610.cpp */,
 				TPYM3812AA /* burn_ym3812.cpp */,
 				KGXSND001A /* k054539.cpp */,
+				K68KDEP014A /* k005289.cpp */,
+				K68KDEP013A /* k053260.cpp */,
+				K68KDEP012A /* k051649.cpp */,
+				K68KDEP011A /* sn76496.cpp */,
+				K68KDEP006A /* k007232.cpp */,
+				K68KDEP005A /* flt_rc.cpp */,
+				K68KDEP004A /* vlm5030.cpp */,
 				LDEP_FMOPL_REF000 /* fmopl.c */,
 				LDEP_YMZ280B_REF0 /* ymz280b.cpp */,
 				IREMSND001A /* iremga20.cpp */,
@@ -1231,6 +1492,30 @@
 				UPD7810CPU001A /* upd7810.cpp */,
 			);
 			path = upd7810;
+			sourceTree = "<group>";
+		};
+		K68K_M6809_GRP00 /* m6809 */ = {
+			isa = PBXGroup;
+			children = (
+				K68KDEP001A /* m6809.cpp */,
+			);
+			name = m6809;
+			sourceTree = "<group>";
+		};
+		K68K_HD6309GRP00 /* hd6309 */ = {
+			isa = PBXGroup;
+			children = (
+				K68KDEP002A /* hd6309.cpp */,
+			);
+			name = hd6309;
+			sourceTree = "<group>";
+		};
+		K68K_I8X41_GRP00 /* i8x41 */ = {
+			isa = PBXGroup;
+			children = (
+				K68KDEP003A /* mcs48.cpp */,
+			);
+			name = i8x41;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1493,6 +1778,93 @@
 				TAITOSUP003B /* taitof3_snd.cpp in Sources */,
 				TAITOSUP004B /* taitof3_video.cpp in Sources */,
 				TAITOSND001B /* es5506.cpp in Sources */,
+				K68KDRV001B /* d_tmnt.cpp in Sources */,
+				K68KDRV002B /* d_simpsons.cpp in Sources */,
+				K68KDRV003B /* d_xmen.cpp in Sources */,
+				K68KDRV004B /* d_aliens.cpp in Sources */,
+				K68KDRV005B /* d_vendetta.cpp in Sources */,
+				K68KDRV006B /* d_contra.cpp in Sources */,
+				K68KDRV007B /* d_gijoe.cpp in Sources */,
+				K68KDRV008B /* d_crimfght.cpp in Sources */,
+				K68KDRV009B /* d_asterix.cpp in Sources */,
+				K68KDRV010B /* d_dbz.cpp in Sources */,
+				K68KDRV011B /* d_lethal.cpp in Sources */,
+				K68KDRV012B /* d_gbusters.cpp in Sources */,
+				K68KDRV013B /* d_hcastle.cpp in Sources */,
+				K68KDRV014B /* d_battlnts.cpp in Sources */,
+				K68KDRV015B /* d_ajax.cpp in Sources */,
+				K68KDRV016B /* d_thunderx.cpp in Sources */,
+				K68KDRV017B /* d_surpratk.cpp in Sources */,
+				K68KDRV018B /* d_jackal.cpp in Sources */,
+				K68KDRV019B /* d_mainevt.cpp in Sources */,
+				K68KDRV020B /* d_bladestl.cpp in Sources */,
+				K68KDRV021B /* d_bottom9.cpp in Sources */,
+				K68KDRV022B /* d_blockhl.cpp in Sources */,
+				K68KDRV023B /* d_rollerg.cpp in Sources */,
+				K68KDRV024B /* d_flkatck.cpp in Sources */,
+				K68KDRV025B /* d_hexion.cpp in Sources */,
+				K68KDRV026B /* d_parodius.cpp in Sources */,
+				K68KDRV027B /* d_xexex.cpp in Sources */,
+				K68KDRV028B /* d_gradius3.cpp in Sources */,
+				K68KDRV029B /* d_twin16.cpp in Sources */,
+				K68KDRV030B /* d_nemesis.cpp in Sources */,
+				K68KDRV031B /* d_timeplt.cpp in Sources */,
+				K68KDRV032B /* d_trackfld.cpp in Sources */,
+				K68KDRV033B /* d_hyperspt.cpp in Sources */,
+				K68KDRV034B /* d_megazone.cpp in Sources */,
+				K68KDRV035B /* d_gyruss.cpp in Sources */,
+				K68KDRV036B /* d_circusc.cpp in Sources */,
+				K68KDRV037B /* d_mikie.cpp in Sources */,
+				K68KDRV038B /* d_pingpong.cpp in Sources */,
+				K68KDRV039B /* d_tp84.cpp in Sources */,
+				K68KDRV040B /* d_yiear.cpp in Sources */,
+				K68KDRV041B /* d_labyrunr.cpp in Sources */,
+				K68KDRV042B /* d_rockrage.cpp in Sources */,
+				K68KDRV043B /* d_ironhors.cpp in Sources */,
+				K68KDRV044B /* d_jailbrek.cpp in Sources */,
+				K68KDRV045B /* d_finalzr.cpp in Sources */,
+				K68KDRV046B /* d_rocnrope.cpp in Sources */,
+				K68KDRV047B /* d_shaolins.cpp in Sources */,
+				K68KDRV048B /* d_junofrst.cpp in Sources */,
+				K68KDRV049B /* d_tutankhm.cpp in Sources */,
+				K68KDRV050B /* d_pooyan.cpp in Sources */,
+				K68KDRV051B /* d_gberet.cpp in Sources */,
+				K68KDRV052B /* d_pandoras.cpp in Sources */,
+				K68KDRV053B /* d_ddribble.cpp in Sources */,
+				K68KDRV054B /* d_88games.cpp in Sources */,
+				K68KDRV055B /* d_fastlane.cpp in Sources */,
+				K68KDRV056B /* d_chqflag.cpp in Sources */,
+				K68KDRV057B /* d_spy.cpp in Sources */,
+				K68KDRV058B /* d_wecleman.cpp in Sources */,
+				K68KDRV059B /* d_combatsc.cpp in Sources */,
+				K68KDRV060B /* d_sbasketb.cpp in Sources */,
+				K68KDRV061B /* d_scotrsht.cpp in Sources */,
+				K68KDRV062B /* d_divebomb.cpp in Sources */,
+				K68KDRV063B /* d_mogura.cpp in Sources */,
+				K68KDRV064B /* d_kontest.cpp in Sources */,
+				K68KDRV065B /* d_ultraman.cpp in Sources */,
+				K68KDRV066B /* d_bishi.cpp in Sources */,
+				K68KSUP001B /* k007121.cpp in Sources */,
+				K68KSUP002B /* k007342_k007420.cpp in Sources */,
+				K68KSUP003B /* k007452.cpp in Sources */,
+				K68KSUP004B /* timeplt_snd.cpp in Sources */,
+				K68KDEP001B /* m6809.cpp in Sources */,
+				K68KDEP002B /* hd6309.cpp in Sources */,
+				K68KDEP003B /* mcs48.cpp in Sources */,
+				K68KDEP004B /* vlm5030.cpp in Sources */,
+				K68KDEP005B /* flt_rc.cpp in Sources */,
+				K68KDEP006B /* k007232.cpp in Sources */,
+				K68KDEP007B /* m6809_intf.cpp in Sources */,
+				K68KDEP008B /* hd6309_intf.cpp in Sources */,
+				K68KDEP009B /* konami.cpp in Sources */,
+				K68KDEP010B /* m6800.cpp in Sources */,
+				K68KDEP011B /* sn76496.cpp in Sources */,
+				K68KDEP012B /* k051649.cpp in Sources */,
+				K68KDEP013B /* k053260.cpp in Sources */,
+				K68KDEP014B /* k005289.cpp in Sources */,
+				K68KDEP015B /* m6800_intf.cpp in Sources */,
+				K68KDEP016B /* konami_intf.cpp in Sources */,
+				K68KDEP017B /* watchdog.cpp in Sources */,
 				KGXDRV001B /* d_mystwarr.cpp in Sources */,
 				KGXDRV002B /* d_moo.cpp in Sources */,
 				KGXSUP001B /* konamiic.cpp in Sources */,
@@ -1659,7 +2031,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1 BUILD_MACOS=1";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/toaplan $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/taito $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/tms32010 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6805 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z180 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/nec $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/upd7810 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/toaplan $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/taito $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/tms32010 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6805 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z180 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/nec $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/upd7810 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6809 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/hd6309";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1683,7 +2055,7 @@
 				CODE_SIGN_ENTITLEMENTS = SpriteEngine/SpriteEngine.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6809 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/hd6309 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41";
 				INFOPLIST_FILE = SpriteEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1774,7 +2146,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) SUBSET_CPS12=1 LSB_FIRST=1 BUILD_MACOS=1";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/toaplan $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/taito $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/tms32010 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6805 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z180 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/nec $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/upd7810 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/capcom $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/sega $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/toaplan $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/taito $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/snd $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/devices $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m68k $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z80 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/tms32010 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8039 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8051 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6805 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/z180 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/nec $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/upd7810 $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner/macos $(SRCROOT)/FBNeoCPSLib/fbneo/src/burner $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/libs/zlib $(SRCROOT)/FBNeoCPSLib/fbneo/src/dep/generated $(SRCROOT)/FBNeoCPSLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6809 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/hd6309";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1798,7 +2170,7 @@
 				CODE_SIGN_ENTITLEMENTS = SpriteEngine/SpriteEngine.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6809 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/hd6309 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41";
 				INFOPLIST_FILE = SpriteEngine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1881,7 +2253,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/geolith/src $(SRCROOT)/GeolithLib/geolith/deps $(SRCROOT)/GeolithLib/geolith/deps/miniz $(SRCROOT)/GeolithLib/geolith/deps/dr $(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/geolith/src $(SRCROOT)/GeolithLib/geolith/deps $(SRCROOT)/GeolithLib/geolith/deps/miniz $(SRCROOT)/GeolithLib/geolith/deps/dr $(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6809 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/hd6309 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1902,7 +2274,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/geolith/src $(SRCROOT)/GeolithLib/geolith/deps $(SRCROOT)/GeolithLib/geolith/deps/miniz $(SRCROOT)/GeolithLib/geolith/deps/dr $(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/GeolithLib/geolith/src $(SRCROOT)/GeolithLib/geolith/deps $(SRCROOT)/GeolithLib/geolith/deps/miniz $(SRCROOT)/GeolithLib/geolith/deps/dr $(SRCROOT)/GeolithLib/bridge $(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/irem $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/m6809 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/hd6309 $(SRCROOT)/FBNeoCPSLib/fbneo/src/cpu/i8x41";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

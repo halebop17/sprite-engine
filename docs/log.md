@@ -2,6 +2,112 @@
 
 ---
 
+## 2026-04-26 — Phase 28 begin: Konami 68K scaffolding + ROM verifier + UI polish
+**Commit:** `c834b47`
+**Files:** `fbneo_driver_bridge.h`, `System.swift`, `CoreRouter.swift`, `ROMScanner.swift`, `GameDatabase.swift`, `ROMLibrary.swift`, `ROMVerifier.swift`, `DetailView.swift`, `GameCardView.swift`, `LibraryView.swift`, `ImportView.swift`, `SettingsView.swift`
+
+Swift-side scaffolding for the Konami 68K system and several related improvements committed ahead of the driver source injection.
+
+**Konami 68K scaffolding:**
+- `FBNEO_SYSTEM_KONAMI_68K` constant added to `fbneo_driver_bridge.h`
+- `.konami68k` case added to `EmulatorSystem`; `isKonami` computed property now covers both `.konamiGX` and `.konami68k`
+- Wired through `CoreRouter`, `ROMScanner`, `GameDatabase`, and `ImportView`
+- Sidebar shares the existing Konami `PlatformItem` and logo — no new UI colour needed
+
+**ROM Verifier enhancements:**
+- `ROMLibrary` now stores a full `GameVerificationResult` per game in memory
+- `GameCardView` shows an orange ⚠ badge (top-right corner) for any ROM with verification issues
+- `DetailView` gains a "ROM Issues" sidebar card listing every problem file (missing / wrong CRC with hex values); Unknown Game shows an explanation instead of a file list
+- `SettingsView` ROM verifier description updated from "CPS-1/2 only" to "all library ROMs"
+
+**Sidebar logo polish:**
+- `PlatformItem` tile enlarged 34→38 px, image 24→27 px, corner radius 5→7
+- Toaplan/Taito: white tile background; Konami: light grey; Irem: black — consistent with Neo Geo/CPS style (logo directly on tile, no inner frame)
+
+**Next:** Driver source injection for all non-GX Konami hardware (System 68K, Twin 16, Z80-era) and fix of GX system detection.
+
+---
+
+## 2026-04-26 — Phase 27 follow-up: Taito chip linker deps + real Irem/Taito logos
+**Commit:** `a1d7d5c`
+**Files:** `SpriteEngine.xcodeproj/project.pbxproj`, `Scripts/inject_taito_chips.py`, `Scripts/inject_upd7810.py`, `Assets.xcassets/IremLogo.imageset/`, `Assets.xcassets/TaitoLogo.imageset/`
+
+Follow-up to Phase 27 to resolve linker failures and replace placeholder logos.
+
+**Taito custom chip files added (via `inject_taito_chips.py`):**
+- `cchip.cpp`, `pc080sn.cpp`, `tc0100scn.cpp`, `tc0140syt.cpp`, `tc0150rod.cpp`, `tc0360pri.cpp`, `tc0480scp.cpp`, `tc0620scc.cpp`, `tc0650fca.cpp`, `tc0780fpa.cpp`, `tc0200obj.cpp`, `tc0630fdp.cpp`, `es5506.cpp`, `mb87078.cpp`
+
+**uPD7810 CPU core added (via `inject_upd7810.py`):**
+- Required by `cchip.cpp` (Taito C-Chip security emulation). Added `src/cpu/upd7810/` sources and HEADER_SEARCH_PATHS entry.
+
+**Logo assets:**
+- `IremLogo` replaced with real Irem PNG (`logos/irem.png`)
+- `TaitoLogo` replaced with real Taito SVG (`logos/taito-old.svg`)
+
+---
+
+## 2026-04-26 — Phase 27: Taito F2 / F3
+**Commit:** `da41caa`
+**Files:** `SpriteEngine.xcodeproj/project.pbxproj`, `GameDB.json`, `Scripts/inject_taito.py`, `Scripts/generate_driverlist.py`, `LibraryView.swift`, `GameCardView.swift`, `ImportView.swift`, `OnboardingView.swift`
+
+Added Taito F2 and F3 arcade board support.
+
+**Driver files added:**
+- `d_taitof2.cpp` — Taito F2 (68000 + Z80, TC0100SCN/TC0200OBJ tile and sprite chips): Rainbow Islands, Ninja Warriors, Liquid Kids, Cameltry, etc.
+- `d_taitof3.cpp` — Taito F3 (68EC020-based, TC0630/ES5505 sound): Elevator Action Returns, Darius Gaiden, Bubble Bobble 2, Puzzle Bobble, Gun Buster, Rayforce, etc.
+- Support: `taito.cpp`, `taito_ic.cpp`, `taitof3_snd.cpp`, `taitof3_video.cpp`, `es5506.cpp`
+
+**GameDB:** 48 Taito F2/F3 entries added.
+
+**driverlist.h** regenerated (1641 total entries).
+
+**UI:**
+- `EmulatorSystem.isTaito` computed property
+- `AppTheme.sysTaito` colour (blue tones)
+- `LibraryFilter.taito` case with sidebar `PlatformItem` and toolbar title
+- `ImportView` and `OnboardingView` updated to mention Taito
+
+---
+
+## 2026-04-26 — Phase 26: Irem M72 / M92
+**Commit:** `f8a6129`
+**Files:** `SpriteEngine.xcodeproj/project.pbxproj`, `GameDB.json`, `Scripts/inject_irem.py`, `Scripts/generate_driverlist.py`, `LibraryView.swift`, `GameCardView.swift`, `ImportView.swift`, `OnboardingView.swift`
+
+Added Irem M72 and M92 arcade board support.
+
+**Driver files added (via `inject_irem.py`):**
+- `d_m72.cpp` — Irem M72/M84 (NEC V30 main + Z80 sound, GA-20 + YM2151 audio): R-Type, R-Type II, Image Fight, Air Duel, Dragon Breed, etc.
+- `d_m92.cpp` — Irem M92 (V33/186-compatible, upgraded sprite hardware): Undercover Cops, Ninja Baseball Batman, In the Hunt, Gun Force, etc.
+- Support: `irem_cpu.cpp`, `iremga20.cpp`, `pic8259.cpp`
+
+**`fbneo_driver_identify()` routing:** `system_from_string()` already matches `"Irem*"` → `FBNEO_SYSTEM_IREM` from Phase 21. No bridge changes needed.
+
+**GameDB:** 27 Irem M72/M92 entries added.
+
+**driverlist.h** regenerated (1468 total entries).
+
+**UI:**
+- `EmulatorSystem.isIrem` computed property
+- `AppTheme.sysIrem` colour (orange tones)
+- `LibraryFilter.irem` case with sidebar `PlatformItem` and toolbar title
+
+---
+
+## 2026-04-26 — Phase 25: Multi-system verifier + UI pass
+**Commit:** `c6d42ee`
+**Files:** `ROMVerifier.swift`, `ROMVerifierView.swift`, `ImportView.swift`, `OnboardingView.swift`
+
+Extended the ROM Verifier and all system-facing UI copy to cover the full FBNeo system roster (Sega, Toaplan, Konami GX) in addition to the CPS games it already covered.
+
+**ROMVerifier:** `verify()` now also calls `fbneo_driver_verify_game()` for all `.fbneo` core games; both verification paths share the same `GameVerificationResult` model.
+
+**UI copy updates:**
+- `ROMVerifierView` button/summary text changed from "CPS ROMs" → "All ROMs"
+- `ImportView` system badge row extended to show Sega, Toaplan, and Konami counts
+- `OnboardingView` welcome copy now lists all supported systems
+
+---
+
 ## 2026-04-25 — Phase 24: Konami GX (Pre-GX hardware)
 **Files:** `SpriteEngine.xcodeproj/project.pbxproj`, `GameDB.json`, `Scripts/generate_driverlist.py`, `FBNeoCPSLib/bridge/fbneo_driver_bridge.cpp`, `SpriteEngine/UI/LibraryView.swift`, `SpriteEngine/UI/GameCardView.swift`, `Assets.xcassets/KonamiLogo.imageset/`
 
