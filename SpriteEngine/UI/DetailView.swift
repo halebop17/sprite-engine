@@ -336,7 +336,10 @@ struct DetailView: View {
     // MARK: - Save States tab
 
     private var saveStatesTab: some View {
-        let states = game.saveStates.sorted { $0.createdAt > $1.createdAt }
+        // Read fresh from library — `game` is a value snapshot from navigation
+        // and won't reflect mutations like delete/add.
+        let liveGame = library.games.first(where: { $0.id == game.id }) ?? game
+        let states = liveGame.saveStates.sorted { $0.createdAt > $1.createdAt }
         return Group {
             if states.isEmpty {
                 VStack(spacing: 12) {
@@ -356,7 +359,7 @@ struct DetailView: View {
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 140), spacing: 10)], spacing: 10) {
                     ForEach(states) { state in
                         SaveStateCard(state: state) {
-                            library.removeSaveState(state, from: game)
+                            library.removeSaveState(state, from: liveGame)
                         }
                     }
                 }

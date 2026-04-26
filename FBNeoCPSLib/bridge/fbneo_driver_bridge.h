@@ -111,6 +111,13 @@ void fbneo_driver_set_input(int player, uint32_t buttons);
 void fbneo_driver_run_frame(void);
 void fbneo_driver_reset(void);
 
+// ── Save state ────────────────────────────────────────────────────────────────
+// Returns 0 if no game is loaded.
+size_t fbneo_driver_state_size(void);
+// Returns 1 on success, 0 on failure (e.g. buffer too small or no game loaded).
+int    fbneo_driver_state_save(void* buf, size_t bufSize);
+int    fbneo_driver_state_load(const void* buf, size_t bufSize);
+
 // ── Missing ROM report ────────────────────────────────────────────────────────
 
 // Call after a failed fbneo_driver_load() to get a newline-separated list of
