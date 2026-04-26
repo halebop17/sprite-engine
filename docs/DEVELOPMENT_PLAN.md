@@ -495,6 +495,144 @@ Verify: `rainbowi.zip` (F2) and `elvactr.zip` (F3 — Elevator Action Returns) b
 
 ---
 
+## Phase 29 — ScreenScraper Artwork Integration
+
+**Goal:** Download and display real game artwork (box art, marquee, wheel logos, screenshots) directly inside the app by connecting to the ScreenScraper.fr API — the same source used by EmulationStation/RetroPie. After this phase every game in the library will show its cover art in the card grid and detail view.
+
+---
+
+### Background: How ScreenScraper works
+
+ScreenScraper (screenscraper.fr) is a community-run arcade/retro game database with an HTTP JSON API. Authentication uses two credential pairs passed as query parameters on every request:
+
+- **User credentials** — the player's own ScreenScraper account (`ssid` + `sspassword`). The user creates a free account at screenscraper.fr.
+- **Developer credentials** — a software-specific key pair (`devid` + `devpassword`) issued to the app. Request these by posting in the ScreenScraper developer forum (screenscraper.fr/forumsujets.php?frub=12). Also pass `softname=SpriteEngine` on every request.
+
+All requests go to `https://api.screenscraper.fr/api2/`.
+
+---
+
+### Key API endpoints
+
+**1. Game lookup — `jeuInfos.php`** (primary path)
+
+Looks up a single game by file metadata. Returns full game info including all media URLs in one call.
+
+```
+GET /api2/jeuInfos.php
+  ?devid=DEVID&devpassword=DEVPWD
+  &ssid=USERID&sspassword=USERPWD
+  &softname=SpriteEngine
+  &output=json
+  &systemeid=75          ← arcade system ID (see table below)
+  &romnom=tmnt.zip       ← zip filename
+  &crc=A1B2C3D4          ← CRC32 of the zip (optional but improves match rate)
+```
+
+The response JSON at `response.jeu` contains:
+- `noms[]` — localised titles
+- `dates[]` — release dates
+- `editeur`, `developpeur` — publisher / developer
+- `medias[]` — array of artwork objects, each with `type`, `region`, `url`, `format`
+
+**2. Game search — `jeuRecherche.php`** (fallback when CRC is unknown)
+
+```
+GET /api2/jeuRecherche.php
+  ?...auth...&systemeid=75&recherche=tmnt&output=json
+```
+
+Returns up to ~20 matching games; pick the best title match.
+
+---
+
+### ScreenScraper system IDs for our supported systems
+
+| System | ScreenScraper `systemeid` |
+|---|---|
+| Neo Geo MVS / AES | 142 |
+| CPS-1 | 23 |
+| CPS-2 | 24 |
+| Sega System 16 / 18, Toaplan, Konami, Irem, Taito | 75 (generic Arcade / MAME) |
+
+---
+
+### Artwork types (`medias[].type`)
+
+| Key | Description | Primary use |
+|---|---|---|
+| `box-2D` | Front box art (cover) | Library card, detail view |
+| `wheel` | Logo/wheel art (game title on transparent BG) | Card overlay |
+| `wheel-hd` | High-res wheel | Detail view header |
+| `marquee` | Arcade marquee banner | Detail view |
+| `screenshot` | In-game screenshot | Detail view media tab |
+| `fanart` | Fan art background | Detail view backdrop |
+
+Each media entry has a direct HTTPS `url` — a single `URLSession` GET downloads the image.
+
+---
+
+### Implementation tasks
+
+**1. Developer account setup** (one-time, manual)
+- Register a free user account at screenscraper.fr
+- Post in the developer forum to request `devid` / `devpassword` for "SpriteEngine"
+- Store the received `devid`/`devpassword` as build-time constants in a `Secrets.swift` file (gitignored)
+
+**2. Settings UI — ScreenScraper credentials**
+- Add a "Scraping" section to `SettingsView` with two `SecureField`s: ScreenScraper Username and Password
+- Persist to `UserDefaults` (keychain would be better but UserDefaults is sufficient for now)
+- "Test Connection" button calls `jeuInfos.php` with a known game (e.g. `sf2.zip`, CPS-1) and shows ✓ / error
+
+**3. `ArtworkScraper.swift`** — async scraping engine
+- `ArtworkScraper.shared` singleton
+- `func scrapeGame(_ game: Game) async throws -> ScrapedArtwork`
+  - Step 1: compute CRC32 of the ROM zip using `zlib` (already linked) — fast and improves match rate significantly
+  - Step 2: call `jeuInfos.php` with filename + CRC + correct `systemeid`
+  - Step 3: if no match, fall back to `jeuRecherche.php` with the game title
+  - Step 4: parse `medias[]`, pick best `box-2D` (prefer `wor` region, then `us`, then `eu`, then any)
+  - Step 5: download the image data via `URLSession`
+  - Returns `ScrapedArtwork(boxArt: Data?, wheel: Data?, marquee: Data?, screenshots: [Data])`
+- Rate-limit to 1 request per second (ScreenScraper asks for polite usage)
+
+**4. `ArtworkCache.swift`** — disk cache
+- Store downloaded images in `~/Library/Application Support/SpriteEngine/Artwork/<gameID>/`
+  - `box.jpg`, `wheel.png`, `marquee.png`, `screenshot_0.jpg` etc.
+- `func cachedBoxArt(for game: Game) -> NSImage?` — synchronous read from disk
+- `func saveBoxArt(_ data: Data, for game: Game)`
+- On app launch, `ROMLibrary` checks the cache and sets `game.hasArtwork = true`
+
+**5. Wire into `GameCardView`**
+- If `game.hasArtwork`, load `box.jpg` from cache and display it filling the card (aspect-fill, no placeholder)
+- Keep existing placeholder SVG for games with no artwork yet
+
+**6. Wire into `DetailView`**
+- Show `box.jpg` as the large artwork image at the top (currently placeholder)
+- Show `marquee.png` in the info section if available
+- Screenshots tab populated from `screenshot_*.jpg`
+
+**7. Scrape UI — `ArtworkScrapeView`** (modal or sheet)
+- Accessible from ImportView and a "Fetch Artwork" button in the library toolbar
+- Shows a list of games, each with a status indicator: pending / scraping / done / not found / error
+- "Scrape All" button queues every game that has no cached artwork
+- "Scrape Selected" for individual games
+- Progress: `X / Y games scraped`
+
+**8. Auto-scrape on import**
+- After `ConversionQueue` finishes converting a Neo Geo zip (or after any ROM scan), automatically queue new games for artwork if ScreenScraper credentials are configured
+
+---
+
+### Verify
+
+- Scan a folder of ROMs; credentials set; tap "Fetch Artwork"
+- Library grid shows real box art for matched games within ~30 seconds
+- Unmatched games keep placeholder
+- Closing and reopening the app: artwork loads from disk cache instantly (no re-download)
+- Detail view shows box art, marquee, and screenshots for a matched game
+
+---
+
 ## Summary Table
 
 | # | Phase | Key Files | Verifiable Output |
@@ -527,3 +665,4 @@ Verify: `rainbowi.zip` (F2) and `elvactr.zip` (F3 — Elevator Action Returns) b
 | 26 | Irem | `d_m72.cpp`, `d_m92.cpp`, Irem GameDB entries | R-Type, Ninja Baseball Batman boot |
 | 27 | Taito | `d_taitof2/f3.cpp`, Taito GameDB entries | Rainbow Islands, Elevator Action Returns boot |
 | 28 | Konami 68K | `d_tmnt/simpsons/xmen/contra/...`, fix GX detection, Z80-era | TMNT, Simpsons, X-Men, Contra boot |
+| 29 | ScreenScraper Artwork | `ArtworkScraper.swift`, `ArtworkCache`, Settings UI | Box art displays in library cards |

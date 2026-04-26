@@ -27,9 +27,10 @@ final class GameDatabase {
             case "segaSys18":  built[key] = .segaSys18
             case "toaplan1":   built[key] = .toaplan1
             case "toaplan2":   built[key] = .toaplan2
-            case "konamiGX":   built[key] = .konamiGX
-            case "konami68k":  built[key] = .konami68k
-            case "irem":       built[key] = .irem
+            case "konamiGX":      built[key] = .konamiGX
+            case "konami68k",
+                 "konamiClassic": built[key] = .konami68k
+            case "irem":          built[key] = .irem
             case "taito":      built[key] = .taito
             default: break
             }
