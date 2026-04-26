@@ -165,15 +165,13 @@ struct SettingsView: View {
                         .foregroundColor(t.textMuted)
                 }
                 Spacer()
-                Picker("", selection: Binding(
-                    get: { appState.videoScaleMode },
-                    set: { appState.setVideoScaleMode($0) }
-                )) {
-                    ForEach(VideoScaleMode.allCases, id: \.self) { mode in
-                        Text(mode.label).tag(mode)
-                    }
-                }
-                .pickerStyle(.segmented)
+                ThemedSegmentedPicker(
+                    options: VideoScaleMode.allCases.map { (label: $0.label, value: $0) },
+                    selection: Binding(
+                        get: { appState.videoScaleMode },
+                        set: { appState.setVideoScaleMode($0) }
+                    )
+                )
                 .frame(width: 210)
             }
             .padding(.horizontal, 14)
@@ -280,15 +278,17 @@ struct SettingsView: View {
                         .foregroundColor(t.textMuted)
                 }
                 Spacer()
-                Picker("", selection: Binding(
-                    get: { appState.themeKey },
-                    set: { appState.setTheme($0) }
-                )) {
-                    Text("Dark").tag(AppThemeKey.dark)
-                    Text("Light").tag(AppThemeKey.light)
-                    Text("CRT Amber").tag(AppThemeKey.amber)
-                }
-                .pickerStyle(.segmented)
+                ThemedSegmentedPicker(
+                    options: [
+                        (label: "Dark",      value: AppThemeKey.dark),
+                        (label: "Light",     value: AppThemeKey.light),
+                        (label: "CRT Amber", value: AppThemeKey.amber),
+                    ],
+                    selection: Binding(
+                        get: { appState.themeKey },
+                        set: { appState.setTheme($0) }
+                    )
+                )
                 .frame(width: 210)
             }
             .padding(.horizontal, 14)

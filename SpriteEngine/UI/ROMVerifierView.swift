@@ -47,10 +47,10 @@ struct ROMVerifierView: View {
                 .foregroundColor(t.text)
             Spacer()
             if done {
-                Picker("", selection: $filter) {
-                    ForEach(Filter.allCases, id: \.self) { Text($0.rawValue).tag($0) }
-                }
-                .pickerStyle(.segmented)
+                ThemedSegmentedPicker(
+                    options: Filter.allCases.map { (label: $0.rawValue, value: $0) },
+                    selection: $filter
+                )
                 .frame(width: 180)
             }
             Button(isRunning ? "Running…" : "Verify All ROMs") {

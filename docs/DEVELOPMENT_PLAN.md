@@ -467,6 +467,34 @@ Verify: `rainbowi.zip` (F2) and `elvactr.zip` (F3 — Elevator Action Returns) b
 
 ---
 
+## Phase 28 — Konami 68K (Full Konami Roster)
+
+**Goal:** Integrate all remaining Konami hardware under the existing "Konami" sidebar category. Covers Konami's classic 68K co-op era (System 68K beat-em-ups/run-n-guns), Twin 16 dual-68K shooters, and the older Z80-based arcade boards. This is the last new hardware addition; all subsequent work is testing and UI polish.
+
+**Hardware families added:**
+- **System 68K** (68000 main + Z80 sound, late 80s/early 90s): TMNT, The Simpsons, X-Men, Aliens, Contra, Vendetta, Crime Fighters, G.I. Joe, Asterix, Dragon Ball Z, Lethal Enforcers, Gang Busters, etc.
+- **Twin 16** (dual-68000, shooters): Gradius III, Vulcan Venture, Thunder Cross, Parodius, Xexex, etc.
+- **Z80-era** (pre-68K, early 80s): Nemesis/Gradius/Salamander, Track & Field, Hyper Sports, Time Pilot, Gyruss, Mega Zone, etc.
+
+**Tasks:**
+
+1. **Fix `system_from_string()` in `fbneo_driver_bridge.cpp`** — the current catch-all `strncmp(sys, "GX", 2) == 0 → KONAMI_GX` is wrong. The GX 32-bit board IDs are exactly: `GX123`, `GX128`, `GX151`, `GX168`, `GX170`, `GX173`, `GX224`, `GX234`. All other `GX*` strings → `FBNEO_SYSTEM_KONAMI_68K`. Add a manufacturer fallback: if `szSystem == "Miscellaneous"` and manufacturer starts with `"Konami"` → `FBNEO_SYSTEM_KONAMI_68K` (covers Z80-era games that use "Miscellaneous" as their system string).
+
+2. **Add driver source files** to `FBNeoLib` Xcode target via injection script `Scripts/inject_konami_68k.py`:
+   - Core drivers: `d_tmnt.cpp`, `d_simpsons.cpp`, `d_xmen.cpp`, `d_aliens.cpp`, `d_vendetta.cpp`, `d_contra.cpp`, `d_gijoe.cpp`, `d_crimfght.cpp`, `d_asterix.cpp`, `d_dbz.cpp`, `d_lethal.cpp`, `d_gbusters.cpp`, `d_hcastle.cpp`, `d_battlnts.cpp`, `d_ajax.cpp`, `d_thunderx.cpp`, `d_surpratk.cpp`, `d_jackal.cpp`, `d_mainevt.cpp`, `d_bladestl.cpp`, `d_bottom9.cpp`, `d_blockhl.cpp`, `d_rollerg.cpp`, `d_flkatck.cpp`, `d_hexion.cpp`, `d_parodius.cpp`, `d_xexex.cpp`, `d_gradius3.cpp`, `d_twin16.cpp`
+   - Z80-era drivers: `d_nemesis.cpp`, `d_contra.cpp` (already handles both), `d_timeplt.cpp`, `d_trackfld.cpp`, `d_hyperspt.cpp`, `d_megazone.cpp`, `d_gyruss.cpp`, `d_circusc.cpp`, `d_mikie.cpp`, `d_pingpong.cpp`, `d_tp84.cpp`, `d_yiear.cpp`, `d_labyrunr.cpp`, `d_rockrage.cpp`, `d_ironhors.cpp`, `d_jailbrek.cpp`, `d_finalzr.cpp`, `d_rocnrope.cpp`, `d_shaolins.cpp`, `d_junofrst.cpp`, `d_tutankhm.cpp`, `d_pooyan.cpp`, `d_gberet.cpp`, `d_pandoras.cpp`, `d_ddribble.cpp`, `d_88games.cpp`, `d_fastlane.cpp`, `d_chqflag.cpp`, `d_spy.cpp`, `d_wecleman.cpp`, `d_combatsc.cpp`, `d_sbasketb.cpp`, `d_scotrsht.cpp`, `d_divebomb.cpp`, `d_mogura.cpp`, `d_kontest.cpp`, `d_ultraman.cpp`, `d_bishi.cpp`
+   - Support chips not yet compiled: `k007121.cpp`, `k007342_k007420.cpp`, `k007452.cpp`, `timeplt_snd.cpp`
+   - Add `$(SRCROOT)/FBNeoCPSLib/fbneo/src/burn/drv/konami` to `HEADER_SEARCH_PATHS` (already present from Phase 24)
+   - Resolve any additional linker deps (CPU cores, sound chips) iteratively from build errors
+
+3. **Update `generate_driverlist.py`** to include all new Konami 68K driver files; regenerate `driverlist.h`.
+
+4. **Add `GameDB.json` entries** for key 68K titles: `tmnt`, `simpsons`, `xmen`, `aliens`, `contra`, `vendetta`, `gijoe`, `asterix`, `ddribble`, `gradius3`, `salamand`, `nemesis`, etc.
+
+5. **Verify**: `tmnt.zip`, `simpsons.zip`, `xmen.zip`, `contra.zip`, and `nemesis.zip` all boot and are playable under the Konami sidebar category.
+
+---
+
 ## Summary Table
 
 | # | Phase | Key Files | Verifiable Output |
@@ -498,3 +526,4 @@ Verify: `rainbowi.zip` (F2) and `elvactr.zip` (F3 — Elevator Action Returns) b
 | 25 | Multi-System UI + Verifiers | Tabbed ROM Verifier, system tabs, mixed-folder scanning confirmed | All systems visible; all FBNeo verifiers working |
 | 26 | Irem | `d_m72.cpp`, `d_m92.cpp`, Irem GameDB entries | R-Type, Ninja Baseball Batman boot |
 | 27 | Taito | `d_taitof2/f3.cpp`, Taito GameDB entries | Rainbow Islands, Elevator Action Returns boot |
+| 28 | Konami 68K | `d_tmnt/simpsons/xmen/contra/...`, fix GX detection, Z80-era | TMNT, Simpsons, X-Men, Contra boot |
