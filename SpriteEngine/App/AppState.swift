@@ -35,6 +35,9 @@ final class AppState: ObservableObject {
     // Emulation
     @Published var showFPSOverlay: Bool = false
 
+    // Library
+    @Published var libraryViewMode: LibraryViewMode = .grid
+
     init() {
         let ud = UserDefaults.standard
         if let raw = ud.string(forKey: "themeKey"),
@@ -65,6 +68,8 @@ final class AppState: ObservableObject {
             audioVolume = ud.float(forKey: "audioVolume")
         }
         showFPSOverlay        = ud.bool(forKey: "showFPSOverlay")
+        if let raw = ud.string(forKey: "libraryViewMode"),
+           let mode = LibraryViewMode(rawValue: raw) { libraryViewMode = mode }
         hasCompletedOnboarding = ud.bool(forKey: "hasCompletedOnboarding")
         if !hasCompletedOnboarding { screen = .onboarding }
     }
@@ -135,6 +140,11 @@ final class AppState: ObservableObject {
     func setShowFPSOverlay(_ on: Bool) {
         showFPSOverlay = on
         UserDefaults.standard.set(on, forKey: "showFPSOverlay")
+    }
+
+    func setLibraryViewMode(_ mode: LibraryViewMode) {
+        libraryViewMode = mode
+        UserDefaults.standard.set(mode.rawValue, forKey: "libraryViewMode")
     }
 
     // MARK: BIOS validation

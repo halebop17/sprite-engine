@@ -67,7 +67,7 @@ final class ROMScanner {
             return nil
         }
 
-        let title = titleFor(stem: stem, system: system)
+        let title = realTitle(stem: stem, ext: ext) ?? titleFor(stem: stem, system: system)
 
         return Game(
             id:         UUID(),
@@ -79,6 +79,22 @@ final class ROMScanner {
             isFavorite: false,
             saveStates: []
         )
+    }
+
+    /// Ask the FBNeo bridge for the driver's full human-readable title.
+    /// Returns nil for non-zip files or drivers FBNeo doesn't recognise
+    /// (e.g. Geolith `.neo` and Neo Geo CD `.chd` / `.cue`).
+    private func realTitle(stem: String, ext: String) -> String? {
+        guard ext == "zip" else { return nil }
+        var buf = [CChar](repeating: 0, count: 256)
+        let ok = stem.withCString { c -> Int32 in
+            buf.withUnsafeMutableBufferPointer { bp in
+                fbneo_driver_full_name(c, bp.baseAddress, bp.count)
+            }
+        }
+        guard ok == 1 else { return nil }
+        let s = String(cString: buf)
+        return s.isEmpty ? nil : s
     }
 
     /// Produce a human-readable title from the zip stem.

@@ -515,6 +515,7 @@ struct ThemedSegmentedPicker<T: Hashable>: View {
                     Text(opt.label)
                         .font(.system(size: 12, weight: .medium))
                         .foregroundColor(selected ? .white : t.text)
+                        .lineLimit(1)
                         .padding(.horizontal, 12)
                         .padding(.vertical, 5)
                         .frame(maxWidth: .infinity)

@@ -203,6 +203,12 @@ extension Color {
     }
 }
 
+// MARK: - Library view mode
+
+enum LibraryViewMode: String, CaseIterable {
+    case grid, list
+}
+
 // MARK: - Library filter
 
 enum LibraryFilter: Hashable {
@@ -339,8 +345,9 @@ private struct SidebarView: View {
                     Divider().background(t.divider).padding(.horizontal, 14).padding(.vertical, 8)
 
                     SectionHeader("SYSTEM")
-                    ActionItem(label: "Import ROMs", icon: "plus.circle") { appState.navigate(to: .`import`) }
-                    ActionItem(label: "Settings",    icon: "gearshape")   { appState.navigate(to: .settings) }
+                    ActionItem(label: "Import ROMs",  icon: "plus.circle")     { appState.navigate(to: .`import`) }
+                    ActionItem(label: "ROM Verifier", icon: "checkmark.shield"){ appState.navigate(to: .romVerifier) }
+                    ActionItem(label: "Settings",     icon: "gearshape")       { appState.navigate(to: .settings) }
                 }
                 .padding(.vertical, 4)
             }
@@ -557,6 +564,13 @@ private struct LibraryToolbar: View {
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(t.text)
             Spacer()
+            // View mode toggle
+            ViewModeToggle(
+                mode: Binding(
+                    get: { appState.libraryViewMode },
+                    set: { appState.setLibraryViewMode($0) }
+                )
+            )
             // Search
             HStack(spacing: 6) {
                 Image(systemName: "magnifyingglass")
@@ -628,6 +642,17 @@ private struct LibraryContent: View {
             ScrollView {
                 if filtered.isEmpty {
                     emptyState
+                } else if appState.libraryViewMode == .list {
+                    LazyVStack(spacing: 0) {
+                        ForEach(Array(filtered.enumerated()), id: \.element.id) { idx, game in
+                            GameListRow(game: game, zebra: idx.isMultiple(of: 2)) {
+                                appState.navigate(to: .detail(game))
+                            }
+                            Divider().background(t.divider).padding(.leading, 70)
+                        }
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
                 } else {
                     LazyVGrid(
                         columns: [GridItem(.adaptive(minimum: 144), spacing: 14)],
@@ -682,5 +707,94 @@ private struct LibraryContent: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 80)
+    }
+}
+
+// MARK: - View mode toggle
+
+private struct ViewModeToggle: View {
+    @Binding var mode: LibraryViewMode
+    @Environment(\.appTheme) private var t
+
+    var body: some View {
+        HStack(spacing: 0) {
+            segment(.grid, icon: "square.grid.2x2.fill")
+            segment(.list, icon: "list.bullet")
+        }
+        .padding(2)
+        .background(t.inputBg)
+        .clipShape(RoundedRectangle(cornerRadius: 7))
+        .overlay(RoundedRectangle(cornerRadius: 7).strokeBorder(t.divider, lineWidth: 1))
+    }
+
+    private func segment(_ value: LibraryViewMode, icon: String) -> some View {
+        let selected = mode == value
+        return Button { mode = value } label: {
+            Image(systemName: icon)
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundColor(selected ? .white : t.icon)
+                .frame(width: 28, height: 22)
+                .background(selected ? t.accent : Color.clear,
+                            in: RoundedRectangle(cornerRadius: 5))
+        }
+        .buttonStyle(.plain)
+    }
+}
+
+// MARK: - List row
+
+private struct GameListRow: View {
+    let game: Game
+    let zebra: Bool
+    let onTap: () -> Void
+
+    @Environment(\.appTheme) private var t
+    @EnvironmentObject private var library: ROMLibrary
+    @State private var hovered = false
+
+    private var hasIssue: Bool {
+        library.verificationResults[game.id].map { !$0.status.isOK } ?? false
+    }
+
+    var body: some View {
+        Button(action: onTap) {
+            HStack(spacing: 12) {
+                BoxArtView(game: game, size: 36)
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(game.title)
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundColor(t.text)
+                        .lineLimit(1)
+                    Text(game.system.shortGenre)
+                        .font(.system(size: 10))
+                        .foregroundColor(t.textMuted)
+                }
+
+                Spacer()
+
+                if hasIssue {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.system(size: 11))
+                        .foregroundStyle(Color(red: 1.0, green: 0.62, blue: 0.0))
+                }
+
+                Text(game.system.shortName)
+                    .font(.system(size: 9, weight: .bold))
+                    .foregroundColor(t.tagText)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(t.tag)
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .contentShape(Rectangle())
+            .background(hovered ? t.cardHover : (zebra ? t.card.opacity(0.4) : .clear))
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+        }
+        .buttonStyle(.plain)
+        .onHover { hovered = $0 }
     }
 }

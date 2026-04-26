@@ -2,6 +2,47 @@
 
 ---
 
+## 2026-04-26 — Library: real game titles + grid/list view switcher
+**Files:** `fbneo_driver_bridge.h`, `fbneo_driver_bridge.cpp`, `ROMScanner.swift`, `AppState.swift`, `LibraryView.swift`
+
+Two related library improvements: titles now come from FBNeo's driver metadata instead of being derived from filenames, and the toolbar gains a finder-style grid/list view toggle so titles that don't fit under a thumbnail can still be browsed comfortably.
+
+**Real game titles (non-Neo Geo):**
+- Added `fbneo_driver_full_name(name, outBuf, bufSize)` to the driver bridge — wraps `BurnDrvGetTextA(DRV_FULLNAME)` with a short-name lookup; returns 1 on success, 0 if the driver isn't recognised
+- `ROMScanner.realTitle(stem:ext:)` calls into the bridge for `.zip` files and uses the result if non-empty
+- Falls back to the existing `titleFor(stem:system:)` heuristic for `.neo`, `.chd`, `.cue`, and any zip the bridge doesn't recognise — Neo Geo `.neo` titles continue to look fine since they were already working
+- Result: "MSH" → "Marvel Super Heroes (Euro 951024)", "DSTLK" → "Darkstalkers: The Night Warriors (Euro 940705)", etc.
+
+**Grid / list view switcher:**
+- `LibraryViewMode` enum (`.grid`, `.list`) added; persisted in `AppState` under `libraryViewMode` (UserDefaults)
+- `ViewModeToggle` segmented control in `LibraryToolbar` between the title and the search field — two-icon switch (`square.grid.2x2.fill` / `list.bullet`) styled to match the existing toolbar inputs
+- New `GameListRow` rendered when `.list` is active: small 36-pt thumbnail (uses existing `BoxArtView`), title + system genre on the left, ROM-issue warning + system shortname tag on the right; subtle zebra striping on alternating rows
+- Existing `LazyVGrid` remains the `.grid` path — unchanged
+
+---
+
+## 2026-04-26 — UI cleanup: Settings + ROM Verifier alignment, sidebar shortcut
+**Files:** `SettingsView.swift`, `ROMVerifierView.swift`, `DetailView.swift`, `LibraryView.swift`
+
+Tightened layout on wide windows where rows previously stretched edge-to-edge and segmented picker labels wrapped to two lines.
+
+**Settings page:**
+- Content area now caps at 760 pt and left-aligns inside the scroll view — no more janky stretch on wide windows
+- `ToggleRow` reworked to an explicit `HStack` with `Spacer` so each switch sits flush right against the card border, with the label/detail flush left (previously the entire `Toggle` was floating mid-row)
+- Scale Mode and Theme segmented pickers widened 210 → 260 pt so "Aspect Fit" and "CRT Amber" no longer wrap
+
+**ROM Verifier page:**
+- Filter segmented picker widened 180 → 220 pt so "Issues" stays on a single row
+- Summary bar and result list capped at 760 pt left-aligned — list no longer spans the full window width
+
+**Sidebar:**
+- Added "ROM Verifier" navigation item between "Import ROMs" and "Settings" in the SYSTEM section (previously only reachable from the Settings page)
+
+**Shared component:**
+- `ThemedSegmentedPicker` labels gain `.lineLimit(1)` as a defensive guard against future tight layouts
+
+---
+
 ## 2026-04-26 — Phase 28 begin: Konami 68K scaffolding + ROM verifier + UI polish
 **Commit:** `c834b47`
 **Files:** `fbneo_driver_bridge.h`, `System.swift`, `CoreRouter.swift`, `ROMScanner.swift`, `GameDatabase.swift`, `ROMLibrary.swift`, `ROMVerifier.swift`, `DetailView.swift`, `GameCardView.swift`, `LibraryView.swift`, `ImportView.swift`, `SettingsView.swift`

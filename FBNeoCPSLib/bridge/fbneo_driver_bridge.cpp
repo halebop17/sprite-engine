@@ -245,6 +245,25 @@ int fbneo_driver_identify(const char* name)
     return result;
 }
 
+int fbneo_driver_full_name(const char* name, char* outBuf, size_t bufSize)
+{
+    if (!name || !name[0] || !outBuf || bufSize == 0) return 0;
+    fbneo_driver_lib_init();
+
+    INT32 idx = BurnDrvGetIndex(const_cast<char*>(name));
+    if (idx < 0 || (UINT32)idx >= nBurnDrvCount) return 0;
+
+    UINT32 prev = nBurnDrvActive;
+    nBurnDrvActive = (UINT32)idx;
+    char* full = BurnDrvGetTextA(DRV_FULLNAME);
+    nBurnDrvActive = prev;
+
+    if (!full || !full[0]) return 0;
+    strncpy(outBuf, full, bufSize - 1);
+    outBuf[bufSize - 1] = '\0';
+    return 1;
+}
+
 int fbneo_driver_load(const char* zipPath)
 {
     if (s_loaded) fbneo_driver_unload();

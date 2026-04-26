@@ -70,6 +70,11 @@ void fbneo_driver_lib_init(void);
 // This is fast — it only reads metadata, never loads a ROM.
 int fbneo_driver_identify(const char* name);
 
+// Look up a driver's full human-readable title by short name (zip stem).
+// Writes the title into outBuf (NUL-terminated, truncated to bufSize).
+// Returns 1 on success, 0 if the driver is not recognised or outBuf is empty.
+int fbneo_driver_full_name(const char* name, char* outBuf, size_t bufSize);
+
 // ── Game load / unload ────────────────────────────────────────────────────────
 
 // Load any FBNeo driver from a zip path.  Parent/sibling zips in the same
