@@ -6,6 +6,7 @@ final class ROMLibrary: ObservableObject {
     static let shared = ROMLibrary()
 
     @Published private(set) var games: [Game] = []
+    @Published private(set) var verificationResults: [UUID: GameVerificationResult] = [:]
 
     private let scanner = ROMScanner()
     private let storageURL: URL
@@ -49,6 +50,10 @@ final class ROMLibrary: ObservableObject {
     func remove(_ game: Game) {
         games.removeAll { $0.id == game.id }
         save()
+    }
+
+    func updateVerificationResults(_ results: [GameVerificationResult]) {
+        verificationResults = Dictionary(uniqueKeysWithValues: results.map { ($0.game.id, $0) })
     }
 
     func removeGames(inDirectory directory: URL) {

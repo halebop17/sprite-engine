@@ -20,6 +20,7 @@ extern "C" {
 #define FBNEO_SYSTEM_KONAMI_GX  8
 #define FBNEO_SYSTEM_IREM       9
 #define FBNEO_SYSTEM_TAITO      10
+#define FBNEO_SYSTEM_KONAMI_68K 11
 
 // ── ROM file verification types ───────────────────────────────────────────────
 // Shared by both the CPS bridge and the generic driver bridge.

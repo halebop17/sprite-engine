@@ -30,7 +30,7 @@ struct ROMFileResult: Identifiable {
     let status: ROMFileStatus
 }
 
-enum GameVerificationStatus {
+enum GameVerificationStatus: Equatable {
     case ok
     case issues(missing: Int, wrongCRC: Int)
     case unknownGame

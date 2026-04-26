@@ -277,6 +277,7 @@ struct ROMVerifierView: View {
                 self.results   = res.sorted { !$0.status.isOK && $1.status.isOK }
                 self.isRunning = false
                 self.done      = true
+                self.library.updateVerificationResults(res)
             }
         )
     }

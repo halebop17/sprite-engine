@@ -232,15 +232,24 @@ struct GameCardView: View {
     let onTap: () -> Void
 
     @Environment(\.appTheme) private var t
+    @EnvironmentObject private var library: ROMLibrary
     @State private var hovered = false
+
+    private var hasIssue: Bool { library.verificationResults[game.id].map { !$0.status.isOK } ?? false }
 
     var body: some View {
         Button(action: onTap) {
             VStack(spacing: 0) {
-                ZStack(alignment: .topLeading) {
+                ZStack {
                     BoxArtView(game: game, size: 146)
-                    SystemBadge(system: game.system)
-                        .padding(6)
+                    VStack {
+                        HStack {
+                            SystemBadge(system: game.system).padding(6)
+                            Spacer()
+                            if hasIssue { ROMIssueBadge().padding(6) }
+                        }
+                        Spacer()
+                    }
                 }
                 VStack(alignment: .leading, spacing: 4) {
                     Text(game.title)
@@ -278,6 +287,22 @@ struct GameCardView: View {
         .offset(y: hovered ? -4 : 0)
         .animation(.easeInOut(duration: 0.18), value: hovered)
         .onHover { hovered = $0 }
+    }
+}
+
+// MARK: - ROM issue badge
+
+private struct ROMIssueBadge: View {
+    var body: some View {
+        Image(systemName: "exclamationmark.triangle.fill")
+            .font(.system(size: 11, weight: .semibold))
+            .foregroundStyle(Color(red: 1.0, green: 0.62, blue: 0.0))
+            .padding(.horizontal, 5)
+            .padding(.vertical, 4)
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 5))
+            .overlay(RoundedRectangle(cornerRadius: 5)
+                .strokeBorder(.white.opacity(0.12), lineWidth: 0.5))
     }
 }
 
@@ -320,6 +345,7 @@ extension EmulatorSystem {
         case .toaplan1:   return "TP-1"
         case .toaplan2:   return "TP-2"
         case .konamiGX:   return "KNM·GX"
+        case .konami68k:  return "KNM·16"
         case .irem:       return "IREM"
         case .taito:      return "TAITO"
         }
@@ -336,6 +362,7 @@ extension EmulatorSystem {
         case .toaplan1:               return "Toaplan 1"
         case .toaplan2:               return "Toaplan 2"
         case .konamiGX:               return "Konami GX"
+        case .konami68k:              return "Konami 16-bit"
         case .irem:                   return "Irem"
         case .taito:                  return "Taito"
         }
@@ -353,7 +380,7 @@ extension EmulatorSystem {
             return Color(red: 0.1,  green: 0.72, blue: 0.35)
         case .toaplan1, .toaplan2:
             return Color(red: 0.85, green: 0.25, blue: 0.20)
-        case .konamiGX:
+        case .konamiGX, .konami68k:
             return Color(red: 0.55, green: 0.18, blue: 0.80)
         case .irem:
             return Color(red: 0.90, green: 0.50, blue: 0.10)
@@ -365,7 +392,7 @@ extension EmulatorSystem {
     var isNeoGeo: Bool   { self == .neoGeoAES || self == .neoGeoMVS || self == .neoGeoCD }
     var isSega: Bool     { self == .segaSys16 || self == .segaSys18 }
     var isToaplan: Bool  { self == .toaplan1  || self == .toaplan2 }
-    var isKonami: Bool   { self == .konamiGX }
+    var isKonami: Bool   { self == .konamiGX  || self == .konami68k }
     var isIrem: Bool     { self == .irem }
     var isTaito: Bool    { self == .taito }
 }
