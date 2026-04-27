@@ -18,12 +18,15 @@ struct ContentView: View {
                 LibraryView()
             case .detail(let game):
                 DetailView(game: game)
+                    .id(game.id)
             case .`import`:
                 ImportView()
             case .settings:
                 SettingsView()
             case .romVerifier:
                 ROMVerifierView()
+            case .controllers:
+                ControllerSettingsView()
             case .emulator(let game):
                 EmulatorWindowView(game: game)
             }

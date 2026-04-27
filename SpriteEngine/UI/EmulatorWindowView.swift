@@ -52,6 +52,7 @@ final class EmulatorViewModel: ObservableObject {
             }
         }
 
+        inputManager.setSystem(game.system)
         inputManager.onInputChanged    = { [weak s] p, b in s?.setInput(player: p, buttons: b) }
         inputManager.onSysInputChanged = { [weak s] b in s?.setSysInput(b) }
 

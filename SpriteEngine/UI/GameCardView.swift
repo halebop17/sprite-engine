@@ -225,6 +225,33 @@ struct BoxArtView: View {
     }
 }
 
+// MARK: - GameCoverView
+
+/// Displays scraped or manually-set box art if present; otherwise falls back
+/// to the procedural BoxArtView placeholder.
+struct GameCoverView: View {
+    let game: Game
+    var size: CGFloat = 146
+
+    private var artHeight: CGFloat { size * 1.38 }
+
+    var body: some View {
+        Group {
+            if game.hasArtwork, let img = ArtworkCache.boxArt(for: game.id) {
+                Image(nsImage: img)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: size, height: artHeight)
+                    .clipped()
+            } else {
+                BoxArtView(game: game, size: size)
+            }
+        }
+        .frame(width: size, height: artHeight)
+        .clipShape(RoundedRectangle(cornerRadius: 6))
+    }
+}
+
 // MARK: - GameCardView
 
 struct GameCardView: View {
@@ -241,7 +268,7 @@ struct GameCardView: View {
         Button(action: onTap) {
             VStack(spacing: 0) {
                 ZStack {
-                    BoxArtView(game: game, size: 146)
+                    GameCoverView(game: game, size: 146)
                     VStack {
                         HStack {
                             SystemBadge(system: game.system).padding(6)

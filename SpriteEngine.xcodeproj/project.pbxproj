@@ -107,6 +107,15 @@
 		B56BA48F49644B488C483E72 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D8507113B4EEF3990742C8 /* RingBuffer.swift */; };
 		B58DDAB42A72B7B70C6F215D /* geo_mixer.c in Sources */ = {isa = PBXBuildFile; fileRef = 50AA7ECB1DC6952EFECB5DF8 /* geo_mixer.c */; };
 		B85860190EAAF85ABB74F378 /* GameMediaStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1F29DFF981581A6E2F3832 /* GameMediaStore.swift */; };
+		7E001A001100000000000002 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E001A001100000000000001 /* Secrets.swift */; };
+		7E001A001100000000000004 /* ArtworkScraper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E001A001100000000000003 /* ArtworkScraper.swift */; };
+		7E001A001100000000000006 /* ArtworkCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E001A001100000000000005 /* ArtworkCache.swift */; };
+		7E001A001100000000000008 /* ArtworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E001A001100000000000009 /* ArtworkService.swift */; };
+		7E001A00110000000000000A /* ImageLightboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E001A00110000000000000B /* ImageLightboxView.swift */; };
+		7E001A00110000000000000C /* ArtworkScrapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E001A00110000000000000D /* ArtworkScrapeView.swift */; };
+		7E001A00110000000000000E /* InputProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E001A00110000000000000F /* InputProfile.swift */; };
+		7E001A001100000000000010 /* ControllerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E001A001100000000000011 /* ControllerSettings.swift */; };
+		7E001A001100000000000012 /* ControllerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E001A001100000000000013 /* ControllerSettingsView.swift */; };
 		B8AF11BF357C5905410F6149 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7195AC15433E361A66632745 /* DetailView.swift */; };
 		B9B14E18E2E9E2F858A700B2 /* geo_rtc.c in Sources */ = {isa = PBXBuildFile; fileRef = D848198948E2C9B64FE34711 /* geo_rtc.c */; };
 		BACD84968CE5C6C748924A5D /* qs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87C11E093AAAACE496E92818 /* qs.cpp */; };
@@ -427,6 +436,15 @@
 		2BD91CE627897B395DF6BF6A /* burn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = burn.cpp; sourceTree = "<group>"; };
 		2E8BFE8768FF29D11B59CB8E /* geo_neo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = geo_neo.c; sourceTree = "<group>"; };
 		2F1F29DFF981581A6E2F3832 /* GameMediaStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMediaStore.swift; sourceTree = "<group>"; };
+		7E001A001100000000000001 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		7E001A001100000000000003 /* ArtworkScraper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkScraper.swift; sourceTree = "<group>"; };
+		7E001A001100000000000005 /* ArtworkCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkCache.swift; sourceTree = "<group>"; };
+		7E001A001100000000000009 /* ArtworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkService.swift; sourceTree = "<group>"; };
+		7E001A00110000000000000B /* ImageLightboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLightboxView.swift; sourceTree = "<group>"; };
+		7E001A00110000000000000D /* ArtworkScrapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkScrapeView.swift; sourceTree = "<group>"; };
+		7E001A00110000000000000F /* InputProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputProfile.swift; sourceTree = "<group>"; };
+		7E001A001100000000000011 /* ControllerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerSettings.swift; sourceTree = "<group>"; };
+		7E001A001100000000000013 /* ControllerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerSettingsView.swift; sourceTree = "<group>"; };
 		30E389743F8A7C1EA1B04893 /* NeoConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeoConverter.swift; sourceTree = "<group>"; };
 		31EF81A53CEEC38442433EAE /* z80daisy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = z80daisy.cpp; sourceTree = "<group>"; };
 		3707715181EAD11F17488779 /* SpriteEngineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteEngineApp.swift; sourceTree = "<group>"; };
@@ -939,9 +957,12 @@
 			isa = PBXGroup;
 			children = (
 				7D04C5F7697CA39784D9F294 /* ContentView.swift */,
+				7E001A00110000000000000D /* ArtworkScrapeView.swift */,
+				7E001A001100000000000013 /* ControllerSettingsView.swift */,
 				7195AC15433E361A66632745 /* DetailView.swift */,
 				F2D10FAD4B99599EDA34D632 /* EmulatorWindowView.swift */,
 				C9F7075F2B92E4FFA2F957E5 /* GameCardView.swift */,
+				7E001A00110000000000000B /* ImageLightboxView.swift */,
 				BAFA55D24AD7B6BA5F0CC729 /* ImportView.swift */,
 				98413E3489F5A95A960FB160 /* LibraryView.swift */,
 				DA2E0A9801A2AC4B10AF6648 /* MediaTabView.swift */,
@@ -964,6 +985,17 @@
 				15F39C1A6EEA0C312B449D0F /* SaveStateManager.swift */,
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		7E001A001100000000000007 /* Scraping */ = {
+			isa = PBXGroup;
+			children = (
+				7E001A001100000000000003 /* ArtworkScraper.swift */,
+				7E001A001100000000000005 /* ArtworkCache.swift */,
+				7E001A001100000000000009 /* ArtworkService.swift */,
+				7E001A001100000000000001 /* Secrets.swift */,
+			);
+			path = Scraping;
 			sourceTree = "<group>";
 		};
 		6B0D5F357E2139A982D86B03 /* Products */ = {
@@ -998,7 +1030,9 @@
 		8A89C1722EBFA3F64D8251B8 /* Input */ = {
 			isa = PBXGroup;
 			children = (
+				7E001A001100000000000011 /* ControllerSettings.swift */,
 				E6B2B6927F9CE250664CAA1E /* InputManager.swift */,
+				7E001A00110000000000000F /* InputProfile.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -1382,6 +1416,7 @@
 				DF2623861E75BEA3B7F509AE /* Models */,
 				E16423C61B9F402D376448BA /* Rendering */,
 				51984618B2CC63CF77F094F1 /* Resources */,
+				7E001A001100000000000007 /* Scraping */,
 				53E8EC3E00AC6BD9495F881D /* UI */,
 			);
 			path = SpriteEngine;
@@ -1953,6 +1988,15 @@
 				30935A762B42EF6132C7EEDE /* GameDatabase.swift in Sources */,
 				C408F78CC9804BF28B619A98 /* GameMediaItem.swift in Sources */,
 				B85860190EAAF85ABB74F378 /* GameMediaStore.swift in Sources */,
+				7E001A001100000000000002 /* Secrets.swift in Sources */,
+				7E001A001100000000000004 /* ArtworkScraper.swift in Sources */,
+				7E001A001100000000000006 /* ArtworkCache.swift in Sources */,
+				7E001A001100000000000008 /* ArtworkService.swift in Sources */,
+				7E001A00110000000000000A /* ImageLightboxView.swift in Sources */,
+				7E001A00110000000000000C /* ArtworkScrapeView.swift in Sources */,
+				7E001A00110000000000000E /* InputProfile.swift in Sources */,
+				7E001A001100000000000010 /* ControllerSettings.swift in Sources */,
+				7E001A001100000000000012 /* ControllerSettingsView.swift in Sources */,
 				082593DF1640833034673CA3 /* GameMetadata.swift in Sources */,
 				D753EBFBE28C25205F22ED63 /* GeolithCore.swift in Sources */,
 				717C2A2BC23427CA32CEE1D0 /* ImportView.swift in Sources */,

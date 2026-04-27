@@ -4,3 +4,5 @@
 #include "geolith_bridge.h"
 #include "fbneo_driver_bridge.h"
 #include "fbneo_cps_bridge.h"
+
+#include <zlib.h>

@@ -5,16 +5,16 @@ final class InputManager {
     // MARK: - Button bitmask (matches GEO_BTN_* bit positions in geolith_bridge.h)
     struct Buttons: OptionSet {
         let rawValue: UInt32
-        static let up     = Buttons(rawValue: 1 << 0)  // GEO_BTN_UP
-        static let down   = Buttons(rawValue: 1 << 1)  // GEO_BTN_DOWN
-        static let left   = Buttons(rawValue: 1 << 2)  // GEO_BTN_LEFT
-        static let right  = Buttons(rawValue: 1 << 3)  // GEO_BTN_RIGHT
-        static let select = Buttons(rawValue: 1 << 4)  // GEO_BTN_SELECT
-        static let start  = Buttons(rawValue: 1 << 5)  // GEO_BTN_START
-        static let a      = Buttons(rawValue: 1 << 6)  // GEO_BTN_A
-        static let b      = Buttons(rawValue: 1 << 7)  // GEO_BTN_B
-        static let c      = Buttons(rawValue: 1 << 8)  // GEO_BTN_C
-        static let d      = Buttons(rawValue: 1 << 9)  // GEO_BTN_D
+        static let up     = Buttons(rawValue: 1 << 0)
+        static let down   = Buttons(rawValue: 1 << 1)
+        static let left   = Buttons(rawValue: 1 << 2)
+        static let right  = Buttons(rawValue: 1 << 3)
+        static let select = Buttons(rawValue: 1 << 4)
+        static let start  = Buttons(rawValue: 1 << 5)
+        static let a      = Buttons(rawValue: 1 << 6)
+        static let b      = Buttons(rawValue: 1 << 7)
+        static let c      = Buttons(rawValue: 1 << 8)
+        static let d      = Buttons(rawValue: 1 << 9)
     }
 
     // Fired on any thread — caller forwards to core.setInput(player:buttons:).
@@ -22,37 +22,24 @@ final class InputManager {
     // Fired for system inputs (coin, service) — caller forwards to core.setSysInput.
     var onSysInputChanged: ((UInt32) -> Void)?
 
+    // MARK: - Active profile
+
+    /// Current profile applied for keyboard + gamepad lookups. Defaults to
+    /// the built-in Neo Geo profile until `setSystem(_:)` is called.
+    private var profile: InputProfile = InputProfile.builtIn(for: .neoGeoMVS)
+    private(set) var activeSystem: EmulatorSystem = .neoGeoMVS
+
+    /// Switch to the profile for a different system. Called by
+    /// `EmulatorWindowView` when a game starts.
+    @MainActor
+    func setSystem(_ system: EmulatorSystem) {
+        activeSystem = system
+        profile = ControllerSettings.shared.profile(for: system)
+    }
+
     // MARK: - Keyboard state
 
     private var keyboardState: [UInt16: Bool] = [:]
-
-    // P1: WASD / arrows for direction; U/I/J/K for A/B/C/D; Return=START; Space=SELECT
-    private let playerKeymap: [UInt16: (player: Int, button: Buttons)] = [
-        // Player 1 — WASD
-        0x0D: (0, .up),    // W
-        0x01: (0, .down),  // S
-        0x00: (0, .left),  // A
-        0x02: (0, .right), // D
-        // Player 1 — arrow keys (alternative)
-        0x7E: (0, .up),
-        0x7D: (0, .down),
-        0x7B: (0, .left),
-        0x7C: (0, .right),
-        // Player 1 — buttons
-        0x20: (0, .a),     // U
-        0x22: (0, .b),     // I
-        0x26: (0, .c),     // J
-        0x28: (0, .d),     // K
-        0x24: (0, .start), // Return
-        0x31: (0, .select),// Space
-    ]
-
-    // System inputs — C = Coin 1 insert (needed for MVS boot)
-    private let sysKeymap: [UInt16: UInt32] = [
-        0x08: (1 << Int(GEO_SYS_COIN1)),  // C key = Coin 1
-    ]
-
-    // MARK: - Keyboard event handlers (called from EmulatorView)
 
     func keyDown(keyCode: UInt16) {
         guard keyboardState[keyCode] != true else { return } // ignore key repeat
@@ -66,27 +53,34 @@ final class InputManager {
     }
 
     private func handleKey(keyCode: UInt16, pressed: Bool) {
-        if let (player, button) = playerKeymap[keyCode] {
-            let buttons = currentButtons(for: player)
-            let updated = pressed
-                ? buttons.union(button)
-                : buttons.subtracting(button)
-            onInputChanged?(player, updated.rawValue)
-        }
-
-        if let sysbit = sysKeymap[keyCode] {
-            let current = currentSysButtons()
-            let updated = pressed ? (current | sysbit) : (current & ~sysbit)
-            onSysInputChanged?(updated)
+        // Player 1 game buttons + start/select via the active profile's keyboard map
+        for (logical, code) in profile.keyboard where code == keyCode {
+            switch logical {
+            case .coin:
+                let current = currentSysButtons()
+                let bit: UInt32 = 1 << UInt32(GEO_SYS_COIN1)
+                let updated = pressed ? (current | bit) : (current & ~bit)
+                onSysInputChanged?(updated)
+            default:
+                guard let bit = bitmaskBit(for: logical) else { continue }
+                let current = currentButtons(for: 0)
+                let updated: Buttons = pressed
+                    ? current.union(bit)
+                    : current.subtracting(bit)
+                onInputChanged?(0, updated.rawValue)
+            }
         }
     }
 
-    // Rebuild current button state for a player from the live keyboard map.
     private func currentButtons(for player: Int) -> Buttons {
+        // Player 0 always reflects the keyboard. Player 1 is gamepad-only
+        // until/unless we add a second keymap; the gamepad path computes its
+        // own state from the live pad on every value-change callback.
+        guard player == 0 else { return [] }
         var result = Buttons()
-        for (code, mapping) in playerKeymap where mapping.player == player {
-            if keyboardState[code] == true {
-                result.insert(mapping.button)
+        for (logical, code) in profile.keyboard {
+            if keyboardState[code] == true, let bit = bitmaskBit(for: logical) {
+                result.insert(bit)
             }
         }
         return result
@@ -94,10 +88,26 @@ final class InputManager {
 
     private func currentSysButtons() -> UInt32 {
         var result: UInt32 = 0
-        for (code, bits) in sysKeymap {
-            if keyboardState[code] == true { result |= bits }
+        if let coinKey = profile.keyboard[.coin], keyboardState[coinKey] == true {
+            result |= (1 << UInt32(GEO_SYS_COIN1))
         }
         return result
+    }
+
+    private func bitmaskBit(for button: CoreButton) -> Buttons? {
+        switch button {
+        case .up:     return .up
+        case .down:   return .down
+        case .left:   return .left
+        case .right:  return .right
+        case .a:      return .a
+        case .b:      return .b
+        case .c:      return .c
+        case .d:      return .d
+        case .start:  return .start
+        case .select: return .select
+        case .coin:   return nil   // routed through SysInputs, not the OptionSet
+        }
     }
 
     // MARK: - GCController (MFi / Xbox / DualSense)
@@ -115,7 +125,6 @@ final class InputManager {
             object: nil)
         GCController.startWirelessControllerDiscovery {}
 
-        // Wire any already-connected controllers.
         for controller in GCController.controllers() {
             wireController(controller)
         }
@@ -127,7 +136,7 @@ final class InputManager {
     }
 
     @objc private func controllerDisconnected(_ note: Notification) {
-        // valueChangedHandler is cleared when the controller disconnects naturally.
+        // valueChangedHandler clears itself when the controller disconnects.
     }
 
     private func wireController(_ controller: GCController) {
@@ -137,18 +146,20 @@ final class InputManager {
         let player = idx
 
         controller.extendedGamepad?.valueChangedHandler = { [weak self] pad, _ in
+            guard let self else { return }
             var b = Buttons()
-            if pad.dpad.up.isPressed       { b.insert(.up)    }
-            if pad.dpad.down.isPressed     { b.insert(.down)  }
-            if pad.dpad.left.isPressed     { b.insert(.left)  }
-            if pad.dpad.right.isPressed    { b.insert(.right) }
-            if pad.buttonA.isPressed       { b.insert(.a)     }
-            if pad.buttonB.isPressed       { b.insert(.b)     }
-            if pad.buttonX.isPressed       { b.insert(.c)     }
-            if pad.buttonY.isPressed       { b.insert(.d)     }
-            if pad.buttonMenu.isPressed    { b.insert(.start) }
-            if pad.buttonOptions?.isPressed == true { b.insert(.select) }
-            // Left stick as d-pad fallback
+            var sys: UInt32 = 0
+
+            for (logical, mapped) in self.profile.gamepad {
+                if Self.isPressed(mapped, on: pad) {
+                    if logical == .coin {
+                        sys |= (1 << UInt32(GEO_SYS_COIN1))
+                    } else if let bit = self.bitmaskBit(for: logical) {
+                        b.insert(bit)
+                    }
+                }
+            }
+            // Always-on left-stick fallback for direction (independent of profile)
             let lx = pad.leftThumbstick.xAxis.value
             let ly = pad.leftThumbstick.yAxis.value
             if ly >  0.5 { b.insert(.up)    }
@@ -156,7 +167,32 @@ final class InputManager {
             if lx < -0.5 { b.insert(.left)  }
             if lx >  0.5 { b.insert(.right) }
 
-            self?.onInputChanged?(player, b.rawValue)
+            self.onInputChanged?(player, b.rawValue)
+            // Player 0 owns sysinput (coin) for the gamepad path so a P1
+            // pad can drop credits.
+            if player == 0 { self.onSysInputChanged?(sys) }
+        }
+    }
+
+    /// Test whether a given physical gamepad button is currently pressed.
+    static func isPressed(_ button: GamepadButton, on pad: GCExtendedGamepad) -> Bool {
+        switch button {
+        case .dpadUp:           return pad.dpad.up.isPressed
+        case .dpadDown:         return pad.dpad.down.isPressed
+        case .dpadLeft:         return pad.dpad.left.isPressed
+        case .dpadRight:        return pad.dpad.right.isPressed
+        case .faceA:            return pad.buttonA.isPressed
+        case .faceB:            return pad.buttonB.isPressed
+        case .faceX:            return pad.buttonX.isPressed
+        case .faceY:            return pad.buttonY.isPressed
+        case .leftBumper:       return pad.leftShoulder.isPressed
+        case .rightBumper:      return pad.rightShoulder.isPressed
+        case .leftTrigger:      return pad.leftTrigger.isPressed
+        case .rightTrigger:     return pad.rightTrigger.isPressed
+        case .menu:             return pad.buttonMenu.isPressed
+        case .options:          return pad.buttonOptions?.isPressed == true
+        case .leftStickClick:   return pad.leftThumbstickButton?.isPressed == true
+        case .rightStickClick:  return pad.rightThumbstickButton?.isPressed == true
         }
     }
 }

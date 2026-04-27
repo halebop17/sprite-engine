@@ -9,6 +9,15 @@ struct SettingsView: View {
     @State private var isScanning = false
     @State private var lastScanCount: Int? = nil
 
+    // Scraping
+    @State private var scraperTesting = false
+    @State private var scraperResult: ScraperTestResult? = nil
+
+    private enum ScraperTestResult {
+        case success(String)
+        case failure(String)
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             topBar
@@ -20,6 +29,7 @@ struct SettingsView: View {
                     videoSection
                     audioSection
                     emulationSection
+                    scrapingSection
                     appearanceSection
                 }
                 .padding(26)
@@ -238,6 +248,35 @@ struct SettingsView: View {
             Divider().background(t.divider).padding(.leading, 14)
 
             Button {
+                appState.navigate(to: .controllers)
+            } label: {
+                HStack(spacing: 10) {
+                    Image(systemName: "gamecontroller")
+                        .font(.system(size: 13))
+                        .foregroundColor(t.accent)
+                        .frame(width: 20)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Controllers")
+                            .font(.system(size: 13))
+                            .foregroundColor(t.text)
+                        Text("Remap keyboard or gamepad bindings per system")
+                            .font(.system(size: 11))
+                            .foregroundColor(t.textMuted)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 11))
+                        .foregroundColor(t.textFaint)
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 10)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+
+            Divider().background(t.divider).padding(.leading, 14)
+
+            Button {
                 appState.navigate(to: .romVerifier)
             } label: {
                 HStack(spacing: 10) {
@@ -263,6 +302,121 @@ struct SettingsView: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
+        }
+    }
+
+    // MARK: - Scraping
+
+    private var scrapingSection: some View {
+        SettingsSection(title: "SCRAPING") {
+            CredentialRow(
+                label: "ScreenScraper Username",
+                placeholder: "ssid",
+                isSecure: false,
+                text: Binding(
+                    get: { appState.screenScraperUsername },
+                    set: { appState.setScreenScraperCredentials(username: $0,
+                                                                password: appState.screenScraperPassword) }
+                )
+            )
+            Divider().background(t.divider).padding(.leading, 14)
+            CredentialRow(
+                label: "ScreenScraper Password",
+                placeholder: "sspassword",
+                isSecure: true,
+                text: Binding(
+                    get: { appState.screenScraperPassword },
+                    set: { appState.setScreenScraperCredentials(username: appState.screenScraperUsername,
+                                                                password: $0) }
+                )
+            )
+            Divider().background(t.divider).padding(.leading, 14)
+            HStack(spacing: 10) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Test Connection")
+                        .font(.system(size: 13))
+                        .foregroundColor(t.text)
+                    Text(scraperStatusText)
+                        .font(.system(size: 11))
+                        .foregroundColor(scraperStatusColor)
+                        .lineLimit(2)
+                }
+                Spacer()
+                Button {
+                    runConnectionTest()
+                } label: {
+                    HStack(spacing: 6) {
+                        if scraperTesting {
+                            ProgressView()
+                                .scaleEffect(0.65)
+                                .frame(width: 12, height: 12)
+                            Text("Testing…")
+                                .font(.system(size: 12, weight: .semibold))
+                        } else {
+                            Image(systemName: "antenna.radiowaves.left.and.right")
+                                .font(.system(size: 11))
+                            Text("Test")
+                                .font(.system(size: 12, weight: .semibold))
+                        }
+                    }
+                    .foregroundColor(t.accent)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(t.card)
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                    .overlay(RoundedRectangle(cornerRadius: 6)
+                        .strokeBorder(t.cardBorder, lineWidth: 1))
+                }
+                .buttonStyle(.plain)
+                .disabled(scraperTesting
+                          || appState.screenScraperUsername.isEmpty
+                          || appState.screenScraperPassword.isEmpty)
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
+        }
+    }
+
+    private var scraperStatusText: String {
+        switch scraperResult {
+        case .success(let msg): return msg
+        case .failure(let msg): return msg
+        case .none:
+            return "Verify credentials against api.screenscraper.fr"
+        }
+    }
+
+    private var scraperStatusColor: Color {
+        switch scraperResult {
+        case .success: return t.accent
+        case .failure: return Color.red.opacity(0.8)
+        case .none:    return t.textMuted
+        }
+    }
+
+    private func runConnectionTest() {
+        scraperTesting = true
+        scraperResult = nil
+        let user = appState.screenScraperUsername
+        let pass = appState.screenScraperPassword
+        Task {
+            do {
+                let info = try await ArtworkScraper.shared.testConnection(ssid: user, sspassword: pass)
+                let used = info.requestsToday
+                let max  = info.maxRequestsPerDay
+                let level = info.level.map { "Lv \($0)" } ?? ""
+                let quota = max > 0 ? "\(used)/\(max) requests today" : "\(used) requests today"
+                let detail = [level, quota].filter { !$0.isEmpty }.joined(separator: " · ")
+                await MainActor.run {
+                    scraperResult = .success("Connected as \(info.id). \(detail)")
+                    scraperTesting = false
+                }
+            } catch {
+                await MainActor.run {
+                    scraperResult = .failure(error.localizedDescription)
+                    scraperTesting = false
+                }
+            }
         }
     }
 
@@ -382,6 +536,47 @@ private struct ToggleRow: View {
                 .labelsHidden()
                 .toggleStyle(.switch)
                 .tint(t.accent)
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 10)
+    }
+}
+
+// MARK: - Credential row
+
+private struct CredentialRow: View {
+    let label:        String
+    let placeholder:  String
+    let isSecure:     Bool
+    @Binding var text: String
+    @Environment(\.appTheme) private var t
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Text(label)
+                .font(.system(size: 13))
+                .foregroundColor(t.text)
+                .frame(width: 200, alignment: .leading)
+            Spacer(minLength: 8)
+            Group {
+                if isSecure {
+                    SecureField(placeholder, text: $text)
+                } else {
+                    TextField(placeholder, text: $text)
+                        .textContentType(.username)
+                        .disableAutocorrection(true)
+                }
+            }
+            .textFieldStyle(.plain)
+            .font(.system(size: 12, design: .monospaced))
+            .foregroundColor(t.text)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 5)
+            .background(t.card)
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+            .overlay(RoundedRectangle(cornerRadius: 6)
+                .strokeBorder(t.cardBorder, lineWidth: 1))
+            .frame(maxWidth: 260)
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 10)

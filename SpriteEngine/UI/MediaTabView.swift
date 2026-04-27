@@ -5,20 +5,144 @@ struct MediaTabView: View {
 
     let game: Game
 
+    @EnvironmentObject private var library: ROMLibrary
     @Environment(\.appTheme) private var t
     @State private var items: [GameMediaItem] = []
     @State private var editingLabel: UUID?
     @State private var labelDraft = ""
     @State private var lightboxItem: GameMediaItem?
 
+    // Scraper extras
+    @State private var scrapedFiles: [ScrapedFileEntry] = []
+    @State private var fetchingExtras = false
+    @State private var lightboxScrapedIndex: Int?
+    @ObservedObject private var artworkService = ArtworkService.shared
+
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
+            screenScraperSection
             screenshotsSection
             documentsSection
         }
-        .onAppear { items = GameMediaStore.load(for: game.id) }
+        .onAppear {
+            items = GameMediaStore.load(for: game.id)
+            refreshScrapedFiles()
+            triggerExtrasIfNeeded()
+        }
         .sheet(item: $lightboxItem) { item in
             LightboxView(item: item, gameID: game.id)
+        }
+        .overlay {
+            if let idx = lightboxScrapedIndex {
+                ImageLightboxView(
+                    images: scrapedImages(),
+                    index: Binding(
+                        get: { idx },
+                        set: { lightboxScrapedIndex = $0 }
+                    ),
+                    onDismiss: { lightboxScrapedIndex = nil }
+                )
+            }
+        }
+    }
+
+    // MARK: - From ScreenScraper
+
+    private var screenScraperSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text("FROM SCREENSCRAPER")
+                    .font(.system(size: 10, weight: .bold))
+                    .foregroundColor(t.textFaint)
+                    .kerning(0.8)
+                Spacer()
+                Button {
+                    Task { await fetchExtras() }
+                } label: {
+                    HStack(spacing: 4) {
+                        if fetchingExtras {
+                            ProgressView().scaleEffect(0.55).frame(width: 12, height: 12)
+                            Text("Fetching…")
+                        } else {
+                            Image(systemName: "arrow.down.circle")
+                                .font(.system(size: 10))
+                            Text("Fetch More Media")
+                        }
+                    }
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundColor(t.accent)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 4)
+                    .background(t.accentSoft)
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                }
+                .buttonStyle(.plain)
+                .disabled(fetchingExtras || !game.hasArtwork)
+                .help(game.hasArtwork
+                      ? "Download back box, fanart, title screen, screenshots from ScreenScraper"
+                      : "Run Fetch Artwork on this game first to populate ScreenScraper metadata")
+            }
+
+            if scrapedFiles.isEmpty {
+                emptyState(icon: "sparkles.rectangle.stack",
+                           message: game.hasArtwork
+                                    ? "No additional media downloaded yet — tap Fetch More Media."
+                                    : "Run Fetch Artwork on this game to enable ScreenScraper media.")
+            } else {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)], spacing: 10) {
+                    ForEach(Array(scrapedFiles.enumerated()), id: \.element.url) { idx, entry in
+                        ScrapedMediaCard(
+                            entry: entry,
+                            isCover: entry.kind == .boxArt,
+                            onTap: { lightboxScrapedIndex = idx },
+                            onSetCover: { setAsCover(entry) }
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    private func refreshScrapedFiles() {
+        scrapedFiles = ArtworkCache.allCached(for: game.id).map {
+            ScrapedFileEntry(label: $0.label, kind: $0.kind, url: $0.url, isScreenshot: $0.isScreenshot)
+        }
+    }
+
+    private func scrapedImages() -> [NSImage] {
+        scrapedFiles.compactMap { NSImage(contentsOf: $0.url) }
+    }
+
+    private func triggerExtrasIfNeeded() {
+        guard game.hasArtwork else { return }
+        // Auto-trigger only if we haven't already fetched extras (heuristic:
+        // fewer cached files than the 3 eager assets means scraping is fresh).
+        if scrapedFiles.count <= 3 {
+            Task { await fetchExtras() }
+        }
+    }
+
+    @MainActor
+    private func fetchExtras() async {
+        fetchingExtras = true
+        _ = await artworkService.fetchExtras(for: game)
+        fetchingExtras = false
+        refreshScrapedFiles()
+    }
+
+    private func setAsCover(_ entry: ScrapedFileEntry) {
+        // Copy the chosen file to box.<ext>
+        let ext = entry.url.pathExtension.lowercased() == "png" ? "png" : "jpg"
+        let dest = ArtworkCache.fileURL(for: game.id, kind: .boxArt, ext: ext)
+        // Remove existing box files of either extension before writing.
+        for e in ["jpg", "png"] {
+            let existing = ArtworkCache.fileURL(for: game.id, kind: .boxArt, ext: e)
+            if existing != dest { try? FileManager.default.removeItem(at: existing) }
+        }
+        if let data = try? Data(contentsOf: entry.url) {
+            try? data.write(to: dest, options: .atomic)
+            library.markArtworkPresent(game.id, manual: true)
+            refreshScrapedFiles()
         }
     }
 
@@ -179,6 +303,90 @@ struct MediaTabView: View {
         }
         editingLabel = nil
         GameMediaStore.save(items, for: game.id)
+    }
+}
+
+// MARK: - Scraped media card
+
+private struct ScrapedFileEntry {
+    let label: String
+    let kind: ArtworkKind?
+    let url: URL
+    let isScreenshot: Bool
+}
+
+private struct ScrapedMediaCard: View {
+    let entry: ScrapedFileEntry
+    let isCover: Bool
+    let onTap: () -> Void
+    let onSetCover: () -> Void
+
+    @Environment(\.appTheme) private var t
+    @State private var hovered = false
+
+    var body: some View {
+        VStack(spacing: 0) {
+            ZStack(alignment: .topTrailing) {
+                if let img = NSImage(contentsOf: entry.url) {
+                    Image(nsImage: img)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(minHeight: 100, maxHeight: 120)
+                        .clipped()
+                        .contentShape(Rectangle())
+                        .onTapGesture(perform: onTap)
+                } else {
+                    Rectangle()
+                        .fill(t.systemTabsBg)
+                        .frame(height: 100)
+                }
+                if isCover {
+                    HStack(spacing: 3) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 9))
+                        Text("COVER")
+                            .font(.system(size: 9, weight: .bold))
+                            .kerning(0.5)
+                    }
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 3)
+                    .background(.green.opacity(0.85))
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                    .padding(6)
+                }
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+
+            HStack(spacing: 6) {
+                Text(entry.label)
+                    .font(.system(size: 11))
+                    .foregroundColor(hovered ? t.text : t.textMuted)
+                    .lineLimit(1)
+                Spacer()
+                if !isCover {
+                    Button(action: onSetCover) {
+                        Text("Set as Cover")
+                            .font(.system(size: 9, weight: .semibold))
+                            .foregroundColor(t.accent)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(t.accentSoft)
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .padding(.horizontal, 6)
+            .padding(.vertical, 5)
+        }
+        .background(t.card)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .overlay(RoundedRectangle(cornerRadius: 8)
+            .strokeBorder(hovered ? t.accent.opacity(0.5) : t.cardBorder, lineWidth: 1))
+        .onHover { hovered = $0 }
+        .animation(.easeInOut(duration: 0.14), value: hovered)
+        .help(isCover ? "Currently the card cover" : "Click to view full size · ‘Set as Cover’ to use as the main image")
     }
 }
 

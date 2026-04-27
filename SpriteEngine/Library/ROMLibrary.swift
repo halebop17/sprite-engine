@@ -39,14 +39,17 @@ final class ROMLibrary: ObservableObject {
             let real = String(cString: buf)
             guard !real.isEmpty, real != games[i].title else { continue }
             games[i] = Game(
-                id:         games[i].id,
-                title:      real,
-                system:     games[i].system,
-                romURL:     games[i].romURL,
-                artworkURL: games[i].artworkURL,
-                lastPlayed: games[i].lastPlayed,
-                isFavorite: games[i].isFavorite,
-                saveStates: games[i].saveStates
+                id:                 games[i].id,
+                title:              real,
+                system:             games[i].system,
+                romURL:             games[i].romURL,
+                artworkURL:         games[i].artworkURL,
+                lastPlayed:         games[i].lastPlayed,
+                isFavorite:         games[i].isFavorite,
+                saveStates:         games[i].saveStates,
+                hasArtwork:         games[i].hasArtwork,
+                coverIsManual:      games[i].coverIsManual,
+                scrapeNameOverride: games[i].scrapeNameOverride
             )
             changed = true
         }
@@ -59,12 +62,15 @@ final class ROMLibrary: ObservableObject {
     // MARK: - Scanning
 
     func scan(directory: URL) async {
+        let before = Set(games.map(\.id))
         let found = await scanner.scan(directory: directory)
         merge(found)
         save()
+        autoScrapeNewGames(addedAfter: before)
     }
 
     func scan(directories: [URL]) async {
+        let before = Set(games.map(\.id))
         var all: [Game] = []
         for dir in directories {
             let found = await scanner.scan(directory: dir)
@@ -72,12 +78,47 @@ final class ROMLibrary: ObservableObject {
         }
         merge(all)
         save()
+        autoScrapeNewGames(addedAfter: before)
+    }
+
+    /// After a scan, queue any newly-added games for ScreenScraper artwork
+    /// if the user has supplied credentials. Silent — no UI surfaced; the
+    /// "Artwork" toolbar button shows progress if the user opens it.
+    private func autoScrapeNewGames(addedAfter prior: Set<UUID>) {
+        let newGames = games.filter { !prior.contains($0.id) && !$0.hasArtwork }
+        guard !newGames.isEmpty else { return }
+        let ud = UserDefaults.standard
+        let user = ud.string(forKey: "screenScraperUsername") ?? ""
+        let pass = ud.string(forKey: "screenScraperPassword") ?? ""
+        guard !user.isEmpty, !pass.isEmpty else { return }
+        ArtworkService.shared.scrapeMany(newGames, library: self, force: false)
     }
 
     // MARK: - Mutation
 
     func setFavorite(_ game: Game, _ value: Bool) {
         update(game.id) { $0.isFavorite = value }
+    }
+
+    func markArtworkPresent(_ gameID: UUID, manual: Bool = false) {
+        update(gameID) {
+            $0.hasArtwork = true
+            if manual { $0.coverIsManual = true }
+        }
+    }
+
+    func clearArtwork(_ gameID: UUID) {
+        update(gameID) {
+            $0.hasArtwork = false
+            $0.coverIsManual = false
+        }
+    }
+
+    func setScrapeNameOverride(_ gameID: UUID, _ value: String?) {
+        let trimmed = value?.trimmingCharacters(in: .whitespacesAndNewlines)
+        update(gameID) {
+            $0.scrapeNameOverride = (trimmed?.isEmpty == false) ? trimmed : nil
+        }
     }
 
     func recordPlayed(_ game: Game) {
@@ -136,14 +177,17 @@ final class ROMLibrary: ObservableObject {
                 // Refresh metadata from a rescan (title, system, artwork) while
                 // preserving the persistent id and user-state fields.
                 prev = Game(
-                    id:         prev.id,
-                    title:      game.title,
-                    system:     game.system,
-                    romURL:     prev.romURL,
-                    artworkURL: game.artworkURL ?? prev.artworkURL,
-                    lastPlayed: prev.lastPlayed,
-                    isFavorite: prev.isFavorite,
-                    saveStates: prev.saveStates
+                    id:                 prev.id,
+                    title:              game.title,
+                    system:             game.system,
+                    romURL:             prev.romURL,
+                    artworkURL:         game.artworkURL ?? prev.artworkURL,
+                    lastPlayed:         prev.lastPlayed,
+                    isFavorite:         prev.isFavorite,
+                    saveStates:         prev.saveStates,
+                    hasArtwork:         prev.hasArtwork,
+                    coverIsManual:      prev.coverIsManual,
+                    scrapeNameOverride: prev.scrapeNameOverride
                 )
                 existing[game.romURL] = prev
             } else {

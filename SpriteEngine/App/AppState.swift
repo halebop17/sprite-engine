@@ -10,6 +10,7 @@ enum Screen: Equatable {
     case `import`
     case settings
     case romVerifier
+    case controllers
     case emulator(Game)
 }
 
@@ -37,6 +38,10 @@ final class AppState: ObservableObject {
 
     // Library
     @Published var libraryViewMode: LibraryViewMode = .grid
+
+    // Scraping (ScreenScraper user account)
+    @Published var screenScraperUsername: String = ""
+    @Published var screenScraperPassword: String = ""
 
     init() {
         let ud = UserDefaults.standard
@@ -70,6 +75,8 @@ final class AppState: ObservableObject {
         showFPSOverlay        = ud.bool(forKey: "showFPSOverlay")
         if let raw = ud.string(forKey: "libraryViewMode"),
            let mode = LibraryViewMode(rawValue: raw) { libraryViewMode = mode }
+        screenScraperUsername = ud.string(forKey: "screenScraperUsername") ?? ""
+        screenScraperPassword = ud.string(forKey: "screenScraperPassword") ?? ""
         hasCompletedOnboarding = ud.bool(forKey: "hasCompletedOnboarding")
         if !hasCompletedOnboarding { screen = .onboarding }
     }
@@ -145,6 +152,13 @@ final class AppState: ObservableObject {
     func setLibraryViewMode(_ mode: LibraryViewMode) {
         libraryViewMode = mode
         UserDefaults.standard.set(mode.rawValue, forKey: "libraryViewMode")
+    }
+
+    func setScreenScraperCredentials(username: String, password: String) {
+        screenScraperUsername = username
+        screenScraperPassword = password
+        UserDefaults.standard.set(username, forKey: "screenScraperUsername")
+        UserDefaults.standard.set(password, forKey: "screenScraperPassword")
     }
 
     // MARK: BIOS validation

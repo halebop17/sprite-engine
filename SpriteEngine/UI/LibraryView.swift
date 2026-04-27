@@ -255,6 +255,7 @@ struct LibraryView: View {
     @EnvironmentObject private var library: ROMLibrary
     @State private var filter: LibraryFilter = .all
     @State private var search = ""
+    @State private var showArtworkScrape = false
 
     private var theme: AppTheme { appState.currentTheme }
 
@@ -264,7 +265,8 @@ struct LibraryView: View {
                 .environment(\.appTheme, theme)
             Divider().opacity(0)
             VStack(spacing: 0) {
-                LibraryToolbar(filter: filter, search: $search)
+                LibraryToolbar(filter: filter, search: $search,
+                               onFetchArtwork: { showArtworkScrape = true })
                     .environment(\.appTheme, theme)
                 LibraryContent(filter: filter, search: search)
                     .environment(\.appTheme, theme)
@@ -272,6 +274,11 @@ struct LibraryView: View {
         }
         .background(theme.surface)
         .environment(\.appTheme, theme)
+        .sheet(isPresented: $showArtworkScrape) {
+            ArtworkScrapeView(games: library.games,
+                              onClose: { showArtworkScrape = false })
+                .environment(\.appTheme, theme)
+        }
     }
 }
 
@@ -538,6 +545,7 @@ private struct BrandIcon: View {
 private struct LibraryToolbar: View {
     let filter: LibraryFilter
     @Binding var search: String
+    let onFetchArtwork: () -> Void
     @EnvironmentObject private var appState: AppState
     @EnvironmentObject private var library: ROMLibrary
     @Environment(\.appTheme) private var t
@@ -596,6 +604,23 @@ private struct LibraryToolbar: View {
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(t.divider, lineWidth: 1))
             .frame(width: 180)
+            // Fetch Artwork
+            Button(action: onFetchArtwork) {
+                HStack(spacing: 5) {
+                    Image(systemName: "photo.on.rectangle.angled")
+                        .font(.system(size: 11))
+                    Text("Artwork")
+                        .font(.system(size: 12, weight: .semibold))
+                }
+                .foregroundColor(t.text)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(t.card)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(t.cardBorder, lineWidth: 1))
+            }
+            .buttonStyle(.plain)
+            .help("Fetch box art / wheel / marquee from ScreenScraper for the whole library")
             // Import button
             Button { appState.navigate(to: .`import`) } label: {
                 Text("+ Import")
@@ -759,7 +784,7 @@ private struct GameListRow: View {
     var body: some View {
         Button(action: onTap) {
             HStack(spacing: 12) {
-                BoxArtView(game: game, size: 36)
+                GameCoverView(game: game, size: 36)
                     .clipShape(RoundedRectangle(cornerRadius: 4))
 
                 VStack(alignment: .leading, spacing: 2) {

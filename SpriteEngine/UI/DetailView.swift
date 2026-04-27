@@ -13,6 +13,15 @@ struct DetailView: View {
     @State private var noteText: String
     @State private var editingNote = false
 
+    // Lightbox + scrape
+    @State private var coverLightboxImage: NSImage?
+    @State private var lightboxIndex: Int = 0
+    @State private var isFetchingArtwork = false
+    @State private var fetchArtworkError: String?
+    @State private var showNameOverride = false
+    @State private var arrowKeyMonitor: Any?
+    @ObservedObject private var artworkService = ArtworkService.shared
+
     enum DetailTab { case info, notes, media, saveStates }
 
     init(game: Game) {
@@ -28,6 +37,39 @@ struct DetailView: View {
             mainContent
         }
         .background(t.surface)
+        .overlay(alignment: .bottomLeading) {
+            navArrowButton(direction: .previous)
+                .padding(.leading, 18)
+                .padding(.bottom, 18)
+        }
+        .overlay(alignment: .bottomTrailing) {
+            navArrowButton(direction: .next)
+                .padding(.trailing, 18)
+                .padding(.bottom, 18)
+        }
+        .overlay {
+            if let img = coverLightboxImage {
+                ImageLightboxView(
+                    images: [img],
+                    index: $lightboxIndex,
+                    onDismiss: { coverLightboxImage = nil }
+                )
+            }
+        }
+        .onAppear { installArrowKeyMonitor() }
+        .onDisappear { removeArrowKeyMonitor() }
+        .sheet(isPresented: $showNameOverride) {
+            NameOverrideSheet(
+                game: liveGame,
+                onSave: { override in
+                    library.setScrapeNameOverride(liveGame.id, override)
+                    showNameOverride = false
+                    fetchArtwork()
+                },
+                onCancel: { showNameOverride = false }
+            )
+            .environment(\.appTheme, t)
+        }
     }
 
     // MARK: - Left sidebar (220px art + stats)
@@ -35,22 +77,51 @@ struct DetailView: View {
     private var sidebarColumn: some View {
         ScrollView {
             VStack(spacing: 12) {
-                BoxArtView(game: game, size: 220)
-                    .shadow(color: .black.opacity(0.55), radius: 18, y: 10)
-                    .overlay(RoundedRectangle(cornerRadius: 8)
-                        .strokeBorder(t.cardBorder, lineWidth: 1))
+                Button {
+                    coverLightboxImage = liveCoverImage
+                } label: {
+                    GameCoverView(game: liveGame, size: 308)
+                        .shadow(color: .black.opacity(0.55), radius: 18, y: 10)
+                        .overlay(RoundedRectangle(cornerRadius: 8)
+                            .strokeBorder(t.cardBorder, lineWidth: 1))
+                }
+                .buttonStyle(.plain)
+                .disabled(liveCoverImage == nil)
+
+                if let marquee = ArtworkCache.marquee(for: liveGame.id) {
+                    Image(nsImage: marquee)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 308)
+                        .clipShape(RoundedRectangle(cornerRadius: 6))
+                        .overlay(RoundedRectangle(cornerRadius: 6)
+                            .strokeBorder(t.cardBorder, lineWidth: 1))
+                        .shadow(color: .black.opacity(0.4), radius: 8, y: 4)
+                }
+
                 statsCard
-                if let result = library.verificationResults[game.id], !result.status.isOK {
+                if let result = library.verificationResults[liveGame.id], !result.status.isOK {
                     romIssuesCard(result)
                 }
             }
             .padding(26)
         }
-        .frame(width: 272)
+        .frame(width: 360)
         .background(t.sidebar)
         .overlay(alignment: .trailing) {
             Rectangle().fill(t.sidebarBorder).frame(width: 1)
         }
+    }
+
+    /// Snapshot from navigation; for fields that can mutate (artwork download,
+    /// favorites, save states) we look up the latest by id.
+    private var liveGame: Game {
+        library.games.first(where: { $0.id == game.id }) ?? game
+    }
+
+    private var liveCoverImage: NSImage? {
+        guard liveGame.hasArtwork else { return nil }
+        return ArtworkCache.boxArt(for: liveGame.id)
     }
 
     @ViewBuilder
@@ -190,6 +261,55 @@ struct DetailView: View {
         HStack(spacing: 10) {
             BackButton()
             Spacer()
+            // Fetch Artwork
+            Button(action: fetchArtwork) {
+                HStack(spacing: 6) {
+                    if isFetchingArtwork {
+                        ProgressView().scaleEffect(0.6).frame(width: 12, height: 12)
+                    } else {
+                        Image(systemName: "photo.on.rectangle.angled")
+                            .font(.system(size: 12))
+                    }
+                    Text(liveGame.hasArtwork ? "Refresh Artwork" : "Fetch Artwork")
+                        .font(.system(size: 12, weight: .semibold))
+                }
+                .foregroundColor(t.text)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(t.card)
+                .clipShape(RoundedRectangle(cornerRadius: 9))
+                .overlay(RoundedRectangle(cornerRadius: 9)
+                    .strokeBorder(t.cardBorder, lineWidth: 1))
+            }
+            .buttonStyle(.plain)
+            .disabled(isFetchingArtwork)
+            .help(fetchArtworkError ?? "Download box art, wheel, marquee from ScreenScraper")
+            // Set Cover…
+            Menu {
+                Button("Set Cover Image…", action: pickCoverImage)
+                Divider()
+                Button(liveGame.scrapeNameOverride == nil
+                       ? "Set Name Override…"
+                       : "Edit Name Override (\"\(liveGame.scrapeNameOverride!)\")…") {
+                    showNameOverride = true
+                }
+                if liveGame.hasArtwork {
+                    Divider()
+                    Button("Clear Artwork", role: .destructive, action: clearArtwork)
+                }
+            } label: {
+                Image(systemName: "ellipsis.circle")
+                    .font(.system(size: 14))
+                    .foregroundColor(t.text)
+                    .frame(width: 36, height: 36)
+                    .background(t.card)
+                    .clipShape(RoundedRectangle(cornerRadius: 9))
+                    .overlay(RoundedRectangle(cornerRadius: 9)
+                        .strokeBorder(t.cardBorder, lineWidth: 1))
+            }
+            .menuStyle(.borderlessButton)
+            .menuIndicator(.hidden)
+            .frame(width: 36, height: 36)
             // Favorite
             Button {
                 isFavorite.toggle()
@@ -440,6 +560,111 @@ struct DetailView: View {
         }
     }
 
+    // MARK: - Game-step navigation
+
+    private enum NavDirection { case previous, next }
+
+    private var sortedGames: [Game] {
+        library.games.sorted { $0.title.localizedCompare($1.title) == .orderedAscending }
+    }
+
+    private func adjacentGame(_ direction: NavDirection) -> Game? {
+        let games = sortedGames
+        guard let idx = games.firstIndex(where: { $0.id == game.id }) else { return nil }
+        let target = direction == .previous ? idx - 1 : idx + 1
+        return games.indices.contains(target) ? games[target] : nil
+    }
+
+    private func step(_ direction: NavDirection) {
+        if let next = adjacentGame(direction) {
+            appState.navigate(to: .detail(next))
+        }
+    }
+
+    @ViewBuilder
+    private func navArrowButton(direction: NavDirection) -> some View {
+        let target = adjacentGame(direction)
+        Button { step(direction) } label: {
+            Image(systemName: direction == .previous ? "chevron.left" : "chevron.right")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundColor(target == nil ? t.textFaint : t.text)
+                .frame(width: 40, height: 40)
+                .background(target == nil ? t.card.opacity(0.5) : t.card)
+                .clipShape(Circle())
+                .overlay(Circle()
+                    .strokeBorder(t.cardBorder, lineWidth: 1))
+                .shadow(color: .black.opacity(target == nil ? 0 : 0.4), radius: 8, y: 3)
+        }
+        .buttonStyle(.plain)
+        .disabled(target == nil)
+        .help(target.map { "\(direction == .previous ? "Previous" : "Next"): \($0.title)" }
+              ?? (direction == .previous ? "First game" : "Last game"))
+    }
+
+    private func installArrowKeyMonitor() {
+        guard arrowKeyMonitor == nil else { return }
+        arrowKeyMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
+            // Don't steal arrow keys from text editing.
+            if isTypingFocused { return event }
+            switch event.keyCode {
+            case 123: step(.previous); return nil
+            case 124: step(.next);     return nil
+            default: return event
+            }
+        }
+    }
+
+    private func removeArrowKeyMonitor() {
+        if let m = arrowKeyMonitor {
+            NSEvent.removeMonitor(m)
+            arrowKeyMonitor = nil
+        }
+    }
+
+    private var isTypingFocused: Bool {
+        let responder = NSApp.keyWindow?.firstResponder
+        return responder is NSText || responder is NSTextView
+    }
+
+    // MARK: - Artwork actions
+
+    private func fetchArtwork() {
+        isFetchingArtwork = true
+        fetchArtworkError = nil
+        let target = liveGame
+        Task {
+            let ok = await artworkService.scrapeOne(target, library: library, force: true)
+            await MainActor.run {
+                isFetchingArtwork = false
+                if !ok, case .error(let msg) = artworkService.status(for: target.id) {
+                    fetchArtworkError = msg
+                } else if !ok, case .notFound = artworkService.status(for: target.id) {
+                    fetchArtworkError = "No match found on ScreenScraper."
+                }
+            }
+        }
+    }
+
+    private func pickCoverImage() {
+        let panel = NSOpenPanel()
+        panel.title = "Choose Cover Image"
+        panel.allowedContentTypes = [.image]
+        panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = false
+        panel.begin { response in
+            guard response == .OK, let url = panel.url else { return }
+            DispatchQueue.main.async {
+                let target = liveGame
+                _ = artworkService.setManualCover(from: url, for: target, library: library)
+            }
+        }
+    }
+
+    private func clearArtwork() {
+        ArtworkCache.clear(for: liveGame.id)
+        library.clearArtwork(liveGame.id)
+    }
+
     // MARK: - Helpers
 
     private func formatted(_ date: Date) -> String {
@@ -681,5 +906,99 @@ extension EmulatorSystem {
         case .taito:
             return "\(title) runs on Taito arcade hardware — a prolific platform spanning titles from Rainbow Islands and Ninja Warriors to Elevator Action Returns."
         }
+    }
+}
+
+// MARK: - Name Override sheet
+
+private struct NameOverrideSheet: View {
+    let game: Game
+    let onSave: (String?) -> Void
+    let onCancel: () -> Void
+
+    @Environment(\.appTheme) private var t
+    @State private var draft: String
+
+    init(game: Game, onSave: @escaping (String?) -> Void, onCancel: @escaping () -> Void) {
+        self.game = game
+        self.onSave = onSave
+        self.onCancel = onCancel
+        _draft = State(initialValue: game.scrapeNameOverride ?? "")
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Name Override")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundColor(t.text)
+                .padding(.horizontal, 20)
+                .padding(.top, 18)
+                .padding(.bottom, 6)
+
+            Text("Send a different filename to ScreenScraper when fetching artwork. The actual ROM file is not renamed.")
+                .font(.system(size: 12))
+                .foregroundColor(t.textMuted)
+                .padding(.horizontal, 20)
+                .padding(.bottom, 14)
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text("ACTUAL FILENAME")
+                    .font(.system(size: 9, weight: .bold))
+                    .foregroundColor(t.textFaint)
+                    .kerning(0.6)
+                Text(game.romURL.lastPathComponent)
+                    .font(.system(size: 12, design: .monospaced))
+                    .foregroundColor(t.textMuted)
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 12)
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text("OVERRIDE")
+                    .font(.system(size: 9, weight: .bold))
+                    .foregroundColor(t.textFaint)
+                    .kerning(0.6)
+                TextField("e.g. tmnt.zip", text: $draft)
+                    .textFieldStyle(.plain)
+                    .font(.system(size: 13, design: .monospaced))
+                    .foregroundColor(t.text)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 7)
+                    .background(t.card)
+                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                    .overlay(RoundedRectangle(cornerRadius: 6)
+                        .strokeBorder(t.cardBorder, lineWidth: 1))
+                Text("If you omit “.zip”, it will be appended automatically.")
+                    .font(.system(size: 10))
+                    .foregroundColor(t.textFaint)
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 18)
+
+            Divider().background(t.divider)
+
+            HStack {
+                if game.scrapeNameOverride != nil {
+                    Button("Clear Override") { onSave(nil) }
+                        .font(.system(size: 12))
+                        .foregroundColor(.red)
+                        .buttonStyle(.plain)
+                }
+                Spacer()
+                Button("Cancel", action: onCancel)
+                    .keyboardShortcut(.cancelAction)
+                Button(game.scrapeNameOverride == nil ? "Save & Refetch" : "Update & Refetch") {
+                    let trimmed = draft.trimmingCharacters(in: .whitespacesAndNewlines)
+                    onSave(trimmed.isEmpty ? nil : trimmed)
+                }
+                .keyboardShortcut(.defaultAction)
+                .disabled(draft.trimmingCharacters(in: .whitespaces).isEmpty
+                          && game.scrapeNameOverride == nil)
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 12)
+        }
+        .frame(width: 460)
+        .background(t.surface)
     }
 }

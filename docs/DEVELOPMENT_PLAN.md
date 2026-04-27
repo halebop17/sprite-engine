@@ -633,6 +633,120 @@ Each media entry has a direct HTTPS `url` — a single `URLSession` GET download
 
 ---
 
+## Phase 30 — Controller Remapping
+
+**Goal:** Let the user reassign keyboard keys and gamepad buttons to the emulator's logical inputs, with overrides stored independently per system. Built-in defaults remain unchanged unless the user explicitly customises a profile, so existing players see no behaviour change.
+
+---
+
+### Background: why this matters
+
+Today `InputManager` hardcodes a single mapping for keyboard and a single mapping for Xbox/MFi gamepads. The Xbox face buttons map to Neo Geo's diamond layout (`A B X Y` → `A B C D`). For 3-button arcade systems like Sega System 16 (Shinobi, Golden Axe) the third arcade button lands on Xbox `X`, which is on the *left* of the diamond — confusing for muscle memory built around left-to-right cabinet rows. Different systems also have different button counts (Neo Geo 4, CPS-1/2 6, Sega Sys 16 2-3, Toaplan 1-2, Irem 2-3, Taito 2-4), so a one-size-fits-all mapping cannot feel right everywhere.
+
+The fix is structural: replace the hardcoded mapping with a data-driven profile, ship sensible defaults per system, and give the user a Settings tab to override.
+
+---
+
+### Data model
+
+```swift
+enum CoreButton: String, Codable, CaseIterable {
+    case up, down, left, right
+    case a, b, c, d, e, f          // up to 6 game buttons
+    case start, select
+    case coin
+}
+
+enum GamepadButton: String, Codable, CaseIterable {
+    case dpadUp, dpadDown, dpadLeft, dpadRight
+    case faceA, faceB, faceX, faceY              // Xbox naming
+    case leftBumper, rightBumper
+    case leftTrigger, rightTrigger
+    case menu, options
+}
+
+struct InputProfile: Codable, Equatable {
+    var keyboard: [CoreButton: UInt16]            // CoreButton → macOS keyCode
+    var gamepad:  [CoreButton: GamepadButton]
+}
+```
+
+A profile is defined per `EmulatorSystem`. The effective profile for a running game is computed as:
+
+1. Start from a built-in default (defined in code, ships with the app).
+2. If `UserDefaults` has an override under key `inputProfile.<system.rawValue>`, merge it on top.
+
+Only customised buttons are stored in the override — unchanged buttons fall through to the default. This means improvements to shipped defaults reach existing users automatically.
+
+---
+
+### Built-in defaults (preserved as-is from current behaviour)
+
+The first cut keeps the existing mapping for every system. The user customises whatever feels wrong (e.g. they may move Sega's third button from Xbox `X` to Xbox `Y`).
+
+| System | Buttons | Xbox default |
+|---|---|---|
+| Neo Geo (AES/MVS/CD) | A B C D | `A B X Y` (diamond) |
+| CPS-1, CPS-2 | A B C D E F | `A B X Y LB RB` |
+| Sega Sys 16/18 | A B (C) | `A B X` |
+| Toaplan 1/2 | A B (C) | `A B X` |
+| Konami GX | A B C D E F | `A B X Y LB RB` |
+| Konami 68K | A B C D | `A B X Y` |
+| Irem | A B (C) | `A B X` |
+| Taito | A B C (D) | `A B X Y` |
+
+Keyboard defaults stay the existing WASD + UIJK + Return + Space + C-key.
+
+---
+
+### Implementation tasks
+
+**1. New types**
+- `SpriteEngine/Input/CoreButton.swift` — enum + display labels
+- `SpriteEngine/Input/GamepadButton.swift` — enum + GameController-framework mapping helpers
+- `SpriteEngine/Input/InputProfile.swift` — Codable struct, default factory, merge helper
+
+**2. `ControllerSettings` store**
+- Singleton with `func profile(for: EmulatorSystem) -> InputProfile` that reads UserDefaults and merges over the built-in default
+- `func setOverride(_ profile: InputProfile, for: EmulatorSystem)` — writes JSON
+- `func clearOverride(for: EmulatorSystem)`
+- ObservableObject so the Settings UI can watch for live updates
+
+**3. Refactor `InputManager`**
+- Holds a current `InputProfile` (default Neo Geo) plus an `activeSystem: EmulatorSystem?`
+- `func setSystem(_ system: EmulatorSystem)` — called by `EmulatorSession` when a game starts; reloads the effective profile
+- Replace the hardcoded `playerKeymap` and the Xbox `valueChangedHandler` body with profile-driven lookups
+- Per-button bit packing into `Buttons` OptionSet stays the same so the cores see the same `UInt32` mask
+
+**4. EmulatorSession integration**
+- After `core.load(...)` succeeds, call `inputManager.setSystem(game.system)` so the running game uses the right profile
+
+**5. Settings UI — `ControllerSettingsView`**
+- New row in `SettingsView` SCRAPING-style section: "Controllers"
+- Tapping opens a dedicated screen (or sheet) with:
+  - System picker at the top: "Configuring for: [Neo Geo · CPS-1 · CPS-2 · Sega Sys 16 · …]"
+  - Two columns: **Keyboard** and **Gamepad**
+  - One row per `CoreButton` showing the current binding and a "Click to bind…" affordance
+  - Bind workflow: tap → status changes to "Press a key…" / "Press a button…" → next input is captured and saved
+  - Per-system "Reset to defaults" button (clears the override for that system)
+
+**6. Live preview / first-press capture**
+- The bind dialog uses a temporary `NSEvent.addLocalMonitorForEvents` for keyboard
+- For gamepad, temporarily attach a `valueChangedHandler` that reports the next pressed button
+
+---
+
+### Verify
+
+- Open Settings → Controllers, switch system to "Sega Sys 16", rebind button C from Xbox `X` to Xbox `Y`, save
+- Start a Sega game; the third button now responds to Xbox `Y`
+- Start a Neo Geo game; mapping is unchanged (default profile)
+- Quit and relaunch; the Sega override persists
+- Reset to defaults; mapping reverts; UserDefaults entry is removed
+- Two simultaneous controllers still map to player 1 / player 2 with each player using its own active system's profile
+
+---
+
 ## Summary Table
 
 | # | Phase | Key Files | Verifiable Output |
@@ -666,3 +780,4 @@ Each media entry has a direct HTTPS `url` — a single `URLSession` GET download
 | 27 | Taito | `d_taitof2/f3.cpp`, Taito GameDB entries | Rainbow Islands, Elevator Action Returns boot |
 | 28 | Konami 68K | `d_tmnt/simpsons/xmen/contra/...`, fix GX detection, Z80-era | TMNT, Simpsons, X-Men, Contra boot |
 | 29 | ScreenScraper Artwork | `ArtworkScraper.swift`, `ArtworkCache`, Settings UI | Box art displays in library cards |
+| 30 | Controller Remapping | `InputProfile.swift`, `ControllerSettings.swift`, `ControllerSettingsView.swift`, `InputManager` refactor | Per-system keyboard + gamepad overrides; defaults unchanged |

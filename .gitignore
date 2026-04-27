@@ -10,3 +10,7 @@
 .DS_Store
 GeolithLib/geolith
 FBNeoCPSLib/fbneo
+
+# ScreenScraper developer credentials — local only, never commit.
+# Copy Secrets.example.txt to Secrets.swift and fill in your dev creds.
+SpriteEngine/Scraping/Secrets.swift
