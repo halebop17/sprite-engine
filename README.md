@@ -45,8 +45,6 @@ System logos and badges shown in the UI are trademarks of their respective owner
 
 ## License
 
-This repository does not currently carry an open-source licence file. All rights are reserved by the author. The code is published publicly so that users can read and learn from it; redistribution, modification, or commercial use of the Sprite Engine source is not granted by default.
-
 The bundled emulation cores remain under their own licences:
 
 - **Geolith** — BSD-3-Clause (permissive).
