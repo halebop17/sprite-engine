@@ -18,6 +18,8 @@ The app feels like a real macOS application rather than a ported emulator wrappe
 | **Irem M72 / M92** | Irem arcade hardware | FBNeo | R-Type, Image Fight, Ninja Baseball Batman |
 | **Taito F2 / F3** | Taito arcade hardware | FBNeo | Rainbow Islands, Ninja Warriors, Elevator Action Returns |
 
+![Sprite Engine library view](screen.jpg)
+
 ## Highlights
 
 - **Native macOS app** — SwiftUI library, detail and emulator windows, theming (Dark Cinematic, macOS Native, CRT Amber), save states with thumbnails.
