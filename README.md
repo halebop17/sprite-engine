@@ -38,7 +38,7 @@ End-user manual lives at [docs/manual.md](docs/manual.md). Internal notes and th
 
 Sprite Engine wouldn't exist without the work of two upstream emulation projects:
 
-- **[Geolith](https://github.com/rofl0r/geolith)** by neopong — a clean, modern Neo Geo core (C11). Geolith powers all Neo Geo emulation in this app and is the reason a Mac-native Neo Geo emulator is finally possible.
+- **[Geolith](https://gitlab.com/jgemu/geolith)** by [carmiker](https://github.com/carmiker) — a clean, modern Neo Geo core (C11). Geolith powers all Neo Geo emulation in this app and is the reason a Mac-native Neo Geo emulator is finally possible.
 - **[FBNeo (FinalBurn Neo)](https://github.com/finalburnneo/FBNeo)** — the broad arcade core covering CPS-1/2, Sega, Toaplan, Konami, Irem, Taito and many more. FBNeo is the result of decades of work by the FB Alpha and FBNeo teams; Sprite Engine bundles the subsets relevant to its supported systems.
 
 Game artwork (cover, wheel, marquee, screenshots, fanart) is provided by the **[ScreenScraper](https://www.screenscraper.fr)** community database when the user supplies their own ScreenScraper account credentials.
